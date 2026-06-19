@@ -54,7 +54,45 @@ This repo holds the living concept:
 - `curriculum.md` — Detailed course pillars, year-by-year progression, apprenticeship tracks
 - `Starfleet_Padawan_Academy_SpaceX.pptx` — The pitch deck (visual manifesto)
 - `images/` — Key concept art (logo, campus, training, mentor, graduates, ascent, **Punch the Glass** action & detail)
+- `create-deck.js` + `package.json` — Deck generator (pptxgenjs + icons)
+- **The One-Take Saga** (phrase-triggered creative simulators, see below)
 - Future: website prototype, application portal mock, simulator scenarios, lore bible
+
+## The One-Take Saga
+
+A parallel creative experiment: users provide stylized phrases that spawn self-contained "modes" — retro-futuristic, one-unbroken-stylish-take interactive HTML/JS simulators (Press Start 2P font, psych cosmic colors, continuous camera flow, layered mechanics from the full academy lore).
+
+Each mode folder typically contains:
+- `README.md` — Manifesto tying the phrase into the saga
+- `index.html` — Playable simulator (sliders, buttons, cue system, log, effects, post-climax choices)
+- `images/` — 4 concept stills (one_take, continuous, console, finale)
+
+Current saga modes (chronological / thematic order, many with live simulators):
+
+- **monke-button** — The primal button press
+- **neverender-protocol** — Tame Impala × Justice mashup road
+- **right-on-cue** — Timing & alignment
+- **bogies / inbound / ace-combat** — Dogfight layers
+- **conscious** — Awakening
+- **build-the-future / better-together** — Collaboration & construction
+- **human-after-all** — Embracing imperfection
+- **one-take-timmy-style** — Continuous unbroken shot
+- **fire-the-bass-cannon** — Peak energy
+- **cia-save-me / obiwan** — Extraction & mentor
+- **save-me** — Desperate plea
+- **get-spun-copilot** — Dizzy spin protocol
+- **namaste-br0ther** — Peaceful recognition
+- **i-do-coke** — Feed Me & Kill The Noise drop
+- **moar-dinosaurs** — Prehistoric escalation
+- **mac-miller-mode** — Introspective swim, divine feminine, circles
+- **final-resources** — Last fuel, ultimate launch (ties to "LAUNCH")
+- Bonus crossovers: attack-isengard, launch-the-ents, claude-gpt-chaos
+
+These function as "cadet training simulations" or lore artifacts within the academy. The unbroken take theme runs through all of them.
+
+To experience: open any `*/index.html` in a browser. The camera is always rolling.
+
+(Full list evolves with each new user phrase.)
 
 ## Status
 
