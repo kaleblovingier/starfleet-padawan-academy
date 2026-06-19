@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATTACK ISENGARD • THE SIEGE IN THE ONE TAKE</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&amp;display=swap');
+
+        :root {
+            --psych-pink: #ff00aa;
+            --psych-teal: #00f0ff;
+            --justice-red: #e30613;
+            --awakening-gold: #facc15;
+            --together-purple: #a855f7;
+            --timmy-elegant: #c084fc;
+            --save-red: #ff1133;
+            --bass-purple: #7c3aed;
+            --obi-gold: #fde047;
+            --spin-cyan: #67e8f9;
+            --namaste-gold: #fde047;
+            --dino-green: #4ade80;
+            --ent-green: #22c55e;
+            --ent-bark: #854d0e;
+            --forest-moss: #65a30d;
+            --isengard-grey: #6b7280;
+            --isengard-steel: #374151;
+            --flood-blue: #38bdf8;
+            --siege-orange: #f97316;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: #0a0a12;
+            color: #f0f0f0;
+            font-family: "Press Start 2P", monospace;
+            min-height: 100vh;
+            overflow-x: hidden;
+            background-image:
+                radial-gradient(circle at 25% 30%, rgba(255, 0, 170, 0.07) 0%, transparent 50%),
+                radial-gradient(circle at 75% 70%, rgba(55, 65, 81, 0.12) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(34, 197, 94, 0.04) 0%, transparent 70%);
+        }
+
+        .container { max-width: 1120px; margin: 0 auto; padding: 1.25rem; position: relative; z-index: 2; }
+
+        .header {
+            text-align: center;
+            margin-bottom: 0.9rem;
+            border-bottom: 5px solid var(--siege-orange);
+            padding-bottom: 0.7rem;
+        }
+
+        .header h1 {
+            font-size: 1.75rem;
+            background: linear-gradient(90deg, var(--psych-pink), var(--siege-orange), var(--ent-green), var(--isengard-grey));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.15rem;
+            letter-spacing: 3px;
+        }
+
+        .header .subtitle { font-size: 0.5rem; color: #888; letter-spacing: 2px; }
+
+        .shot-container {
+            background: #111;
+            border: 7px solid #222;
+            padding: 0.85rem;
+            position: relative;
+            height: 480px;
+            overflow: hidden;
+            margin-bottom: 0.85rem;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
+        }
+
+        .continuous-shot {
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 55% 35%, #1f1f28 0%, #0a0a12 68%);
+            position: relative;
+            overflow: hidden;
+            border: 2px solid rgba(34, 34, 34, 0.8);
+        }
+
+        .shot-overlay {
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(90deg, transparent 0px, transparent 2px, rgba(250, 204, 21, 0.02) 2px, rgba(250, 204, 21, 0.02) 4px);
+            pointer-events: none;
+            animation: film-grain 0.09s infinite;
+            z-index: 3;
+        }
+
+        .camera-frame { position: absolute; inset: 14px; border: 2px solid rgba(250, 204, 21, 0.28); pointer-events: none; z-index: 4; }
+        .scene-layer { position: absolute; inset: 0; }
+
+        .isengard-bg {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 55%;
+            height: 100%;
+            background: linear-gradient(180deg, #2a2a35 0%, #1a1a22 60%, #111 100%);
+            z-index: 1;
+            transition: transform 0.3s ease, opacity 0.4s ease;
+        }
+
+        .ring-wall {
+            position: absolute;
+            right: 8%;
+            top: 15%;
+            width: 38%;
+            height: 70%;
+            border: 6px solid var(--isengard-steel);
+            border-radius: 50%;
+            box-shadow: inset 0 0 40px rgba(0,0,0,0.6), 0 0 20px rgba(107,114,128,0.3);
+            z-index: 2;
+            transition: transform 0.2s ease, opacity 0.3s ease, border-color 0.3s;
+        }
+
+        .ring-wall.cracking { border-color: var(--siege-orange); animation: wall-shake 0.15s infinite; }
+        .ring-wall.breached { opacity: 0.3; transform: scale(0.85) rotate(8deg); border-color: var(--flood-blue); }
+
+        .tower {
+            position: absolute;
+            font-size: 2.8rem;
+            z-index: 3;
+            transition: transform 0.3s ease, opacity 0.4s;
+            filter: drop-shadow(0 4px 12px rgba(0,0,0,0.7));
+        }
+
+        .tower.falling { animation: tower-fall 1.2s ease forwards; }
+
+        .smoke {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 70% 25%, rgba(107,114,128,0.25) 0%, transparent 55%);
+            z-index: 4;
+            pointer-events: none;
+            animation: smoke-drift 4s ease-in-out infinite;
+        }
+
+        .flood {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 0%;
+            background: linear-gradient(180deg, transparent 0%, rgba(56,189,248,0.5) 30%, rgba(56,189,248,0.75) 100%);
+            z-index: 8;
+            transition: height 0.5s ease;
+            pointer-events: none;
+        }
+
+        .neverender-road {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 32%;
+            background: linear-gradient(#222 0%, #151515 38%, #0a0a12 100%);
+            overflow: hidden;
+            z-index: 5;
+        }
+
+        .road-lines {
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(90deg, transparent 0px, transparent 28px, #444 28px, #444 32px);
+            animation: road-move 1.05s linear infinite;
+        }
+
+        .monke-ace {
+            position: absolute;
+            font-size: 3.2rem;
+            bottom: 20%;
+            left: 18%;
+            z-index: 10;
+            transition: left 0.18s linear, transform 0.12s ease;
+            filter: drop-shadow(0 0 12px var(--timmy-elegant));
+        }
+
+        .copilot {
+            position: absolute;
+            font-size: 2.4rem;
+            bottom: 19%;
+            left: 32%;
+            z-index: 11;
+            transition: transform 0.06s linear;
+            filter: drop-shadow(0 0 10px var(--together-purple));
+        }
+
+        .ent { position: absolute; font-size: 2.2rem; z-index: 9; transition: left 0.4s linear; filter: drop-shadow(0 4px 10px rgba(34, 197, 94, 0.4)); }
+        .ent.elder { font-size: 2.8rem; }
+        .dino { position: absolute; font-size: 2rem; z-index: 9; }
+
+        .cue-overlay { position: absolute; top: 28%; left: 0; right: 0; height: 5px; background: rgba(227, 6, 19, 0.28); z-index: 12; }
+        .cue-sweeper { position: absolute; top: -10px; width: 18px; height: 22px; background: var(--justice-red); border-radius: 50%; box-shadow: 0 0 14px var(--justice-red); z-index: 13; transition: left 0.04s linear; }
+        .cue-window { position: absolute; top: -10px; height: 22px; background: rgba(0, 240, 255, 0.22); border: 1px solid var(--psych-teal); pointer-events: none; z-index: 12; }
+
+        .bass-cannon {
+            position: absolute;
+            bottom: 10%;
+            left: 8%;
+            width: 72px;
+            height: 72px;
+            border: 4px solid var(--bass-purple);
+            border-radius: 50%;
+            z-index: 10;
+            transition: transform 0.2s;
+        }
+
+        .bass-cannon.charging { animation: bass-pulse 0.6s infinite alternate; }
+
+        .cia-heli { position: absolute; top: 10%; left: 5%; font-size: 2rem; z-index: 14; opacity: 0.2; transition: opacity 0.3s, top 0.5s; }
+        .cia-heli.active { opacity: 1; }
+
+        .obiwan { position: absolute; top: 18%; left: 12%; font-size: 2rem; z-index: 14; opacity: 0.2; transition: opacity 0.3s; }
+        .obiwan.active { opacity: 1; }
+        .obiwan-label { display: block; font-size: 0.36rem; color: var(--obi-gold); text-align: center; }
+
+        .siege-vortex {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle, rgba(249, 115, 22, 0.35) 0%, rgba(10, 10, 18, 0.92) 72%);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 25;
+            animation: vortex-pulse 0.7s ease-in-out infinite alternate;
+        }
+
+        .siege-text {
+            font-size: 1rem;
+            color: var(--siege-orange);
+            text-shadow: 0 0 20px var(--siege-orange), 0 0 40px var(--ent-green);
+            letter-spacing: 4px;
+            animation: siege-shake 0.1s infinite;
+        }
+
+        .shot-indicator { position: absolute; bottom: 8px; left: 12px; font-size: 0.4rem; color: #666; z-index: 15; }
+        .tension-bar { position: absolute; top: 8px; right: 12px; width: 120px; height: 8px; background: #222; border: 1px solid #444; z-index: 15; }
+        .tension-fill { height: 100%; background: linear-gradient(90deg, var(--siege-orange), var(--flood-blue)); width: 45%; transition: width 0.3s; }
+
+        .systems-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(155px, 1fr)); gap: 0.5rem; margin-bottom: 0.7rem; }
+        .system { background: #151520; border: 2px solid #2a2a3a; padding: 0.5rem; font-size: 0.4rem; }
+        .system h4 { margin-bottom: 0.3rem; color: #aaa; }
+        .system .value { font-size: 0.68rem; margin-bottom: 0.3rem; color: var(--psych-teal); }
+        .system input[type="range"] { width: 100%; margin-bottom: 0.3rem; accent-color: var(--siege-orange); }
+        .mini-btns { display: flex; gap: 0.25rem; flex-wrap: wrap; }
+
+        .controls { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.7rem; }
+        .btn {
+            background: #1a1a28;
+            border: 2px solid #444;
+            color: #ccc;
+            font-family: inherit;
+            font-size: 0.42rem;
+            padding: 0.5rem 0.65rem;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+        .btn:hover:not(:disabled) { border-color: var(--psych-teal); color: var(--psych-teal); }
+        .btn:disabled { opacity: 0.35; cursor: not-allowed; }
+        .btn.action-btn { border-color: var(--justice-red); color: var(--justice-red); }
+        .btn.siege-btn { border-color: var(--siege-orange); color: var(--siege-orange); font-size: 0.5rem; padding: 0.65rem 0.9rem; }
+
+        .log { background: #0d0d16; border: 3px solid #222; padding: 0.65rem; height: 135px; overflow-y: auto; font-size: 0.38rem; line-height: 1.65; margin-bottom: 0.7rem; }
+        .log .meta { color: #666; }
+        .log .success { color: var(--siege-orange); }
+        .log .siege { color: var(--flood-blue); }
+        .log .ent { color: var(--ent-green); }
+        .log .dino { color: var(--dino-green); }
+
+        .post-siege { display: none; background: #12121c; border: 3px solid var(--siege-orange); padding: 0.75rem; margin-bottom: 0.7rem; }
+        .post-siege h3 { font-size: 0.52rem; color: var(--siege-orange); margin-bottom: 0.5rem; text-align: center; }
+        .siege-choices { display: flex; flex-wrap: wrap; gap: 0.35rem; justify-content: center; }
+
+        .stills { margin-bottom: 0.7rem; }
+        .stills h4 { font-size: 0.45rem; color: #777; margin-bottom: 0.45rem; }
+        .stills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 0.45rem; }
+        .still { border: 2px solid #333; cursor: pointer; overflow: hidden; transition: border-color 0.2s; }
+        .still:hover { border-color: var(--siege-orange); }
+        .still img { width: 100%; height: 125px; object-fit: cover; display: block; }
+        .still .cap { font-size: 0.34rem; padding: 0.3rem; color: #888; background: #111; }
+
+        .footer { font-size: 0.36rem; color: #555; text-align: center; line-height: 1.75; }
+        .particle { position: absolute; pointer-events: none; z-index: 50; }
+
+        @keyframes film-grain { 0%, 100% { opacity: 0.95; } 50% { opacity: 1; } }
+        @keyframes road-move { from { transform: translateX(0); } to { transform: translateX(-32px); } }
+        @keyframes wall-shake { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(-3px); } }
+        @keyframes tower-fall { to { transform: rotate(45deg) translateY(80px); opacity: 0; } }
+        @keyframes smoke-drift { 0%, 100% { opacity: 0.6; } 50% { opacity: 0.9; } }
+        @keyframes bass-pulse { from { box-shadow: 0 0 12px var(--bass-purple); } to { box-shadow: 0 0 32px var(--siege-orange); } }
+        @keyframes vortex-pulse { from { opacity: 0.85; } to { opacity: 1; } }
+        @keyframes siege-shake { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(-2px); } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>ATTACK ISENGARD</h1>
+            <div class="subtitle">THE SIEGE BEGINS • ENTS MARCHING • DINOS STOMPING • THE RING MUST FALL • ONE TAKE</div>
+        </div>
+
+        <div class="shot-container">
+            <div class="continuous-shot" id="shot">
+                <div class="shot-overlay"></div>
+                <div class="camera-frame"></div>
+                <div class="tension-bar"><div class="tension-fill" id="tension-fill"></div></div>
+
+                <div class="isengard-bg" id="isengard-bg"></div>
+                <div class="ring-wall" id="ring-wall"></div>
+                <div class="tower" id="tower1" style="right: 28%; top: 8%;">🏭</div>
+                <div class="tower" id="tower2" style="right: 18%; top: 22%;">🗼</div>
+                <div class="smoke"></div>
+                <div class="flood" id="flood"></div>
+
+                <div class="scene-layer">
+                    <div class="neverender-road"><div class="road-lines" id="road-lines"></div></div>
+                </div>
+
+                <div class="ent elder" id="ent-elder" style="left: 42%; bottom: 28%;">🌳</div>
+                <div class="ent" id="ent-march" style="left: 52%; bottom: 24%;">🌲</div>
+                <div class="dino" id="dino-trex" style="left: 38%; bottom: 22%;">🦖</div>
+                <div class="monke-ace" id="monke-ace">🐵✈️</div>
+                <div class="copilot" id="copilot">🛫🐵</div>
+
+                <div class="scene-layer">
+                    <div class="cue-overlay">
+                        <div class="cue-sweeper" id="sweeper" style="left: 0%;"></div>
+                        <div class="cue-window" id="cue-window" style="left: 43%; width: 15%;"></div>
+                    </div>
+                </div>
+
+                <div class="bass-cannon" id="bass-cannon"></div>
+                <div class="cia-heli" id="cia-heli">🚁</div>
+                <div class="obiwan" id="obiwan"><span class="obiwan-label">HELLO THERE</span>🪐</div>
+
+                <div class="siege-vortex" id="siege-vortex">
+                    <div class="siege-text">ATTACK ISENGARD</div>
+                </div>
+
+                <div class="shot-indicator" id="shot-indicator">ONE TAKE • ENTS LAUNCHED • ISENGARD AHEAD • WALLS STANDING</div>
+            </div>
+        </div>
+
+        <div class="systems-grid">
+            <div class="system"><h4>MONKE CALM 🐵</h4><div class="value" id="monke-val">58%</div><input type="range" id="monke-slider" min="15" max="100" value="58" oninput="setVal('monke',this.value)"><div class="mini-btns"><button class="btn" onclick="adj('monke',-8)">FEED</button><button class="btn" onclick="adj('monke',9)">CALM</button></div></div>
+            <div class="system"><h4>NEVERENDER</h4><div class="value" id="neverender-val">55%</div><input type="range" id="neverender-slider" min="15" max="100" value="55" oninput="setVal('neverender',this.value)"><div class="mini-btns"><button class="btn" onclick="adj('neverender',11)">LOCK</button></div></div>
+            <div class="system"><h4>BETTER TOGETHER</h4><div class="value" id="together-val">58%</div><input type="range" id="together-slider" min="10" max="100" value="58" oninput="setVal('together',this.value)"><div class="mini-btns"><button class="btn" onclick="adj('together',12)">COLLAB</button></div></div>
+            <div class="system"><h4>BASS CANNON</h4><div class="value" id="bass-val">42%</div><input type="range" id="bass-slider" min="5" max="100" value="42" oninput="setVal('bassCharge',this.value)"><div class="mini-btns"><button class="btn action-btn" onclick="chargeBass()">CHARGE</button></div></div>
+            <div class="system"><h4>COPILOT SPIN</h4><div class="value" id="spin-val">22%</div><input type="range" id="spin-slider" min="0" max="100" value="22" oninput="setVal('spin',this.value)"><div class="mini-btns"><button class="btn" onclick="adj('spin',-8)">DAMPEN</button></div></div>
+            <div class="system"><h4>BROTHER BOND</h4><div class="value" id="bond-val">48%</div><input type="range" id="bond-slider" min="0" max="100" value="48" oninput="setVal('bond',this.value)"><div class="mini-btns"><button class="btn" onclick="adj('bond',10)">GREET</button></div></div>
+            <div class="system"><h4>ENT RAGE 🌳</h4><div class="value" id="ent-val">72%</div><input type="range" id="ent-slider" min="0" max="100" value="72" oninput="setVal('ent',this.value)"><div class="mini-btns"><button class="btn" onclick="adj('ent',10)">RAGE</button></div></div>
+            <div class="system"><h4>MOAR DINOS 🦕</h4><div class="value" id="dino-val">62%</div><input type="range" id="dino-slider" min="0" max="100" value="62" oninput="setVal('dino',this.value)"><div class="mini-btns"><button class="btn" onclick="adj('dino',8)">STOMP</button></div></div>
+            <div class="system" style="border-color:var(--isengard-grey);"><h4>WALL INTEGRITY 🧱</h4><div class="value" id="wall-val">88%</div><input type="range" id="wall-slider" min="0" max="100" value="88" oninput="setVal('wall',this.value)"><div class="mini-btns"><button class="btn" onclick="breachWall()">BREACH</button></div></div>
+            <div class="system" style="border-color:var(--siege-orange);"><h4>SIEGE FURY ⚔️</h4><div class="value" id="siege-val">15%</div><input type="range" id="siege-slider" min="0" max="100" value="15" oninput="setVal('siege',this.value)"><div class="mini-btns"><button class="btn" onclick="adj('siege',12)">HIT</button></div></div>
+            <div class="system" style="border-color:var(--flood-blue);"><h4>DAM PRESSURE 🌊</h4><div class="value" id="dam-val">8%</div><input type="range" id="dam-slider" min="0" max="100" value="8" oninput="setVal('dam',this.value)"><div class="mini-btns"><button class="btn" onclick="breakDam()">CRACK</button></div></div>
+        </div>
+
+        <div class="controls">
+            <button class="btn action-btn" onclick="hitCue()">HIT THE CUE</button>
+            <button class="btn action-btn" onclick="chargeBass()">FIRE THE BASS</button>
+            <button class="btn" onclick="breachWall()" style="border-color:var(--isengard-grey);color:var(--isengard-grey);">BREACH THE WALL</button>
+            <button class="btn" onclick="breakDam()" style="border-color:var(--flood-blue);color:var(--flood-blue);">BREAK THE DAM</button>
+            <button class="btn" onclick="rallyEnts()" style="border-color:var(--ent-green);color:var(--ent-green);">RALLY THE ENTS</button>
+            <button class="btn siege-btn" id="siege-btn" onclick="attackIsengard()" disabled>ATTACK ISENGARD</button>
+        </div>
+
+        <div class="log" id="log"></div>
+
+        <div class="post-siege" id="post-siege">
+            <h3>ISENGARD HAS FALLEN • THE RING IS BREACHED</h3>
+            <div class="siege-choices">
+                <button class="btn" onclick="chooseSiege(0)" style="border-color:var(--siege-orange);color:var(--siege-orange);">SIEGE THE MONKE 🐵🧱</button>
+                <button class="btn" onclick="chooseSiege(1)" style="border-color:var(--flood-blue);color:var(--flood-blue);">RIDE THE BREACH 🛫🌊</button>
+                <button class="btn" onclick="chooseSiege(2)" style="border-color:var(--bass-purple);color:var(--bass-purple);">FLOOD THE BASS 🔊🌊</button>
+                <button class="btn" onclick="chooseSiege(3)" style="border-color:var(--ent-green);color:var(--ent-green);">ISENGARD FOR ACADEMY 🏛️</button>
+                <button class="btn" onclick="chooseSiege(4)" style="border-color:var(--psych-pink);color:var(--psych-pink);">SIEGE INFINITE TAKE ♾️</button>
+            </div>
+        </div>
+
+        <div class="stills">
+            <h4>SIEGE STILLS — FRAMES FROM THE ATTACK (CLICK TO ABSORB)</h4>
+            <div class="stills-grid">
+                <div class="still" onclick="absorbStill(0)"><img src="images/attack_isengard_one_take.jpg" alt="one take siege"><div class="cap">THE SCOPE — ENT MARCH MEETS THE RING</div></div>
+                <div class="still" onclick="absorbStill(1)"><img src="images/attack_isengard_continuous.jpg" alt="continuous siege"><div class="cap">CONTINUOUS — BREACHING THE WALLS</div></div>
+                <div class="still" onclick="absorbStill(2)"><img src="images/attack_isengard_console.jpg" alt="console siege"><div class="cap">CONSOLE — THE SIEGE BUTTON</div></div>
+                <div class="still" onclick="absorbStill(3)"><img src="images/attack_isengard_finale.jpg" alt="finale siege"><div class="cap">FINALE — ISENGARD FALLS IN ONE TAKE</div></div>
+            </div>
+        </div>
+
+        <div class="footer">
+            THE CAMERA NEVER CUTS • THE RING HAS FALLEN • HUMAN AFTER ALL • ENT AFTER ALL • SIEGE AFTER ALL • ONE TAKE TIMMY STYLE<br>
+            LAUNCH THE ENTS. NOW ATTACK ISENGARD. WHAT'S THE NEXT SHOT, DIRECTOR?
+        </div>
+    </div>
+
+    <script>
+        let monke = 58, neverender = 55, together = 58, bassCharge = 42, spin = 22, bond = 48;
+        let ent = 72, dino = 62, wall = 88, siege = 15, dam = 8, cuePhase = 22, tension = 48;
+        let hasAttacked = false, copilotRotation = 5;
+
+        const state = () => ({ monke, neverender, together, bassCharge, spin, bond, ent, dino, wall, siege, dam });
+        const shot = document.getElementById('shot');
+        const monkeAce = document.getElementById('monke-ace');
+        const copilotEl = document.getElementById('copilot');
+        const ringWall = document.getElementById('ring-wall');
+        const flood = document.getElementById('flood');
+        const tower1 = document.getElementById('tower1');
+        const tower2 = document.getElementById('tower2');
+        const entElder = document.getElementById('ent-elder');
+        const entMarch = document.getElementById('ent-march');
+        const dinoTrex = document.getElementById('dino-trex');
+        const bassCannon = document.getElementById('bass-cannon');
+        const ciaHeli = document.getElementById('cia-heli');
+        const obiwanEl = document.getElementById('obiwan');
+        const siegeVortex = document.getElementById('siege-vortex');
+        const logEl = document.getElementById('log');
+        const siegeBtn = document.getElementById('siege-btn');
+        const tensionFill = document.getElementById('tension-fill');
+        const shotIndicator = document.getElementById('shot-indicator');
+        const postSiege = document.getElementById('post-siege');
+        const sweeper = document.getElementById('sweeper');
+
+        const keys = ['monke','neverender','together','bassCharge','spin','bond','ent','dino','wall','siege','dam'];
+        const labels = { monke:'monke-val', neverender:'neverender-val', together:'together-val', bassCharge:'bass-val', spin:'spin-val', bond:'bond-val', ent:'ent-val', dino:'dino-val', wall:'wall-val', siege:'siege-val', dam:'dam-val' };
+        const sliders = { monke:'monke-slider', neverender:'neverender-slider', together:'together-slider', bassCharge:'bass-slider', spin:'spin-slider', bond:'bond-slider', ent:'ent-slider', dino:'dino-slider', wall:'wall-slider', siege:'siege-slider', dam:'dam-slider' };
+
+        function setVal(k, v) { window[k] = +v; updateVisuals(); }
+        function adj(k, a) { window[k] = Math.max(0, Math.min(100, window[k] + a)); updateVisuals(); }
+
+        function updateVisuals() {
+            monkeAce.style.left = (12 + (monke / 100) * 28) + '%';
+            const spinEffect = spin - (bond * 0.2);
+            copilotRotation = (copilotRotation + spinEffect * 0.01) % 360;
+            copilotEl.style.transform = `rotate(${copilotRotation}deg)`;
+
+            const march = (siege / 100) * 18;
+            entElder.style.left = (38 + march + Math.sin(Date.now()/900)*2) + '%';
+            entMarch.style.left = (48 + march + Math.sin(Date.now()/700)*3) + '%';
+            dinoTrex.style.left = (34 + march * 0.8) + '%';
+
+            ringWall.classList.toggle('cracking', siege > 40 && wall > 20);
+            ringWall.classList.toggle('breached', wall < 25 || hasAttacked);
+            flood.style.height = (dam * 0.55 + (hasAttacked ? 25 : 0)) + '%';
+
+            if (siege > 60) tower1.classList.add('falling');
+            if (siege > 75 || wall < 30) tower2.classList.add('falling');
+
+            bassCannon.classList.toggle('charging', bassCharge > 60);
+            ciaHeli.classList.toggle('active', siege > 35);
+            obiwanEl.classList.toggle('active', siege > 45);
+
+            sweeper.style.left = cuePhase + '%';
+            tension = Math.min(95, siege * 0.4 + (100 - wall) * 0.3 + ent * 0.2);
+            tensionFill.style.width = tension + '%';
+
+            keys.forEach(k => {
+                document.getElementById(labels[k]).textContent = Math.floor(window[k]) + '%';
+                document.getElementById(sliders[k]).value = window[k];
+            });
+
+            const ready = !hasAttacked && siege >= 55 && ent >= 60 && wall <= 45 && dam >= 40 && monke >= 45 && bond >= 40;
+            siegeBtn.disabled = !ready;
+
+            shotIndicator.textContent = hasAttacked
+                ? 'ONE TAKE • ISENGARD FALLEN • FLOOD RISING • THE RING IS BREACHED'
+                : `ONE TAKE • WALL ${Math.floor(wall)}% • SIEGE ${Math.floor(siege)}% • DAM ${Math.floor(dam)}% • MARCHING ON ISENGARD`;
+        }
+
+        function log(msg, type = 'meta') {
+            const line = document.createElement('div');
+            line.className = type;
+            line.textContent = msg;
+            logEl.appendChild(line);
+            logEl.scrollTop = logEl.scrollHeight;
+        }
+
+        function hitCue() {
+            if (cuePhase >= 43 && cuePhase <= 58) {
+                siege = Math.min(100, siege + 14);
+                neverender = Math.min(100, neverender + 10);
+                log('RIGHT ON CUE. THE WALLS CRACK.', 'success');
+            } else {
+                log('CUE MISSED. THE RING HOLDS.', 'meta');
+            }
+            updateVisuals();
+        }
+
+        function chargeBass() {
+            bassCharge = Math.min(100, bassCharge + 20);
+            siege = Math.min(100, siege + 8);
+            wall = Math.max(0, wall - 5);
+            log('BASS CANNON FIRES AT THE TOWER.', 'siege');
+            updateVisuals();
+        }
+
+        function breachWall() {
+            if (hasAttacked) return;
+            siege = Math.min(100, siege + 12);
+            wall = Math.max(0, wall - 10);
+            ent = Math.min(100, ent + 5);
+            log('THE ENTS SLAM THE RING WALL.', 'ent');
+            createDebrisRain(5);
+            updateVisuals();
+        }
+
+        function breakDam() {
+            if (hasAttacked) return;
+            dam = Math.min(100, dam + 15);
+            siege = Math.min(100, siege + 6);
+            log('THE DAM GROANS. PRESSURE RISING.', 'siege');
+            updateVisuals();
+        }
+
+        function rallyEnts() {
+            if (hasAttacked) return;
+            ent = Math.min(100, ent + 12);
+            siege = Math.min(100, siege + 8);
+            together = Math.min(100, together + 6);
+            log('THE ENTS RALLY. HUORNS ANSWER.', 'ent');
+            updateVisuals();
+        }
+
+        function attackIsengard() {
+            if (hasAttacked || siegeBtn.disabled) return;
+            hasAttacked = true;
+            siegeBtn.disabled = true;
+            siegeVortex.style.display = 'flex';
+
+            log('ATTACK ISENGARD.', 'success');
+            log('THE RING WALLS CRUMBLE. THE DAM BREAKS.', 'siege');
+            log('WATER FLOODS THE FORGE. THE ENTS DO NOT STOP.', 'ent');
+            log('THE DINOSAURS STOMP THE RUBBLE.', 'dino');
+            createDebrisRain(16);
+
+            wall = 5;
+            dam = 95;
+            siege = 92;
+            setTimeout(() => {
+                updateVisuals();
+                postSiege.style.display = 'block';
+                log('ISENGARD HAS FALLEN. CHOOSE THE NEXT MOVEMENT.', 'success');
+            }, 2000);
+
+            setTimeout(() => {
+                siegeVortex.style.display = 'none';
+                siegeBtn.textContent = 'THE SIEGE CONTINUES';
+                siegeBtn.disabled = false;
+                siegeBtn.onclick = () => {
+                    log('THE RUBBLE STILL FALLS. THE FLOOD STILL RISES.', 'siege');
+                    createDebrisRain(6);
+                };
+            }, 3500);
+        }
+
+        function chooseSiege(i) {
+            postSiege.querySelectorAll('button').forEach(b => b.disabled = true);
+            const msgs = [
+                ['SIEGE THE MONKE.', 'THE PRIMAL HEART NOW STANDS ON THE BREACH.'],
+                ['RIDE THE BREACH.', 'THE SPUN ONE SURFS THE FLOOD.'],
+                ['FLOOD THE BASS.', 'THE CANNON IS NOW A TIDAL ROAR.'],
+                ['ISENGARD FOR THE ACADEMY.', 'EVERY LAYER NOW OWNS THE RUBBLE.'],
+                ['SIEGE THE INFINITE TAKE.', 'THE CAMERA KEEPS ROLLING THROUGH THE FLOOD FOREVER.']
+            ];
+            const boosts = [
+                { monke: 12, siege: 6 }, { spin: -12, dam: 8 }, { bassCharge: 20, dam: 5 },
+                { together: 15, ent: 8 }, { monke: 8, siege: 10, ent: 8, dam: 5 }
+            ];
+            Object.entries(boosts[i]).forEach(([k,v]) => adj(k, v));
+            msgs[i].forEach((m, j) => log(m, j === 0 ? 'success' : 'siege'));
+            log('THE CAMERA KEEPS ROLLING.', 'meta');
+            log('HUMAN AFTER ALL. ENT AFTER ALL. SIEGE AFTER ALL.', 'ent');
+            createDebrisRain(8);
+        }
+
+        function absorbStill(i) {
+            if (hasAttacked) return;
+            const boosts = [
+                { siege: 14, wall: -10, ent: 6 }, { siege: 12, dam: 10, dino: 5 },
+                { siege: 18, bassCharge: 8, wall: -8 }, { siege: 15, together: 10, ent: 8, dam: 8 }
+            ];
+            Object.entries(boosts[i]).forEach(([k,v]) => {
+                if (k === 'wall') wall = Math.max(0, wall + v);
+                else adj(k, v);
+            });
+            log('FRAME ABSORBED — THE SIEGE INTEGRATES INTO THE TAKE.', 'siege');
+        }
+
+        function createDebrisRain(n) {
+            const chars = ['🧱', '🌊', '🌳', '🦖', '🏭', '💥'];
+            for (let i = 0; i < n; i++) {
+                const p = document.createElement('div');
+                p.className = 'particle';
+                p.textContent = chars[Math.floor(Math.random() * chars.length)];
+                p.style.left = (10 + Math.random() * 80) + '%';
+                p.style.top = (10 + Math.random() * 50) + '%';
+                p.style.fontSize = (1 + Math.random() * 1.4) + 'rem';
+                document.querySelector('.container').appendChild(p);
+                setTimeout(() => { p.style.transition = 'transform 1.5s ease, opacity 1.6s'; p.style.transform = `translateY(${90 + Math.random()*70}px) rotate(${Math.random()*50}deg)`; p.style.opacity = '0'; }, 20);
+                setTimeout(() => p.remove(), 1700);
+            }
+        }
+
+        function init() {
+            setInterval(() => {
+                if (!hasAttacked) {
+                    cuePhase = (cuePhase + 1.4) % 100;
+                    if (Math.random() < 0.4) siege = Math.min(100, siege + 0.6);
+                    if (Math.random() < 0.3) dam = Math.min(100, dam + 0.5);
+                    if (Math.random() < 0.25) wall = Math.max(0, wall - 0.3);
+                }
+                updateVisuals();
+            }, 40);
+
+            setInterval(() => {
+                if (hasAttacked) return;
+                if (Math.random() < 0.4) spin = Math.min(100, spin + 0.7);
+                if (Math.random() < 0.3) monke = Math.max(20, monke - 0.4);
+            }, 900);
+
+            log('THE CAMERA IS STILL ROLLING IN ONE UNBROKEN STYLISH TAKE.', 'meta');
+            log('LAUNCH THE ENTS — THE FOREST MARCHES.', 'ent');
+            log('AHEAD: THE RING WALLS. THE CHIMNEYS. ISENGARD.', 'siege');
+            log('ATTACK ISENGARD.', 'success');
+
+            document.addEventListener('keydown', e => {
+                if (e.key === ' ' || e.key === 'Enter') {
+                    e.preventDefault();
+                    if (!siegeBtn.disabled && !hasAttacked) attackIsengard();
+                    else hitCue();
+                }
+                const k = e.key.toLowerCase();
+                if (k === 'a' && !hasAttacked && !siegeBtn.disabled) attackIsengard();
+                if (k === 'b') breachWall();
+                if (k === 'd') breakDam();
+                if (k === 'r') rallyEnts();
+                if (k === 'c') hitCue();
+            });
+
+            updateVisuals();
+            window.ATTACK = () => { if (!siegeBtn.disabled) attackIsengard(); };
+        }
+
+        window.onload = init;
+    </script>
+</body>
+</html>

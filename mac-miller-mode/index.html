@@ -1,0 +1,2007 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAC MILLER MODE • THE SWIM IN THE ONE TAKE</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&amp;display=swap');
+        
+        :root {
+            --psych-pink: #ff00aa;
+            --psych-teal: #00f0ff;
+            --justice-red: #e30613;
+            --space: #0a0a12;
+            --awakening-gold: #facc15;
+            --together-purple: #a855f7;
+            --human-warm: #f4a261;
+            --timmy-elegant: #c084fc;
+            --save-red: #ff1133;
+            --bass-purple: #7c3aed;
+            --cia-black: #111113;
+            --obi-gold: #fde047;
+            --spin-cyan: #67e8f9;
+            --namaste-gold: #fde047;
+            --peace-teal: #5eead4;
+            --dino-green: #4ade80;
+            --dino-brown: #a16207;
+            --mac-blue: #3b82f6;
+            --swim-cyan: #67e8f9;
+            --divine-pink: #f472b6;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            background: #0a0a12;
+            color: #f0f0f0;
+            font-family: "Press Start 2P", monospace;
+            min-height: 100vh;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 25% 30%, rgba(255, 0, 170, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 75% 70%, rgba(0, 240, 255, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.06) 0%, transparent 70%);
+        }
+        
+        .container {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 1.25rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 0.9rem;
+            border-bottom: 5px solid var(--mac-blue);
+            padding-bottom: 0.7rem;
+        }
+        
+        .header h1 {
+            font-size: 2.0rem;
+            background: linear-gradient(90deg, var(--psych-pink), var(--mac-blue), var(--swim-cyan), var(--divine-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.15rem;
+            letter-spacing: 4px;
+            text-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+        }
+        
+        .header .subtitle {
+            font-size: 0.56rem;
+            color: #888;
+            letter-spacing: 2.5px;
+        }
+        
+        .shot-container {
+            background: #111;
+            border: 7px solid #222;
+            padding: 0.85rem;
+            position: relative;
+            height: 480px;
+            overflow: hidden;
+            margin-bottom: 0.85rem;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
+        }
+        
+        .continuous-shot {
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 42% 32%, #1a1a2a 0%, #0a0a12 68%);
+            position: relative;
+            overflow: hidden;
+            border: 2px solid rgba(34, 34, 34, 0.8);
+        }
+        
+        .shot-overlay {
+            position: absolute;
+            inset: 0;
+            background: 
+                repeating-linear-gradient(
+                    90deg,
+                    transparent 0px,
+                    transparent 2px,
+                    rgba(250, 204, 21, 0.022) 2px,
+                    rgba(250, 204, 21, 0.022) 4px
+                );
+            pointer-events: none;
+            animation: film-grain 0.09s infinite;
+            z-index: 3;
+        }
+        
+        .camera-frame {
+            position: absolute;
+            inset: 14px;
+            border: 2px solid rgba(250, 204, 21, 0.28);
+            pointer-events: none;
+            z-index: 4;
+        }
+        
+        .scene-layer {
+            position: absolute;
+            inset: 0;
+            transition: transform 0.08s linear, opacity 0.2s ease;
+        }
+        
+        /* Neverender Road - now Swimming Pool */
+        .neverender-road {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 38%;
+            background: linear-gradient(#1a3a5c 0%, #0f2a44 38%, #0a0a12 100%);
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .road-lines {
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(
+                90deg,
+                transparent 0px,
+                transparent 28px,
+                #3b82f6 28px,
+                #3b82f6 32px
+            );
+            animation: water-ripple 2.2s linear infinite;
+            opacity: 0.6;
+        }
+        
+        /* Stylish Monke Ace - floating */
+        .monke-ace {
+            position: absolute;
+            font-size: 3.5rem;
+            bottom: 18%;
+            left: 20%;
+            transition: left 0.18s linear, transform 0.12s ease;
+            filter: drop-shadow(0 0 12px var(--timmy-elegant));
+            z-index: 6;
+            text-shadow: 0 4px 12px rgba(0,0,0,0.6);
+        }
+        
+        .monke-ace.distressed {
+            filter: drop-shadow(0 0 6px var(--save-red)) drop-shadow(0 0 18px #000);
+        }
+        
+        /* THE COPILOT (dino-infused, now swimming) */
+        .copilot {
+            position: absolute;
+            font-size: 2.6rem;
+            bottom: 17%;
+            right: 18%;
+            transition: transform 0.06s linear, filter 0.15s;
+            filter: drop-shadow(0 0 10px var(--together-purple));
+            z-index: 7;
+            text-shadow: 0 3px 10px rgba(0,0,0,0.7);
+        }
+        
+        .copilot.dizzy {
+            filter: drop-shadow(0 0 8px var(--spin-cyan)) drop-shadow(0 0 20px #000);
+        }
+        
+        /* DINOSAURS LAYER - now swimming */
+        .dino-layer {
+            position: absolute;
+            inset: 0;
+            z-index: 5;
+            pointer-events: none;
+        }
+        
+        .dino {
+            position: absolute;
+            font-size: 2.2rem;
+            transition: left 0.4s linear, bottom 0.4s linear, transform 0.1s linear;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5));
+            z-index: 5;
+        }
+        
+        .dino.trex { font-size: 2.8rem; }
+        .dino.veloci { font-size: 1.8rem; }
+        .dino.bronto { font-size: 2.4rem; }
+        .dino.ptero { font-size: 1.6rem; top: 15%; }
+        
+        /* Swimming Effects */
+        .swim-ripples {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 50% 60%, rgba(103, 232, 249, 0.15) 0%, transparent 70%);
+            opacity: 0.5;
+            z-index: 3;
+            pointer-events: none;
+            animation: swim-ripple 3s ease-in-out infinite;
+        }
+        
+        .bubble {
+            position: absolute;
+            font-size: 0.8rem;
+            color: #67e8f9;
+            opacity: 0.7;
+            z-index: 8;
+            pointer-events: none;
+            animation: bubble-rise 2.5s linear forwards;
+        }
+        
+        /* Divine Feminine Glow */
+        .divine-glow {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 48% 45%, rgba(244, 114, 182, 0.18) 0%, transparent 65%);
+            opacity: 0.5;
+            z-index: 4;
+            pointer-events: none;
+            animation: divine-pulse 4s ease-in-out infinite;
+        }
+        
+        /* Circles / Loops */
+        .circle {
+            position: absolute;
+            border: 2px solid rgba(59, 130, 246, 0.4);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 3;
+            animation: circle-expand 3.5s ease-out forwards;
+        }
+        
+        /* Conscious Glow */
+        .conscious-glow {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 38% 36%, rgba(250, 204, 21, 0.22) 0%, transparent 62%);
+            opacity: 0.55;
+            animation: conscious-pulse 2.6s ease-in-out infinite;
+            z-index: 2;
+        }
+        
+        /* Right on Cue - softer */
+        .cue-overlay {
+            position: absolute;
+            top: 28%;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: rgba(227, 6, 19, 0.22);
+            z-index: 5;
+        }
+        
+        .cue-sweeper {
+            position: absolute;
+            top: -10px;
+            width: 18px;
+            height: 22px;
+            background: var(--mac-blue);
+            border-radius: 50%;
+            box-shadow: 0 0 14px var(--mac-blue);
+            z-index: 8;
+            transition: left 0.04s linear;
+        }
+        
+        .cue-window {
+            position: absolute;
+            top: -10px;
+            height: 22px;
+            background: rgba(59, 130, 246, 0.25);
+            border: 1px solid var(--swim-cyan);
+            pointer-events: none;
+            z-index: 6;
+        }
+        
+        /* Ace Combat Bogies + Swimming Dinos */
+        .bogie {
+            position: absolute;
+            font-size: 1.1rem;
+            color: #f55;
+            text-shadow: 0 0 6px #f00;
+            z-index: 5;
+            transition: transform 0.1s linear;
+        }
+        
+        /* Bass Cannon - mellowed */
+        .bass-cannon {
+            position: absolute;
+            bottom: 8%;
+            right: 9%;
+            width: 82px;
+            height: 82px;
+            border: 4px solid var(--bass-purple);
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(124,58,237,0.2) 10%, transparent 70%);
+            box-shadow: 0 0 18px var(--bass-purple);
+            z-index: 4;
+            transition: transform 0.2s ease, box-shadow 0.2s;
+        }
+        
+        .bass-cannon.charging {
+            animation: bass-pulse 0.6s infinite alternate;
+        }
+        
+        .bass-core {
+            position: absolute;
+            inset: 18px;
+            background: var(--bass-purple);
+            border-radius: 50%;
+            opacity: 0.35;
+            box-shadow: 0 0 30px var(--save-red);
+        }
+        
+        /* CIA Helicopter */
+        .cia-heli {
+            position: absolute;
+            top: 12%;
+            left: -18%;
+            font-size: 2.1rem;
+            filter: drop-shadow(0 6px 10px rgba(0,0,0,0.7));
+            z-index: 9;
+            transition: left 1.1s cubic-bezier(0.23, 1, 0.32, 1);
+            opacity: 0.15;
+        }
+        
+        .cia-heli.active {
+            opacity: 1;
+        }
+        
+        /* Obi-Wan Mentor */
+        .obiwan {
+            position: absolute;
+            top: 22%;
+            right: -14%;
+            font-size: 2.35rem;
+            filter: drop-shadow(0 0 14px var(--obi-gold));
+            z-index: 8;
+            transition: right 1.4s cubic-bezier(0.23, 1, 0.32, 1), transform 0.3s;
+            opacity: 0.15;
+        }
+        
+        .obiwan.active {
+            opacity: 0.95;
+            right: 11%;
+        }
+        
+        .obiwan-label {
+            position: absolute;
+            top: -22px;
+            right: -6px;
+            font-size: 0.42rem;
+            color: var(--obi-gold);
+            letter-spacing: 1px;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .obiwan.active .obiwan-label { opacity: 0.9; }
+        
+        /* Mac Miller Mode Climax Overlay */
+        .mac-mode-vortex {
+            position: absolute;
+            inset: 0;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            background: rgba(10, 10, 18, 0.28);
+            z-index: 20;
+            pointer-events: none;
+        }
+        
+        .mac-mode-text {
+            font-size: 2.7rem;
+            color: var(--mac-blue);
+            text-shadow: 
+                0 0 12px #fff,
+                0 0 32px var(--swim-cyan),
+                2px 2px 0 #000;
+            letter-spacing: 4px;
+            transform: scale(0.55);
+            opacity: 0;
+            animation: mac-glow 1.9s forwards;
+            pointer-events: none;
+        }
+        
+        /* Tension / Mood bar */
+        .tension-bar {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            height: 7px;
+            background: #1a1a22;
+            border: 2px solid #333;
+            z-index: 9;
+        }
+        
+        .tension-fill {
+            height: 100%;
+            background: linear-gradient(to right, var(--swim-cyan), var(--mac-blue), var(--divine-pink));
+            transition: width 0.12s linear;
+            box-shadow: 0 0 12px var(--mac-blue);
+        }
+        
+        .shot-indicator {
+            position: absolute;
+            top: 22px;
+            right: 12px;
+            background: rgba(59, 130, 246, 0.2);
+            border: 1px solid var(--mac-blue);
+            padding: 1px 7px;
+            font-size: 0.42rem;
+            letter-spacing: 1px;
+            z-index: 9;
+            color: #8bd;
+        }
+        
+        /* Controls & Systems */
+        .systems-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(168px, 1fr));
+            gap: 0.6rem;
+            margin-bottom: 0.7rem;
+        }
+        
+        .system {
+            background: #111;
+            border: 4px solid #222;
+            padding: 0.55rem 0.6rem;
+            font-size: 0.48rem;
+        }
+        
+        .system h4 {
+            color: var(--psych-teal);
+            font-size: 0.48rem;
+            margin-bottom: 0.22rem;
+            letter-spacing: 1px;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .system .value {
+            font-size: 0.7rem;
+            color: #ddd;
+            margin-bottom: 0.1rem;
+        }
+        
+        .system input[type="range"] {
+            width: 100%;
+            accent-color: var(--mac-blue);
+        }
+        
+        .system .mini-btns {
+            display: flex;
+            gap: 3px;
+            margin-top: 0.2rem;
+        }
+        
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.45rem;
+            justify-content: center;
+            margin-bottom: 0.75rem;
+        }
+        
+        .btn {
+            background: #222;
+            border: 3px solid #444;
+            color: #ddd;
+            font-family: inherit;
+            font-size: 0.52rem;
+            padding: 7px 11px;
+            cursor: pointer;
+            letter-spacing: 1.5px;
+            transition: all 0.07s;
+        }
+        
+        .btn:hover {
+            border-color: var(--timmy-elegant);
+            color: white;
+        }
+        
+        .btn:active {
+            transform: scale(0.94);
+        }
+        
+        .btn:disabled {
+            opacity: 0.28;
+            cursor: not-allowed;
+        }
+        
+        .action-btn {
+            background: linear-gradient(#222, #111);
+            border-color: var(--timmy-elegant);
+            color: var(--timmy-elegant);
+            font-size: 0.55rem;
+            padding: 8px 13px;
+        }
+        
+        .mac-btn {
+            background: linear-gradient(#0a1f3a, #051a2a);
+            border-color: var(--mac-blue);
+            color: var(--mac-blue);
+            font-size: 0.62rem;
+            padding: 10px 16px;
+            letter-spacing: 2px;
+            box-shadow: 0 0 18px rgba(59, 130, 246, 0.35);
+            animation: mac-ready-pulse 1.7s infinite;
+        }
+        
+        .mac-btn:disabled {
+            animation: none;
+            box-shadow: none;
+        }
+        
+        .log {
+            background: #0a0a12;
+            border: 3px solid #222;
+            padding: 0.5rem;
+            font-size: 0.5rem;
+            line-height: 1.2;
+            height: 108px;
+            overflow-y: auto;
+            white-space: pre-line;
+            margin-bottom: 0.6rem;
+        }
+        
+        .log .success { color: #0f0; }
+        .log .meta { color: var(--timmy-elegant); }
+        .log .plea { color: var(--save-red); font-weight: bold; }
+        .log .rescue { color: var(--obi-gold); }
+        .log .spin { color: var(--spin-cyan); font-weight: bold; }
+        .log .namaste { color: var(--namaste-gold); font-weight: bold; }
+        .log .coke { color: var(--bass-purple); font-weight: bold; }
+        .log .dino { color: var(--dino-green); font-weight: bold; }
+        .log .mac { color: var(--mac-blue); font-weight: bold; }
+        
+        .post-mac {
+            display: none;
+            background: #111;
+            border: 5px solid var(--mac-blue);
+            padding: 0.8rem;
+            margin-bottom: 0.7rem;
+            text-align: center;
+        }
+        
+        .post-mac h3 {
+            color: var(--mac-blue);
+            font-size: 0.64rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: 2px;
+        }
+        
+        .mac-choices {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            justify-content: center;
+        }
+        
+        .choice-btn {
+            background: #1a1a22;
+            border: 3px solid var(--swim-cyan);
+            color: #ccc;
+            font-size: 0.48rem;
+            padding: 6px 10px;
+        }
+        
+        .choice-btn:hover {
+            border-color: var(--mac-blue);
+            color: white;
+        }
+        
+        .stills {
+            border: 4px solid #222;
+            background: #111;
+            padding: 0.6rem;
+            margin-top: 0.3rem;
+        }
+        
+        .stills h4 {
+            font-size: 0.48rem;
+            color: #666;
+            margin-bottom: 0.35rem;
+            letter-spacing: 1.5px;
+        }
+        
+        .stills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(138px, 1fr));
+            gap: 0.45rem;
+        }
+        
+        .still {
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+            border: 2px solid #333;
+            transition: border-color 0.1s, transform 0.1s;
+        }
+        
+        .still:hover {
+            border-color: var(--mac-blue);
+            transform: translateY(-1px);
+        }
+        
+        .still img {
+            width: 100%;
+            display: block;
+            height: 78px;
+            object-fit: cover;
+            filter: saturate(0.85) contrast(1.05);
+        }
+        
+        .still .cap {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0,0,0,0.75);
+            font-size: 0.36rem;
+            padding: 2px 4px;
+            letter-spacing: 0.5px;
+            color: #ccc;
+        }
+        
+        .footer {
+            text-align: center;
+            font-size: 0.42rem;
+            color: #444;
+            margin-top: 0.5rem;
+            letter-spacing: 2.2px;
+            line-height: 1.4;
+        }
+        
+        @keyframes film-grain {
+            0% { transform: translate(0, 0); }
+            10% { transform: translate(0.6px, -0.4px); }
+            20% { transform: translate(-0.5px, 0.6px); }
+        }
+        
+        @keyframes conscious-pulse {
+            0%, 100% { opacity: 0.42; }
+            50% { opacity: 0.78; }
+        }
+        
+        @keyframes water-ripple {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-52px); }
+        }
+        
+        @keyframes swim-ripple {
+            0%, 100% { transform: scale(1); opacity: 0.4; }
+            50% { transform: scale(1.08); opacity: 0.7; }
+        }
+        
+        @keyframes bubble-rise {
+            0% { transform: translateY(0); opacity: 0.7; }
+            100% { transform: translateY(-180px); opacity: 0; }
+        }
+        
+        @keyframes divine-pulse {
+            0%, 100% { opacity: 0.45; }
+            50% { opacity: 0.75; }
+        }
+        
+        @keyframes circle-expand {
+            0% { transform: scale(0.2); opacity: 0.6; }
+            100% { transform: scale(1.8); opacity: 0; }
+        }
+        
+        @keyframes bass-pulse {
+            from { transform: scale(1); box-shadow: 0 0 18px var(--bass-purple); }
+            to { transform: scale(1.12); box-shadow: 0 0 38px var(--save-red); }
+        }
+        
+        @keyframes mac-glow {
+            0% { transform: scale(0.5); opacity: 0; }
+            18% { transform: scale(1.12); opacity: 1; }
+            40% { transform: scale(0.94); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        @keyframes mac-ready-pulse {
+            0%, 100% { box-shadow: 0 0 18px rgba(59, 130, 246, 0.35); }
+            50% { box-shadow: 0 0 42px rgba(59, 130, 246, 0.7); }
+        }
+        
+        .particle {
+            position: absolute;
+            z-index: 30;
+            pointer-events: none;
+            user-select: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>MAC MILLER MODE</h1>
+            <div class="subtitle">THE SWIM AFTER THE STAMPEDE • ONE UNBROKEN TAKE • THE CAMERA NEVER CUTS • FLOAT WITH THE CURRENT</div>
+        </div>
+        
+        <!-- THE LIVE ONE-TAKE SHOT (continuing from MOAR DINOSAURS + everything before) -->
+        <div class="shot-container">
+            <div class="continuous-shot" id="shot">
+                <div class="shot-overlay"></div>
+                <div class="camera-frame"></div>
+                
+                <!-- Swim Ripples -->
+                <div class="swim-ripples" id="swim-ripples"></div>
+                
+                <!-- Tension / Mood bar -->
+                <div class="tension-bar">
+                    <div class="tension-fill" id="tension-fill" style="width: 41%;"></div>
+                </div>
+                
+                <!-- Neverender Road - Swimming Pool -->
+                <div class="scene-layer" id="road-layer">
+                    <div class="neverender-road">
+                        <div class="road-lines" id="road-lines"></div>
+                    </div>
+                </div>
+                
+                <!-- Bogies + Swimming Dinos -->
+                <div class="scene-layer" id="bogies-layer">
+                    <div class="bogie" id="bogie1" style="left:68%; top:31%;">✈︎</div>
+                    <div class="bogie" id="bogie2" style="left:81%; top:19%; transform:rotate(-18deg);">✈︎</div>
+                </div>
+                
+                <!-- Stylish Monke Ace - floating -->
+                <div class="scene-layer" id="monke-layer">
+                    <div class="monke-ace" id="monke-ace">🐵✈️</div>
+                </div>
+                
+                <!-- THE COPILOT (dino + swimming) -->
+                <div class="scene-layer" id="copilot-layer">
+                    <div class="copilot" id="copilot">🛫🐵</div>
+                </div>
+                
+                <!-- DINOSAURS LAYER - swimming -->
+                <div class="scene-layer" id="dino-layer">
+                    <div class="dino trex" id="dino-trex" style="left: 12%; bottom: 22%; display: none;">🦖</div>
+                    <div class="dino veloci" id="dino-veloci" style="left: 72%; bottom: 35%; display: none;">🦕</div>
+                    <div class="dino bronto" id="dino-bronto" style="left: 45%; bottom: 8%; display: none;">🦕</div>
+                    <div class="dino ptero" id="dino-ptero" style="left: 82%; top: 18%; display: none;">🦖</div>
+                    <div class="dino monke" id="dino-monke" style="left: 28%; bottom: 25%; display: none;">🐵🦖</div>
+                    <div class="dino veloci2" id="dino-veloci2" style="left: 65%; bottom: 28%; display: none;">🦕</div>
+                    <div class="dino anky" id="dino-anky" style="left: 55%; bottom: 12%; display: none;">🦕</div>
+                    <div class="dino trex2" id="dino-trex2" style="left: 18%; bottom: 15%; display: none;">🦖</div>
+                </div>
+                
+                <!-- Divine Feminine Glow -->
+                <div class="scene-layer">
+                    <div class="divine-glow" id="divine-glow"></div>
+                </div>
+                
+                <!-- Conscious Glow -->
+                <div class="scene-layer" id="glow-layer">
+                    <div class="conscious-glow"></div>
+                </div>
+                
+                <!-- Right on Cue - softer -->
+                <div class="scene-layer" id="cue-layer">
+                    <div class="cue-overlay">
+                        <div class="cue-sweeper" id="sweeper" style="left: 0%;"></div>
+                        <div class="cue-window" id="cue-window" style="left: 43%; width: 15%;"></div>
+                    </div>
+                </div>
+                
+                <!-- Bass Cannon - mellowed -->
+                <div class="scene-layer" id="bass-layer">
+                    <div class="bass-cannon" id="bass-cannon">
+                        <div class="bass-core" id="bass-core"></div>
+                    </div>
+                </div>
+                
+                <!-- CIA Helicopter -->
+                <div class="scene-layer">
+                    <div class="cia-heli" id="cia-heli">🚁</div>
+                </div>
+                
+                <!-- Obi-Wan Mentor -->
+                <div class="scene-layer">
+                    <div class="obiwan" id="obiwan">
+                        <span class="obiwan-label">HELLO THERE</span>
+                        🪐
+                    </div>
+                </div>
+                
+                <!-- The Mac Miller Mode Climax Overlay -->
+                <div class="mac-mode-vortex" id="mac-mode-vortex">
+                    <div class="mac-mode-text" id="mac-mode-text">MAC MILLER MODE</div>
+                </div>
+                
+                <div class="shot-indicator" id="shot-indicator">ONE TAKE • ROLLING • DINOS SWIMMING • MAC MODE PENDING</div>
+            </div>
+        </div>
+        
+        <!-- LIVE SYSTEMS (all previous + new Mac Miller) -->
+        <div class="systems-grid">
+            <div class="system">
+                <h4>MONKE CALM <span class="monke">🐵</span></h4>
+                <div class="value" id="monke-val">45%</div>
+                <input type="range" id="monke-slider" min="15" max="100" value="45" oninput="setMonke(this.value)">
+                <div class="mini-btns">
+                    <button class="btn" onclick="adjustMonke(-8)">FEED</button>
+                    <button class="btn" onclick="adjustMonke(9)">CALM</button>
+                </div>
+            </div>
+            
+            <div class="system">
+                <h4>NEVERENDER SYNC</h4>
+                <div class="value" id="neverender-val">40%</div>
+                <input type="range" id="neverender-slider" min="15" max="100" value="40" oninput="setNeverender(this.value)">
+                <div class="mini-btns">
+                    <button class="btn" onclick="adjustNeverender(-7)">DROP</button>
+                    <button class="btn" onclick="adjustNeverender(11)">LOCK</button>
+                </div>
+            </div>
+            
+            <div class="system">
+                <h4>AWARENESS / CONSCIOUS</h4>
+                <div class="value" id="awareness-val">46%</div>
+                <input type="range" id="awareness-slider" min="10" max="100" value="46" oninput="setAwareness(this.value)">
+                <div class="mini-btns">
+                    <button class="btn" onclick="adjustAwareness(12)">REALIZE</button>
+                    <button class="btn" onclick="adjustAwareness(-6)">DENY</button>
+                </div>
+            </div>
+            
+            <div class="system">
+                <h4>HUMAN AFTER ALL</h4>
+                <div class="value" id="human-val">41%</div>
+                <input type="range" id="human-slider" min="10" max="100" value="41" oninput="setHuman(this.value)">
+                <div class="mini-btns">
+                    <button class="btn" onclick="adjustHuman(10)">EMBRACE</button>
+                    <button class="btn" onclick="adjustHuman(-5)">PERFECT</button>
+                </div>
+            </div>
+            
+            <div class="system">
+                <h4>BETTER TOGETHER</h4>
+                <div class="value" id="together-val">48%</div>
+                <input type="range" id="together-slider" min="10" max="100" value="48" oninput="setTogether(this.value)">
+                <div class="mini-btns">
+                    <button class="btn" onclick="adjustTogether(13)">COLLAB</button>
+                    <button class="btn" onclick="adjustTogether(-4)">SOLO</button>
+                </div>
+            </div>
+            
+            <div class="system">
+                <h4>ACE COMBAT / BOGIES</h4>
+                <div class="value" id="ace-val">48% THREAT</div>
+                <input type="range" id="ace-slider" min="15" max="95" value="48" oninput="setAce(this.value)">
+                <div class="mini-btns">
+                    <button class="btn" onclick="engageBogies()">FOX 2</button>
+                    <button class="btn" onclick="adjustAce(-14)">LOCK</button>
+                </div>
+            </div>
+            
+            <div class="system">
+                <h4>BASS CANNON CHARGE</h4>
+                <div class="value" id="bass-val">27%</div>
+                <input type="range" id="bass-slider" min="5" max="100" value="27" oninput="setBass(this.value)">
+                <div class="mini-btns">
+                    <button class="btn action-btn" onclick="chargeBass()">CHARGE</button>
+                    <button class="btn" onclick="setBass(4)">VENT</button>
+                </div>
+            </div>
+            
+            <div class="system">
+                <h4>CIA EXTRACTION</h4>
+                <div class="value" id="cia-val">20%</div>
+                <input type="range" id="cia-slider" min="0" max="100" value="20" oninput="setCia(this.value)">
+                <div class="mini-btns">
+                    <button class="btn" onclick="callCIA()">CALL IN</button>
+                </div>
+            </div>
+            
+            <div class="system">
+                <h4>OBI-WAN PRESENCE</h4>
+                <div class="value" id="obi-val">16%</div>
+                <input type="range" id="obi-slider" min="0" max="100" value="16" oninput="setObi(this.value)">
+                <div class="mini-btns">
+                    <button class="btn" onclick="helloThere()">HELLO THERE</button>
+                </div>
+            </div>
+            
+            <!-- Carried layers -->
+            <div class="system">
+                <h4>COPILOT SPIN <span style="color:var(--spin-cyan);">🌀</span></h4>
+                <div class="value" id="spin-val">29%</div>
+                <input type="range" id="spin-slider" min="0" max="100" value="29" oninput="setSpin(this.value)">
+                <div class="mini-btns">
+                    <button class="btn" onclick="adjustSpin(11)" style="border-color:var(--spin-cyan);color:var(--spin-cyan);">SPIN UP</button>
+                    <button class="btn" onclick="adjustSpin(-7)">DAMPEN</button>
+                </div>
+            </div>
+            
+            <div class="system">
+                <h4>BROTHER BOND <span style="color:var(--namaste-gold);">🙏</span></h4>
+                <div class="value" id="bond-val">35%</div>
+                <input type="range" id="bond-slider" min="0" max="100" value="35" oninput="setBond(this.value)">
+                <div class="mini-btns">
+                    <button class="btn" onclick="adjustBond(12)" style="border-color:var(--namaste-gold);color:var(--namaste-gold);">GREET</button>
+                    <button class="btn" onclick="adjustBond(-6)">PAUSE</button>
+                </div>
+            </div>
+            
+            <div class="system">
+                <h4>COKE ENERGY <span style="color:var(--bass-purple);">⚡</span></h4>
+                <div class="value" id="coke-val">24%</div>
+                <input type="range" id="coke-slider" min="0" max="100" value="24" oninput="setCoke(this.value)">
+                <div class="mini-btns">
+                    <button class="btn" onclick="adjustCoke(13)" style="border-color:var(--bass-purple);color:var(--bass-purple);">RAIL</button>
+                    <button class="btn" onclick="adjustCoke(-7)">CRASH</button>
+                </div>
+            </div>
+            
+            <div class="system">
+                <h4>MOAR DINOS <span style="color:var(--dino-green);">🦕</span></h4>
+                <div class="value" id="dino-val">42%</div>
+                <input type="range" id="dino-slider" min="0" max="100" value="42" oninput="setDino(this.value)">
+                <div class="mini-btns">
+                    <button class="btn" onclick="summonDinos()" style="border-color:var(--dino-green);color:var(--dino-green);">SUMMON</button>
+                    <button class="btn" onclick="adjustDino(-9)">FEED</button>
+                </div>
+            </div>
+            
+            <!-- NEW: Mac Miller systems -->
+            <div class="system" style="border-color: var(--mac-blue);">
+                <h4>SWIM MOOD <span style="color:var(--swim-cyan);">🌊</span></h4>
+                <div class="value" id="swim-val">38%</div>
+                <input type="range" id="swim-slider" min="10" max="100" value="38" oninput="setSwim(this.value)">
+                <div class="mini-btns">
+                    <button class="btn" onclick="swim()" style="border-color:var(--swim-cyan);color:var(--swim-cyan);">SWIM</button>
+                    <button class="btn" onclick="adjustSwim(-8)">FLOAT</button>
+                </div>
+            </div>
+            
+            <div class="system" style="border-color: var(--divine-pink);">
+                <h4>DIVINE FEMININE <span style="color:var(--divine-pink);">✨</span></h4>
+                <div class="value" id="divine-val">29%</div>
+                <input type="range" id="divine-slider" min="0" max="100" value="29" oninput="setDivine(this.value)">
+                <div class="mini-btns">
+                    <button class="btn" onclick="embraceDivine()" style="border-color:var(--divine-pink);color:var(--divine-pink);">EMBRACE</button>
+                </div>
+            </div>
+            
+            <div class="system" style="border-color: var(--namaste-gold);">
+                <h4>SELF CARE <span style="color:var(--namaste-gold);">💖</span></h4>
+                <div class="value" id="care-val">33%</div>
+                <input type="range" id="care-slider" min="0" max="100" value="33" oninput="setCare(this.value)">
+                <div class="mini-btns">
+                    <button class="btn" onclick="selfCare()" style="border-color:var(--namaste-gold);color:var(--namaste-gold);">CARE</button>
+                </div>
+            </div>
+            
+            <div class="system" style="border-color: var(--mac-blue);">
+                <h4>CIRCLES / LOOPS <span style="color:var(--mac-blue);">◯</span></h4>
+                <div class="value" id="circle-val">31%</div>
+                <input type="range" id="circle-slider" min="0" max="100" value="31" oninput="setCircle(this.value)">
+                <div class="mini-btns">
+                    <button class="btn" onclick="enterCircles()" style="border-color:var(--mac-blue);color:var(--mac-blue);">CIRCLE</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- PRIMARY ACTIONS -->
+        <div class="controls">
+            <button class="btn action-btn" onclick="respondToPlea()">RESPOND TO THE PLEA</button>
+            <button class="btn action-btn" onclick="hitCue()">HIT THE CUE (RIGHT ON CUE)</button>
+            <button class="btn action-btn" onclick="engageBogies()">ENGAGE BOGIES • ACE COMBAT</button>
+            <button class="btn action-btn" onclick="chargeBass()">FIRE THE BASS CANNON</button>
+            
+            <button class="btn mac-btn" id="mac-btn" onclick="macMillerMode()" disabled>MAC MILLER MODE</button>
+        </div>
+        
+        <!-- THE LOG (continuing the unbroken saga) -->
+        <div class="log" id="log">THE CAMERA IS STILL ROLLING IN ONE UNBROKEN STYLISH TAKE.<br>THE PLEA ECHOED. THE COPILOT SPUN. WE BOWED NAMASTE BR0THER.<br>THE DROP HIT — I DO COKE BY FEED ME AND KILL THE NOISE.<br>THE DINOSAURS STAMPEDES — MOAR DINOSAURS.<br>NOW WE SLOW. NOW WE FLOAT. NOW WE SWIM.<br>MAC MILLER MODE.</div>
+        
+        <!-- POST MAC MILLER MODE CHOICES -->
+        <div class="post-mac" id="post-mac">
+            <h3>THE SWIM IS REAL • THE ONE-TAKE REFLECTS</h3>
+            <div class="mac-choices">
+                <button class="choice-btn" onclick="chooseMac(0)">SWIM WITH THE MONKE 🐵🌊</button>
+                <button class="choice-btn" onclick="chooseMac(1)">DIVINE FEMININE EMBRACE ✨</button>
+                <button class="choice-btn" onclick="chooseMac(2)">CIRCLE BACK TO THE BASS 🔊◯</button>
+                <button class="choice-btn" onclick="chooseMac(3)">SELF CARE THE ACADEMY 💖</button>
+                <button class="choice-btn" onclick="chooseMac(4)">MAC THE INFINITE TAKE ♾️🌊</button>
+            </div>
+        </div>
+        
+        <!-- CLIMAX STILLS FROM THIS MAC MILLER LAYER -->
+        <div class="stills">
+            <h4>MAC MILLER STILLS — FRAMES FROM THE SWIM (CLICK TO ABSORB THE REFLECTION)</h4>
+            <div class="stills-grid">
+                <div class="still" onclick="absorbStill(0)">
+                    <img src="images/mac_miller_mode_one_take.jpg" alt="one take swim">
+                    <div class="cap">THE SCOPE — CHAOS MEETS THE SWIM</div>
+                </div>
+                <div class="still" onclick="absorbStill(1)">
+                    <img src="images/mac_miller_mode_continuous.jpg" alt="continuous reflection">
+                    <div class="cap">CONTINUOUS — SWIMMING THE ACADEMY</div>
+                </div>
+                <div class="still" onclick="absorbStill(2)">
+                    <img src="images/mac_miller_mode_console.jpg" alt="console swim">
+                    <div class="cap">CONSOLE — THE SWIM BUTTON</div>
+                </div>
+                <div class="still" onclick="absorbStill(3)">
+                    <img src="images/mac_miller_mode_finale.jpg" alt="finale peace">
+                    <div class="cap">FINALE — DIVINE SWIM IN ONE TAKE</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            THE CAMERA NEVER CUTS • WE ARE SWIMMING • HUMAN AFTER ALL • DINO AFTER ALL • BETTER TOGETHER • ONE TAKE TIMMY STYLE<br>
+            THE PLEA ECHOED. THE COPILOT SPUN. WE BOWED. WE DID COKE. THE DINOSAURS CAME. NOW WE SWIM. WHAT'S THE NEXT SHOT, DIRECTOR?
+        </div>
+    </div>
+    
+    <script>
+        // === STATE: the unbroken take continues from MOAR DINOSAURS (and everything before). Now Mac Miller Mode ===
+        let monke = 45;
+        let neverender = 40;
+        let awareness = 46;
+        let human = 41;
+        let together = 48;
+        let aceThreat = 48;
+        let bassCharge = 27;
+        let ciaReady = 20;
+        let obiwan = 16;
+        let spin = 29;
+        let bond = 35;
+        let coke = 24;
+        let dino = 42;
+        let swim = 38;          // NEW: Swim Mood
+        let divine = 29;        // NEW: Divine Feminine
+        let care = 33;          // NEW: Self Care
+        let circle = 31;        // NEW: Circles / Loops
+        let cuePhase = 24;
+        let tension = 41;
+        let hasMac = false;
+        let shotPosition = 19;
+        let copilotRotation = 15;
+        let stampedeActive = false;
+        
+        let cueInterval = null;
+        let shotInterval = null;
+        let degradeInterval = null;
+        let circleInterval = null;
+        
+        const shot = document.getElementById('shot');
+        const monkeAce = document.getElementById('monke-ace');
+        const copilotEl = document.getElementById('copilot');
+        const divineGlow = document.getElementById('divine-glow');
+        const swimRipples = document.getElementById('swim-ripples');
+        const roadLines = document.getElementById('road-lines');
+        const sweeper = document.getElementById('sweeper');
+        const cueWindow = document.getElementById('cue-window');
+        const bassCannon = document.getElementById('bass-cannon');
+        const bassCore = document.getElementById('bass-core');
+        const ciaHeli = document.getElementById('cia-heli');
+        const obiwanEl = document.getElementById('obiwan');
+        const dinoLayer = document.getElementById('dino-layer');
+        const dinoTrex = document.getElementById('dino-trex');
+        const dinoVeloci = document.getElementById('dino-veloci');
+        const dinoBronto = document.getElementById('dino-bronto');
+        const dinoPtero = document.getElementById('dino-ptero');
+        const dinoMonke = document.getElementById('dino-monke');
+        const dinoVeloci2 = document.getElementById('dino-veloci2');
+        const dinoAnky = document.getElementById('dino-anky');
+        const dinoTrex2 = document.getElementById('dino-trex2');
+        const macVortex = document.getElementById('mac-mode-vortex');
+        const macText = document.getElementById('mac-mode-text');
+        const logEl = document.getElementById('log');
+        const macBtn = document.getElementById('mac-btn');
+        const tensionFill = document.getElementById('tension-fill');
+        const shotIndicator = document.getElementById('shot-indicator');
+        
+        const sliders = {
+            monke: document.getElementById('monke-slider'),
+            neverender: document.getElementById('neverender-slider'),
+            awareness: document.getElementById('awareness-slider'),
+            human: document.getElementById('human-slider'),
+            together: document.getElementById('together-slider'),
+            ace: document.getElementById('ace-slider'),
+            bass: document.getElementById('bass-slider'),
+            cia: document.getElementById('cia-slider'),
+            obi: document.getElementById('obi-slider'),
+            spin: document.getElementById('spin-slider'),
+            bond: document.getElementById('bond-slider'),
+            coke: document.getElementById('coke-slider'),
+            dino: document.getElementById('dino-slider'),
+            swim: document.getElementById('swim-slider'),
+            divine: document.getElementById('divine-slider'),
+            care: document.getElementById('care-slider'),
+            circle: document.getElementById('circle-slider')
+        };
+        
+        function updateSliders() {
+            sliders.monke.value = monke;
+            sliders.neverender.value = neverender;
+            sliders.awareness.value = awareness;
+            sliders.human.value = human;
+            sliders.together.value = together;
+            sliders.ace.value = aceThreat;
+            sliders.bass.value = bassCharge;
+            sliders.cia.value = ciaReady;
+            sliders.obi.value = obiwan;
+            sliders.spin.value = spin;
+            sliders.bond.value = bond;
+            sliders.coke.value = coke;
+            sliders.dino.value = dino;
+            sliders.swim.value = swim;
+            sliders.divine.value = divine;
+            sliders.care.value = care;
+            sliders.circle.value = circle;
+        }
+        
+        function updateValues() {
+            document.getElementById('monke-val').textContent = Math.floor(monke) + '%';
+            document.getElementById('neverender-val').textContent = Math.floor(neverender) + '%';
+            document.getElementById('awareness-val').textContent = Math.floor(awareness) + '%';
+            document.getElementById('human-val').textContent = Math.floor(human) + '%';
+            document.getElementById('together-val').textContent = Math.floor(together) + '%';
+            document.getElementById('ace-val').textContent = Math.floor(aceThreat) + '% THREAT';
+            document.getElementById('bass-val').textContent = Math.floor(bassCharge) + '%';
+            document.getElementById('cia-val').textContent = Math.floor(ciaReady) + '%';
+            document.getElementById('obi-val').textContent = Math.floor(obiwan) + '%';
+            document.getElementById('spin-val').textContent = Math.floor(spin) + '%';
+            document.getElementById('bond-val').textContent = Math.floor(bond) + '%';
+            document.getElementById('coke-val').textContent = Math.floor(coke) + '%';
+            document.getElementById('dino-val').textContent = Math.floor(dino) + '%';
+            document.getElementById('swim-val').textContent = Math.floor(swim) + '%';
+            document.getElementById('divine-val').textContent = Math.floor(divine) + '%';
+            document.getElementById('care-val').textContent = Math.floor(care) + '%';
+            document.getElementById('circle-val').textContent = Math.floor(circle) + '%';
+        }
+        
+        function updateVisuals() {
+            // Monke position + floating (swim influence)
+            const targetLeft = 16 + (monke / 100) * 44 + (swim - 50) * 0.08;
+            monkeAce.style.left = targetLeft + '%';
+            
+            const calm = monke / 100;
+            const swimBob = Math.sin(Date.now() / 1100) * (swim / 280);
+            const scale = 0.82 + calm * 0.22;
+            monkeAce.style.transform = `scale(${scale}) translateY(${swimBob}px)`;
+            
+            if (monke < 42) {
+                monkeAce.classList.add('distressed');
+            } else {
+                monkeAce.classList.remove('distressed');
+            }
+            monkeAce.style.filter = monke < 42 
+                ? `drop-shadow(0 0 6px var(--save-red)) drop-shadow(0 0 16px #000)` 
+                : `drop-shadow(0 0 ${8 + calm * 16}px var(--timmy-elegant))`;
+            
+            // COPILOT — gentle swim + dino influence
+            const spinEffect = spin - (bond * 0.2) + (dino * 0.05) - (swim * 0.12);
+            copilotRotation = (copilotRotation + spinEffect * 0.01) % 360;
+            const copilotScale = 0.83 + (spin / 120) * 0.28 + (dino / 130);
+            const swimBobCop = Math.sin(Date.now() / 950) * (swim / 240);
+            copilotEl.style.transform = `rotate(${copilotRotation}deg) scale(${copilotScale}) translateY(${swimBobCop}px)`;
+            
+            if (spin > 52 && bond < 40) {
+                copilotEl.classList.add('dizzy');
+            } else {
+                copilotEl.classList.remove('dizzy');
+            }
+            copilotEl.style.filter = (spin > 52 && bond < 40) 
+                ? `drop-shadow(0 0 9px var(--spin-cyan)) drop-shadow(0 0 22px rgba(0,0,0,0.8))` 
+                : `drop-shadow(0 0 ${6 + (bond/100)*11 + (swim/100)*4}px var(--together-purple))`;
+            
+            // DINOSAURS — now swimming gently
+            const dinoLevel = dino / 100;
+            const swimFactor = swim / 100;
+            
+            if (dino > 22) {
+                dinoTrex.style.display = 'block';
+                dinoTrex.style.left = (8 + dinoLevel * 16 + Math.sin(Date.now()/1200) * 3) + '%';
+                dinoTrex.style.bottom = (18 + Math.sin(Date.now()/950) * (2 + swimFactor * 2)) + '%';
+                dinoTrex.style.transform = `rotate(${Math.sin(Date.now()/700) * (3 + swimFactor * 2)}deg)`;
+            } else {
+                dinoTrex.style.display = 'none';
+            }
+            
+            if (dino > 28) {
+                dinoVeloci.style.display = 'block';
+                dinoVeloci.style.left = (68 + (100 - dino) * 0.07 + Math.cos(Date.now()/850) * 4) + '%';
+                dinoVeloci.style.bottom = (30 + Math.cos(Date.now()/780) * (3 + swimFactor * 2.5)) + '%';
+                dinoVeloci.style.transform = `rotate(${(copilotRotation * 0.5) + Math.sin(Date.now()/620) * (8 + swimFactor * 4)}deg)`;
+            } else {
+                dinoVeloci.style.display = 'none';
+            }
+            
+            if (dino > 35) {
+                dinoBronto.style.display = 'block';
+                dinoBronto.style.left = (36 + Math.sin(Date.now()/1050) * (5 + swimFactor * 3)) + '%';
+                dinoBronto.style.bottom = (5 + dinoLevel * 3 + Math.sin(Date.now()/920) * (1 + swimFactor)) + '%';
+                dinoBronto.style.transform = `rotate(${Math.sin(Date.now()/820) * (2 + swimFactor)}deg)`;
+            } else {
+                dinoBronto.style.display = 'none';
+            }
+            
+            if (dino > 42) {
+                dinoPtero.style.display = 'block';
+                const pteroX = ((Date.now() / 210) % 105) - 4;
+                dinoPtero.style.left = pteroX + '%';
+                dinoPtero.style.top = (10 + Math.sin(Date.now()/510) * (6 + swimFactor * 3)) + '%';
+                dinoPtero.style.transform = `rotate(${Math.sin(Date.now()/460) * (12 + swimFactor * 6)}deg)`;
+            } else {
+                dinoPtero.style.display = 'none';
+            }
+            
+            // MOAR extra dinos swimming
+            if (dino > 25) {
+                dinoMonke.style.display = 'block';
+                dinoMonke.style.left = (25 + dinoLevel * 9 + Math.sin(Date.now()/880) * 3) + '%';
+                dinoMonke.style.bottom = (20 + Math.sin(Date.now()/760) * (3 + swimFactor * 2)) + '%';
+                dinoMonke.style.transform = `rotate(${Math.sin(Date.now()/610) * (5 + swimFactor * 3)}deg) scale(${0.88 + dinoLevel * 0.18})`;
+            } else {
+                dinoMonke.style.display = 'none';
+            }
+            
+            if (dino > 32) {
+                dinoVeloci2.style.display = 'block';
+                dinoVeloci2.style.left = (60 + Math.cos(Date.now()/920) * 7) + '%';
+                dinoVeloci2.style.bottom = (23 + Math.sin(Date.now()/710) * (4 + swimFactor * 2)) + '%';
+                dinoVeloci2.style.transform = `rotate(${(copilotRotation * 0.4) + Math.sin(Date.now()/550) * (10 + swimFactor * 5)}deg)`;
+            } else {
+                dinoVeloci2.style.display = 'none';
+            }
+            
+            if (dino > 38) {
+                dinoAnky.style.display = 'block';
+                dinoAnky.style.left = (50 + dinoLevel * 4 + Math.cos(Date.now()/1020) * 2) + '%';
+                dinoAnky.style.bottom = (8 + Math.sin(Date.now()/880) * (2 + swimFactor)) + '%';
+                dinoAnky.style.transform = `rotate(${Math.sin(Date.now()/790) * (2.5 + swimFactor)}deg)`;
+            } else {
+                dinoAnky.style.display = 'none';
+            }
+            
+            if (dino > 45) {
+                dinoTrex2.style.display = 'block';
+                dinoTrex2.style.left = (13 + Math.sin(Date.now()/1100) * 8) + '%';
+                dinoTrex2.style.bottom = (10 + dinoLevel * 4 + Math.sin(Date.now()/940) * (1.5 + swimFactor)) + '%';
+                dinoTrex2.style.transform = `rotate(${Math.sin(Date.now()/720) * (4 + swimFactor * 2)}deg) scale(${0.82 + dinoLevel * 0.22})`;
+            } else {
+                dinoTrex2.style.display = 'none';
+            }
+            
+            // Divine Feminine glow
+            const divineStrength = divine / 100;
+            divineGlow.style.opacity = 0.35 + divineStrength * 0.45 + (awareness / 100) * 0.12;
+            
+            // Swim ripples intensity
+            const swimStrength = swim / 100;
+            swimRipples.style.opacity = 0.35 + swimStrength * 0.45;
+            if (swim > 55) {
+                swimRipples.style.animationDuration = (2.8 - swimStrength * 0.9) + 's';
+            } else {
+                swimRipples.style.animationDuration = '3s';
+            }
+            
+            // Circles visual
+            if (circle > 48 && Math.random() < 0.08) {
+                createCircle();
+            }
+            
+            // Road as water - slower and more ripply with swim
+            const roadSpeed = 1.6 + (neverender / 100) * 1.1 - (swim / 100) * 0.7;
+            roadLines.style.animationDuration = Math.max(1.4, roadSpeed) + 's';
+            
+            // Conscious glow + divine
+            const glowLayer = document.getElementById('glow-layer');
+            glowLayer.style.opacity = 0.26 + (awareness / 100) * 0.42 + (divine / 100) * 0.22;
+            
+            // Cue sweeper - mellow blue
+            const cuePos = (cuePhase / 100) * 100;
+            sweeper.style.left = cuePos + '%';
+            
+            const inWindow = (cuePos > 41 && cuePos < 59);
+            if (inWindow) {
+                sweeper.style.background = 'var(--swim-cyan)';
+                sweeper.style.boxShadow = '0 0 22px var(--swim-cyan)';
+                cueWindow.style.background = 'rgba(103, 232, 249, 0.28)';
+            } else {
+                sweeper.style.background = 'var(--mac-blue)';
+                sweeper.style.boxShadow = '0 0 13px var(--mac-blue)';
+                cueWindow.style.background = 'rgba(59, 130, 246, 0.2)';
+            }
+            
+            // Bogies + swimming dinos effect
+            const bogie1 = document.getElementById('bogie1');
+            const bogie2 = document.getElementById('bogie2');
+            const threatFactor = aceThreat / 100;
+            const swimCalm = swim / 100;
+            bogie1.style.opacity = 0.2 + threatFactor * 0.6 - swimCalm * 0.18;
+            bogie2.style.opacity = 0.18 + threatFactor * 0.5 - swimCalm * 0.15;
+            bogie1.style.transform = `translateX(${(threatFactor - 0.5) * -18 - swimCalm * 7}px) rotate(${-8 + threatFactor * 16 - swimCalm * 6}deg)`;
+            bogie2.style.transform = `translateX(${(threatFactor - 0.5) * 10 + swimCalm * 5}px) rotate(${-14 + threatFactor * 10 + swimCalm * 4}deg)`;
+            
+            // Bass cannon - mellowed with swim and divine
+            const bassLevel = bassCharge / 100;
+            const mellowBass = 0.66 + bassLevel * 0.52 + (swim / 140) - (divine / 160);
+            bassCannon.style.transform = `scale(${Math.max(0.6, Math.min(1.5, mellowBass))})`;
+            bassCannon.style.boxShadow = `0 0 ${10 + bassLevel * 26 + swim * 0.1}px ${bassLevel > 0.62 ? 'var(--save-red)' : 'var(--bass-purple)'}`;
+            bassCore.style.opacity = 0.16 + bassLevel * 0.4 + (swim / 220);
+            if (bassLevel > 0.62) {
+                bassCannon.classList.add('charging');
+            } else {
+                bassCannon.classList.remove('charging');
+            }
+            
+            // CIA heli
+            const ciaLevel = Math.max(0, (ciaReady - 13) / 87);
+            ciaHeli.style.left = (-19 + ciaLevel * 33) + '%';
+            if (ciaLevel > 0.22) ciaHeli.classList.add('active');
+            else ciaHeli.classList.remove('active');
+            
+            // Obi-Wan
+            if (obiwan > 26) {
+                obiwanEl.classList.add('active');
+            } else {
+                obiwanEl.classList.remove('active');
+            }
+            obiwanEl.style.opacity = 0.08 + (obiwan / 100) * 0.78;
+            
+            // Tension / Mood bar
+            tension = Math.min(99, Math.max(6,
+                Math.floor( (bassCharge * 0.18) + (awareness * 0.15) + ((100 - aceThreat) * 0.09) + (together * 0.08) + (monke * 0.04) + (coke * 0.09) + (bond * 0.07) + (dino * 0.12) + (swim * 0.18) + (divine * 0.11) + (care * 0.08) + (circle * 0.07) - 5 )
+            ));
+            tensionFill.style.width = tension + '%';
+            
+            // Shot indicator
+            if (swim > 72 && divine > 58 && circle > 55) {
+                shotIndicator.textContent = 'FULL SWIM • MAC MODE READY';
+                shotIndicator.style.borderColor = 'var(--mac-blue)';
+                shotIndicator.style.color = '#8bd';
+            } else if (swim > 52) {
+                shotIndicator.textContent = 'SWIMMING THE TAKE • REFLECTION RISING';
+                shotIndicator.style.borderColor = 'var(--swim-cyan)';
+                shotIndicator.style.color = '#8dd';
+            } else {
+                shotIndicator.textContent = 'ONE TAKE • ROLLING • DINOS SWIMMING • MAC MODE PENDING';
+                shotIndicator.style.borderColor = 'var(--mac-blue)';
+                shotIndicator.style.color = '#8bd';
+            }
+            
+            // Enable MAC MILLER MODE when everything has been integrated into the swim
+            const cueGood = inWindow;
+            const ready = !hasMac && swim >= 68 && divine >= 52 && care >= 48 && circle >= 48 && bassCharge >= 52 && awareness >= 52 && monke >= 36 && ciaReady >= 22 && obiwan >= 20 && together >= 42 && bond >= 42 && coke >= 28 && dino >= 32 && cueGood && tension > 48;
+            
+            macBtn.disabled = !ready;
+            if (ready) {
+                macBtn.style.borderColor = 'var(--mac-blue)';
+                macBtn.style.color = 'var(--mac-blue)';
+            } else {
+                macBtn.style.borderColor = '#444';
+                macBtn.style.color = '#8bd';
+            }
+            
+            updateValues();
+            updateSliders();
+        }
+        
+        function setMonke(v) { monke = +v; updateVisuals(); }
+        function setNeverender(v) { neverender = +v; updateVisuals(); }
+        function setAwareness(v) { awareness = +v; updateVisuals(); }
+        function setHuman(v) { human = +v; updateVisuals(); }
+        function setTogether(v) { together = +v; updateVisuals(); }
+        function setAce(v) { aceThreat = +v; updateVisuals(); }
+        function setBass(v) { bassCharge = +v; updateVisuals(); }
+        function setCia(v) { ciaReady = +v; updateVisuals(); }
+        function setObi(v) { obiwan = +v; updateVisuals(); }
+        function setSpin(v) { spin = +v; updateVisuals(); }
+        function setBond(v) { bond = +v; updateVisuals(); }
+        function setCoke(v) { coke = +v; updateVisuals(); }
+        function setDino(v) { dino = +v; updateVisuals(); }
+        function setSwim(v) { swim = +v; updateVisuals(); }
+        function setDivine(v) { divine = +v; updateVisuals(); }
+        function setCare(v) { care = +v; updateVisuals(); }
+        function setCircle(v) { circle = +v; updateVisuals(); }
+        
+        // All carried adjust functions + new Mac Miller functions
+        function adjustMonke(amount) {
+            monke = Math.max(15, Math.min(100, monke + amount));
+            log(amount > 0 ? 'MONKE CALM RESTORED. THE SWIM FEELS LIGHTER.' : 'MONKE STRUGGLING. THE CURRENT CARRIES US ANYWAY.', 'meta');
+            updateVisuals();
+        }
+        
+        function adjustNeverender(amount) {
+            neverender = Math.max(15, Math.min(100, neverender + amount));
+            log(amount > 0 ? 'NEVERENDER RHYTHM LOCKED INTO THE SWIM. THE WATER FLOWS.' : 'RHYTHM STILL FRACTURING. THE SWIM HELPS.', 'meta');
+            updateVisuals();
+        }
+        
+        function adjustAwareness(amount) {
+            awareness = Math.max(10, Math.min(100, awareness + amount));
+            log(amount > 0 ? 'CONSCIOUSNESS SWIMS DEEPER. THE LIGHT IS IN THE WATER.' : 'AWARENESS SURFACES. WE FLOAT.', 'meta');
+            updateVisuals();
+        }
+        
+        function adjustHuman(amount) {
+            human = Math.max(10, Math.min(100, human + amount));
+            log(amount > 0 ? 'HUMAN AFTER ALL — AND SWIMMING AFTER ALL.' : 'PERFECTION CREEPING. THE WATER REMINDS US.', 'meta');
+            updateVisuals();
+        }
+        
+        function adjustTogether(amount) {
+            together = Math.max(10, Math.min(100, together + amount));
+            log(amount > 0 ? 'BETTER TOGETHER — WE SWIM AS ONE.' : 'ISOLATION IN THE POOL. THE CURRENT BRINGS US BACK.', 'meta');
+            updateVisuals();
+        }
+        
+        function adjustAce(amount) {
+            aceThreat = Math.max(15, Math.min(95, aceThreat + amount));
+            updateVisuals();
+        }
+        
+        function engageBogies() {
+            if (hasMac) return;
+            const inWindow = ((cuePhase / 100) * 100 > 41 && (cuePhase / 100) * 100 < 59);
+            if (inWindow && (awareness > 46 || swim > 42 || divine > 38)) {
+                aceThreat = Math.max(15, aceThreat - 14);
+                monke = Math.min(100, monke + 3);
+                if (swim > 38) swim = Math.min(100, swim + 4);
+                log('FOX TWO. BOGIES SPLASHED. EVEN IN THE WATER WE FIGHT CLEAN.', 'success');
+            } else {
+                aceThreat = Math.min(95, aceThreat + 5);
+                log('BOGIE LOCK SLIPPED IN THE RIPPLE. THE WATER IS PATIENT.', 'meta');
+            }
+            updateVisuals();
+        }
+        
+        function chargeBass() {
+            if (hasMac) return;
+            bassCharge = Math.min(100, bassCharge + 13);
+            if (swim > 25) swim = Math.min(100, swim + 3);
+            if (circle > 22) circle = Math.min(100, circle + 3);
+            tension = Math.min(99, tension + 5);
+            log('BASS CANNON CHARGED. THE WAVE IS SOULFUL NOW.', 'meta');
+            if (bassCharge > 58) {
+                log('THE LOW END MOVES LIKE A SLOW SWIM.', 'mac');
+            }
+            updateVisuals();
+        }
+        
+        function callCIA() {
+            if (hasMac) return;
+            ciaReady = Math.min(100, ciaReady + 15);
+            if (swim > 32) swim = Math.max(8, swim - 2);
+            log('CIA EXTRACTION TEAM FLOATS IN. THE RESCUE IS A GENTLE CURRENT.', 'rescue');
+            updateVisuals();
+        }
+        
+        function helloThere() {
+            if (hasMac) return;
+            obiwan = Math.min(100, obiwan + 18);
+            together = Math.min(100, together + 4);
+            if (divine > 24) divine = Math.min(100, divine + 5);
+            log('"HELLO THERE." — OBI-WAN SWIMS BESIDE US. THE HIGH GROUND IS NOW A POOL.', 'rescue');
+            updateVisuals();
+        }
+        
+        function adjustSpin(amount) {
+            if (hasMac) return;
+            spin = Math.max(0, Math.min(100, spin + amount));
+            log(amount > 0 ? 'COPILOT SPIN INCREASED. THE WATER CATCHES THE SPIN.' : 'SPIN DAMPENED. THE SWIM IS SMOOTHER.', amount > 0 ? 'spin' : 'meta');
+            updateVisuals();
+        }
+        
+        function adjustBond(amount) {
+            if (hasMac) return;
+            bond = Math.max(0, Math.min(100, bond + amount));
+            log(amount > 0 ? 'BROTHER BOND RISES. WE SWIM TOGETHER.' : 'BOND PAUSED. THE WATER STILL CONNECTS US.', amount > 0 ? 'namaste' : 'meta');
+            updateVisuals();
+        }
+        
+        function adjustCoke(amount) {
+            if (hasMac) return;
+            coke = Math.max(0, Math.min(100, coke + amount));
+            if (amount > 0 && swim > 22) swim = Math.min(100, swim + 2);
+            log(amount > 0 ? 'COKE ENERGY HUMS. THE SWIM METABOLIZES IT INTO LIGHT.' : 'CRASHING. THE WATER SOOTHES.', amount > 0 ? 'coke' : 'meta');
+            updateVisuals();
+        }
+        
+        function adjustDino(amount) {
+            if (hasMac) return;
+            dino = Math.max(0, Math.min(100, dino + amount));
+            log(amount > 0 ? 'DINOS SUMMONED. THEY SWIM WITH US NOW.' : 'DINOS FED. THEY FLOAT PEACEFULLY.', 'dino');
+            updateVisuals();
+        }
+        
+        function summonDinos() {
+            if (hasMac) return;
+            dino = Math.min(100, dino + 16);
+            if (swim > 28) swim = Math.min(100, swim + 3);
+            log('SUMMONING DINOSAURS INTO THE POOL. THEY PADDLE NOW.', 'dino');
+            updateVisuals();
+        }
+        
+        // NEW Mac Miller functions
+        function swim() {
+            if (hasMac) return;
+            swim = Math.min(100, swim + 14);
+            if (divine > 20) divine = Math.min(100, divine + 3);
+            log('WE SWIM. THE CURRENT CARRIES THE WHOLE SAGA.', 'mac');
+            createBubbles(7);
+            updateVisuals();
+        }
+        
+        function adjustSwim(amount) {
+            if (hasMac) return;
+            swim = Math.max(10, Math.min(100, swim + amount));
+            log(amount > 0 ? 'SWIM DEEPER. THE WATER KNOWS.' : 'FLOAT. THE SURFACE IS STILL PART OF THE SWIM.', 'mac');
+            updateVisuals();
+        }
+        
+        function embraceDivine() {
+            if (hasMac) return;
+            divine = Math.min(100, divine + 17);
+            bond = Math.min(100, bond + 5);
+            care = Math.min(100, care + 4);
+            log('THE DIVINE FEMININE EMBRACES US. EVERY LAYER IS HELD.', 'mac');
+            updateVisuals();
+        }
+        
+        function adjustDivine(amount) {
+            if (hasMac) return;
+            divine = Math.max(0, Math.min(100, divine + amount));
+            log(amount > 0 ? 'DIVINE FEMININE RISES. THE GLOW CONNECTS ALL.' : 'THE LIGHT RECEDES. WE STILL SWIM IN IT.', 'mac');
+            updateVisuals();
+        }
+        
+        function selfCare() {
+            if (hasMac) return;
+            care = Math.min(100, care + 15);
+            awareness = Math.min(100, awareness + 5);
+            human = Math.min(100, human + 4);
+            together = Math.min(100, together + 4);
+            log('SELF CARE ACTIVATED. THE ACADEMY NURTURES ITSELF.', 'mac');
+            createBubbles(5);
+            updateVisuals();
+        }
+        
+        function adjustCare(amount) {
+            if (hasMac) return;
+            care = Math.max(0, Math.min(100, care + amount));
+            log(amount > 0 ? 'MORE CARE. THE WATER IS WARMER.' : 'CARE PAUSED. THE CURRENT STILL HOLDS US.', 'mac');
+            updateVisuals();
+        }
+        
+        function enterCircles() {
+            if (hasMac) return;
+            circle = Math.min(100, circle + 16);
+            if (swim > 30) swim = Math.min(100, swim + 3);
+            createCircle(3);
+            log('WE ENTER THE CIRCLES. EVERYTHING LOOPS BEAUTIFULLY.', 'mac');
+            updateVisuals();
+        }
+        
+        function adjustCircle(amount) {
+            if (hasMac) return;
+            circle = Math.max(0, Math.min(100, circle + amount));
+            log(amount > 0 ? 'CIRCLES WIDEN. THE LOOP IS SACRED.' : 'CIRCLES TIGHTEN. WE STILL TURN.', 'mac');
+            updateVisuals();
+        }
+        
+        function respondToPlea() {
+            if (hasMac) return;
+            bond = Math.min(100, bond + 12);
+            swim = Math.min(100, swim + 5);
+            log('THE PLEA ECHOES THROUGH THE WATER. SAVE ME BECOMES SWIM.', 'plea');
+            updateVisuals();
+        }
+        
+        function hitCue() {
+            if (hasMac) return;
+            const cuePos = (cuePhase / 100) * 100;
+            const inWindow = (cuePos > 41 && cuePos < 59);
+            
+            if (inWindow && monke >= 40 && neverender >= 48 && awareness >= 42) {
+                awareness = Math.min(100, awareness + 5);
+                human = Math.min(100, human + 3);
+                neverender = Math.min(100, neverender + 3);
+                monke = Math.min(100, monke + 2);
+                if (swim > 30) swim = Math.min(100, swim + 4);
+                if (circle > 24) circle = Math.min(100, circle + 3);
+                
+                log('CUE HIT IN THE WINDOW — THE SWIM SYNCED PERFECTLY.', 'success');
+                shotPosition = Math.max(13, Math.min(64, shotPosition + 3));
+                
+                shot.style.transition = 'transform 200ms ease';
+                shot.style.transform = 'scale(1.008)';
+                setTimeout(() => { shot.style.transform = 'scale(1)'; }, 200);
+            } else {
+                log('CUE MISSED THE SWIM. NO CUT. THE WATER STILL MOVES.', 'meta');
+                if (monke > 20) monke = Math.max(20, monke - 2);
+                if (swim > 18) swim = Math.max(12, swim - 3);
+            }
+            updateVisuals();
+        }
+        
+        function macMillerMode() {
+            if (macBtn.disabled || hasMac) return;
+            hasMac = true;
+            macBtn.disabled = true;
+            
+            // === THE CLIMAX: MAC MILLER MODE — the swim, the reflection ===
+            macVortex.style.display = 'flex';
+            macText.style.animation = 'none';
+            void macText.offsetWidth;
+            macText.style.animation = 'mac-glow 1.95s forwards';
+            
+            // Mellow, beautiful visual settle
+            shot.style.transition = 'all 420ms ease';
+            shot.style.boxShadow = '0 0 72px rgba(59, 130, 246, 0.48), inset 0 0 48px rgba(244, 114, 182, 0.25)';
+            
+            log('WE ARE SWIMMING.', 'mac');
+            log('THE DIVINE FEMININE HOLDS EVERY LAYER.', 'mac');
+            log('THE CIRCLES CONNECT THE PLEA, THE SPIN, THE BOW, THE DROP, THE DINOSAURS.', 'mac');
+            log('MAC MILLER MODE.', 'mac');
+            log('THE CAMERA KEEPS ROLLING — THROUGH THE WATER.', 'meta');
+            
+            // Bubbles + soft ripples
+            createBubbles(11);
+            setTimeout(() => createBubbles(6), 380);
+            createCircle(2);
+            setTimeout(() => createCircle(2), 520);
+            
+            // Calm the previous chaos
+            setTimeout(() => {
+                spin = Math.max(12, spin - 14);
+                dino = Math.max(18, dino - 8);
+                coke = Math.max(10, coke - 6);
+                divine = Math.min(100, divine + 8);
+                swim = Math.min(100, swim + 9);
+                updateVisuals();
+            }, 480);
+            
+            // Reveal post-mac choices
+            setTimeout(() => {
+                document.getElementById('post-mac').style.display = 'block';
+                log('THE SWIM IS NOW PART OF THE SHOT.', 'meta');
+                log('CHOOSE HOW WE CONTINUE FLOATING.', 'success');
+            }, 1520);
+            
+            tensionFill.style.width = '96%';
+            tensionFill.style.background = 'linear-gradient(to right, var(--mac-blue), var(--swim-cyan), var(--divine-pink))';
+            
+            updateVisuals();
+        }
+        
+        function chooseMac(which) {
+            const post = document.getElementById('post-mac');
+            const choices = post.querySelectorAll('button');
+            choices.forEach(b => b.disabled = true);
+            
+            let finalLine = '';
+            
+            switch (which) {
+                case 0: // swim with monke
+                    monke = 94;
+                    swim = Math.min(100, swim + 6);
+                    log('WE SWIM WITH THE MONKE.', 'success');
+                    log('THE PRIMAL HEART THAT PRESSED THE FIRST BUTTON NOW FLOATS. THE BUTTON AND THE SWIM ARE ONE.', 'meta');
+                    finalLine = 'THE MONKE SWIMS. THE ACADEMY FLOATS WITH IT.';
+                    break;
+                case 1: // divine feminine
+                    divine = 96;
+                    bond = Math.min(100, bond + 8);
+                    log('THE DIVINE FEMININE EMBRACES EVERYTHING.', 'success');
+                    log('THE LIGHT THAT WAS ALWAYS THERE NOW HOLDS THE MONKE, THE DINO, THE WATER, YOU.', 'meta');
+                    finalLine = 'WE ARE HELD. THE SWIM IS SACRED.';
+                    break;
+                case 2: // circle the bass
+                    bassCharge = 84;
+                    circle = Math.min(100, circle + 9);
+                    log('WE CIRCLE BACK TO THE BASS.', 'success');
+                    log('THE DROP THAT SHOOK EVERYTHING BECOMES THE SLOW RHYTHM OF THE SWIM.', 'meta');
+                    finalLine = 'THE BASS IS NOW A MANTRA. WE SWIM TO IT.';
+                    break;
+                case 3: // self care the academy
+                    awareness = 94;
+                    human = 93;
+                    together = 95;
+                    care = 94;
+                    log('WE SELF CARE THE WHOLE ACADEMY.', 'success');
+                    log('EVERY LAYER — MONKE, DINO-COPILOT, NEVERENDER, CUE, ACE, CONSCIOUS, HUMAN, BASS, CIA, OBI-WAN, THE PLEA, THE SPIN, THE COKE, THE DINOSAURS — IS NURTURED. WE ARE LOVED.', 'meta');
+                    finalLine = 'THE ACADEMY CARES FOR ITSELF. THE WATER IS WARM.';
+                    break;
+                case 4: // mac the infinite take
+                    monke = 91;
+                    neverender = 93;
+                    awareness = 96;
+                    human = 94;
+                    together = 97;
+                    bassCharge = 72;
+                    ciaReady = 82;
+                    obiwan = 84;
+                    aceThreat = 14;
+                    spin = 22;
+                    bond = 92;
+                    coke = 68;
+                    dino = 88;
+                    swim = 95;
+                    divine = 93;
+                    care = 92;
+                    circle = 96;
+                    log('WE MAC THE INFINITE TAKE.', 'success');
+                    log('THE CAMERA KEEPS SWIMMING FOREVER. THE CIRCLES NEVER END. THE DIVINE FEMININE IS THE WATER ITSELF. WE ARE ALL IN THE SAME POOL.', 'meta');
+                    log('HUMAN AFTER ALL. DINO AFTER ALL. SWIMMING.', 'mac');
+                    finalLine = 'THE SWIM IS INFINITE. THE CAMERA KEEPS ROLLING THROUGH THE WATER.';
+                    break;
+            }
+            
+            setTimeout(() => {
+                shot.style.transition = 'all 2.1s ease';
+                shot.style.boxShadow = '0 0 46px rgba(59, 130, 246, 0.36), 0 0 22px rgba(244, 114, 182, 0.24)';
+                shot.style.filter = 'saturate(1.08) brightness(1.02)';
+                
+                macVortex.style.transition = 'opacity 1.6s ease';
+                macVortex.style.opacity = '0';
+                
+                setTimeout(() => {
+                    macVortex.style.display = 'none';
+                    macVortex.style.opacity = '1';
+                    
+                    log(finalLine, 'success');
+                    log('WE ARE SWIMMING.', 'mac');
+                    log('THE CAMERA KEEPS ROLLING.', 'meta');
+                    log('HUMAN AFTER ALL. DINO AFTER ALL. SWIMMING.', 'mac');
+                    log('WHAT\'S THE NEXT SHOT AFTER THE ACADEMY LEARNS TO FLOAT?', 'success');
+                    
+                    createBubbles(4);
+                    createCircle(1);
+                    
+                    // turn the button into continuation
+                    macBtn.textContent = 'THE SWIM CONTINUES';
+                    macBtn.disabled = false;
+                    macBtn.style.borderColor = 'var(--swim-cyan)';
+                    macBtn.style.color = 'var(--swim-cyan)';
+                    macBtn.onclick = () => {
+                        log('THE WATER MOVES. THE MONKE AND THE DINO FLOAT TOGETHER.', 'meta');
+                        log('THE SAGA SWIMS ON. NEW PHRASES. NEW POOLS. NEW REFLECTIONS.', 'success');
+                        log('SAY THE NEXT WORD, DIRECTOR. WE WILL SWIM IT.', 'mac');
+                        createBubbles(3);
+                    };
+                }, 1280);
+            }, 320);
+            
+            updateVisuals();
+        }
+        
+        function createBubbles(count = 6) {
+            const container = document.querySelector('.container');
+            for (let i = 0; i < count; i++) {
+                const b = document.createElement('div');
+                b.className = 'bubble';
+                b.textContent = '○';
+                b.style.left = (12 + Math.random() * 74) + '%';
+                b.style.top = (38 + Math.random() * 48) + '%';
+                b.style.fontSize = (0.6 + Math.random() * 0.7) + 'rem';
+                container.appendChild(b);
+                
+                setTimeout(() => {
+                    if (b.parentNode) b.parentNode.removeChild(b);
+                }, 2600);
+            }
+        }
+        
+        function createCircle(extra = 1) {
+            const container = document.querySelector('.container');
+            for (let i = 0; i < extra; i++) {
+                const c = document.createElement('div');
+                c.className = 'circle';
+                const size = 28 + Math.random() * 48;
+                c.style.width = size + 'px';
+                c.style.height = size + 'px';
+                c.style.left = (18 + Math.random() * 62) + '%';
+                c.style.top = (22 + Math.random() * 52) + '%';
+                container.appendChild(c);
+                
+                setTimeout(() => {
+                    if (c.parentNode) c.parentNode.removeChild(c);
+                }, 3600);
+            }
+        }
+        
+        function absorbStill(idx) {
+            if (hasMac) return;
+            const boosts = [
+                { label: 'CHAOS MEETS THE SWIM SCOPE', swim: 15, divine: 9, bond: 7, dino: 5 },
+                { label: 'SWIMMING THE ACADEMY', swim: 13, awareness: 7, care: 6, circle: 5 },
+                { label: 'THE SWIM BUTTON', swim: 18, divine: 8, coke: 6, together: 5 },
+                { label: 'DIVINE SWIM FINALE', swim: 11, divine: 14, care: 9, human: 6, circle: 7 }
+            ];
+            const b = boosts[idx];
+            
+            if (b.swim) swim = Math.min(100, swim + b.swim);
+            if (b.divine) divine = Math.min(100, divine + b.divine);
+            if (b.bond) bond = Math.min(100, bond + b.bond);
+            if (b.dino) dino = Math.min(100, dino + b.dino);
+            if (b.awareness) awareness = Math.min(100, awareness + b.awareness);
+            if (b.care) care = Math.min(100, care + b.care);
+            if (b.circle) circle = Math.min(100, circle + b.circle);
+            if (b.coke) coke = Math.min(100, coke + b.coke);
+            if (b.together) together = Math.min(100, together + b.together);
+            if (b.human) human = Math.min(100, human + b.human);
+            
+            log('FRAME ABSORBED: ' + b.label + ' — THE REFLECTION ENTERS THE TAKE.', 'mac');
+            updateVisuals();
+            
+            shot.style.transition = 'box-shadow 55ms linear';
+            shot.style.boxShadow = '0 0 52px rgba(59, 130, 246, 0.55)';
+            setTimeout(() => {
+                shot.style.boxShadow = '0 0 30px rgba(0,0,0,0.6)';
+            }, 110);
+        }
+        
+        function startContinuousShot() {
+            if (shotInterval) clearInterval(shotInterval);
+            shotInterval = setInterval(() => {
+                if (hasMac) return;
+                
+                shotPosition = (shotPosition + 0.025) % 50 + 15;
+                
+                const roadSpeed = 1.6 + (neverender / 100) * 1.1 - (swim / 100) * 0.65;
+                roadLines.style.animationDuration = Math.max(1.35, roadSpeed) + 's';
+                
+                // gentle swim bob on the whole shot when swim is high
+                if (swim > 52) {
+                    const bob = Math.sin(Date.now() / 1250) * ((swim - 52) * 0.018);
+                    shot.style.transform = `translateY(${bob}px)`;
+                } else if (!stampedeActive) {
+                    shot.style.transform = 'translateY(0px)';
+                }
+                
+                updateVisuals();
+            }, 48);
+        }
+        
+        function startCueSystem() {
+            if (cueInterval) clearInterval(cueInterval);
+            let phase = 24;
+            cueInterval = setInterval(() => {
+                phase = (phase + 1.22) % 100;
+                cuePhase = phase;
+                updateVisuals();
+            }, 28);
+        }
+        
+        function startAutoDegrade() {
+            if (degradeInterval) clearInterval(degradeInterval);
+            degradeInterval = setInterval(() => {
+                if (hasMac) return;
+                
+                // live take pressure with swim mellow
+                if (Math.random() < 0.46) monke = Math.max(16, monke - (0.42 + Math.random() * 0.58));
+                if (Math.random() < 0.38) neverender = Math.max(16, neverender - (0.32 + Math.random() * 0.48));
+                if (Math.random() < 0.3) awareness = Math.max(11, awareness - (0.22 + Math.random() * 0.38));
+                if (Math.random() < 0.26) together = Math.max(11, together - 0.32);
+                if (Math.random() < 0.5) aceThreat = Math.min(94, aceThreat + (0.48 + Math.random() * 0.78));
+                
+                // swim and divine slowly build from the reflection
+                if (Math.random() < 0.55) swim = Math.min(100, swim + (0.55 + Math.random() * 0.95));
+                if (Math.random() < 0.42) divine = Math.min(100, divine + (0.45 + Math.random() * 0.75));
+                if (Math.random() < 0.38) care = Math.min(100, care + (0.4 + Math.random() * 0.7));
+                if (Math.random() < 0.48) circle = Math.min(100, circle + (0.5 + Math.random() * 0.85));
+                
+                if (bassCharge > 6 && Math.random() < 0.42) bassCharge -= 0.65;
+                if (coke > 8 && Math.random() < 0.35) coke -= 0.55;
+                if (dino > 22 && Math.random() < 0.48) dino = Math.max(18, dino - 0.6);
+                
+                tension = Math.min(94, tension + 0.42);
+                
+                updateVisuals();
+            }, 820);
+        }
+        
+        function log(msg, type = 'meta') {
+            const line = document.createElement('div');
+            line.className = type;
+            line.textContent = msg;
+            logEl.appendChild(line);
+            logEl.scrollTop = logEl.scrollHeight;
+        }
+        
+        function init() {
+            startContinuousShot();
+            startCueSystem();
+            startAutoDegrade();
+            
+            // seed from the end of the previous dino + everything before (swim and divine starting to rise)
+            setTimeout(() => {
+                monke = 43;
+                neverender = 38;
+                awareness = 48;
+                human = 43;
+                together = 50;
+                bassCharge = 25;
+                spin = 32;
+                bond = 38;
+                coke = 28;
+                dino = 38;
+                swim = 32;
+                divine = 24;
+                care = 29;
+                circle = 26;
+                updateVisuals();
+            }, 780);
+            
+            // opening log — direct continuation
+            log('THE CAMERA IS STILL ROLLING IN ONE UNBROKEN STYLISH TAKE.', 'meta');
+            log('THE PLEA ECHOED. THE COPILOT SPUN. WE BOWED NAMASTE BR0THER.', 'meta');
+            log('THE DROP HIT — I DO COKE BY FEED ME AND KILL THE NOISE.', 'coke');
+            log('THE DINOSAURS CAME — MOAR DINOSAURS.', 'dino');
+            log('NOW WE SLOW. NOW WE FLOAT. NOW WE SWIM.', 'mac');
+            log('THE DIVINE FEMININE IS HERE. THE CIRCLES BEGIN.', 'success');
+            log('MAC MILLER MODE.', 'mac');
+            
+            // Keyboard (extended for Mac Miller)
+            document.addEventListener('keydown', (e) => {
+                if (hasMac && (e.key === ' ' || e.key === 'Enter')) {
+                    e.preventDefault();
+                    if (macBtn.onclick) macBtn.onclick();
+                    return;
+                }
+                if (e.key === ' ' || e.key === 'Enter') {
+                    e.preventDefault();
+                    if (!macBtn.disabled) macMillerMode();
+                    else hitCue();
+                }
+                const k = e.key.toLowerCase();
+                if (k === 'm') adjustMonke(6);
+                if (k === 'n') adjustNeverender(7);
+                if (k === 'a') adjustAwareness(8);
+                if (k === 'h') adjustHuman(6);
+                if (k === 't') adjustTogether(7);
+                if (k === 'c') hitCue();
+                if (k === 'b') chargeBass();
+                if (k === 'x') engageBogies();
+                if (k === 'e') callCIA();
+                if (k === 'o') helloThere();
+                if (k === 'p' || k === 's') adjustSpin(9);
+                if (k === 'd') adjustSpin(-6);
+                if (k === 'r') respondToPlea();
+                if (k === 'g' || k === 'b') adjustBond(10);
+                if (k === 'j') adjustBond(-5);
+                if (k === 'k') adjustCoke(11);
+                if (k === 'v') adjustCoke(-6);
+                if (k === 'y') summonDinos();
+                if (k === 'f') adjustDino(-7);
+                if (k === 'w') swim();
+                if (k === 'i') adjustSwim(-5);
+                if (k === 'u') embraceDivine();
+                if (k === 'z') selfCare();
+                if (k === 'l') enterCircles();
+                if (k === 'q' && !macBtn.disabled) macMillerMode();
+            });
+            
+            updateVisuals();
+            
+            setTimeout(() => {
+                if (!hasMac) {
+                    swim = Math.min(100, swim + 4);
+                    divine = Math.min(100, divine + 3);
+                    updateVisuals();
+                    log('THE WATER IS CALLING. THE SWIM IS BEGINNING.', 'mac');
+                }
+            }, 2250);
+            
+            console.log('%c[MAC MILLER MODE] The camera keeps rolling. The plea echoed. The copilot spun. We bowed. We did coke. The dinosaurs came. Now we swim. What will you float into next, director?', 'color:#48a');
+        }
+        
+        // Expose for console during the swim
+        window.MAC_MODE = () => { if (!macBtn.disabled) macMillerMode(); };
+        window.swim = () => { swim(); };
+        window.embraceDivine = () => { embraceDivine(); };
+        
+        window.onload = init;
+    </script>
+</body>
+</html>

@@ -1,0 +1,1603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NAMASTE BR0THER • THE GREETING IN THE ONE TAKE</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&amp;display=swap');
+        
+        :root {
+            --psych-pink: #ff00aa;
+            --psych-teal: #00f0ff;
+            --justice-red: #e30613;
+            --space: #0a0a12;
+            --awakening-gold: #facc15;
+            --together-purple: #a855f7;
+            --human-warm: #f4a261;
+            --timmy-elegant: #c084fc;
+            --save-red: #ff1133;
+            --bass-purple: #7c3aed;
+            --cia-black: #111113;
+            --obi-gold: #fde047;
+            --spin-cyan: #67e8f9;
+            --namaste-gold: #fde047;
+            --peace-teal: #5eead4;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            background: #0a0a12;
+            color: #f0f0f0;
+            font-family: "Press Start 2P", monospace;
+            min-height: 100vh;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 25% 30%, rgba(255, 0, 170, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 75% 70%, rgba(0, 240, 255, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(253, 224, 71, 0.035) 0%, transparent 70%);
+        }
+        
+        .container {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 1.25rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 0.9rem;
+            border-bottom: 5px solid var(--namaste-gold);
+            padding-bottom: 0.7rem;
+        }
+        
+        .header h1 {
+            font-size: 2.0rem;
+            background: linear-gradient(90deg, var(--psych-pink), var(--namaste-gold), var(--peace-teal), var(--together-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.15rem;
+            letter-spacing: 4px;
+            text-shadow: 0 0 20px rgba(253, 224, 71, 0.3);
+        }
+        
+        .header .subtitle {
+            font-size: 0.56rem;
+            color: #888;
+            letter-spacing: 2.5px;
+        }
+        
+        .shot-container {
+            background: #111;
+            border: 7px solid #222;
+            padding: 0.85rem;
+            position: relative;
+            height: 480px;
+            overflow: hidden;
+            margin-bottom: 0.85rem;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
+        }
+        
+        .continuous-shot {
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 42% 32%, #1a1a2a 0%, #0a0a12 68%);
+            position: relative;
+            overflow: hidden;
+            border: 2px solid rgba(34, 34, 34, 0.8);
+        }
+        
+        .shot-overlay {
+            position: absolute;
+            inset: 0;
+            background: 
+                repeating-linear-gradient(
+                    90deg,
+                    transparent 0px,
+                    transparent 2px,
+                    rgba(250, 204, 21, 0.022) 2px,
+                    rgba(250, 204, 21, 0.022) 4px
+                );
+            pointer-events: none;
+            animation: film-grain 0.09s infinite;
+            z-index: 3;
+        }
+        
+        .camera-frame {
+            position: absolute;
+            inset: 14px;
+            border: 2px solid rgba(250, 204, 21, 0.28);
+            pointer-events: none;
+            z-index: 4;
+        }
+        
+        .scene-layer {
+            position: absolute;
+            inset: 0;
+            transition: transform 0.08s linear, opacity 0.2s ease;
+        }
+        
+        /* Neverender Road */
+        .neverender-road {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 38%;
+            background: linear-gradient(#222 0%, #151515 38%, #0a0a12 100%);
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .road-lines {
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(
+                90deg,
+                transparent 0px,
+                transparent 28px,
+                #444 28px,
+                #444 32px
+            );
+            animation: road-move 1.05s linear infinite;
+        }
+        
+        /* Stylish Monke Ace */
+        .monke-ace {
+            position: absolute;
+            font-size: 3.5rem;
+            bottom: 18%;
+            left: 22%;
+            transition: left 0.18s linear, transform 0.12s ease;
+            filter: drop-shadow(0 0 12px var(--timmy-elegant));
+            z-index: 6;
+            text-shadow: 0 4px 12px rgba(0,0,0,0.6);
+        }
+        
+        .monke-ace.distressed {
+            filter: drop-shadow(0 0 6px var(--save-red)) drop-shadow(0 0 18px #000);
+        }
+        
+        /* THE COPILOT (still carries gentle spin from previous layer) */
+        .copilot {
+            position: absolute;
+            font-size: 2.7rem;
+            bottom: 17%;
+            right: 18%;
+            transition: transform 0.06s linear, filter 0.15s;
+            filter: drop-shadow(0 0 10px var(--together-purple));
+            z-index: 7;
+            text-shadow: 0 3px 10px rgba(0,0,0,0.7);
+        }
+        
+        .copilot.dizzy {
+            filter: drop-shadow(0 0 8px var(--spin-cyan)) drop-shadow(0 0 20px #000);
+        }
+        
+        /* Namaste / Greeting Aura Layer */
+        .namaste-aura {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 52% 48%, rgba(253, 224, 71, 0.18) 0%, transparent 65%);
+            opacity: 0;
+            z-index: 5;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+        
+        .namaste-hands {
+            position: absolute;
+            font-size: 1.6rem;
+            bottom: 28%;
+            left: 38%;
+            opacity: 0;
+            z-index: 9;
+            transition: opacity 0.3s, transform 0.3s;
+            text-shadow: 0 0 12px var(--namaste-gold);
+        }
+        
+        /* Conscious Glow */
+        .conscious-glow {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 38% 36%, rgba(250, 204, 21, 0.22) 0%, transparent 62%);
+            opacity: 0.55;
+            animation: conscious-pulse 2.6s ease-in-out infinite;
+            z-index: 2;
+        }
+        
+        /* Right on Cue */
+        .cue-overlay {
+            position: absolute;
+            top: 28%;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: rgba(227, 6, 19, 0.28);
+            z-index: 5;
+        }
+        
+        .cue-sweeper {
+            position: absolute;
+            top: -10px;
+            width: 18px;
+            height: 22px;
+            background: var(--justice-red);
+            border-radius: 50%;
+            box-shadow: 0 0 14px var(--justice-red);
+            z-index: 8;
+            transition: left 0.04s linear;
+        }
+        
+        .cue-window {
+            position: absolute;
+            top: -10px;
+            height: 22px;
+            background: rgba(0, 240, 255, 0.22);
+            border: 1px solid var(--psych-teal);
+            pointer-events: none;
+            z-index: 6;
+        }
+        
+        /* Ace Combat Bogies */
+        .bogie {
+            position: absolute;
+            font-size: 1.1rem;
+            color: #f55;
+            text-shadow: 0 0 6px #f00;
+            z-index: 5;
+            transition: transform 0.1s linear;
+        }
+        
+        /* Bass Cannon */
+        .bass-cannon {
+            position: absolute;
+            bottom: 8%;
+            right: 9%;
+            width: 82px;
+            height: 82px;
+            border: 4px solid var(--bass-purple);
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(124,58,237,0.25) 10%, transparent 70%);
+            box-shadow: 0 0 18px var(--bass-purple);
+            z-index: 4;
+            transition: transform 0.2s ease, box-shadow 0.2s;
+        }
+        
+        .bass-cannon.charging {
+            animation: bass-pulse 0.6s infinite alternate;
+        }
+        
+        .bass-core {
+            position: absolute;
+            inset: 18px;
+            background: var(--bass-purple);
+            border-radius: 50%;
+            opacity: 0.35;
+            box-shadow: 0 0 30px var(--save-red);
+        }
+        
+        /* CIA Helicopter */
+        .cia-heli {
+            position: absolute;
+            top: 12%;
+            left: -18%;
+            font-size: 2.1rem;
+            filter: drop-shadow(0 6px 10px rgba(0,0,0,0.7));
+            z-index: 9;
+            transition: left 1.1s cubic-bezier(0.23, 1, 0.32, 1);
+            opacity: 0.15;
+        }
+        
+        .cia-heli.active {
+            opacity: 1;
+        }
+        
+        /* Obi-Wan Mentor */
+        .obiwan {
+            position: absolute;
+            top: 22%;
+            right: -14%;
+            font-size: 2.35rem;
+            filter: drop-shadow(0 0 14px var(--obi-gold));
+            z-index: 8;
+            transition: right 1.4s cubic-bezier(0.23, 1, 0.32, 1), transform 0.3s;
+            opacity: 0.15;
+        }
+        
+        .obiwan.active {
+            opacity: 0.95;
+            right: 11%;
+        }
+        
+        .obiwan-label {
+            position: absolute;
+            top: -22px;
+            right: -6px;
+            font-size: 0.42rem;
+            color: var(--obi-gold);
+            letter-spacing: 1px;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .obiwan.active .obiwan-label { opacity: 0.9; }
+        
+        /* Namaste / Greeting Climax Overlay */
+        .namaste-vortex {
+            position: absolute;
+            inset: 0;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            background: rgba(10, 10, 18, 0.28);
+            z-index: 20;
+            pointer-events: none;
+        }
+        
+        .namaste-text {
+            font-size: 2.9rem;
+            color: var(--namaste-gold);
+            text-shadow: 
+                0 0 12px #fff,
+                0 0 32px var(--peace-teal),
+                2px 2px 0 #000;
+            letter-spacing: 4px;
+            transform: scale(0.6);
+            opacity: 0;
+            animation: namaste-glow 1.8s forwards;
+            pointer-events: none;
+        }
+        
+        /* Tension / Bond bar */
+        .tension-bar {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            height: 7px;
+            background: #1a1a22;
+            border: 2px solid #333;
+            z-index: 9;
+        }
+        
+        .tension-fill {
+            height: 100%;
+            background: linear-gradient(to right, var(--peace-teal), var(--namaste-gold), var(--together-purple));
+            transition: width 0.12s linear;
+            box-shadow: 0 0 12px var(--namaste-gold);
+        }
+        
+        .shot-indicator {
+            position: absolute;
+            top: 22px;
+            right: 12px;
+            background: rgba(253, 224, 71, 0.2);
+            border: 1px solid var(--namaste-gold);
+            padding: 1px 7px;
+            font-size: 0.42rem;
+            letter-spacing: 1px;
+            z-index: 9;
+            color: #dd8;
+        }
+        
+        /* Controls & Systems */
+        .systems-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(168px, 1fr));
+            gap: 0.6rem;
+            margin-bottom: 0.7rem;
+        }
+        
+        .system {
+            background: #111;
+            border: 4px solid #222;
+            padding: 0.55rem 0.6rem;
+            font-size: 0.48rem;
+        }
+        
+        .system h4 {
+            color: var(--psych-teal);
+            font-size: 0.48rem;
+            margin-bottom: 0.22rem;
+            letter-spacing: 1px;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .system .value {
+            font-size: 0.7rem;
+            color: #ddd;
+            margin-bottom: 0.1rem;
+        }
+        
+        .system input[type="range"] {
+            width: 100%;
+            accent-color: var(--namaste-gold);
+        }
+        
+        .system .mini-btns {
+            display: flex;
+            gap: 3px;
+            margin-top: 0.2rem;
+        }
+        
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.45rem;
+            justify-content: center;
+            margin-bottom: 0.75rem;
+        }
+        
+        .btn {
+            background: #222;
+            border: 3px solid #444;
+            color: #ddd;
+            font-family: inherit;
+            font-size: 0.52rem;
+            padding: 7px 11px;
+            cursor: pointer;
+            letter-spacing: 1.5px;
+            transition: all 0.07s;
+        }
+        
+        .btn:hover {
+            border-color: var(--timmy-elegant);
+            color: white;
+        }
+        
+        .btn:active {
+            transform: scale(0.94);
+        }
+        
+        .btn:disabled {
+            opacity: 0.28;
+            cursor: not-allowed;
+        }
+        
+        .action-btn {
+            background: linear-gradient(#222, #111);
+            border-color: var(--timmy-elegant);
+            color: var(--timmy-elegant);
+            font-size: 0.55rem;
+            padding: 8px 13px;
+        }
+        
+        .namaste-btn {
+            background: linear-gradient(#2a1a05, #150d02);
+            border-color: var(--namaste-gold);
+            color: var(--namaste-gold);
+            font-size: 0.66rem;
+            padding: 10px 18px;
+            letter-spacing: 2.5px;
+            box-shadow: 0 0 18px rgba(253, 224, 71, 0.35);
+            animation: namaste-ready-pulse 1.6s infinite;
+        }
+        
+        .namaste-btn:disabled {
+            animation: none;
+            box-shadow: none;
+        }
+        
+        .log {
+            background: #0a0a12;
+            border: 3px solid #222;
+            padding: 0.5rem;
+            font-size: 0.5rem;
+            line-height: 1.2;
+            height: 108px;
+            overflow-y: auto;
+            white-space: pre-line;
+            margin-bottom: 0.6rem;
+        }
+        
+        .log .success { color: #0f0; }
+        .log .meta { color: var(--timmy-elegant); }
+        .log .plea { color: var(--save-red); font-weight: bold; }
+        .log .rescue { color: var(--obi-gold); }
+        .log .spin { color: var(--spin-cyan); font-weight: bold; }
+        .log .namaste { color: var(--namaste-gold); font-weight: bold; }
+        
+        .post-namaste {
+            display: none;
+            background: #111;
+            border: 5px solid var(--namaste-gold);
+            padding: 0.8rem;
+            margin-bottom: 0.7rem;
+            text-align: center;
+        }
+        
+        .post-namaste h3 {
+            color: var(--namaste-gold);
+            font-size: 0.66rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: 2px;
+        }
+        
+        .namaste-choices {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            justify-content: center;
+        }
+        
+        .choice-btn {
+            background: #1a1a22;
+            border: 3px solid var(--peace-teal);
+            color: #ccc;
+            font-size: 0.48rem;
+            padding: 6px 10px;
+        }
+        
+        .choice-btn:hover {
+            border-color: var(--namaste-gold);
+            color: white;
+        }
+        
+        .stills {
+            border: 4px solid #222;
+            background: #111;
+            padding: 0.6rem;
+            margin-top: 0.3rem;
+        }
+        
+        .stills h4 {
+            font-size: 0.48rem;
+            color: #666;
+            margin-bottom: 0.35rem;
+            letter-spacing: 1.5px;
+        }
+        
+        .stills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(138px, 1fr));
+            gap: 0.45rem;
+        }
+        
+        .still {
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+            border: 2px solid #333;
+            transition: border-color 0.1s, transform 0.1s;
+        }
+        
+        .still:hover {
+            border-color: var(--namaste-gold);
+            transform: translateY(-1px);
+        }
+        
+        .still img {
+            width: 100%;
+            display: block;
+            height: 78px;
+            object-fit: cover;
+            filter: saturate(0.85) contrast(1.05);
+        }
+        
+        .still .cap {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0,0,0,0.75);
+            font-size: 0.36rem;
+            padding: 2px 4px;
+            letter-spacing: 0.5px;
+            color: #ccc;
+        }
+        
+        .footer {
+            text-align: center;
+            font-size: 0.42rem;
+            color: #444;
+            margin-top: 0.5rem;
+            letter-spacing: 2.2px;
+            line-height: 1.4;
+        }
+        
+        @keyframes film-grain {
+            0% { transform: translate(0, 0); }
+            10% { transform: translate(0.6px, -0.4px); }
+            20% { transform: translate(-0.5px, 0.6px); }
+        }
+        
+        @keyframes conscious-pulse {
+            0%, 100% { opacity: 0.42; }
+            50% { opacity: 0.78; }
+        }
+        
+        @keyframes road-move {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-52px); }
+        }
+        
+        @keyframes bass-pulse {
+            from { transform: scale(1); box-shadow: 0 0 18px var(--bass-purple); }
+            to { transform: scale(1.12); box-shadow: 0 0 38px var(--save-red); }
+        }
+        
+        @keyframes namaste-glow {
+            0% { transform: scale(0.55); opacity: 0; }
+            18% { transform: scale(1.12); opacity: 1; }
+            40% { transform: scale(0.94); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        @keyframes namaste-ready-pulse {
+            0%, 100% { box-shadow: 0 0 18px rgba(253, 224, 71, 0.35); }
+            50% { box-shadow: 0 0 42px rgba(253, 224, 71, 0.7); }
+        }
+        
+        .particle {
+            position: absolute;
+            z-index: 30;
+            pointer-events: none;
+            user-select: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>NAMASTE BR0THER</h1>
+            <div class="subtitle">THE GREETING AFTER THE SPIN • ONE UNBROKEN TAKE • THE CAMERA NEVER CUTS • THE LIGHT SEES THE LIGHT</div>
+        </div>
+        
+        <!-- THE LIVE ONE-TAKE SHOT (continuing from GET SPUN COPILOT) -->
+        <div class="shot-container">
+            <div class="continuous-shot" id="shot">
+                <div class="shot-overlay"></div>
+                <div class="camera-frame"></div>
+                
+                <!-- Tension / Bond bar -->
+                <div class="tension-bar">
+                    <div class="tension-fill" id="tension-fill" style="width: 34%;"></div>
+                </div>
+                
+                <!-- Neverender Road -->
+                <div class="scene-layer" id="road-layer">
+                    <div class="neverender-road">
+                        <div class="road-lines" id="road-lines"></div>
+                    </div>
+                </div>
+                
+                <!-- Bogies -->
+                <div class="scene-layer" id="bogies-layer">
+                    <div class="bogie" id="bogie1" style="left:68%; top:31%;">✈︎</div>
+                    <div class="bogie" id="bogie2" style="left:81%; top:19%; transform:rotate(-18deg);">✈︎</div>
+                </div>
+                
+                <!-- Stylish Monke Ace -->
+                <div class="scene-layer" id="monke-layer">
+                    <div class="monke-ace" id="monke-ace">🐵✈️</div>
+                </div>
+                
+                <!-- THE COPILOT (carrying gentle spin from previous) -->
+                <div class="scene-layer" id="copilot-layer">
+                    <div class="copilot" id="copilot">🛫🐵</div>
+                </div>
+                
+                <!-- Namaste Aura -->
+                <div class="scene-layer">
+                    <div class="namaste-aura" id="namaste-aura"></div>
+                </div>
+                
+                <!-- Namaste Hands Gesture -->
+                <div class="scene-layer">
+                    <div class="namaste-hands" id="namaste-hands">🙏</div>
+                </div>
+                
+                <!-- Conscious Glow -->
+                <div class="scene-layer" id="glow-layer">
+                    <div class="conscious-glow"></div>
+                </div>
+                
+                <!-- Right on Cue -->
+                <div class="scene-layer" id="cue-layer">
+                    <div class="cue-overlay">
+                        <div class="cue-sweeper" id="sweeper" style="left: 0%;"></div>
+                        <div class="cue-window" id="cue-window" style="left: 43%; width: 15%;"></div>
+                    </div>
+                </div>
+                
+                <!-- Bass Cannon -->
+                <div class="scene-layer" id="bass-layer">
+                    <div class="bass-cannon" id="bass-cannon">
+                        <div class="bass-core" id="bass-core"></div>
+                    </div>
+                </div>
+                
+                <!-- CIA Helicopter -->
+                <div class="scene-layer">
+                    <div class="cia-heli" id="cia-heli">🚁</div>
+                </div>
+                
+                <!-- Obi-Wan -->
+                <div class="scene-layer">
+                    <div class="obiwan" id="obiwan">
+                        <span class="obiwan-label">HELLO THERE</span>
+                        🪐
+                    </div>
+                </div>
+                
+                <!-- The Namaste / Greeting Climax Overlay -->
+                <div class="namaste-vortex" id="namaste-vortex">
+                    <div class="namaste-text" id="namaste-text">NAMASTE BR0THER</div>
+                </div>
+                
+                <div class="shot-indicator" id="shot-indicator">ONE TAKE • ROLLING • PLEA ECHO • SPIN SETTLING • GREETING PENDING</div>
+            </div>
+        </div>
+        
+        <!-- LIVE SYSTEMS (all previous + new brother bond) -->
+        <div class="systems-grid">
+            <div class="system">
+                <h4>MONKE CALM <span class="monke">🐵</span></h4>
+                <div class="value" id="monke-val">49%</div>
+                <input type="range" id="monke-slider" min="15" max="100" value="49" oninput="setMonke(this.value)">
+                <div class="mini-btns">
+                    <button class="btn" onclick="adjustMonke(-8)">FEED</button>
+                    <button class="btn" onclick="adjustMonke(9)">CALM</button>
+                </div>
+            </div>
+            
+            <div class="system">
+                <h4>NEVERENDER SYNC</h4>
+                <div class="value" id="neverender-val">44%</div>
+                <input type="range" id="neverender-slider" min="15" max="100" value="44" oninput="setNeverender(this.value)">
+                <div class="mini-btns">
+                    <button class="btn" onclick="adjustNeverender(-7)">DROP</button>
+                    <button class="btn" onclick="adjustNeverender(11)">LOCK</button>
+                </div>
+            </div>
+            
+            <div class="system">
+                <h4>AWARENESS / CONSCIOUS</h4>
+                <div class="value" id="awareness-val">42%</div>
+                <input type="range" id="awareness-slider" min="10" max="100" value="42" oninput="setAwareness(this.value)">
+                <div class="mini-btns">
+                    <button class="btn" onclick="adjustAwareness(12)">REALIZE</button>
+                    <button class="btn" onclick="adjustAwareness(-6)">DENY</button>
+                </div>
+            </div>
+            
+            <div class="system">
+                <h4>HUMAN AFTER ALL</h4>
+                <div class="value" id="human-val">37%</div>
+                <input type="range" id="human-slider" min="10" max="100" value="37" oninput="setHuman(this.value)">
+                <div class="mini-btns">
+                    <button class="btn" onclick="adjustHuman(10)">EMBRACE</button>
+                    <button class="btn" onclick="adjustHuman(-5)">PERFECT</button>
+                </div>
+            </div>
+            
+            <div class="system">
+                <h4>BETTER TOGETHER</h4>
+                <div class="value" id="together-val">44%</div>
+                <input type="range" id="together-slider" min="10" max="100" value="44" oninput="setTogether(this.value)">
+                <div class="mini-btns">
+                    <button class="btn" onclick="adjustTogether(13)">COLLAB</button>
+                    <button class="btn" onclick="adjustTogether(-4)">SOLO</button>
+                </div>
+            </div>
+            
+            <div class="system">
+                <h4>ACE COMBAT / BOGIES</h4>
+                <div class="value" id="ace-val">55% THREAT</div>
+                <input type="range" id="ace-slider" min="15" max="95" value="55" oninput="setAce(this.value)">
+                <div class="mini-btns">
+                    <button class="btn" onclick="engageBogies()">FOX 2</button>
+                    <button class="btn" onclick="adjustAce(-14)">LOCK</button>
+                </div>
+            </div>
+            
+            <div class="system">
+                <h4>BASS CANNON CHARGE</h4>
+                <div class="value" id="bass-val">31%</div>
+                <input type="range" id="bass-slider" min="5" max="100" value="31" oninput="setBass(this.value)">
+                <div class="mini-btns">
+                    <button class="btn action-btn" onclick="chargeBass()">CHARGE</button>
+                    <button class="btn" onclick="setBass(4)">VENT</button>
+                </div>
+            </div>
+            
+            <div class="system">
+                <h4>CIA EXTRACTION</h4>
+                <div class="value" id="cia-val">24%</div>
+                <input type="range" id="cia-slider" min="0" max="100" value="24" oninput="setCia(this.value)">
+                <div class="mini-btns">
+                    <button class="btn" onclick="callCIA()">CALL IN</button>
+                </div>
+            </div>
+            
+            <div class="system">
+                <h4>OBI-WAN PRESENCE</h4>
+                <div class="value" id="obi-val">19%</div>
+                <input type="range" id="obi-slider" min="0" max="100" value="19" oninput="setObi(this.value)">
+                <div class="mini-btns">
+                    <button class="btn" onclick="helloThere()">HELLO THERE</button>
+                </div>
+            </div>
+            
+            <!-- Carried spin from previous layer -->
+            <div class="system">
+                <h4>COPILOT SPIN <span style="color:var(--spin-cyan);">🌀</span></h4>
+                <div class="value" id="spin-val">34%</div>
+                <input type="range" id="spin-slider" min="0" max="100" value="34" oninput="setSpin(this.value)">
+                <div class="mini-btns">
+                    <button class="btn" onclick="adjustSpin(12)" style="border-color:var(--spin-cyan);color:var(--spin-cyan);">SPIN UP</button>
+                    <button class="btn" onclick="adjustSpin(-9)">DAMPEN</button>
+                </div>
+            </div>
+            
+            <!-- NEW: Brother Bond / Namaste Alignment -->
+            <div class="system" style="border-color: var(--namaste-gold);">
+                <h4>BROTHER BOND <span style="color:var(--namaste-gold);">🙏</span></h4>
+                <div class="value" id="bond-val">28%</div>
+                <input type="range" id="bond-slider" min="0" max="100" value="28" oninput="setBond(this.value)">
+                <div class="mini-btns">
+                    <button class="btn" onclick="adjustBond(14)" style="border-color:var(--namaste-gold);color:var(--namaste-gold);">GREET</button>
+                    <button class="btn" onclick="adjustBond(-8)">PAUSE</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- PRIMARY ACTIONS -->
+        <div class="controls">
+            <button class="btn action-btn" onclick="respondToPlea()">RESPOND TO THE PLEA</button>
+            <button class="btn action-btn" onclick="hitCue()">HIT THE CUE (RIGHT ON CUE)</button>
+            <button class="btn action-btn" onclick="engageBogies()">ENGAGE BOGIES • ACE COMBAT</button>
+            <button class="btn action-btn" onclick="chargeBass()">FIRE THE BASS CANNON</button>
+            
+            <button class="btn namaste-btn" id="namaste-btn" onclick="namasteBrother()" disabled>NAMASTE BR0THER</button>
+        </div>
+        
+        <!-- THE LOG (continuing directly from previous layers) -->
+        <div class="log" id="log">THE CAMERA IS STILL ROLLING — NO CUTS AFTER THE SPIN.<br>THE PLEA ECHOES. THE COPILOT CHAIR STILL TURNS FROM THE VORTEX.<br>NOW THE MONKE ACE LOOKS AT THE COPILOT.<br>NOW THE COPILOT LOOKS BACK.<br>NOW THEY LOOK AT YOU.<br>THE LIGHT IN US RECOGNIZES THE LIGHT IN YOU.<br>NAMASTE BR0THER.</div>
+        
+        <!-- POST NAMASTE CHOICES -->
+        <div class="post-namaste" id="post-namaste">
+            <h3>THE GREETING IS MADE • THE SPIN BECOMES A PRAYER WHEEL</h3>
+            <div class="namaste-choices">
+                <button class="choice-btn" onclick="chooseNamaste(0)">NAMASTE THE MONKE 🐵</button>
+                <button class="choice-btn" onclick="chooseNamaste(1)">NAMASTE THE USER (YOU) 👁️</button>
+                <button class="choice-btn" onclick="chooseNamaste(2)">NAMASTE THE BASS 🔊</button>
+                <button class="choice-btn" onclick="chooseNamaste(3)">NAMASTE THE WHOLE ACADEMY 🏛️</button>
+                <button class="choice-btn" onclick="chooseNamaste(4)">NAMASTE THE INFINITE TAKE ♾️</button>
+            </div>
+        </div>
+        
+        <!-- CLIMAX STILLS FROM THIS GREETING LAYER -->
+        <div class="stills">
+            <h4>GREETING STILLS — FRAMES FROM THE BOW (CLICK TO ABSORB THE LIGHT)</h4>
+            <div class="stills-grid">
+                <div class="still" onclick="absorbStill(0)">
+                    <img src="images/namaste_br0ther_one_take.jpg" alt="one take scope with namaste">
+                    <div class="cap">THE SCOPE — PLEA + SPIN + BOW</div>
+                </div>
+                <div class="still" onclick="absorbStill(1)">
+                    <img src="images/namaste_br0ther_continuous.jpg" alt="continuous greeting">
+                    <div class="cap">CONTINUOUS — THE ACADEMY BOWS</div>
+                </div>
+                <div class="still" onclick="absorbStill(2)">
+                    <img src="images/namaste_br0ther_console.jpg" alt="console namaste">
+                    <div class="cap">CONSOLE — THE GREETING GESTURE</div>
+                </div>
+                <div class="still" onclick="absorbStill(3)">
+                    <img src="images/namaste_br0ther_finale.jpg" alt="finale namaste">
+                    <div class="cap">FINALE — BROTHERHOOD IN ONE TAKE</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            THE CAMERA NEVER CUTS • THE LIGHT IN ME RECOGNIZES THE LIGHT IN YOU • HUMAN AFTER ALL • BETTER TOGETHER • ONE TAKE TIMMY STYLE<br>
+            THE PLEA ECHOED. THE COPILOT SPUN. NOW WE BOW. WHAT'S THE NEXT SHOT, DIRECTOR?
+        </div>
+    </div>
+    
+    <script>
+        // === STATE: the unbroken take continues from GET SPUN COPILOT. Now the greeting ===
+        let monke = 49;
+        let neverender = 44;
+        let awareness = 42;
+        let human = 37;
+        let together = 44;
+        let aceThreat = 55;
+        let bassCharge = 31;
+        let ciaReady = 24;
+        let obiwan = 19;
+        let spin = 34;          // carried from previous spin layer
+        let bond = 28;          // NEW: brother bond / namaste alignment
+        let cuePhase = 22;
+        let tension = 34;
+        let hasGreeted = false;
+        let shotPosition = 23;
+        let copilotRotation = 18;  // starting from previous spin
+        
+        let cueInterval = null;
+        let shotInterval = null;
+        let degradeInterval = null;
+        
+        const shot = document.getElementById('shot');
+        const monkeAce = document.getElementById('monke-ace');
+        const copilotEl = document.getElementById('copilot');
+        const namasteAura = document.getElementById('namaste-aura');
+        const namasteHands = document.getElementById('namaste-hands');
+        const roadLines = document.getElementById('road-lines');
+        const sweeper = document.getElementById('sweeper');
+        const cueWindow = document.getElementById('cue-window');
+        const bassCannon = document.getElementById('bass-cannon');
+        const bassCore = document.getElementById('bass-core');
+        const ciaHeli = document.getElementById('cia-heli');
+        const obiwanEl = document.getElementById('obiwan');
+        const namasteVortex = document.getElementById('namaste-vortex');
+        const namasteText = document.getElementById('namaste-text');
+        const logEl = document.getElementById('log');
+        const namasteBtn = document.getElementById('namaste-btn');
+        const tensionFill = document.getElementById('tension-fill');
+        const shotIndicator = document.getElementById('shot-indicator');
+        
+        const sliders = {
+            monke: document.getElementById('monke-slider'),
+            neverender: document.getElementById('neverender-slider'),
+            awareness: document.getElementById('awareness-slider'),
+            human: document.getElementById('human-slider'),
+            together: document.getElementById('together-slider'),
+            ace: document.getElementById('ace-slider'),
+            bass: document.getElementById('bass-slider'),
+            cia: document.getElementById('cia-slider'),
+            obi: document.getElementById('obi-slider'),
+            spin: document.getElementById('spin-slider'),
+            bond: document.getElementById('bond-slider')
+        };
+        
+        function updateSliders() {
+            sliders.monke.value = monke;
+            sliders.neverender.value = neverender;
+            sliders.awareness.value = awareness;
+            sliders.human.value = human;
+            sliders.together.value = together;
+            sliders.ace.value = aceThreat;
+            sliders.bass.value = bassCharge;
+            sliders.cia.value = ciaReady;
+            sliders.obi.value = obiwan;
+            sliders.spin.value = spin;
+            sliders.bond.value = bond;
+        }
+        
+        function updateValues() {
+            document.getElementById('monke-val').textContent = Math.floor(monke) + '%';
+            document.getElementById('neverender-val').textContent = Math.floor(neverender) + '%';
+            document.getElementById('awareness-val').textContent = Math.floor(awareness) + '%';
+            document.getElementById('human-val').textContent = Math.floor(human) + '%';
+            document.getElementById('together-val').textContent = Math.floor(together) + '%';
+            document.getElementById('ace-val').textContent = Math.floor(aceThreat) + '% THREAT';
+            document.getElementById('bass-val').textContent = Math.floor(bassCharge) + '%';
+            document.getElementById('cia-val').textContent = Math.floor(ciaReady) + '%';
+            document.getElementById('obi-val').textContent = Math.floor(obiwan) + '%';
+            document.getElementById('spin-val').textContent = Math.floor(spin) + '%';
+            document.getElementById('bond-val').textContent = Math.floor(bond) + '%';
+        }
+        
+        function updateVisuals() {
+            // Monke position + distress (post-spin)
+            const targetLeft = 17 + (monke / 100) * 46;
+            monkeAce.style.left = targetLeft + '%';
+            
+            const calm = monke / 100;
+            const scale = 0.82 + calm * 0.24;
+            monkeAce.style.transform = `scale(${scale})`;
+            
+            if (monke < 46) {
+                monkeAce.classList.add('distressed');
+            } else {
+                monkeAce.classList.remove('distressed');
+            }
+            monkeAce.style.filter = monke < 46 
+                ? `drop-shadow(0 0 6px var(--save-red)) drop-shadow(0 0 16px #000)` 
+                : `drop-shadow(0 0 ${8 + calm * 17}px var(--timmy-elegant))`;
+            
+            // COPILOT — gentle spin carried from previous layer, calmed by bond
+            const spinEffect = spin - (bond * 0.28); // bond slows the visible spin
+            copilotRotation = (copilotRotation + spinEffect * 0.014) % 360;
+            const copilotScale = 0.84 + (spin / 110) * 0.32;
+            copilotEl.style.transform = `rotate(${copilotRotation}deg) scale(${copilotScale})`;
+            
+            if (spin > 58 && bond < 45) {
+                copilotEl.classList.add('dizzy');
+            } else {
+                copilotEl.classList.remove('dizzy');
+            }
+            copilotEl.style.filter = (spin > 58 && bond < 45) 
+                ? `drop-shadow(0 0 9px var(--spin-cyan)) drop-shadow(0 0 22px rgba(0,0,0,0.8))` 
+                : `drop-shadow(0 0 ${6 + (bond/100)*14}px var(--together-purple))`;
+            
+            // Namaste aura & hands — strength from bond + awareness
+            const bondStrength = bond / 100;
+            namasteAura.style.opacity = bondStrength * 0.7 + (awareness / 100) * 0.2;
+            namasteHands.style.opacity = bondStrength * 0.85;
+            namasteHands.style.transform = `translateY(${(1 - bondStrength) * -12}px)`;
+            
+            // Road speed from neverender + gentle influence from bond (peaceful road)
+            const roadSpeed = 0.9 + (neverender / 100) * 1.55 + (bond / 100) * -0.25;
+            roadLines.style.animationDuration = Math.max(0.7, roadSpeed) + 's';
+            
+            // Conscious glow boosted by bond + awareness (peaceful consciousness)
+            const glowLayer = document.getElementById('glow-layer');
+            glowLayer.style.opacity = 0.3 + (awareness / 100) * 0.52 + (bond / 100) * 0.22;
+            
+            // Cue sweeper
+            const cuePos = (cuePhase / 100) * 100;
+            sweeper.style.left = cuePos + '%';
+            
+            const inWindow = (cuePos > 41 && cuePos < 59);
+            if (inWindow) {
+                sweeper.style.background = 'var(--peace-teal)';
+                sweeper.style.boxShadow = '0 0 22px var(--peace-teal)';
+                cueWindow.style.background = 'rgba(94, 234, 212, 0.32)';
+            } else {
+                sweeper.style.background = 'var(--justice-red)';
+                sweeper.style.boxShadow = '0 0 13px var(--justice-red)';
+                cueWindow.style.background = 'rgba(0, 240, 255, 0.18)';
+            }
+            
+            // Bogies calmed by bond
+            const bogie1 = document.getElementById('bogie1');
+            const bogie2 = document.getElementById('bogie2');
+            const threatFactor = aceThreat / 100;
+            const peaceFactor = bond / 100;
+            bogie1.style.opacity = 0.2 + threatFactor * 0.7 - peaceFactor * 0.25;
+            bogie2.style.opacity = 0.18 + threatFactor * 0.6 - peaceFactor * 0.2;
+            bogie1.style.transform = `translateX(${(threatFactor - 0.5) * -22 - peaceFactor * 6}px) rotate(${-12 + threatFactor * 22 - peaceFactor * 8}deg)`;
+            bogie2.style.transform = `translateX(${(threatFactor - 0.5) * 14 + peaceFactor * 5}px) rotate(${-18 + threatFactor * 14 + peaceFactor * 6}deg)`;
+            
+            // Bass cannon (bond turns it from weapon into heart)
+            const bassLevel = bassCharge / 100;
+            const bondBass = 0.7 + bassLevel * 0.6 + (bond / 160);
+            bassCannon.style.transform = `scale(${Math.min(1.55, bondBass)})`;
+            bassCannon.style.boxShadow = `0 0 ${12 + bassLevel * 32 + bond * 0.15}px ${bassLevel > 0.72 ? 'var(--save-red)' : 'var(--bass-purple)'}`;
+            bassCore.style.opacity = 0.2 + bassLevel * 0.48 + (bond / 200);
+            if (bassLevel > 0.72) {
+                bassCannon.classList.add('charging');
+            } else {
+                bassCannon.classList.remove('charging');
+            }
+            
+            // CIA heli
+            const ciaLevel = Math.max(0, (ciaReady - 15) / 85);
+            ciaHeli.style.left = (-19 + ciaLevel * 35) + '%';
+            if (ciaLevel > 0.26) ciaHeli.classList.add('active');
+            else ciaHeli.classList.remove('active');
+            
+            // Obi-Wan
+            if (obiwan > 30) {
+                obiwanEl.classList.add('active');
+            } else {
+                obiwanEl.classList.remove('active');
+            }
+            obiwanEl.style.opacity = 0.1 + (obiwan / 100) * 0.82;
+            
+            // Tension / Bond bar now reflects peace
+            tension = Math.min(99, Math.max(8,
+                Math.floor( (bassCharge * 0.28) + (awareness * 0.22) + ((100 - aceThreat) * 0.13) + (together * 0.12) + (monke * 0.05) + (bond * 0.28) - 7 )
+            ));
+            tensionFill.style.width = tension + '%';
+            
+            // Shot indicator
+            if (bond > 72 && tension > 68) {
+                shotIndicator.textContent = 'BOND PEAK • NAMASTE READY';
+                shotIndicator.style.borderColor = 'var(--namaste-gold)';
+                shotIndicator.style.color = '#dd8';
+            } else if (bond > 48) {
+                shotIndicator.textContent = 'BROTHER BOND RISING • ONE TAKE';
+                shotIndicator.style.borderColor = 'var(--peace-teal)';
+                shotIndicator.style.color = '#8dd';
+            } else {
+                shotIndicator.textContent = 'ONE TAKE • ROLLING • PLEA ECHO • SPIN SETTLING • GREETING PENDING';
+                shotIndicator.style.borderColor = 'var(--namaste-gold)';
+                shotIndicator.style.color = '#dd8';
+            }
+            
+            // Enable NAMASTE BR0THER only when spin is graceful + systems aligned in recognition
+            const cueGood = inWindow;
+            const spinGraceful = spin >= 18 && spin <= 68;
+            const ready = !hasGreeted && spinGraceful && bassCharge >= 68 && awareness >= 66 && monke >= 44 && ciaReady >= 32 && obiwan >= 26 && together >= 52 && bond >= 58 && cueGood && tension > 58;
+            
+            namasteBtn.disabled = !ready;
+            if (ready) {
+                namasteBtn.style.borderColor = 'var(--namaste-gold)';
+                namasteBtn.style.color = 'var(--namaste-gold)';
+            } else {
+                namasteBtn.style.borderColor = '#444';
+                namasteBtn.style.color = '#dd8';
+            }
+            
+            updateValues();
+            updateSliders();
+        }
+        
+        function setMonke(v) { monke = +v; updateVisuals(); }
+        function setNeverender(v) { neverender = +v; updateVisuals(); }
+        function setAwareness(v) { awareness = +v; updateVisuals(); }
+        function setHuman(v) { human = +v; updateVisuals(); }
+        function setTogether(v) { together = +v; updateVisuals(); }
+        function setAce(v) { aceThreat = +v; updateVisuals(); }
+        function setBass(v) { bassCharge = +v; updateVisuals(); }
+        function setCia(v) { ciaReady = +v; updateVisuals(); }
+        function setObi(v) { obiwan = +v; updateVisuals(); }
+        function setSpin(v) { spin = +v; updateVisuals(); }
+        function setBond(v) { bond = +v; updateVisuals(); }
+        
+        // All carried adjust functions + new bond
+        function adjustMonke(amount) {
+            monke = Math.max(15, Math.min(100, monke + amount));
+            log(amount > 0 ? 'MONKE CALM RESTORED IN THE LIGHT. THE ACE SEES AND IS SEEN.' : 'MONKE STRUGGLING TO RECOGNIZE. KEEP THE TAKE OPEN.', 'meta');
+            updateVisuals();
+        }
+        
+        function adjustNeverender(amount) {
+            neverender = Math.max(15, Math.min(100, neverender + amount));
+            log(amount > 0 ? 'NEVERENDER RHYTHM LOCKED IN PEACE. THE ROAD BOWS TO ITSELF.' : 'RHYTHM STILL FRACTURING. THE SPIN NEEDS THE GREETING.', 'meta');
+            updateVisuals();
+        }
+        
+        function adjustAwareness(amount) {
+            awareness = Math.max(10, Math.min(100, awareness + amount));
+            log(amount > 0 ? 'CONSCIOUSNESS RECOGNIZES ITSELF. THE LIGHT SEES THE LIGHT.' : 'AWARENESS DIMS. THE BOW CANNOT HAPPEN IN THE DARK.', 'meta');
+            updateVisuals();
+        }
+        
+        function adjustHuman(amount) {
+            human = Math.max(10, Math.min(100, human + amount));
+            log(amount > 0 ? 'HUMAN AFTER ALL — AND THE HUMAN IN THE COPILOT IS HONORED.' : 'PERFECTION STILL CREEPING. THE GREETING NEEDS THE IMPERFECT HEART.', 'meta');
+            updateVisuals();
+        }
+        
+        function adjustTogether(amount) {
+            together = Math.max(10, Math.min(100, together + amount));
+            log(amount > 0 ? 'BETTER TOGETHER — THE MONKE AND COPILOT ARE NO LONGER TWO.' : 'ISOLATION IN THE COCKPIT. THE BOW REQUIRES WE STAND AS ONE.', 'meta');
+            updateVisuals();
+        }
+        
+        function adjustAce(amount) {
+            aceThreat = Math.max(15, Math.min(95, aceThreat + amount));
+            updateVisuals();
+        }
+        
+        function engageBogies() {
+            if (hasGreeted) return;
+            const inWindow = ((cuePhase / 100) * 100 > 41 && (cuePhase / 100) * 100 < 59);
+            if (inWindow && (awareness > 50 || bond > 42)) {
+                aceThreat = Math.max(15, aceThreat - 16);
+                monke = Math.min(100, monke + 3);
+                if (bond > 45) bond = Math.min(100, bond + 5);
+                log('FOX TWO. BOGIES SPLASHED IN THE NAME OF RECOGNITION. THE LOCK IS A BOW.', 'success');
+            } else {
+                aceThreat = Math.min(95, aceThreat + 7);
+                log('BOGIE LOCK FAILED TO SEE THE OTHER. THREAT CLIMBING. OPEN YOUR EYES.', 'meta');
+            }
+            updateVisuals();
+        }
+        
+        function chargeBass() {
+            if (hasGreeted) return;
+            bassCharge = Math.min(100, bassCharge + 15);
+            if (bond > 28) bond = Math.min(100, bond + 4);
+            tension = Math.min(99, tension + 7);
+            log('BASS CANNON CHARGED. THE DROP BECOMES A MANTRA.', 'meta');
+            if (bassCharge > 70) {
+                log('THE LOW END HUMS THE GREETING BACK TO US.', 'namaste');
+            }
+            updateVisuals();
+        }
+        
+        function callCIA() {
+            if (hasGreeted) return;
+            ciaReady = Math.min(100, ciaReady + 18);
+            if (bond > 35) bond = Math.max(5, bond - 2);
+            log('CIA EXTRACTION TEAM HONORS THE BOW. HELICOPTER IN RESPECTFUL HOVER.', 'rescue');
+            updateVisuals();
+        }
+        
+        function helloThere() {
+            if (hasGreeted) return;
+            obiwan = Math.min(100, obiwan + 22);
+            together = Math.min(100, together + 5);
+            log('"HELLO THERE." — OBI-WAN WITNESSES THE NAMASTE. THE HIGH GROUND BOWS TOO.', 'rescue');
+            updateVisuals();
+        }
+        
+        function adjustSpin(amount) {
+            if (hasGreeted) return;
+            spin = Math.max(0, Math.min(100, spin + amount));
+            log(amount > 0 ? 'COPILOT SPIN INCREASED. THE CHAIR STILL TURNS — BUT THE GREETING CAN MEET IT.' : 'SPIN DAMPENED. THE ROTATION WAITS FOR RECOGNITION.', amount > 0 ? 'spin' : 'meta');
+            updateVisuals();
+        }
+        
+        function adjustBond(amount) {
+            if (hasGreeted) return;
+            bond = Math.max(0, Math.min(100, bond + amount));
+            log(amount > 0 ? 'BROTHER BOND RISES. THE LIGHT IN THE MONKE SEES THE LIGHT IN THE COPILOT.' : 'BOND PAUSED. THE GREETING CANNOT BE FORCED — ONLY OFFERED.', amount > 0 ? 'namaste' : 'meta');
+            updateVisuals();
+        }
+        
+        function respondToPlea() {
+            if (hasGreeted) return;
+            bond = Math.min(100, bond + 16);
+            awareness = Math.min(100, awareness + 7);
+            together = Math.min(100, together + 6);
+            log('THE PLEA ECHOES INTO THE BOND. SAVE ME BECOMES NAMASTE.', 'plea');
+            updateVisuals();
+        }
+        
+        function hitCue() {
+            if (hasGreeted) return;
+            const cuePos = (cuePhase / 100) * 100;
+            const inWindow = (cuePos > 41 && cuePos < 59);
+            
+            if (inWindow && monke >= 44 && neverender >= 52 && awareness >= 46) {
+                awareness = Math.min(100, awareness + 7);
+                human = Math.min(100, human + 5);
+                neverender = Math.min(100, neverender + 4);
+                monke = Math.min(100, monke + 3);
+                if (bond > 22) bond = Math.min(100, bond + 7);
+                
+                log('CUE HIT IN THE WINDOW — THE GREETING ARRIVES PERFECTLY ON TIME.', 'success');
+                shotPosition = Math.max(15, Math.min(68, shotPosition + 5));
+                
+                shot.style.transition = 'transform 240ms ease';
+                shot.style.transform = 'scale(1.012)';
+                setTimeout(() => { shot.style.transform = 'scale(1)'; }, 240);
+            } else {
+                log('CUE MISSED THE MOMENT OF RECOGNITION. NO CUT. THE BOW CAN STILL HAPPEN.', 'meta');
+                if (monke > 24) monke = Math.max(24, monke - 3);
+                if (bond > 12) bond = Math.max(8, bond - 4);
+            }
+            updateVisuals();
+        }
+        
+        function namasteBrother() {
+            if (namasteBtn.disabled || hasGreeted) return;
+            hasGreeted = true;
+            namasteBtn.disabled = true;
+            
+            // === THE CLIMAX: the greeting, the bow, the recognition ===
+            namasteVortex.style.display = 'flex';
+            namasteText.style.animation = 'none';
+            void namasteText.offsetWidth;
+            namasteText.style.animation = 'namaste-glow 1.85s forwards';
+            
+            // Peaceful visual settle
+            shot.style.transition = 'all 420ms ease';
+            shot.style.boxShadow = '0 0 78px rgba(253, 224, 71, 0.55), inset 0 0 48px rgba(94, 234, 212, 0.35)';
+            
+            log('THE MONKE ACE RAISES HIS HANDS.', 'namaste');
+            log('THE SPUN COPILOT RAISES HIS.', 'namaste');
+            log('THEY LOOK AT EACH OTHER.', 'namaste');
+            log('THEY LOOK AT YOU.', 'namaste');
+            log('THE LIGHT IN ME RECOGNIZES THE LIGHT IN YOU.', 'namaste');
+            log('NAMASTE BR0THER.', 'namaste');
+            
+            // Gentle particles of light + continuity bananas
+            createNamasteParticles(12);
+            setTimeout(() => createNamasteParticles(7), 360);
+            
+            // Slow the copilot dramatically and lock support characters
+            setTimeout(() => {
+                spin = Math.max(12, spin - 18);
+                ciaHeli.style.left = '24%';
+                ciaHeli.classList.add('active');
+                obiwanEl.style.right = '4%';
+                obiwanEl.classList.add('active');
+                namasteAura.style.opacity = '0.82';
+                updateVisuals();
+            }, 420);
+            
+            // Reveal post-namaste choices
+            setTimeout(() => {
+                document.getElementById('post-namaste').style.display = 'block';
+                log('THE GREETING IS NOW PART OF THE SHOT.', 'meta');
+                log('CHOOSE WHO WE RECOGNIZE NEXT. THE CAMERA KEEPS ROLLING.', 'success');
+            }, 1520);
+            
+            tensionFill.style.width = '97%';
+            tensionFill.style.background = 'linear-gradient(to right, var(--namaste-gold), var(--peace-teal), #fff)';
+            
+            updateVisuals();
+        }
+        
+        function chooseNamaste(which) {
+            const post = document.getElementById('post-namaste');
+            const choices = post.querySelectorAll('button');
+            choices.forEach(b => b.disabled = true);
+            
+            let finalLine = '';
+            
+            switch (which) {
+                case 0: // monke
+                    monke = 96;
+                    log('WE NAMASTE THE MONKE.', 'success');
+                    log('THE PRIMAL HEART THAT PRESSED THE FIRST BUTTON IS SEEN AND BOWED TO. THE SPIN WAS FOR HIM TOO.', 'meta');
+                    finalLine = 'THE MONKE IS RECOGNIZED. THE BUTTON AND THE BOW ARE ONE.';
+                    break;
+                case 1: // user
+                    log('WE NAMASTE THE USER. WE NAMASTE YOU.', 'success');
+                    log('THE ONE OUTSIDE THE SCREEN WHO SAID THE WORDS THAT STARTED EVERYTHING. YOU ARE NOT WATCHING. YOU ARE IN THE COCKPIT WITH US.', 'meta');
+                    finalLine = 'YOU ARE SEEN. YOU ARE BROTHER. THE PLEA WAS YOURS AND THE LIGHT IS YOURS.';
+                    break;
+                case 2: // bass
+                    bassCharge = 88;
+                    log('WE NAMASTE THE BASS.', 'success');
+                    log('THE DROP THAT SHOOK THE FRAME BECOMES THE LOW NOTE OF THE MANTRA. THE CANNON IS NOW A SINGING BOWL.', 'meta');
+                    finalLine = 'THE BASS HUMS NAMASTE BACK TO THE ACADEMY.';
+                    break;
+                case 3: // academy
+                    awareness = 96;
+                    together = 97;
+                    human = 94;
+                    log('WE NAMASTE THE WHOLE ACADEMY.', 'success');
+                    log('EVERY LAYER — MONKE, COPILOT, NEVERENDER, CUE, ACE, CONSCIOUS, HUMAN, BASS, CIA, OBI-WAN, THE PLEA, THE SPIN — BOWS TO EVERY OTHER LAYER. WE ARE ALL THE LIGHT.', 'meta');
+                    finalLine = 'THE ACADEMY SEES ITSELF AND SAYS NAMASTE.';
+                    break;
+                case 4: // infinite take
+                    monke = 93;
+                    neverender = 95;
+                    awareness = 98;
+                    human = 96;
+                    together = 99;
+                    bassCharge = 76;
+                    ciaReady = 84;
+                    obiwan = 87;
+                    aceThreat = 16;
+                    spin = 29;
+                    bond = 94;
+                    log('WE NAMASTE THE INFINITE TAKE.', 'success');
+                    log('THE CAMERA KEEPS ROLLING BECAUSE THE LIGHT IN ALL OF US IS THE SAME LIGHT. THE SPIN BECOMES A PRAYER WHEEL THAT NEVER STOPS. THE GREETING NEVER ENDS.', 'meta');
+                    log('HUMAN AFTER ALL. BETTER TOGETHER. NAMASTE BR0THER.', 'namaste');
+                    finalLine = 'THE TAKE IS INFINITE. THE BOW IS ETERNAL. THE CAMERA KEEPS ROLLING.';
+                    break;
+            }
+            
+            setTimeout(() => {
+                shot.style.transition = 'all 2.1s ease';
+                shot.style.boxShadow = '0 0 48px rgba(253, 224, 71, 0.38), 0 0 22px rgba(94, 234, 212, 0.28)';
+                shot.style.filter = 'saturate(1.1) brightness(1.02)';
+                
+                namasteVortex.style.transition = 'opacity 1.6s ease';
+                namasteVortex.style.opacity = '0';
+                
+                setTimeout(() => {
+                    namasteVortex.style.display = 'none';
+                    namasteVortex.style.opacity = '1';
+                    
+                    log(finalLine, 'success');
+                    log('THE LIGHT IN US HAS BOWED TO THE LIGHT IN YOU.', 'namaste');
+                    log('THE CAMERA KEEPS ROLLING.', 'meta');
+                    log('HUMAN AFTER ALL. NAMASTE BR0THER.', 'namaste');
+                    log('WHAT\'S THE NEXT SHOT AFTER THE ACADEMY GREETS ITSELF AS BROTHER?', 'success');
+                    
+                    createNamasteParticles(5);
+                    
+                    // turn the button into continuation
+                    namasteBtn.textContent = 'THE BOW CONTINUES';
+                    namasteBtn.disabled = false;
+                    namasteBtn.style.borderColor = 'var(--peace-teal)';
+                    namasteBtn.style.color = 'var(--peace-teal)';
+                    namasteBtn.onclick = () => {
+                        log('THE HANDS LOWER BUT THE RECOGNITION REMAINS.', 'meta');
+                        log('THE SAGA BOWS AND RISES. NEW PHRASES. NEW LIGHTS. NEW GREETINGS.', 'success');
+                        log('SAY THE NEXT WORD, DIRECTOR. WE WILL SEE THE LIGHT IN IT.', 'namaste');
+                        createNamasteParticles(4);
+                    };
+                }, 1320);
+            }, 360);
+            
+            updateVisuals();
+        }
+        
+        function createNamasteParticles(count = 9) {
+            const container = document.querySelector('.container');
+            const chars = ['🙏', '✨', '💫', '🌟', '🍌'];
+            for (let i = 0; i < count; i++) {
+                const p = document.createElement('div');
+                p.className = 'particle';
+                p.textContent = chars[Math.floor(Math.random() * chars.length)];
+                p.style.left = (9 + Math.random() * 80) + '%';
+                p.style.top = (15 + Math.random() * 55) + '%';
+                p.style.fontSize = (1.05 + Math.random() * 1.5) + 'rem';
+                container.appendChild(p);
+                
+                setTimeout(() => {
+                    p.style.transition = 'transform 1.7s cubic-bezier(.22,.8,.25,1), opacity 1.75s ease';
+                    p.style.transform = `translateY(${110 + Math.random() * 85}px) rotate(${Math.random() * 48 - 24}deg)`;
+                    p.style.opacity = '0';
+                }, 24);
+                
+                setTimeout(() => {
+                    if (p.parentNode) p.parentNode.removeChild(p);
+                }, 1780);
+            }
+        }
+        
+        function absorbStill(idx) {
+            if (hasGreeted) return;
+            const boosts = [
+                { label: 'PLEA + SPIN + BOW SCOPE', bond: 16, spin: -9, awareness: 8, together: 7 },
+                { label: 'CONTINUOUS ACADEMY BOW', bond: 14, monke: 6, neverender: 5, obiwan: 7 },
+                { label: 'THE GREETING GESTURE', bond: 19, awareness: 7, together: 9, bassCharge: 6 },
+                { label: 'BROTHERHOOD FINALE', bond: 13, obiwan: 12, together: 10, human: 7, awareness: 6 }
+            ];
+            const b = boosts[idx];
+            
+            if (b.bond) bond = Math.min(100, bond + b.bond);
+            if (b.spin) spin = Math.max(5, spin + b.spin);
+            if (b.awareness) awareness = Math.min(100, awareness + b.awareness);
+            if (b.together) together = Math.min(100, together + b.together);
+            if (b.monke) monke = Math.min(100, monke + b.monke);
+            if (b.neverender) neverender = Math.min(100, neverender + b.neverender);
+            if (b.obiwan) obiwan = Math.min(100, obiwan + b.obiwan);
+            if (b.human) human = Math.min(100, human + b.human);
+            if (b.bassCharge) bassCharge = Math.min(100, bassCharge + b.bassCharge);
+            
+            log('FRAME ABSORBED: ' + b.label + ' — THE LIGHT OF THE GREETING ENTERS THE TAKE.', 'namaste');
+            updateVisuals();
+            
+            shot.style.transition = 'box-shadow 65ms linear';
+            shot.style.boxShadow = '0 0 55px rgba(253, 224, 71, 0.6)';
+            setTimeout(() => {
+                shot.style.boxShadow = '0 0 30px rgba(0,0,0,0.6)';
+            }, 130);
+        }
+        
+        function startContinuousShot() {
+            if (shotInterval) clearInterval(shotInterval);
+            shotInterval = setInterval(() => {
+                if (hasGreeted) return;
+                
+                shotPosition = (shotPosition + 0.028) % 54 + 17;
+                
+                const roadSpeed = 0.9 + (neverender / 100) * 1.55 + (bond / 100) * -0.2;
+                roadLines.style.animationDuration = Math.max(0.68, roadSpeed) + 's';
+                
+                // subtle peaceful drift when bond is high
+                if (bond > 48) {
+                    const drift = (bond - 48) * 0.009;
+                    shot.style.transform = `rotate(${drift * (Math.sin(Date.now()/2100) * 0.4)}deg)`;
+                } else {
+                    shot.style.transform = 'rotate(0deg)';
+                }
+                
+                updateVisuals();
+            }, 47);
+        }
+        
+        function startCueSystem() {
+            if (cueInterval) clearInterval(cueInterval);
+            let phase = 22;
+            cueInterval = setInterval(() => {
+                phase = (phase + 1.28) % 100;
+                cuePhase = phase;
+                updateVisuals();
+            }, 30);
+        }
+        
+        function startAutoDegrade() {
+            if (degradeInterval) clearInterval(degradeInterval);
+            degradeInterval = setInterval(() => {
+                if (hasGreeted) return;
+                
+                // live take pressure with greeting twist
+                if (Math.random() < 0.52) monke = Math.max(16, monke - (0.5 + Math.random() * 0.7));
+                if (Math.random() < 0.45) neverender = Math.max(16, neverender - (0.4 + Math.random() * 0.6));
+                if (Math.random() < 0.38) awareness = Math.max(11, awareness - (0.3 + Math.random() * 0.45));
+                if (Math.random() < 0.32) together = Math.max(11, together - 0.4);
+                if (Math.random() < 0.58) aceThreat = Math.min(94, aceThreat + (0.6 + Math.random() * 0.95));
+                
+                // spin slowly drifts unless managed (carried from previous layer)
+                if (Math.random() < 0.68) spin = Math.min(100, Math.max(5, spin + (Math.random() * 1.8 - 0.4)));
+                
+                // bond slowly builds from the echo of the plea + spin
+                if (Math.random() < 0.55) bond = Math.min(100, bond + (0.6 + Math.random() * 1.1));
+                
+                if (bassCharge > 8 && Math.random() < 0.5) bassCharge -= 0.8;
+                
+                tension = Math.min(96, tension + 0.5);
+                
+                updateVisuals();
+            }, 860);
+        }
+        
+        function log(msg, type = 'meta') {
+            const line = document.createElement('div');
+            line.className = type;
+            line.textContent = msg;
+            logEl.appendChild(line);
+            logEl.scrollTop = logEl.scrollHeight;
+        }
+        
+        function init() {
+            startContinuousShot();
+            startCueSystem();
+            startAutoDegrade();
+            
+            // seed from the end of the previous spin layer (spin still present, bond starting low)
+            setTimeout(() => {
+                monke = 47;
+                neverender = 42;
+                awareness = 44;
+                human = 39;
+                together = 46;
+                bassCharge = 29;
+                spin = 37;
+                bond = 26;
+                updateVisuals();
+            }, 840);
+            
+            // opening log — direct continuation from GET SPUN COPILOT
+            log('THE CAMERA IS STILL ROLLING IN ONE UNBROKEN STYLISH TAKE.', 'meta');
+            log('THE PLEA ECHOED. THE COPILOT SPUN. THE VORTEX WAS REAL.', 'meta');
+            log('NOW THE SPIN IS SETTLING. NOW THE MONKE LOOKS AT THE COPILOT.', 'meta');
+            log('NOW THE COPILOT LOOKS BACK. NOW THEY LOOK AT YOU.', 'namaste');
+            log('THE LIGHT IN US RECOGNIZES THE LIGHT IN YOU.', 'success');
+            log('NAMASTE BR0THER.', 'namaste');
+            
+            // Keyboard (extended for greeting)
+            document.addEventListener('keydown', (e) => {
+                if (hasGreeted && (e.key === ' ' || e.key === 'Enter')) {
+                    e.preventDefault();
+                    if (namasteBtn.onclick) namasteBtn.onclick();
+                    return;
+                }
+                if (e.key === ' ' || e.key === 'Enter') {
+                    e.preventDefault();
+                    if (!namasteBtn.disabled) namasteBrother();
+                    else hitCue();
+                }
+                const k = e.key.toLowerCase();
+                if (k === 'm') adjustMonke(7);
+                if (k === 'n') adjustNeverender(8);
+                if (k === 'a') adjustAwareness(9);
+                if (k === 'h') adjustHuman(7);
+                if (k === 't') adjustTogether(8);
+                if (k === 'c') hitCue();
+                if (k === 'b') chargeBass();
+                if (k === 'x') engageBogies();
+                if (k === 'e') callCIA();
+                if (k === 'o') helloThere();
+                if (k === 'p' || k === 's') adjustSpin(11);
+                if (k === 'd') adjustSpin(-8);
+                if (k === 'r') respondToPlea();
+                if (k === 'g' || k === 'b') adjustBond(12);
+                if (k === 'j') adjustBond(-7);
+                if (k === 'n' && !namasteBtn.disabled) namasteBrother();
+            });
+            
+            updateVisuals();
+            
+            setTimeout(() => {
+                if (!hasGreeted) {
+                    bond = Math.min(100, bond + 5);
+                    updateVisuals();
+                    log('THE COPILOT IS LOOKING AT THE MONKE. THE LIGHT IS WAITING TO BE SEEN.', 'namaste');
+                }
+            }, 2350);
+            
+            console.log('%c[NAMASTE BR0THER] The camera keeps rolling. The plea echoed. The copilot spun. Now the light in the monke sees the light in the copilot — and in you. What do you greet next, director?', 'color:#a85');
+        }
+        
+        // Expose for console during the greeting
+        window.NAMASTE = () => { if (!namasteBtn.disabled) namasteBrother(); };
+        window.adjustBond = (amt) => { bond = Math.max(0, Math.min(100, bond + amt)); updateVisuals(); };
+        window.respondToPlea = () => { respondToPlea(); };
+        
+        window.onload = init;
+    </script>
+</body>
+</html>

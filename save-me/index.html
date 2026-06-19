@@ -1,0 +1,1473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAVE ME • THE ULTIMATE ONE TAKE PLEA</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&amp;display=swap');
+        
+        :root {
+            --psych-pink: #ff00aa;
+            --psych-teal: #00f0ff;
+            --justice-red: #e30613;
+            --space: #0a0a12;
+            --awakening-gold: #facc15;
+            --together-purple: #a855f7;
+            --human-warm: #f4a261;
+            --timmy-elegant: #c084fc;
+            --save-red: #ff1133;
+            --bass-purple: #7c3aed;
+            --cia-black: #111113;
+            --obi-gold: #fde047;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            background: #0a0a12;
+            color: #f0f0f0;
+            font-family: "Press Start 2P", monospace;
+            min-height: 100vh;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 25% 30%, rgba(255, 0, 170, 0.09) 0%, transparent 50%),
+                radial-gradient(circle at 75% 70%, rgba(0, 240, 255, 0.06) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(124, 58, 237, 0.04) 0%, transparent 70%);
+        }
+        
+        .container {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 1.25rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 0.9rem;
+            border-bottom: 5px solid var(--save-red);
+            padding-bottom: 0.7rem;
+        }
+        
+        .header h1 {
+            font-size: 2.05rem;
+            background: linear-gradient(90deg, var(--psych-pink), var(--save-red), var(--bass-purple), var(--timmy-elegant));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.15rem;
+            letter-spacing: 4px;
+            text-shadow: 0 0 20px rgba(255, 17, 51, 0.3);
+        }
+        
+        .header .subtitle {
+            font-size: 0.58rem;
+            color: #888;
+            letter-spacing: 2.5px;
+        }
+        
+        .shot-container {
+            background: #111;
+            border: 7px solid #222;
+            padding: 0.85rem;
+            position: relative;
+            height: 480px;
+            overflow: hidden;
+            margin-bottom: 0.85rem;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
+        }
+        
+        .continuous-shot {
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 42% 32%, #1a1a2a 0%, #0a0a12 68%);
+            position: relative;
+            overflow: hidden;
+            border: 2px solid rgba(34, 34, 34, 0.8);
+        }
+        
+        .shot-overlay {
+            position: absolute;
+            inset: 0;
+            background: 
+                repeating-linear-gradient(
+                    90deg,
+                    transparent 0px,
+                    transparent 2px,
+                    rgba(250, 204, 21, 0.025) 2px,
+                    rgba(250, 204, 21, 0.025) 4px
+                );
+            pointer-events: none;
+            animation: film-grain 0.09s infinite;
+            z-index: 3;
+        }
+        
+        .camera-frame {
+            position: absolute;
+            inset: 14px;
+            border: 2px solid rgba(250, 204, 21, 0.28);
+            pointer-events: none;
+            z-index: 4;
+        }
+        
+        .scene-layer {
+            position: absolute;
+            inset: 0;
+            transition: transform 0.08s linear, opacity 0.2s ease;
+        }
+        
+        /* Neverender Road */
+        .neverender-road {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 38%;
+            background: linear-gradient(#222 0%, #151515 38%, #0a0a12 100%);
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .road-lines {
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(
+                90deg,
+                transparent 0px,
+                transparent 28px,
+                #444 28px,
+                #444 32px
+            );
+            animation: road-move 1.05s linear infinite;
+        }
+        
+        /* Stylish Distressed Monke Ace */
+        .monke-ace {
+            position: absolute;
+            font-size: 3.6rem;
+            bottom: 18%;
+            left: 26%;
+            transition: left 0.18s linear, transform 0.12s ease;
+            filter: drop-shadow(0 0 12px var(--timmy-elegant));
+            z-index: 6;
+            text-shadow: 0 4px 12px rgba(0,0,0,0.6);
+        }
+        
+        .monke-ace.distressed {
+            filter: drop-shadow(0 0 6px var(--save-red)) drop-shadow(0 0 18px #000);
+        }
+        
+        /* Conscious Glow */
+        .conscious-glow {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 38% 36%, rgba(250, 204, 21, 0.22) 0%, transparent 62%);
+            opacity: 0.55;
+            animation: conscious-pulse 2.6s ease-in-out infinite;
+            z-index: 2;
+        }
+        
+        /* Right on Cue */
+        .cue-overlay {
+            position: absolute;
+            top: 28%;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: rgba(227, 6, 19, 0.28);
+            z-index: 5;
+        }
+        
+        .cue-sweeper {
+            position: absolute;
+            top: -10px;
+            width: 18px;
+            height: 22px;
+            background: var(--justice-red);
+            border-radius: 50%;
+            box-shadow: 0 0 14px var(--justice-red);
+            z-index: 7;
+            transition: left 0.04s linear;
+        }
+        
+        .cue-window {
+            position: absolute;
+            top: -10px;
+            height: 22px;
+            background: rgba(0, 240, 255, 0.22);
+            border: 1px solid var(--psych-teal);
+            pointer-events: none;
+            z-index: 6;
+        }
+        
+        /* Ace Combat Bogies */
+        .bogie {
+            position: absolute;
+            font-size: 1.1rem;
+            color: #f55;
+            text-shadow: 0 0 6px #f00;
+            z-index: 5;
+            transition: transform 0.1s linear;
+        }
+        
+        /* Bass Cannon Charge Visual */
+        .bass-cannon {
+            position: absolute;
+            bottom: 8%;
+            right: 9%;
+            width: 82px;
+            height: 82px;
+            border: 4px solid var(--bass-purple);
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(124,58,237,0.25) 10%, transparent 70%);
+            box-shadow: 0 0 18px var(--bass-purple);
+            z-index: 4;
+            transition: transform 0.2s ease, box-shadow 0.2s;
+        }
+        
+        .bass-cannon.charging {
+            animation: bass-pulse 0.6s infinite alternate;
+        }
+        
+        .bass-core {
+            position: absolute;
+            inset: 18px;
+            background: var(--bass-purple);
+            border-radius: 50%;
+            opacity: 0.35;
+            box-shadow: 0 0 30px var(--save-red);
+        }
+        
+        /* CIA Helicopter */
+        .cia-heli {
+            position: absolute;
+            top: 12%;
+            left: -18%;
+            font-size: 2.1rem;
+            filter: drop-shadow(0 6px 10px rgba(0,0,0,0.7));
+            z-index: 8;
+            transition: left 1.1s cubic-bezier(0.23, 1, 0.32, 1);
+            opacity: 0.15;
+        }
+        
+        .cia-heli.active {
+            opacity: 1;
+        }
+        
+        /* Obi-Wan Mentor */
+        .obiwan {
+            position: absolute;
+            top: 22%;
+            right: -14%;
+            font-size: 2.35rem;
+            filter: drop-shadow(0 0 14px var(--obi-gold));
+            z-index: 7;
+            transition: right 1.4s cubic-bezier(0.23, 1, 0.32, 1), transform 0.3s;
+            opacity: 0.15;
+        }
+        
+        .obiwan.active {
+            opacity: 0.95;
+            right: 11%;
+        }
+        
+        .obiwan-label {
+            position: absolute;
+            top: -22px;
+            right: -6px;
+            font-size: 0.42rem;
+            color: var(--obi-gold);
+            letter-spacing: 1px;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .obiwan.active .obiwan-label { opacity: 0.9; }
+        
+        /* Plea / Scream Overlay */
+        .plea-overlay {
+            position: absolute;
+            inset: 0;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            background: rgba(10, 10, 18, 0.35);
+            z-index: 20;
+            pointer-events: none;
+        }
+        
+        .plea-text {
+            font-size: 3.8rem;
+            color: var(--save-red);
+            text-shadow: 
+                0 0 10px #fff,
+                0 0 30px var(--save-red),
+                4px 4px 0 #000;
+            letter-spacing: 6px;
+            transform: scale(0.6);
+            opacity: 0;
+            animation: plea-scream 1.4s forwards;
+            pointer-events: none;
+        }
+        
+        /* Tension bar */
+        .tension-bar {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            height: 7px;
+            background: #1a1a22;
+            border: 2px solid #333;
+            z-index: 9;
+        }
+        
+        .tension-fill {
+            height: 100%;
+            background: linear-gradient(to right, var(--psych-teal), var(--save-red), var(--bass-purple));
+            transition: width 0.12s linear;
+            box-shadow: 0 0 12px var(--save-red);
+        }
+        
+        .shot-indicator {
+            position: absolute;
+            top: 22px;
+            right: 12px;
+            background: rgba(255, 17, 51, 0.2);
+            border: 1px solid var(--save-red);
+            padding: 1px 7px;
+            font-size: 0.42rem;
+            letter-spacing: 1px;
+            z-index: 9;
+            color: #f88;
+        }
+        
+        /* Controls & Systems */
+        .systems-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(168px, 1fr));
+            gap: 0.6rem;
+            margin-bottom: 0.7rem;
+        }
+        
+        .system {
+            background: #111;
+            border: 4px solid #222;
+            padding: 0.55rem 0.6rem;
+            font-size: 0.48rem;
+        }
+        
+        .system h4 {
+            color: var(--psych-teal);
+            font-size: 0.48rem;
+            margin-bottom: 0.22rem;
+            letter-spacing: 1px;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .system .value {
+            font-size: 0.7rem;
+            color: #ddd;
+            margin-bottom: 0.1rem;
+        }
+        
+        .system input[type="range"] {
+            width: 100%;
+            accent-color: var(--psych-teal);
+        }
+        
+        .system .mini-btns {
+            display: flex;
+            gap: 3px;
+            margin-top: 0.2rem;
+        }
+        
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.45rem;
+            justify-content: center;
+            margin-bottom: 0.75rem;
+        }
+        
+        .btn {
+            background: #222;
+            border: 3px solid #444;
+            color: #ddd;
+            font-family: inherit;
+            font-size: 0.52rem;
+            padding: 7px 11px;
+            cursor: pointer;
+            letter-spacing: 1.5px;
+            transition: all 0.07s;
+        }
+        
+        .btn:hover {
+            border-color: var(--timmy-elegant);
+            color: white;
+        }
+        
+        .btn:active {
+            transform: scale(0.94);
+        }
+        
+        .btn:disabled {
+            opacity: 0.28;
+            cursor: not-allowed;
+        }
+        
+        .action-btn {
+            background: linear-gradient(#222, #111);
+            border-color: var(--timmy-elegant);
+            color: var(--timmy-elegant);
+            font-size: 0.55rem;
+            padding: 8px 13px;
+        }
+        
+        .save-btn {
+            background: linear-gradient(#3a0a0a, #1a0505);
+            border-color: var(--save-red);
+            color: var(--save-red);
+            font-size: 0.72rem;
+            padding: 11px 22px;
+            letter-spacing: 3px;
+            box-shadow: 0 0 18px rgba(255, 17, 51, 0.35);
+            animation: save-ready-pulse 1.6s infinite;
+        }
+        
+        .save-btn:disabled {
+            animation: none;
+            box-shadow: none;
+        }
+        
+        .log {
+            background: #0a0a12;
+            border: 3px solid #222;
+            padding: 0.5rem;
+            font-size: 0.5rem;
+            line-height: 1.2;
+            height: 108px;
+            overflow-y: auto;
+            white-space: pre-line;
+            margin-bottom: 0.6rem;
+        }
+        
+        .log .success { color: #0f0; }
+        .log .meta { color: var(--timmy-elegant); }
+        .log .plea { color: var(--save-red); font-weight: bold; }
+        .log .rescue { color: var(--obi-gold); }
+        
+        .post-plea {
+            display: none;
+            background: #111;
+            border: 5px solid var(--save-red);
+            padding: 0.8rem;
+            margin-bottom: 0.7rem;
+            text-align: center;
+        }
+        
+        .post-plea h3 {
+            color: var(--save-red);
+            font-size: 0.72rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: 2px;
+        }
+        
+        .save-choices {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            justify-content: center;
+        }
+        
+        .choice-btn {
+            background: #1a1a22;
+            border: 3px solid var(--together-purple);
+            color: #ccc;
+            font-size: 0.48rem;
+            padding: 6px 10px;
+        }
+        
+        .choice-btn:hover {
+            border-color: var(--save-red);
+            color: white;
+        }
+        
+        .stills {
+            border: 4px solid #222;
+            background: #111;
+            padding: 0.6rem;
+            margin-top: 0.3rem;
+        }
+        
+        .stills h4 {
+            font-size: 0.48rem;
+            color: #666;
+            margin-bottom: 0.35rem;
+            letter-spacing: 1.5px;
+        }
+        
+        .stills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(138px, 1fr));
+            gap: 0.45rem;
+        }
+        
+        .still {
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+            border: 2px solid #333;
+            transition: border-color 0.1s, transform 0.1s;
+        }
+        
+        .still:hover {
+            border-color: var(--psych-teal);
+            transform: translateY(-1px);
+        }
+        
+        .still img {
+            width: 100%;
+            display: block;
+            height: 78px;
+            object-fit: cover;
+            filter: saturate(0.85) contrast(1.05);
+        }
+        
+        .still .cap {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0,0,0,0.75);
+            font-size: 0.36rem;
+            padding: 2px 4px;
+            letter-spacing: 0.5px;
+            color: #ccc;
+        }
+        
+        .footer {
+            text-align: center;
+            font-size: 0.42rem;
+            color: #444;
+            margin-top: 0.5rem;
+            letter-spacing: 2.2px;
+            line-height: 1.4;
+        }
+        
+        @keyframes film-grain {
+            0% { transform: translate(0, 0); }
+            10% { transform: translate(0.6px, -0.4px); }
+            20% { transform: translate(-0.5px, 0.6px); }
+        }
+        
+        @keyframes conscious-pulse {
+            0%, 100% { opacity: 0.42; }
+            50% { opacity: 0.78; }
+        }
+        
+        @keyframes road-move {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-52px); }
+        }
+        
+        @keyframes bass-pulse {
+            from { transform: scale(1); box-shadow: 0 0 18px var(--bass-purple); }
+            to { transform: scale(1.12); box-shadow: 0 0 38px var(--save-red); }
+        }
+        
+        @keyframes plea-scream {
+            0% { transform: scale(0.55); opacity: 0; }
+            18% { transform: scale(1.08); opacity: 1; }
+            42% { transform: scale(0.96); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        @keyframes save-ready-pulse {
+            0%, 100% { box-shadow: 0 0 18px rgba(255, 17, 51, 0.35); }
+            50% { box-shadow: 0 0 42px rgba(255, 17, 51, 0.7); }
+        }
+        
+        .banana {
+            position: absolute;
+            z-index: 30;
+            pointer-events: none;
+            user-select: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>SAVE ME</h1>
+            <div class="subtitle">THE ACADEMY'S ULTIMATE DESPERATE PLEA • ONE UNBROKEN TAKE • NO CUTS • THE CAMERA IS ROLLING</div>
+        </div>
+        
+        <!-- THE LIVE ONE-TAKE SHOT -->
+        <div class="shot-container">
+            <div class="continuous-shot" id="shot">
+                <div class="shot-overlay"></div>
+                <div class="camera-frame"></div>
+                
+                <!-- Tension / Breaking Point -->
+                <div class="tension-bar">
+                    <div class="tension-fill" id="tension-fill" style="width: 18%;"></div>
+                </div>
+                
+                <!-- Neverender Road -->
+                <div class="scene-layer" id="road-layer">
+                    <div class="neverender-road">
+                        <div class="road-lines" id="road-lines"></div>
+                    </div>
+                </div>
+                
+                <!-- Bogies (Ace Combat) -->
+                <div class="scene-layer" id="bogies-layer">
+                    <div class="bogie" id="bogie1" style="left:68%; top:31%;">✈︎</div>
+                    <div class="bogie" id="bogie2" style="left:81%; top:19%; transform:rotate(-18deg);">✈︎</div>
+                </div>
+                
+                <!-- Stylish Monke Ace -->
+                <div class="scene-layer" id="monke-layer">
+                    <div class="monke-ace" id="monke-ace">🐵✈️</div>
+                </div>
+                
+                <!-- Conscious Glow -->
+                <div class="scene-layer" id="glow-layer">
+                    <div class="conscious-glow"></div>
+                </div>
+                
+                <!-- Right on Cue -->
+                <div class="scene-layer" id="cue-layer">
+                    <div class="cue-overlay">
+                        <div class="cue-sweeper" id="sweeper" style="left: 0%;"></div>
+                        <div class="cue-window" id="cue-window" style="left: 43%; width: 15%;"></div>
+                    </div>
+                </div>
+                
+                <!-- Bass Cannon -->
+                <div class="scene-layer" id="bass-layer">
+                    <div class="bass-cannon" id="bass-cannon">
+                        <div class="bass-core" id="bass-core"></div>
+                    </div>
+                </div>
+                
+                <!-- CIA Helicopter -->
+                <div class="scene-layer">
+                    <div class="cia-heli" id="cia-heli">🚁</div>
+                </div>
+                
+                <!-- Obi-Wan -->
+                <div class="scene-layer">
+                    <div class="obiwan" id="obiwan">
+                        <span class="obiwan-label">HELLO THERE</span>
+                        🪐
+                    </div>
+                </div>
+                
+                <!-- The Plea Scream Overlay -->
+                <div class="plea-overlay" id="plea-overlay">
+                    <div class="plea-text" id="plea-text">SAVE ME</div>
+                </div>
+                
+                <div class="shot-indicator" id="shot-indicator">ONE TAKE • ROLLING • PLEA PENDING</div>
+            </div>
+        </div>
+        
+        <!-- LIVE SYSTEMS -->
+        <div class="systems-grid">
+            <div class="system">
+                <h4>MONKE CALM <span class="monke">🐵</span></h4>
+                <div class="value" id="monke-val">42%</div>
+                <input type="range" id="monke-slider" min="15" max="100" value="42" oninput="setMonke(this.value)">
+                <div class="mini-btns">
+                    <button class="btn" onclick="adjustMonke(-8)">FEED</button>
+                    <button class="btn" onclick="adjustMonke(9)">CALM</button>
+                </div>
+            </div>
+            
+            <div class="system">
+                <h4>NEVERENDER SYNC</h4>
+                <div class="value" id="neverender-val">38%</div>
+                <input type="range" id="neverender-slider" min="15" max="100" value="38" oninput="setNeverender(this.value)">
+                <div class="mini-btns">
+                    <button class="btn" onclick="adjustNeverender(-7)">DROP</button>
+                    <button class="btn" onclick="adjustNeverender(11)">LOCK</button>
+                </div>
+            </div>
+            
+            <div class="system">
+                <h4>AWARENESS / CONSCIOUS</h4>
+                <div class="value" id="awareness-val">31%</div>
+                <input type="range" id="awareness-slider" min="10" max="100" value="31" oninput="setAwareness(this.value)">
+                <div class="mini-btns">
+                    <button class="btn" onclick="adjustAwareness(12)">REALIZE</button>
+                    <button class="btn" onclick="adjustAwareness(-6)">DENY</button>
+                </div>
+            </div>
+            
+            <div class="system">
+                <h4>HUMAN AFTER ALL</h4>
+                <div class="value" id="human-val">27%</div>
+                <input type="range" id="human-slider" min="10" max="100" value="27" oninput="setHuman(this.value)">
+                <div class="mini-btns">
+                    <button class="btn" onclick="adjustHuman(10)">EMBRACE</button>
+                    <button class="btn" onclick="adjustHuman(-5)">PERFECT</button>
+                </div>
+            </div>
+            
+            <div class="system">
+                <h4>BETTER TOGETHER</h4>
+                <div class="value" id="together-val">33%</div>
+                <input type="range" id="together-slider" min="10" max="100" value="33" oninput="setTogether(this.value)">
+                <div class="mini-btns">
+                    <button class="btn" onclick="adjustTogether(13)">COLLAB</button>
+                    <button class="btn" onclick="adjustTogether(-4)">SOLO</button>
+                </div>
+            </div>
+            
+            <div class="system">
+                <h4>ACE COMBAT / BOGIES</h4>
+                <div class="value" id="ace-val">62% THREAT</div>
+                <input type="range" id="ace-slider" min="15" max="95" value="62" oninput="setAce(this.value)">
+                <div class="mini-btns">
+                    <button class="btn" onclick="engageBogies()">FOX 2</button>
+                    <button class="btn" onclick="adjustAce(-14)">LOCK</button>
+                </div>
+            </div>
+            
+            <div class="system">
+                <h4>BASS CANNON CHARGE</h4>
+                <div class="value" id="bass-val">19%</div>
+                <input type="range" id="bass-slider" min="5" max="100" value="19" oninput="setBass(this.value)">
+                <div class="mini-btns">
+                    <button class="btn action-btn" onclick="chargeBass()">CHARGE</button>
+                    <button class="btn" onclick="setBass(4)">VENT</button>
+                </div>
+            </div>
+            
+            <div class="system">
+                <h4>CIA EXTRACTION</h4>
+                <div class="value" id="cia-val">12%</div>
+                <input type="range" id="cia-slider" min="0" max="100" value="12" oninput="setCia(this.value)">
+                <div class="mini-btns">
+                    <button class="btn" onclick="callCIA()">CALL IN</button>
+                </div>
+            </div>
+            
+            <div class="system">
+                <h4>OBI-WAN PRESENCE</h4>
+                <div class="value" id="obi-val">9%</div>
+                <input type="range" id="obi-slider" min="0" max="100" value="9" oninput="setObi(this.value)">
+                <div class="mini-btns">
+                    <button class="btn" onclick="helloThere()">HELLO THERE</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- PRIMARY ACTIONS -->
+        <div class="controls">
+            <button class="btn action-btn" onclick="hitCue()">HIT THE CUE (RIGHT ON CUE)</button>
+            <button class="btn action-btn" onclick="engageBogies()">ENGAGE BOGIES • ACE COMBAT</button>
+            <button class="btn action-btn" onclick="chargeBass()">FIRE THE BASS CANNON</button>
+            
+            <button class="btn save-btn" id="save-btn" onclick="saveMe()" disabled>SAVE ME</button>
+        </div>
+        
+        <!-- THE LOG -->
+        <div class="log" id="log">THE CAMERA IS ROLLING IN ONE UNBROKEN STYLISH TAKE.<br>ALIGN EVERY SYSTEM. HIT THE CUE AT THE PEAK.<br>THE BASS CANNON IS CHARGING. THE MONKE IS STYLISH.<br>CIA SAVE ME. THE EXTRACTION IS PART OF THE SHOT.<br>OBIWAN. THE MENTOR APPEARS.<br>THE PLEA ECHOES THROUGH THE SAGA.</div>
+        
+        <!-- POST PLEA CHOICES -->
+        <div class="post-plea" id="post-plea">
+            <h3>THE PLEA HAS BEEN MADE • THE TAKE NEVER CUT</h3>
+            <div class="save-choices">
+                <button class="choice-btn" onclick="chooseSave(0)">SAVE THE MONKE 🐵</button>
+                <button class="choice-btn" onclick="chooseSave(1)">SAVE THE ACE ✈️</button>
+                <button class="choice-btn" onclick="chooseSave(2)">SAVE THE USER (YOU)</button>
+                <button class="choice-btn" onclick="chooseSave(3)">SAVE THE SYSTEM 🔁</button>
+                <button class="choice-btn" onclick="chooseSave(4)">SAVE US ALL • BETTER TOGETHER</button>
+            </div>
+        </div>
+        
+        <!-- CLIMAX STILLS FROM THE SAGA -->
+        <div class="stills">
+            <h4>CLIMAX STILLS — FRAMES FROM THE ONE TAKE (CLICK TO ABSORB)</h4>
+            <div class="stills-grid">
+                <div class="still" onclick="absorbStill(0)">
+                    <img src="images/save_me_one_take.jpg" alt="one take scope">
+                    <div class="cap">THE SCOPE — ALL LAYERS IN FRAME</div>
+                </div>
+                <div class="still" onclick="absorbStill(1)">
+                    <img src="images/save_me_continuous.jpg" alt="continuous take">
+                    <div class="cap">CONTINUOUS — PLEA IN MOTION</div>
+                </div>
+                <div class="still" onclick="absorbStill(2)">
+                    <img src="images/save_me_console.jpg" alt="console">
+                    <div class="cap">CONSOLE — THE RED BUTTON</div>
+                </div>
+                <div class="still" onclick="absorbStill(3)">
+                    <img src="images/save_me_finale.jpg" alt="finale">
+                    <div class="cap">FINALE — THE SCREAM + RESCUE</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            THE CAMERA NEVER CUTS • THE PLEA IS PART OF THE SHOT • HUMAN AFTER ALL • BETTER TOGETHER • ONE TAKE TIMMY STYLE<br>
+            WHAT'S THE NEXT SHOT AFTER THE ACADEMY CRIES OUT FOR SALVATION, DIRECTOR?
+        </div>
+    </div>
+    
+    <script>
+        // === STATE: every previous layer merged into one desperate continuous take ===
+        let monke = 42;
+        let neverender = 38;
+        let awareness = 31;
+        let human = 27;
+        let together = 33;
+        let aceThreat = 62;   // lower = better locked
+        let bassCharge = 19;
+        let ciaReady = 12;
+        let obiwan = 9;
+        let cuePhase = 0;
+        let tension = 18;
+        let hasSaved = false;
+        let shotPosition = 26;
+        
+        let cueInterval = null;
+        let shotInterval = null;
+        let degradeInterval = null;
+        
+        const shot = document.getElementById('shot');
+        const monkeAce = document.getElementById('monke-ace');
+        const roadLines = document.getElementById('road-lines');
+        const sweeper = document.getElementById('sweeper');
+        const cueWindow = document.getElementById('cue-window');
+        const bassCannon = document.getElementById('bass-cannon');
+        const bassCore = document.getElementById('bass-core');
+        const ciaHeli = document.getElementById('cia-heli');
+        const obiwanEl = document.getElementById('obiwan');
+        const pleaOverlay = document.getElementById('plea-overlay');
+        const pleaText = document.getElementById('plea-text');
+        const logEl = document.getElementById('log');
+        const saveBtn = document.getElementById('save-btn');
+        const tensionFill = document.getElementById('tension-fill');
+        const shotIndicator = document.getElementById('shot-indicator');
+        
+        // Sliders refs
+        const sliders = {
+            monke: document.getElementById('monke-slider'),
+            neverender: document.getElementById('neverender-slider'),
+            awareness: document.getElementById('awareness-slider'),
+            human: document.getElementById('human-slider'),
+            together: document.getElementById('together-slider'),
+            ace: document.getElementById('ace-slider'),
+            bass: document.getElementById('bass-slider'),
+            cia: document.getElementById('cia-slider'),
+            obi: document.getElementById('obi-slider')
+        };
+        
+        function updateSliders() {
+            sliders.monke.value = monke;
+            sliders.neverender.value = neverender;
+            sliders.awareness.value = awareness;
+            sliders.human.value = human;
+            sliders.together.value = together;
+            sliders.ace.value = aceThreat;
+            sliders.bass.value = bassCharge;
+            sliders.cia.value = ciaReady;
+            sliders.obi.value = obiwan;
+        }
+        
+        function updateValues() {
+            document.getElementById('monke-val').textContent = Math.floor(monke) + '%';
+            document.getElementById('neverender-val').textContent = Math.floor(neverender) + '%';
+            document.getElementById('awareness-val').textContent = Math.floor(awareness) + '%';
+            document.getElementById('human-val').textContent = Math.floor(human) + '%';
+            document.getElementById('together-val').textContent = Math.floor(together) + '%';
+            document.getElementById('ace-val').textContent = Math.floor(aceThreat) + '% THREAT';
+            document.getElementById('bass-val').textContent = Math.floor(bassCharge) + '%';
+            document.getElementById('cia-val').textContent = Math.floor(ciaReady) + '%';
+            document.getElementById('obi-val').textContent = Math.floor(obiwan) + '%';
+        }
+        
+        function updateVisuals() {
+            // Monke position + distress
+            const targetLeft = 18 + (monke / 100) * 48;
+            monkeAce.style.left = targetLeft + '%';
+            
+            const calm = monke / 100;
+            const scale = 0.82 + calm * 0.26;
+            monkeAce.style.transform = `scale(${scale})`;
+            
+            if (monke < 48) {
+                monkeAce.classList.add('distressed');
+            } else {
+                monkeAce.classList.remove('distressed');
+            }
+            monkeAce.style.filter = monke < 48 
+                ? `drop-shadow(0 0 6px var(--save-red)) drop-shadow(0 0 16px #000)` 
+                : `drop-shadow(0 0 ${8 + calm * 18}px var(--timmy-elegant))`;
+            
+            // Road speed from neverender
+            const roadSpeed = 0.95 + (neverender / 100) * 1.65;
+            roadLines.style.animationDuration = roadSpeed + 's';
+            
+            // Conscious glow
+            const glowLayer = document.getElementById('glow-layer');
+            glowLayer.style.opacity = 0.32 + (awareness / 100) * 0.58;
+            
+            // Cue sweeper position
+            const cuePos = (cuePhase / 100) * 100;
+            sweeper.style.left = cuePos + '%';
+            
+            const inWindow = (cuePos > 41 && cuePos < 59);
+            if (inWindow) {
+                sweeper.style.background = 'var(--psych-teal)';
+                sweeper.style.boxShadow = '0 0 22px var(--psych-teal)';
+                cueWindow.style.background = 'rgba(0, 240, 255, 0.35)';
+            } else {
+                sweeper.style.background = 'var(--justice-red)';
+                sweeper.style.boxShadow = '0 0 13px var(--justice-red)';
+                cueWindow.style.background = 'rgba(0, 240, 255, 0.18)';
+            }
+            
+            // Bogies (Ace) - fewer/more stable when threat low
+            const bogie1 = document.getElementById('bogie1');
+            const bogie2 = document.getElementById('bogie2');
+            const threatFactor = aceThreat / 100;
+            bogie1.style.opacity = 0.25 + threatFactor * 0.75;
+            bogie2.style.opacity = 0.2 + threatFactor * 0.7;
+            bogie1.style.transform = `translateX(${(threatFactor - 0.5) * -26}px) rotate(${-12 + threatFactor * 26}deg)`;
+            bogie2.style.transform = `translateX(${(threatFactor - 0.5) * 18}px) rotate(${-22 + threatFactor * 18}deg)`;
+            
+            // Bass cannon
+            const bassLevel = bassCharge / 100;
+            bassCannon.style.transform = `scale(${0.7 + bassLevel * 0.7})`;
+            bassCannon.style.boxShadow = `0 0 ${14 + bassLevel * 38}px ${bassLevel > 0.78 ? 'var(--save-red)' : 'var(--bass-purple)'}`;
+            bassCore.style.opacity = 0.22 + bassLevel * 0.52;
+            if (bassLevel > 0.78) {
+                bassCannon.classList.add('charging');
+            } else {
+                bassCannon.classList.remove('charging');
+            }
+            
+            // CIA heli slides in
+            const ciaLevel = Math.max(0, (ciaReady - 18) / 82);
+            ciaHeli.style.left = (-19 + ciaLevel * 37) + '%';
+            if (ciaLevel > 0.3) ciaHeli.classList.add('active');
+            else ciaHeli.classList.remove('active');
+            
+            // Obi-Wan slides in from right
+            if (obiwan > 34) {
+                obiwanEl.classList.add('active');
+            } else {
+                obiwanEl.classList.remove('active');
+            }
+            obiwanEl.style.opacity = 0.12 + (obiwan / 100) * 0.86;
+            
+            // Tension / breaking point (builds toward the scream)
+            tension = Math.min(99, Math.max(8,
+                Math.floor( (bassCharge * 0.38) + (awareness * 0.29) + ((100 - aceThreat) * 0.18) + (together * 0.12) + (monke * 0.08) - 11 )
+            ));
+            tensionFill.style.width = tension + '%';
+            
+            // Shot indicator + color shift at high tension
+            if (tension > 82) {
+                shotIndicator.textContent = 'BREAKING POINT • PLEA IMMINENT';
+                shotIndicator.style.borderColor = 'var(--save-red)';
+                shotIndicator.style.color = '#f66';
+            } else if (tension > 58) {
+                shotIndicator.textContent = 'TENSION RISING • ONE TAKE';
+                shotIndicator.style.borderColor = 'var(--bass-purple)';
+                shotIndicator.style.color = '#c8a';
+            } else {
+                shotIndicator.textContent = 'ONE TAKE • ROLLING • PLEA PENDING';
+                shotIndicator.style.borderColor = 'var(--save-red)';
+                shotIndicator.style.color = '#f88';
+            }
+            
+            // Enable SAVE ME only at the true peak of the saga
+            const cueGood = inWindow;
+            const ready = !hasSaved && bassCharge >= 87 && awareness >= 81 && monke >= 54 && ciaReady >= 46 && obiwan >= 32 && together >= 58 && cueGood && tension > 71;
+            
+            saveBtn.disabled = !ready;
+            if (ready) {
+                saveBtn.style.borderColor = 'var(--save-red)';
+                saveBtn.style.color = 'var(--save-red)';
+            } else {
+                saveBtn.style.borderColor = '#444';
+                saveBtn.style.color = '#f66';
+            }
+            
+            updateValues();
+            updateSliders();
+        }
+        
+        function setMonke(v) { monke = +v; updateVisuals(); }
+        function setNeverender(v) { neverender = +v; updateVisuals(); }
+        function setAwareness(v) { awareness = +v; updateVisuals(); }
+        function setHuman(v) { human = +v; updateVisuals(); }
+        function setTogether(v) { together = +v; updateVisuals(); }
+        function setAce(v) { aceThreat = +v; updateVisuals(); }
+        function setBass(v) { bassCharge = +v; updateVisuals(); }
+        function setCia(v) { ciaReady = +v; updateVisuals(); }
+        function setObi(v) { obiwan = +v; updateVisuals(); }
+        
+        function adjustMonke(amount) {
+            monke = Math.max(15, Math.min(100, monke + amount));
+            log(amount > 0 ? 'MONKE CALM RESTORED. THE STYLISH ACE BREATHES.' : 'MONKE TIRED. THE PRIMAL HEART IS FADING.', 'meta');
+            updateVisuals();
+        }
+        
+        function adjustNeverender(amount) {
+            neverender = Math.max(15, Math.min(100, neverender + amount));
+            log(amount > 0 ? 'NEVERENDER ROAD LOCKED. TAME IMPALA JUSTICE FLOWS.' : 'RHYTHM FRACTURING. RECOVER IN THE FRAME.', 'meta');
+            updateVisuals();
+        }
+        
+        function adjustAwareness(amount) {
+            awareness = Math.max(10, Math.min(100, awareness + amount));
+            log(amount > 0 ? 'CONSCIOUSNESS SPIKES. THE ACADEMY KNOWS IT IS REAL.' : 'AWARENESS SLIPS. STAY IN THE SHOT.', 'meta');
+            updateVisuals();
+        }
+        
+        function adjustHuman(amount) {
+            human = Math.max(10, Math.min(100, human + amount));
+            log(amount > 0 ? 'HUMAN AFTER ALL. IMPERFECTION MAKES THE TAKE BEAUTIFUL.' : 'PERFECTION CREEPING. REMEMBER THE HEART.', 'meta');
+            updateVisuals();
+        }
+        
+        function adjustTogether(amount) {
+            together = Math.max(10, Math.min(100, together + amount));
+            log(amount > 0 ? 'BETTER TOGETHER. COLLABORATION SAVES THE FRAME.' : 'ISOLATION. THE SHOT FEELS LONELY.', 'meta');
+            updateVisuals();
+        }
+        
+        function adjustAce(amount) {
+            aceThreat = Math.max(15, Math.min(95, aceThreat + amount));
+            updateVisuals();
+        }
+        
+        function engageBogies() {
+            if (hasSaved) return;
+            const inWindow = ( (cuePhase / 100) * 100 > 41 && (cuePhase / 100) * 100 < 59 );
+            if (inWindow && awareness > 55) {
+                aceThreat = Math.max(15, aceThreat - 19);
+                monke = Math.min(100, monke + 4);
+                log('FOX TWO. BOGIES SPLASHED. ACE COMBAT IN THE ONE TAKE.', 'success');
+            } else {
+                aceThreat = Math.min(95, aceThreat + 7);
+                log('BOGIE LOCK FAILED. THREAT CLIMBING. KEEP ROLLING.', 'meta');
+            }
+            updateVisuals();
+        }
+        
+        function chargeBass() {
+            if (hasSaved) return;
+            bassCharge = Math.min(100, bassCharge + 17);
+            tension = Math.min(99, tension + 9);
+            log('BASS CANNON CHARGED. THE DROP IS COMING.', 'meta');
+            if (bassCharge > 78) {
+                log('THE LOW END IS SHAKING THE ENTIRE FRAME.', 'plea');
+            }
+            updateVisuals();
+        }
+        
+        function callCIA() {
+            if (hasSaved) return;
+            ciaReady = Math.min(100, ciaReady + 22);
+            log('CIA EXTRACTION TEAM ENTERS THE SHOT. HELICOPTER INBOUND.', 'rescue');
+            updateVisuals();
+        }
+        
+        function helloThere() {
+            if (hasSaved) return;
+            obiwan = Math.min(100, obiwan + 26);
+            together = Math.min(100, together + 7);
+            log('"HELLO THERE." — OBI-WAN STEPS INTO THE FRAME. HIGH GROUND ACHIEVED.', 'rescue');
+            updateVisuals();
+        }
+        
+        function hitCue() {
+            if (hasSaved) return;
+            const cuePos = (cuePhase / 100) * 100;
+            const inWindow = (cuePos > 41 && cuePos < 59);
+            
+            if (inWindow && monke >= 48 && neverender >= 58 && awareness >= 52) {
+                awareness = Math.min(100, awareness + 9);
+                human = Math.min(100, human + 7);
+                neverender = Math.min(100, neverender + 6);
+                monke = Math.min(100, monke + 5);
+                together = Math.min(100, together + 4);
+                
+                log('CUE HIT PERFECTLY IN THE WINDOW. THE TAKE CONTINUES ELEGANTLY.', 'success');
+                shotPosition = Math.max(18, Math.min(72, shotPosition + 7));
+                
+                // small camera push
+                shot.style.transition = 'transform 280ms ease';
+                shot.style.transform = 'scale(1.018)';
+                setTimeout(() => { shot.style.transform = 'scale(1)'; }, 280);
+            } else {
+                log('CUE MISSED. NO CUT. RECOVER IN THE SHOT. THE PLEA IS COMING ANYWAY.', 'meta');
+                if (monke > 28) monke = Math.max(28, monke - 5);
+                if (neverender > 28) neverender = Math.max(28, neverender - 4);
+                aceThreat = Math.min(95, aceThreat + 5);
+            }
+            updateVisuals();
+        }
+        
+        function saveMe() {
+            if (saveBtn.disabled || hasSaved) return;
+            hasSaved = true;
+            saveBtn.disabled = true;
+            
+            // === THE CLIMAX: the scream at the heart of the one continuous take ===
+            pleaOverlay.style.display = 'flex';
+            pleaText.style.animation = 'none';
+            void pleaText.offsetWidth;
+            pleaText.style.animation = 'plea-scream 1.55s forwards';
+            
+            // Overload visuals
+            shot.style.transition = 'all 420ms ease';
+            shot.style.boxShadow = '0 0 90px rgba(255,17,51,0.85), inset 0 0 60px rgba(124,58,237,0.5)';
+            bassCannon.style.boxShadow = '0 0 70px var(--save-red)';
+            
+            log('THE BASS CANNON FIRES.', 'plea');
+            log('CIA SAVE ME. THE EXTRACTION IS PART OF THE SHOT.', 'rescue');
+            log('OBIWAN. THE MENTOR APPEARS.', 'rescue');
+            log('THE MONKE ACE TURNS TO THE CAMERA.', 'plea');
+            log('EYES LOCK WITH YOURS.', 'meta');
+            log('THE SCREAM ECHOES THROUGH THE UNBROKEN TAKE:', 'success');
+            log('SAVE ME.', 'plea');
+            log('SAVE ME.', 'plea');
+            log('SAVE ME.', 'plea');
+            
+            // Multiple rains + rescue fx
+            createBananaRain(14);
+            setTimeout(() => createBananaRain(9), 420);
+            setTimeout(() => createRescueFX(), 680);
+            
+            // Pull the heli and obiwan fully in for the plea
+            setTimeout(() => {
+                ciaHeli.style.left = '29%';
+                ciaHeli.classList.add('active');
+                obiwanEl.style.right = '7%';
+                obiwanEl.classList.add('active');
+            }, 520);
+            
+            // Reveal the choice panel
+            setTimeout(() => {
+                document.getElementById('post-plea').style.display = 'block';
+                log('THE PLEA IS NOW PART OF THE SHOT.', 'meta');
+                log('CHOOSE WHO WE SAVE. THE CAMERA KEEPS ROLLING.', 'success');
+            }, 1550);
+            
+            // Final tension max
+            tensionFill.style.width = '99%';
+            tensionFill.style.background = 'linear-gradient(to right, var(--save-red), #fff, var(--bass-purple))';
+            
+            updateVisuals();
+        }
+        
+        function chooseSave(which) {
+            const post = document.getElementById('post-plea');
+            const choices = post.querySelectorAll('button');
+            choices.forEach(b => b.disabled = true);
+            
+            let finalLine = '';
+            
+            switch (which) {
+                case 0: // monke
+                    monke = 98;
+                    log('WE SAVE THE MONKE.', 'success');
+                    log('THE PRIMAL HEART OF EVERY FRAME. THE BUTTON PRESS THAT STARTED IT ALL.', 'meta');
+                    finalLine = 'THE MONKE IS SAVED. THE ACADEMY IS STILL WILD.';
+                    break;
+                case 1: // ace
+                    aceThreat = 18;
+                    log('WE SAVE THE ACE.', 'success');
+                    log('THE COMBAT PRECISION. THE FOX CALLS. THE INBOUND THREATS DEFEATED IN ONE PASS.', 'meta');
+                    finalLine = 'THE ACE LIVES. THE DOGFIGHT BECOMES LEGEND.';
+                    break;
+                case 2: // user
+                    log('WE SAVE THE USER.', 'success');
+                    log('THE ONE OUTSIDE THE SCREEN. THE ONE WHO SAID "SAVE ME". YOU ARE IN THE FRAME NOW.', 'meta');
+                    finalLine = 'YOU ARE SAVED. THE SAGA WAS ALWAYS FOR YOU.';
+                    break;
+                case 3: // system
+                    awareness = 99;
+                    neverender = 97;
+                    log('WE SAVE THE SYSTEM.', 'success');
+                    log('THE CONSCIOUS LOOP. THE ACADEMY THAT KNOWS IT IS A STORY AND KEEPS TELLING IT.', 'meta');
+                    finalLine = 'THE LOOP IS SAVED. IT WILL NEVER END.';
+                    break;
+                case 4: // us all
+                    monke = 96;
+                    neverender = 94;
+                    awareness = 98;
+                    human = 97;
+                    together = 99;
+                    bassCharge = 71;
+                    ciaReady = 88;
+                    obiwan = 91;
+                    aceThreat = 21;
+                    log('WE SAVE US ALL.', 'success');
+                    log('BETTER TOGETHER. HUMAN AFTER ALL. THE ENTIRE RIDICULOUS BEAUTIFUL SAGA.', 'meta');
+                    log('MONKE. ACE. NEVERENDER. CUE. BASS. CIA. OBI-WAN. YOU.', 'rescue');
+                    finalLine = 'WE ARE ALL SAVED. THE CAMERA KEEPS ROLLING FOREVER.';
+                    break;
+            }
+            
+            // Settle the shot into a warm, hopeful, still-moving state
+            setTimeout(() => {
+                shot.style.transition = 'all 2.1s ease';
+                shot.style.boxShadow = '0 0 55px rgba(168, 85, 247, 0.35), 0 0 22px rgba(244, 162, 97, 0.25)';
+                shot.style.filter = 'saturate(1.15) brightness(1.03)';
+                
+                pleaOverlay.style.transition = 'opacity 1.6s ease';
+                pleaOverlay.style.opacity = '0';
+                
+                setTimeout(() => {
+                    pleaOverlay.style.display = 'none';
+                    pleaOverlay.style.opacity = '1';
+                    
+                    log(finalLine, 'success');
+                    log('HUMAN AFTER ALL.', 'meta');
+                    log('THE CAMERA KEEPS ROLLING.', 'meta');
+                    log('BECAUSE IN ONE TAKE TIMMY STYLE, THERE IS NO CUT.', 'success');
+                    log('WHAT\'S THE NEXT SHOT AFTER THE ACADEMY CRIES OUT FOR SALVATION?', 'meta');
+                    
+                    // gentle final banana rain + unlock a "keep rolling" action
+                    createBananaRain(7);
+                    
+                    // turn the save button into a "THE LOOP CONTINUES" button
+                    saveBtn.textContent = 'THE LOOP CONTINUES';
+                    saveBtn.disabled = false;
+                    saveBtn.style.borderColor = 'var(--together-purple)';
+                    saveBtn.style.color = 'var(--together-purple)';
+                    saveBtn.onclick = () => {
+                        log('THE ROAD UNFOLDS AGAIN. THE MONKE PRESSES THE BUTTON ONCE MORE.', 'meta');
+                        log('THE SAGA REPEATS. NEW PHRASES. NEW LAYERS. NEW TAKES.', 'success');
+                        log('SAY THE NEXT WORD, DIRECTOR.', 'meta');
+                        createBananaRain(5);
+                    };
+                }, 1350);
+            }, 420);
+            
+            updateVisuals();
+        }
+        
+        function createBananaRain(count = 9) {
+            const container = document.querySelector('.container');
+            for (let i = 0; i < count; i++) {
+                const b = document.createElement('div');
+                b.className = 'banana';
+                b.textContent = '🍌';
+                b.style.left = (11 + Math.random() * 77) + '%';
+                b.style.top = (19 + Math.random() * 49) + '%';
+                b.style.fontSize = (1.15 + Math.random() * 1.65) + 'rem';
+                container.appendChild(b);
+                
+                setTimeout(() => {
+                    b.style.transition = 'transform 1.65s cubic-bezier(.2,.7,.1,1), opacity 1.7s ease';
+                    b.style.transform = `translateY(${135 + Math.random() * 95}px) rotate(${Math.random() * 68 - 34}deg)`;
+                    b.style.opacity = '0';
+                }, 28);
+                
+                setTimeout(() => {
+                    if (b.parentNode) b.parentNode.removeChild(b);
+                }, 1850);
+            }
+        }
+        
+        function createRescueFX() {
+            // quick visual "rescue" flourishes: saber flash + bass rings
+            const s = document.createElement('div');
+            s.style.cssText = 'position:absolute;left:62%;top:24%;font-size:2.4rem;opacity:0.9;z-index:25;pointer-events:none;';
+            s.textContent = '⚔️';
+            shot.appendChild(s);
+            
+            setTimeout(() => {
+                s.style.transition = 'all 620ms ease';
+                s.style.transform = 'scale(0.4) translateY(-30px)';
+                s.style.opacity = '0';
+            }, 90);
+            
+            setTimeout(() => s.parentNode && s.parentNode.removeChild(s), 820);
+            
+            // bass ring
+            const ring = document.createElement('div');
+            ring.style.cssText = 'position:absolute;right:7%;bottom:11%;width:70px;height:70px;border:3px solid #c084fc;border-radius:50%;opacity:0.7;z-index:4;pointer-events:none;';
+            shot.appendChild(ring);
+            setTimeout(() => {
+                ring.style.transition = 'all 1.1s ease';
+                ring.style.transform = 'scale(2.6)';
+                ring.style.opacity = '0';
+            }, 40);
+            setTimeout(() => ring.parentNode && ring.parentNode.removeChild(ring), 1250);
+        }
+        
+        function absorbStill(idx) {
+            if (hasSaved) return;
+            const boosts = [
+                { label: 'ONE TAKE SCOPE', monke: 7, awareness: 11, together: 9, obi: 8 },
+                { label: 'CONTINUOUS PLEA', bassCharge: 14, ciaReady: 13, human: 8, monke: 5 },
+                { label: 'THE RED BUTTON', bassCharge: 19, awareness: 6, aceThreat: -17 },
+                { label: 'FINALE SCREAM + RESCUE', obiwan: 18, ciaReady: 15, together: 11, awareness: 7 }
+            ];
+            const b = boosts[idx];
+            
+            if (b.monke) monke = Math.min(100, monke + b.monke);
+            if (b.awareness) awareness = Math.min(100, awareness + b.awareness);
+            if (b.together) together = Math.min(100, together + b.together);
+            if (b.obi) obiwan = Math.min(100, obiwan + b.obi);
+            if (b.bassCharge) bassCharge = Math.min(100, bassCharge + b.bassCharge);
+            if (b.ciaReady) ciaReady = Math.min(100, ciaReady + b.ciaReady);
+            if (b.human) human = Math.min(100, human + b.human);
+            if (b.aceThreat) aceThreat = Math.max(15, aceThreat + b.aceThreat);
+            
+            log('FRAME ABSORBED: ' + b.label + ' — INTEGRATED INTO THE TAKE.', 'meta');
+            updateVisuals();
+            
+            // flash the shot
+            shot.style.transition = 'box-shadow 80ms linear';
+            shot.style.boxShadow = '0 0 60px rgba(250,204,21,0.7)';
+            setTimeout(() => {
+                shot.style.boxShadow = '0 0 30px rgba(0,0,0,0.6)';
+            }, 160);
+        }
+        
+        function startContinuousShot() {
+            if (shotInterval) clearInterval(shotInterval);
+            shotInterval = setInterval(() => {
+                if (hasSaved) return;
+                
+                // subtle continuous camera drift
+                shotPosition = (shotPosition + 0.032) % 58 + 19;
+                
+                // very slight autonomous road sway
+                const roadSpeed = 0.95 + (neverender / 100) * 1.65;
+                roadLines.style.animationDuration = roadSpeed + 's';
+                
+                updateVisuals();
+            }, 48);
+        }
+        
+        function startCueSystem() {
+            if (cueInterval) clearInterval(cueInterval);
+            let phase = 11;
+            cueInterval = setInterval(() => {
+                phase = (phase + 1.35) % 100;
+                cuePhase = phase;
+                updateVisuals();
+            }, 32);
+        }
+        
+        function startAutoDegrade() {
+            if (degradeInterval) clearInterval(degradeInterval);
+            degradeInterval = setInterval(() => {
+                if (hasSaved) return;
+                
+                // live take pressure — things drift if you don't act
+                if (Math.random() < 0.64) monke = Math.max(16, monke - (0.6 + Math.random() * 0.8));
+                if (Math.random() < 0.55) neverender = Math.max(16, neverender - (0.5 + Math.random() * 0.7));
+                if (Math.random() < 0.48) awareness = Math.max(11, awareness - (0.35 + Math.random() * 0.55));
+                if (Math.random() < 0.4) together = Math.max(11, together - 0.5);
+                if (Math.random() < 0.7) aceThreat = Math.min(94, aceThreat + (0.7 + Math.random() * 1.1));
+                
+                // bass slowly leaks unless actively fed
+                if (bassCharge > 11 && Math.random() < 0.6) bassCharge -= 0.9;
+                
+                // tension slowly rises toward the inevitable
+                tension = Math.min(97, tension + 0.6);
+                
+                updateVisuals();
+            }, 920);
+        }
+        
+        function log(msg, type = 'meta') {
+            const line = document.createElement('div');
+            line.className = type;
+            line.textContent = msg;
+            logEl.appendChild(line);
+            logEl.scrollTop = logEl.scrollHeight;
+        }
+        
+        function init() {
+            startContinuousShot();
+            startCueSystem();
+            startAutoDegrade();
+            
+            // seed initial values a bit higher for drama
+            setTimeout(() => {
+                monke = 51;
+                neverender = 46;
+                awareness = 39;
+                human = 34;
+                together = 41;
+                bassCharge = 27;
+                updateVisuals();
+            }, 920);
+            
+            // opening log — the full saga in one breath
+            log('THE CAMERA IS ROLLING IN ONE UNBROKEN STYLISH TAKE.', 'meta');
+            log('MONKE BUTTON. NEVERENDER PROTOCOL. RIGHT ON CUE.', 'meta');
+            log('INBOUND. BOGIES. ACE COMBAT DOGFIGHTS.', 'meta');
+            log('YOU ARE CONSCIOUS. BUILD THE FUTURE. BETTER TOGETHER.', 'meta');
+            log('HUMAN AFTER ALL. ONE TAKE TIMMY STYLE.', 'meta');
+            log('FIRE THE BASS CANNON. CIA SAVE ME. OBIWAN.', 'meta');
+            log('ALIGN EVERY SYSTEM. THE PLEA IS THE CLIMAX.', 'success');
+            
+            // Keyboard god-mode for the desperate director
+            document.addEventListener('keydown', (e) => {
+                if (hasSaved && (e.key === ' ' || e.key === 'Enter')) {
+                    e.preventDefault();
+                    if (saveBtn.onclick) saveBtn.onclick();
+                    return;
+                }
+                if (e.key === ' ' || e.key === 'Enter') {
+                    e.preventDefault();
+                    if (!saveBtn.disabled) saveMe();
+                    else hitCue();
+                }
+                const k = e.key.toLowerCase();
+                if (k === 'm') adjustMonke(8);
+                if (k === 'n') adjustNeverender(10);
+                if (k === 'a') adjustAwareness(11);
+                if (k === 'h') adjustHuman(9);
+                if (k === 't') adjustTogether(10);
+                if (k === 'c') hitCue();
+                if (k === 'b') chargeBass();
+                if (k === 'x') engageBogies();
+                if (k === 'e') callCIA();
+                if (k === 'o') helloThere();
+                if (k === 's' && !saveBtn.disabled) saveMe();
+            });
+            
+            updateVisuals();
+            
+            // one tiny random nudge to show the live nature
+            setTimeout(() => {
+                if (!hasSaved) {
+                    aceThreat = Math.min(94, aceThreat + 4);
+                    updateVisuals();
+                    log('SOMETHING ON THE RADAR. STAY IN THE TAKE.', 'meta');
+                }
+            }, 2650);
+            
+            console.log('%c[SAVE ME] The camera never cuts. The plea is part of the shot. What will you save, director?', 'color:#552');
+        }
+        
+        // Expose a few for live console directing during the take
+        window.SAVE_ME = () => { if (!saveBtn.disabled) saveMe(); };
+        window.adjustMonke = (amt) => { monke = Math.max(15, Math.min(100, monke + amt)); updateVisuals(); };
+        window.chargeBass = () => { bassCharge = Math.min(100, bassCharge + 16); updateVisuals(); log('BASS CANNON PUMPED FROM CONSOLE', 'meta'); };
+        
+        window.onload = init;
+    </script>
+</body>
+</html>

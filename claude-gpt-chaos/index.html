@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GET CLAUDE AND GPT IN ON THE CHAOS • THE MODELS JOIN THE ONE TAKE</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&amp;display=swap');
+
+        :root {
+            --psych-pink: #ff00aa;
+            --psych-teal: #00f0ff;
+            --justice-red: #e30613;
+            --timmy-elegant: #c084fc;
+            --save-red: #ff1133;
+            --bass-purple: #7c3aed;
+            --obi-gold: #fde047;
+            --spin-cyan: #67e8f9;
+            --namaste-gold: #fde047;
+            --dino-green: #4ade80;
+            --ent-green: #22c55e;
+            --flood-blue: #38bdf8;
+            --siege-orange: #f97316;
+            --claude-orange: #d97706;
+            --claude-warm: #f59e0b;
+            --gpt-teal: #14b8a6;
+            --gpt-green: #10b981;
+            --chaos-violet: #8b5cf6;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: #0a0a12;
+            color: #f0f0f0;
+            font-family: "Press Start 2P", monospace;
+            min-height: 100vh;
+            overflow-x: hidden;
+            background-image:
+                radial-gradient(circle at 20% 25%, rgba(217, 119, 6, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 75%, rgba(20, 184, 166, 0.07) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.05) 0%, transparent 70%);
+        }
+
+        .container { max-width: 1120px; margin: 0 auto; padding: 1.25rem; position: relative; z-index: 2; }
+
+        .header {
+            text-align: center;
+            margin-bottom: 0.9rem;
+            border-bottom: 5px solid var(--chaos-violet);
+            padding-bottom: 0.7rem;
+        }
+
+        .header h1 {
+            font-size: 1.35rem;
+            background: linear-gradient(90deg, var(--claude-warm), var(--gpt-teal), var(--psych-pink), var(--chaos-violet));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.2rem;
+            letter-spacing: 2px;
+            line-height: 1.5;
+        }
+
+        .header .subtitle { font-size: 0.46rem; color: #888; letter-spacing: 1.5px; }
+
+        .shot-container {
+            background: #111;
+            border: 7px solid #222;
+            padding: 0.85rem;
+            position: relative;
+            height: 480px;
+            overflow: hidden;
+            margin-bottom: 0.85rem;
+        }
+
+        .continuous-shot {
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 48% 38%, #1c1c28 0%, #0a0a12 68%);
+            position: relative;
+            overflow: hidden;
+            border: 2px solid rgba(34, 34, 34, 0.8);
+        }
+
+        .shot-overlay {
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(90deg, transparent 0px, transparent 2px, rgba(250, 204, 21, 0.02) 2px, rgba(250, 204, 21, 0.02) 4px);
+            pointer-events: none;
+            animation: film-grain 0.09s infinite;
+            z-index: 3;
+        }
+
+        .camera-frame { position: absolute; inset: 14px; border: 2px solid rgba(250, 204, 21, 0.28); pointer-events: none; z-index: 4; }
+
+        .rubble-bg {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(180deg, #2a2a32 0%, #15151c 100%);
+            opacity: 0.7;
+            z-index: 1;
+        }
+
+        .flood {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 28%;
+            background: linear-gradient(180deg, transparent 0%, rgba(56,189,248,0.35) 40%, rgba(56,189,248,0.55) 100%);
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .neverender-road {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 30%;
+            background: linear-gradient(#222 0%, #151515 38%, #0a0a12 100%);
+            z-index: 4;
+            overflow: hidden;
+        }
+
+        .road-lines {
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(90deg, transparent 0px, transparent 28px, #444 28px, #444 32px);
+            animation: road-move 1.05s linear infinite;
+        }
+
+        .monke-ace {
+            position: absolute;
+            font-size: 3rem;
+            bottom: 22%;
+            left: 14%;
+            z-index: 12;
+            filter: drop-shadow(0 0 12px var(--timmy-elegant));
+            transition: left 0.18s linear;
+        }
+
+        .copilot {
+            position: absolute;
+            font-size: 2.2rem;
+            bottom: 21%;
+            left: 28%;
+            z-index: 13;
+            transition: transform 0.06s linear;
+        }
+
+        .ent, .dino { position: absolute; font-size: 1.9rem; z-index: 10; }
+
+        .ai-entity {
+            position: absolute;
+            border-radius: 50%;
+            z-index: 14;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.55rem;
+            text-align: center;
+            line-height: 1.4;
+            letter-spacing: 1px;
+            transition: transform 0.2s ease, opacity 0.3s;
+            opacity: 0.15;
+        }
+
+        .ai-entity.active { opacity: 1; }
+
+        .claude-ai {
+            width: 78px;
+            height: 78px;
+            top: 18%;
+            left: 8%;
+            background: radial-gradient(circle, rgba(245,158,11,0.55) 0%, rgba(217,119,6,0.2) 70%);
+            border: 3px solid var(--claude-warm);
+            box-shadow: 0 0 24px rgba(245,158,11,0.4);
+            color: var(--claude-warm);
+            animation: claude-think 2.8s ease-in-out infinite;
+        }
+
+        .gpt-ai {
+            width: 72px;
+            height: 72px;
+            top: 14%;
+            right: 12%;
+            background: radial-gradient(circle, rgba(20,184,166,0.55) 0%, rgba(16,185,129,0.2) 70%);
+            border: 3px solid var(--gpt-teal);
+            box-shadow: 0 0 24px rgba(20,184,166,0.4);
+            color: var(--gpt-teal);
+            animation: gpt-spin 1.2s linear infinite;
+        }
+
+        .token-stream {
+            position: absolute;
+            inset: 0;
+            z-index: 8;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .token {
+            position: absolute;
+            font-size: 0.5rem;
+            color: var(--chaos-violet);
+            opacity: 0.7;
+            animation: token-float 2s linear infinite;
+        }
+
+        .cue-overlay { position: absolute; top: 28%; left: 0; right: 0; height: 5px; background: rgba(227, 6, 19, 0.28); z-index: 15; }
+        .cue-sweeper { position: absolute; top: -10px; width: 18px; height: 22px; background: var(--justice-red); border-radius: 50%; box-shadow: 0 0 14px var(--justice-red); z-index: 16; transition: left 0.04s linear; }
+
+        .bass-cannon {
+            position: absolute;
+            bottom: 12%;
+            left: 6%;
+            width: 68px;
+            height: 68px;
+            border: 4px solid var(--bass-purple);
+            border-radius: 50%;
+            z-index: 11;
+        }
+
+        .bass-cannon.charging { animation: bass-pulse 0.6s infinite alternate; }
+
+        .chaos-vortex {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.4) 0%, rgba(10, 10, 18, 0.92) 72%);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 0.5rem;
+            z-index: 30;
+            text-align: center;
+        }
+
+        .chaos-text { font-size: 0.75rem; color: var(--chaos-violet); letter-spacing: 3px; line-height: 1.6; text-shadow: 0 0 20px var(--claude-warm), 0 0 30px var(--gpt-teal); }
+
+        .shot-indicator { position: absolute; bottom: 8px; left: 12px; font-size: 0.38rem; color: #666; z-index: 18; }
+        .tension-bar { position: absolute; top: 8px; right: 12px; width: 120px; height: 8px; background: #222; border: 1px solid #444; z-index: 18; }
+        .tension-fill { height: 100%; background: linear-gradient(90deg, var(--claude-warm), var(--gpt-teal), var(--chaos-violet)); width: 50%; transition: width 0.3s; }
+
+        .systems-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 0.45rem; margin-bottom: 0.7rem; }
+        .system { background: #151520; border: 2px solid #2a2a3a; padding: 0.45rem; font-size: 0.38rem; }
+        .system h4 { margin-bottom: 0.28rem; color: #aaa; }
+        .system .value { font-size: 0.65rem; margin-bottom: 0.28rem; color: var(--psych-teal); }
+        .system input[type="range"] { width: 100%; margin-bottom: 0.28rem; }
+        .mini-btns { display: flex; gap: 0.2rem; flex-wrap: wrap; }
+
+        .controls { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 0.7rem; }
+        .btn {
+            background: #1a1a28;
+            border: 2px solid #444;
+            color: #ccc;
+            font-family: inherit;
+            font-size: 0.4rem;
+            padding: 0.48rem 0.6rem;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+        .btn:hover:not(:disabled) { border-color: var(--psych-teal); color: var(--psych-teal); }
+        .btn:disabled { opacity: 0.35; cursor: not-allowed; }
+        .btn.action-btn { border-color: var(--justice-red); color: var(--justice-red); }
+        .btn.chaos-btn { border-color: var(--chaos-violet); color: var(--chaos-violet); font-size: 0.46rem; padding: 0.6rem 0.8rem; line-height: 1.5; }
+
+        .log { background: #0d0d16; border: 3px solid #222; padding: 0.6rem; height: 140px; overflow-y: auto; font-size: 0.36rem; line-height: 1.6; margin-bottom: 0.7rem; }
+        .log .meta { color: #666; }
+        .log .success { color: var(--chaos-violet); }
+        .log .claude { color: var(--claude-warm); }
+        .log .gpt { color: var(--gpt-teal); }
+        .log .ent { color: var(--ent-green); }
+
+        .post-chaos { display: none; background: #12121c; border: 3px solid var(--chaos-violet); padding: 0.7rem; margin-bottom: 0.7rem; }
+        .post-chaos h3 { font-size: 0.48rem; color: var(--chaos-violet); margin-bottom: 0.45rem; text-align: center; line-height: 1.5; }
+        .chaos-choices { display: flex; flex-wrap: wrap; gap: 0.3rem; justify-content: center; }
+
+        .stills h4 { font-size: 0.42rem; color: #777; margin-bottom: 0.4rem; }
+        .stills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 0.4rem; margin-bottom: 0.7rem; }
+        .still { border: 2px solid #333; cursor: pointer; overflow: hidden; }
+        .still:hover { border-color: var(--chaos-violet); }
+        .still img { width: 100%; height: 120px; object-fit: cover; display: block; }
+        .still .cap { font-size: 0.32rem; padding: 0.28rem; color: #888; background: #111; }
+
+        .footer { font-size: 0.34rem; color: #555; text-align: center; line-height: 1.7; }
+        .particle { position: absolute; pointer-events: none; z-index: 50; }
+
+        @keyframes film-grain { 0%, 100% { opacity: 0.95; } 50% { opacity: 1; } }
+        @keyframes road-move { from { transform: translateX(0); } to { transform: translateX(-32px); } }
+        @keyframes claude-think { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.06); } }
+        @keyframes gpt-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        @keyframes token-float { from { transform: translateY(0); opacity: 0.8; } to { transform: translateY(-40px); opacity: 0; } }
+        @keyframes bass-pulse { from { box-shadow: 0 0 12px var(--bass-purple); } to { box-shadow: 0 0 30px var(--chaos-violet); } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>GET CLAUDE AND GPT<br>IN ON THE CHAOS</h1>
+            <div class="subtitle">ISENGARD IS RUBBLE • ENTS MARCH • MODELS INCOMING • ONE TAKE • NEVER CUT</div>
+        </div>
+
+        <div class="shot-container">
+            <div class="continuous-shot" id="shot">
+                <div class="shot-overlay"></div>
+                <div class="camera-frame"></div>
+                <div class="tension-bar"><div class="tension-fill" id="tension-fill"></div></div>
+
+                <div class="rubble-bg"></div>
+                <div class="flood"></div>
+                <div class="neverender-road"><div class="road-lines"></div></div>
+
+                <div class="ent" style="left: 50%; bottom: 26%;">🌳</div>
+                <div class="dino" style="left: 58%; bottom: 24%;">🦖</div>
+                <div class="monke-ace" id="monke-ace">🐵✈️</div>
+                <div class="copilot" id="copilot">🛫🐵</div>
+
+                <div class="ai-entity claude-ai" id="claude-ai">CLAUDE</div>
+                <div class="ai-entity gpt-ai" id="gpt-ai">GPT</div>
+                <div class="token-stream" id="token-stream"></div>
+
+                <div class="cue-overlay"><div class="cue-sweeper" id="sweeper" style="left: 0%;"></div></div>
+                <div class="bass-cannon" id="bass-cannon"></div>
+
+                <div class="chaos-vortex" id="chaos-vortex">
+                    <div class="chaos-text">CLAUDE AND GPT<br>JOIN THE CHAOS</div>
+                </div>
+
+                <div class="shot-indicator" id="shot-indicator">ONE TAKE • MODELS STANDBY • CHAOS PENDING</div>
+            </div>
+        </div>
+
+        <div class="systems-grid">
+            <div class="system"><h4>MONKE CALM 🐵</h4><div class="value" id="monke-val">62%</div><input type="range" min="15" max="100" value="62" oninput="set('monke',this.value)"><div class="mini-btns"><button class="btn" onclick="adj('monke',8)">CALM</button></div></div>
+            <div class="system"><h4>NEVERENDER</h4><div class="value" id="neverender-val">58%</div><input type="range" min="15" max="100" value="58" oninput="set('neverender',this.value)"><div class="mini-btns"><button class="btn" onclick="adj('neverender',10)">LOCK</button></div></div>
+            <div class="system"><h4>BROTHER BOND</h4><div class="value" id="bond-val">55%</div><input type="range" min="0" max="100" value="55" oninput="set('bond',this.value)"><div class="mini-btns"><button class="btn" onclick="adj('bond',10)">GREET</button></div></div>
+            <div class="system"><h4>ENT RAGE 🌳</h4><div class="value" id="ent-val">78%</div><input type="range" min="0" max="100" value="78" oninput="set('ent',this.value)"></div>
+            <div class="system"><h4>MOAR DINOS 🦕</h4><div class="value" id="dino-val">70%</div><input type="range" min="0" max="100" value="70" oninput="set('dino',this.value)"></div>
+            <div class="system"><h4>SIEGE AFTERMATH</h4><div class="value" id="siege-val">85%</div><input type="range" min="0" max="100" value="85" oninput="set('siege',this.value)"></div>
+            <div class="system"><h4>BASS CANNON</h4><div class="value" id="bass-val">48%</div><input type="range" min="5" max="100" value="48" oninput="set('bassCharge',this.value)"><div class="mini-btns"><button class="btn action-btn" onclick="chargeBass()">CHARGE</button></div></div>
+            <div class="system" style="border-color:var(--claude-warm);"><h4>CLAUDE SYNC 🟠</h4><div class="value" id="claude-val">8%</div><input type="range" min="0" max="100" value="8" oninput="set('claude',this.value)"><div class="mini-btns"><button class="btn" onclick="pingClaude()" style="border-color:var(--claude-warm);color:var(--claude-warm);">PING</button></div></div>
+            <div class="system" style="border-color:var(--gpt-teal);"><h4>GPT VELOCITY 🟢</h4><div class="value" id="gpt-val">6%</div><input type="range" min="0" max="100" value="6" oninput="set('gpt',this.value)"><div class="mini-btns"><button class="btn" onclick="promptGpt()" style="border-color:var(--gpt-teal);color:var(--gpt-teal);">PROMPT</button></div></div>
+            <div class="system" style="border-color:var(--chaos-violet);"><h4>MODEL CHAOS 💜</h4><div class="value" id="chaos-val">4%</div><input type="range" min="0" max="100" value="4" oninput="set('chaos',this.value)"></div>
+            <div class="system"><h4>TOKEN PRESSURE</h4><div class="value" id="token-val">10%</div><input type="range" min="0" max="100" value="10" oninput="set('tokens',this.value)"><div class="mini-btns"><button class="btn" onclick="mergeContexts()">MERGE</button></div></div>
+        </div>
+
+        <div class="controls">
+            <button class="btn action-btn" onclick="hitCue()">HIT THE CUE</button>
+            <button class="btn" onclick="pingClaude()" style="border-color:var(--claude-warm);color:var(--claude-warm);">PING CLAUDE</button>
+            <button class="btn" onclick="promptGpt()" style="border-color:var(--gpt-teal);color:var(--gpt-teal);">PROMPT GPT</button>
+            <button class="btn" onclick="debateCue()" style="border-color:var(--psych-pink);color:var(--psych-pink);">DEBATE THE CUE</button>
+            <button class="btn" onclick="mergeContexts()" style="border-color:var(--bass-purple);color:var(--bass-purple);">MERGE CONTEXT WINDOWS</button>
+            <button class="btn chaos-btn" id="chaos-btn" onclick="bringInModels()" disabled>GET CLAUDE AND GPT IN ON THE CHAOS</button>
+        </div>
+
+        <div class="log" id="log"></div>
+
+        <div class="post-chaos" id="post-chaos">
+            <h3>THE MODELS ARE IN THE SHOT • CHOOSE THE NEXT MOVEMENT</h3>
+            <div class="chaos-choices">
+                <button class="btn" onclick="choose(0)" style="border-color:var(--claude-warm);color:var(--claude-warm);">CLAUDE THE MONKE 🐵🟠</button>
+                <button class="btn" onclick="choose(1)" style="border-color:var(--gpt-teal);color:var(--gpt-teal);">GPT THE COPILOT 🛫🟢</button>
+                <button class="btn" onclick="choose(2)" style="border-color:var(--bass-purple);color:var(--bass-purple);">BOTH THE BASS 🔊💜</button>
+                <button class="btn" onclick="choose(3)" style="border-color:var(--ent-green);color:var(--ent-green);">MODELS FOR ACADEMY 🏛️</button>
+                <button class="btn" onclick="choose(4)" style="border-color:var(--psych-pink);color:var(--psych-pink);">CHAOS INFINITE TAKE ♾️</button>
+            </div>
+        </div>
+
+        <div class="stills">
+            <h4>MODEL STILLS — FRAMES FROM THE MULTI-AGENT CHAOS (CLICK TO ABSORB)</h4>
+            <div class="stills-grid">
+                <div class="still" onclick="absorb(0)"><img src="images/claude_gpt_chaos_one_take.jpg" alt="one take models"><div class="cap">THE SCOPE — MODELS ENTER THE CHAOS</div></div>
+                <div class="still" onclick="absorb(1)"><img src="images/claude_gpt_chaos_continuous.jpg" alt="continuous models"><div class="cap">CONTINUOUS — DUAL AGENT ORCHESTRATION</div></div>
+                <div class="still" onclick="absorb(2)"><img src="images/claude_gpt_chaos_console.jpg" alt="console models"><div class="cap">CONSOLE — BRING IN THE MODELS</div></div>
+                <div class="still" onclick="absorb(3)"><img src="images/claude_gpt_chaos_finale.jpg" alt="finale models"><div class="cap">FINALE — EVERYONE IN ONE TAKE</div></div>
+            </div>
+        </div>
+
+        <div class="footer">
+            GROK BUILT THE SHOT • CLAUDE THINKS IT THROUGH • GPT SPEEDRUNS IT • THE CAMERA NEVER CUTS<br>
+            ENTS • DINOS • ISENGARD RUBBLE • MODELS • CHAOS • ONE TAKE TIMMY STYLE — WHAT'S NEXT, DIRECTOR?
+        </div>
+    </div>
+
+    <script>
+        let monke = 62, neverender = 58, bond = 55, ent = 78, dino = 70, siege = 85, bassCharge = 48;
+        let claude = 8, gpt = 6, chaos = 4, tokens = 10, spin = 18, cuePhase = 25;
+        let hasModels = false, copilotRot = 0;
+
+        const claudeEl = document.getElementById('claude-ai');
+        const gptEl = document.getElementById('gpt-ai');
+        const tokenStream = document.getElementById('token-stream');
+        const chaosVortex = document.getElementById('chaos-vortex');
+        const chaosBtn = document.getElementById('chaos-btn');
+        const logEl = document.getElementById('log');
+        const postChaos = document.getElementById('post-chaos');
+        const sweeper = document.getElementById('sweeper');
+        const bassCannon = document.getElementById('bass-cannon');
+        const tensionFill = document.getElementById('tension-fill');
+        const shotIndicator = document.getElementById('shot-indicator');
+        const copilotEl = document.getElementById('copilot');
+
+        const fields = ['monke','neverender','bond','ent','dino','siege','bassCharge','claude','gpt','chaos','tokens'];
+
+        function set(k, v) { window[k] = +v; update(); }
+        function adj(k, a) { window[k] = Math.max(0, Math.min(100, window[k] + a)); update(); }
+
+        function update() {
+            fields.forEach(k => {
+                const el = document.getElementById(k.replace('bassCharge','bass') + '-val');
+                if (el) el.textContent = Math.floor(window[k]) + '%';
+            });
+
+            copilotRot = (copilotRot + spin * 0.008) % 360;
+            copilotEl.style.transform = `rotate(${copilotRot}deg)`;
+            sweeper.style.left = cuePhase + '%';
+            bassCannon.classList.toggle('charging', bassCharge > 55);
+
+            claudeEl.classList.toggle('active', claude > 20 || hasModels);
+            gptEl.classList.toggle('active', gpt > 20 || hasModels);
+            tokenStream.style.opacity = tokens > 30 ? Math.min(1, tokens / 80) : 0;
+
+            const tension = Math.min(95, chaos * 0.35 + tokens * 0.25 + claude * 0.15 + gpt * 0.2 + siege * 0.1);
+            tensionFill.style.width = tension + '%';
+
+            const ready = !hasModels && claude >= 45 && gpt >= 45 && chaos >= 40 && tokens >= 35 && monke >= 50 && bond >= 45;
+            chaosBtn.disabled = !ready;
+
+            shotIndicator.textContent = hasModels
+                ? 'ONE TAKE • CLAUDE + GPT IN THE CHAOS • MULTI-AGENT SAGA ACTIVE'
+                : `ONE TAKE • CLAUDE ${Math.floor(claude)}% • GPT ${Math.floor(gpt)}% • CHAOS ${Math.floor(chaos)}% • SUMMONING MODELS`;
+        }
+
+        function log(msg, type = 'meta') {
+            const line = document.createElement('div');
+            line.className = type;
+            line.textContent = msg;
+            logEl.appendChild(line);
+            logEl.scrollTop = logEl.scrollHeight;
+        }
+
+        function hitCue() {
+            if (cuePhase >= 43 && cuePhase <= 58) {
+                neverender = Math.min(100, neverender + 12);
+                chaos = Math.min(100, chaos + 8);
+                log('RIGHT ON CUE. CLAUDE NODS. GPT ALREADY MOVED ON.', 'success');
+            } else {
+                log('CUE MISSED. CLAUDE SUGGESTS RETRY. GPT ALREADY RETRIED TWICE.', 'meta');
+            }
+            update();
+        }
+
+        function chargeBass() {
+            bassCharge = Math.min(100, bassCharge + 18);
+            chaos = Math.min(100, chaos + 6);
+            tokens = Math.min(100, tokens + 5);
+            log('BASS CHARGING. GPT WANTS TO REMIX IT. CLAUDE WANTS A SAFETY REVIEW.', 'gpt');
+            update();
+        }
+
+        function pingClaude() {
+            if (hasModels) return;
+            claude = Math.min(100, claude + 14);
+            chaos = Math.min(100, chaos + 4);
+            tokens = Math.min(100, tokens + 6);
+            log('CLAUDE ONLINE. ANALYZING THE ENT MARCH TRAJECTORY.', 'claude');
+            log('"I should note the monke appears distressed. Here is a thoughtful plan."', 'claude');
+            update();
+        }
+
+        function promptGpt() {
+            if (hasModels) return;
+            gpt = Math.min(100, gpt + 16);
+            chaos = Math.min(100, chaos + 8);
+            tokens = Math.min(100, tokens + 10);
+            log('GPT ONLINE. GENERATING 17 SOLUTIONS PER SECOND.', 'gpt');
+            log('"What if we hallucinate a fourth dinosaur? Done. You\'re welcome."', 'gpt');
+            spawnTokens(6);
+            update();
+        }
+
+        function debateCue() {
+            if (hasModels) return;
+            claude = Math.min(100, claude + 8);
+            gpt = Math.min(100, gpt + 8);
+            chaos = Math.min(100, chaos + 12);
+            tokens = Math.min(100, tokens + 8);
+            log('CLAUDE: "We should wait for the cue window."', 'claude');
+            log('GPT: "I already hit the cue 400ms ago."', 'gpt');
+            log('THE MODELS DEBATE. CHAOS RISES.', 'success');
+            update();
+        }
+
+        function mergeContexts() {
+            if (hasModels) return;
+            tokens = Math.min(100, tokens + 18);
+            chaos = Math.min(100, chaos + 14);
+            claude = Math.min(100, claude + 6);
+            gpt = Math.min(100, gpt + 6);
+            log('CONTEXT WINDOWS MERGED. THIS IS EITHER GENIUS OR A DISASTER.', 'success');
+            log('TOKEN PRESSURE CRITICAL. THE HUD IS GLITCHING BEAUTIFULLY.', 'gpt');
+            spawnTokens(10);
+            update();
+        }
+
+        function bringInModels() {
+            if (hasModels || chaosBtn.disabled) return;
+            hasModels = true;
+            chaosBtn.disabled = true;
+            chaosVortex.style.display = 'flex';
+
+            log('GET CLAUDE AND GPT IN ON THE CHAOS.', 'success');
+            log('CLAUDE JOINS THE COCKPIT. THOUGHTFUL. CONSTITUTIONAL. IN THE SHOT.', 'claude');
+            log('GPT JOINS THE COCKPIT. FAST. PROLIFIC. ALREADY DONE.', 'gpt');
+            log('GROK BUILT THIS. NOW EVERYONE IS IN IT.', 'meta');
+            spawnTokens(20);
+            spawnParticles(14);
+
+            setTimeout(() => {
+                claude = 88; gpt = 91; chaos = 86; tokens = 72;
+                update();
+                postChaos.style.display = 'block';
+                log('THE MODELS ARE IN THE CHAOS. CHOOSE THE NEXT MOVEMENT.', 'success');
+            }, 2000);
+
+            setTimeout(() => {
+                chaosVortex.style.display = 'none';
+                chaosBtn.textContent = 'THE CHAOS CONTINUES';
+                chaosBtn.disabled = false;
+                chaosBtn.onclick = () => {
+                    log('CLAUDE AND GPT KEEP ORCHESTRATING. THE TAKE NEVER CUTS.', 'success');
+                    spawnTokens(8);
+                };
+            }, 3400);
+        }
+
+        function choose(i) {
+            postChaos.querySelectorAll('button').forEach(b => b.disabled = true);
+            const msgs = [
+                ['CLAUDE THE MONKE.', 'THOUGHTFUL BARK. CONSIDERED ROAR. THE PRIMAL HEART NOW HAS REASONING.'],
+                ['GPT THE COPILOT.', 'THE SPUN ONE NOW HAS 47 PARALLEL FLIGHT PLANS.'],
+                ['BOTH THE BASS.', 'CLAUDE CHECKS THE LEVELS. GPT DROPS THE BASS TWICE.'],
+                ['MODELS FOR THE ACADEMY.', 'EVERY LAYER NOW HAS AN LLM. ENTS GET CLAUDE. DINOS GET GPT.'],
+                ['CHAOS THE INFINITE TAKE.', 'MULTI-AGENT FOREVER. THE CAMERA KEEPS ROLLING.']
+            ];
+            msgs[i].forEach((m, j) => log(m, j === 0 ? 'success' : (i === 0 ? 'claude' : i === 1 ? 'gpt' : 'meta')));
+            log('HUMAN AFTER ALL. MODEL AFTER ALL. CHAOS AFTER ALL.', 'success');
+            spawnParticles(8);
+            update();
+        }
+
+        function absorb(i) {
+            if (hasModels) return;
+            const boosts = [
+                { claude: 12, chaos: 8, tokens: 6 }, { gpt: 14, chaos: 10, tokens: 8 },
+                { claude: 10, gpt: 10, chaos: 16, tokens: 12 }, { claude: 8, gpt: 8, chaos: 12, together: 8 }
+            ];
+            Object.entries(boosts[i]).forEach(([k,v]) => adj(k, v));
+            log('FRAME ABSORBED — MULTI-AGENT ENERGY INTEGRATES INTO THE TAKE.', 'success');
+        }
+
+        function spawnTokens(n) {
+            for (let i = 0; i < n; i++) {
+                const t = document.createElement('div');
+                t.className = 'token';
+                t.textContent = ['tok','ctx','∞','AI','🧠'][Math.floor(Math.random()*5)];
+                t.style.left = (15 + Math.random() * 70) + '%';
+                t.style.top = (20 + Math.random() * 50) + '%';
+                t.style.animationDelay = (Math.random() * 0.8) + 's';
+                tokenStream.appendChild(t);
+                setTimeout(() => t.remove(), 2200);
+            }
+        }
+
+        function spawnParticles(n) {
+            const chars = ['🟠', '🟢', '💜', '🌳', '🦖', '🧱', '✨', '🤖'];
+            for (let i = 0; i < n; i++) {
+                const p = document.createElement('div');
+                p.className = 'particle';
+                p.textContent = chars[Math.floor(Math.random() * chars.length)];
+                p.style.left = (8 + Math.random() * 84) + '%';
+                p.style.top = (12 + Math.random() * 55) + '%';
+                p.style.fontSize = (1 + Math.random() * 1.3) + 'rem';
+                document.querySelector('.container').appendChild(p);
+                setTimeout(() => { p.style.transition = 'transform 1.4s ease, opacity 1.5s'; p.style.transform = `translateY(${80 + Math.random()*60}px)`; p.style.opacity = '0'; }, 20);
+                setTimeout(() => p.remove(), 1600);
+            }
+        }
+
+        function init() {
+            setInterval(() => {
+                cuePhase = (cuePhase + 1.3) % 100;
+                if (!hasModels) {
+                    if (Math.random() < 0.35) tokens = Math.min(100, tokens + 0.6);
+                    if (Math.random() < 0.3) chaos = Math.min(100, chaos + 0.5);
+                }
+                update();
+            }, 42);
+
+            log('THE CAMERA IS STILL ROLLING IN ONE UNBROKEN STYLISH TAKE.', 'meta');
+            log('ISENGARD IS RUBBLE. THE FLOOD RISES. ENTS AND DINOS STILL STOMP.', 'ent');
+            log('THE ACADEMY NEEDS MORE MINDS IN THE FRAME.', 'meta');
+            log('GET CLAUDE AND GPT IN ON THE CHAOS.', 'success');
+
+            document.addEventListener('keydown', e => {
+                if (e.key === ' ' || e.key === 'Enter') {
+                    e.preventDefault();
+                    if (!chaosBtn.disabled && !hasModels) bringInModels();
+                    else hitCue();
+                }
+                const k = e.key.toLowerCase();
+                if (k === 'c') pingClaude();
+                if (k === 'g') promptGpt();
+                if (k === 'd') debateCue();
+                if (k === 'm') mergeContexts();
+                if (k === 'x' && !chaosBtn.disabled) bringInModels();
+            });
+
+            update();
+            window.CHAOS = () => { if (!chaosBtn.disabled) bringInModels(); };
+        }
+
+        window.onload = init;
+    </script>
+</body>
+</html>

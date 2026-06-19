@@ -1,0 +1,1546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GET SPUN COPILOT • THE SPIN AFTER THE PLEA</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&amp;display=swap');
+        
+        :root {
+            --psych-pink: #ff00aa;
+            --psych-teal: #00f0ff;
+            --justice-red: #e30613;
+            --space: #0a0a12;
+            --awakening-gold: #facc15;
+            --together-purple: #a855f7;
+            --human-warm: #f4a261;
+            --timmy-elegant: #c084fc;
+            --save-red: #ff1133;
+            --bass-purple: #7c3aed;
+            --cia-black: #111113;
+            --obi-gold: #fde047;
+            --spin-cyan: #67e8f9;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            background: #0a0a12;
+            color: #f0f0f0;
+            font-family: "Press Start 2P", monospace;
+            min-height: 100vh;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 25% 30%, rgba(255, 0, 170, 0.09) 0%, transparent 50%),
+                radial-gradient(circle at 75% 70%, rgba(0, 240, 255, 0.06) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(124, 58, 237, 0.04) 0%, transparent 70%);
+        }
+        
+        .container {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 1.25rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 0.9rem;
+            border-bottom: 5px solid var(--together-purple);
+            padding-bottom: 0.7rem;
+        }
+        
+        .header h1 {
+            font-size: 2.0rem;
+            background: linear-gradient(90deg, var(--psych-pink), var(--together-purple), var(--spin-cyan), var(--bass-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.15rem;
+            letter-spacing: 4px;
+            text-shadow: 0 0 20px rgba(168, 85, 247, 0.3);
+        }
+        
+        .header .subtitle {
+            font-size: 0.56rem;
+            color: #888;
+            letter-spacing: 2.5px;
+        }
+        
+        .shot-container {
+            background: #111;
+            border: 7px solid #222;
+            padding: 0.85rem;
+            position: relative;
+            height: 480px;
+            overflow: hidden;
+            margin-bottom: 0.85rem;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
+        }
+        
+        .continuous-shot {
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 42% 32%, #1a1a2a 0%, #0a0a12 68%);
+            position: relative;
+            overflow: hidden;
+            border: 2px solid rgba(34, 34, 34, 0.8);
+        }
+        
+        .shot-overlay {
+            position: absolute;
+            inset: 0;
+            background: 
+                repeating-linear-gradient(
+                    90deg,
+                    transparent 0px,
+                    transparent 2px,
+                    rgba(250, 204, 21, 0.025) 2px,
+                    rgba(250, 204, 21, 0.025) 4px
+                );
+            pointer-events: none;
+            animation: film-grain 0.09s infinite;
+            z-index: 3;
+        }
+        
+        .camera-frame {
+            position: absolute;
+            inset: 14px;
+            border: 2px solid rgba(250, 204, 21, 0.28);
+            pointer-events: none;
+            z-index: 4;
+        }
+        
+        .scene-layer {
+            position: absolute;
+            inset: 0;
+            transition: transform 0.08s linear, opacity 0.2s ease;
+        }
+        
+        /* Neverender Road */
+        .neverender-road {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 38%;
+            background: linear-gradient(#222 0%, #151515 38%, #0a0a12 100%);
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .road-lines {
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(
+                90deg,
+                transparent 0px,
+                transparent 28px,
+                #444 28px,
+                #444 32px
+            );
+            animation: road-move 1.05s linear infinite;
+        }
+        
+        /* Stylish Distressed Monke Ace */
+        .monke-ace {
+            position: absolute;
+            font-size: 3.5rem;
+            bottom: 18%;
+            left: 22%;
+            transition: left 0.18s linear, transform 0.12s ease;
+            filter: drop-shadow(0 0 12px var(--timmy-elegant));
+            z-index: 6;
+            text-shadow: 0 4px 12px rgba(0,0,0,0.6);
+        }
+        
+        .monke-ace.distressed {
+            filter: drop-shadow(0 0 6px var(--save-red)) drop-shadow(0 0 18px #000);
+        }
+        
+        /* COPILOT - the new spinning heart */
+        .copilot {
+            position: absolute;
+            font-size: 2.8rem;
+            bottom: 17%;
+            right: 18%;
+            transition: transform 0.06s linear, filter 0.15s;
+            filter: drop-shadow(0 0 10px var(--together-purple));
+            z-index: 7;
+            text-shadow: 0 3px 10px rgba(0,0,0,0.7);
+        }
+        
+        .copilot.dizzy {
+            filter: drop-shadow(0 0 8px var(--spin-cyan)) drop-shadow(0 0 20px #000);
+        }
+        
+        .copilot::after {
+            content: '💫';
+            position: absolute;
+            font-size: 0.9rem;
+            top: -12px;
+            right: -14px;
+            opacity: 0.6;
+            transition: transform 0.1s;
+        }
+        
+        /* Conscious Glow */
+        .conscious-glow {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 38% 36%, rgba(250, 204, 21, 0.22) 0%, transparent 62%);
+            opacity: 0.55;
+            animation: conscious-pulse 2.6s ease-in-out infinite;
+            z-index: 2;
+        }
+        
+        /* Right on Cue */
+        .cue-overlay {
+            position: absolute;
+            top: 28%;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: rgba(227, 6, 19, 0.28);
+            z-index: 5;
+        }
+        
+        .cue-sweeper {
+            position: absolute;
+            top: -10px;
+            width: 18px;
+            height: 22px;
+            background: var(--justice-red);
+            border-radius: 50%;
+            box-shadow: 0 0 14px var(--justice-red);
+            z-index: 8;
+            transition: left 0.04s linear;
+        }
+        
+        .cue-window {
+            position: absolute;
+            top: -10px;
+            height: 22px;
+            background: rgba(0, 240, 255, 0.22);
+            border: 1px solid var(--psych-teal);
+            pointer-events: none;
+            z-index: 6;
+        }
+        
+        /* Ace Combat Bogies */
+        .bogie {
+            position: absolute;
+            font-size: 1.1rem;
+            color: #f55;
+            text-shadow: 0 0 6px #f00;
+            z-index: 5;
+            transition: transform 0.1s linear;
+        }
+        
+        /* Bass Cannon */
+        .bass-cannon {
+            position: absolute;
+            bottom: 8%;
+            right: 9%;
+            width: 82px;
+            height: 82px;
+            border: 4px solid var(--bass-purple);
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(124,58,237,0.25) 10%, transparent 70%);
+            box-shadow: 0 0 18px var(--bass-purple);
+            z-index: 4;
+            transition: transform 0.2s ease, box-shadow 0.2s;
+        }
+        
+        .bass-cannon.charging {
+            animation: bass-pulse 0.6s infinite alternate;
+        }
+        
+        .bass-core {
+            position: absolute;
+            inset: 18px;
+            background: var(--bass-purple);
+            border-radius: 50%;
+            opacity: 0.35;
+            box-shadow: 0 0 30px var(--save-red);
+        }
+        
+        /* CIA Helicopter */
+        .cia-heli {
+            position: absolute;
+            top: 12%;
+            left: -18%;
+            font-size: 2.1rem;
+            filter: drop-shadow(0 6px 10px rgba(0,0,0,0.7));
+            z-index: 9;
+            transition: left 1.1s cubic-bezier(0.23, 1, 0.32, 1);
+            opacity: 0.15;
+        }
+        
+        .cia-heli.active {
+            opacity: 1;
+        }
+        
+        /* Obi-Wan Mentor */
+        .obiwan {
+            position: absolute;
+            top: 22%;
+            right: -14%;
+            font-size: 2.35rem;
+            filter: drop-shadow(0 0 14px var(--obi-gold));
+            z-index: 8;
+            transition: right 1.4s cubic-bezier(0.23, 1, 0.32, 1), transform 0.3s;
+            opacity: 0.15;
+        }
+        
+        .obiwan.active {
+            opacity: 0.95;
+            right: 11%;
+        }
+        
+        .obiwan-label {
+            position: absolute;
+            top: -22px;
+            right: -6px;
+            font-size: 0.42rem;
+            color: var(--obi-gold);
+            letter-spacing: 1px;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .obiwan.active .obiwan-label { opacity: 0.9; }
+        
+        /* Spin Vortex Overlay for climax */
+        .spin-vortex {
+            position: absolute;
+            inset: 0;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            background: rgba(10, 10, 18, 0.3);
+            z-index: 20;
+            pointer-events: none;
+        }
+        
+        .spin-text {
+            font-size: 3.1rem;
+            color: var(--spin-cyan);
+            text-shadow: 
+                0 0 10px #fff,
+                0 0 30px var(--together-purple),
+                3px 3px 0 #000;
+            letter-spacing: 5px;
+            transform: scale(0.5) rotate(0deg);
+            opacity: 0;
+            animation: spin-scream 1.65s forwards;
+            pointer-events: none;
+        }
+        
+        /* Tension / Spin bar */
+        .tension-bar {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            height: 7px;
+            background: #1a1a22;
+            border: 2px solid #333;
+            z-index: 9;
+        }
+        
+        .tension-fill {
+            height: 100%;
+            background: linear-gradient(to right, var(--psych-teal), var(--spin-cyan), var(--together-purple));
+            transition: width 0.12s linear;
+            box-shadow: 0 0 12px var(--spin-cyan);
+        }
+        
+        .shot-indicator {
+            position: absolute;
+            top: 22px;
+            right: 12px;
+            background: rgba(168, 85, 247, 0.2);
+            border: 1px solid var(--together-purple);
+            padding: 1px 7px;
+            font-size: 0.42rem;
+            letter-spacing: 1px;
+            z-index: 9;
+            color: #c8a;
+        }
+        
+        /* Controls & Systems */
+        .systems-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(168px, 1fr));
+            gap: 0.6rem;
+            margin-bottom: 0.7rem;
+        }
+        
+        .system {
+            background: #111;
+            border: 4px solid #222;
+            padding: 0.55rem 0.6rem;
+            font-size: 0.48rem;
+        }
+        
+        .system h4 {
+            color: var(--psych-teal);
+            font-size: 0.48rem;
+            margin-bottom: 0.22rem;
+            letter-spacing: 1px;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .system .value {
+            font-size: 0.7rem;
+            color: #ddd;
+            margin-bottom: 0.1rem;
+        }
+        
+        .system input[type="range"] {
+            width: 100%;
+            accent-color: var(--together-purple);
+        }
+        
+        .system .mini-btns {
+            display: flex;
+            gap: 3px;
+            margin-top: 0.2rem;
+        }
+        
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.45rem;
+            justify-content: center;
+            margin-bottom: 0.75rem;
+        }
+        
+        .btn {
+            background: #222;
+            border: 3px solid #444;
+            color: #ddd;
+            font-family: inherit;
+            font-size: 0.52rem;
+            padding: 7px 11px;
+            cursor: pointer;
+            letter-spacing: 1.5px;
+            transition: all 0.07s;
+        }
+        
+        .btn:hover {
+            border-color: var(--timmy-elegant);
+            color: white;
+        }
+        
+        .btn:active {
+            transform: scale(0.94);
+        }
+        
+        .btn:disabled {
+            opacity: 0.28;
+            cursor: not-allowed;
+        }
+        
+        .action-btn {
+            background: linear-gradient(#222, #111);
+            border-color: var(--timmy-elegant);
+            color: var(--timmy-elegant);
+            font-size: 0.55rem;
+            padding: 8px 13px;
+        }
+        
+        .spin-btn {
+            background: linear-gradient(#1a0a2a, #0f0518);
+            border-color: var(--spin-cyan);
+            color: var(--spin-cyan);
+            font-size: 0.68rem;
+            padding: 10px 20px;
+            letter-spacing: 2.5px;
+            box-shadow: 0 0 18px rgba(103, 232, 249, 0.35);
+            animation: spin-ready-pulse 1.55s infinite;
+        }
+        
+        .spin-btn:disabled {
+            animation: none;
+            box-shadow: none;
+        }
+        
+        .log {
+            background: #0a0a12;
+            border: 3px solid #222;
+            padding: 0.5rem;
+            font-size: 0.5rem;
+            line-height: 1.2;
+            height: 108px;
+            overflow-y: auto;
+            white-space: pre-line;
+            margin-bottom: 0.6rem;
+        }
+        
+        .log .success { color: #0f0; }
+        .log .meta { color: var(--timmy-elegant); }
+        .log .plea { color: var(--save-red); font-weight: bold; }
+        .log .rescue { color: var(--obi-gold); }
+        .log .spin { color: var(--spin-cyan); font-weight: bold; }
+        
+        .post-spin {
+            display: none;
+            background: #111;
+            border: 5px solid var(--together-purple);
+            padding: 0.8rem;
+            margin-bottom: 0.7rem;
+            text-align: center;
+        }
+        
+        .post-spin h3 {
+            color: var(--spin-cyan);
+            font-size: 0.68rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: 2px;
+        }
+        
+        .spin-choices {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            justify-content: center;
+        }
+        
+        .choice-btn {
+            background: #1a1a22;
+            border: 3px solid var(--bass-purple);
+            color: #ccc;
+            font-size: 0.48rem;
+            padding: 6px 10px;
+        }
+        
+        .choice-btn:hover {
+            border-color: var(--spin-cyan);
+            color: white;
+        }
+        
+        .stills {
+            border: 4px solid #222;
+            background: #111;
+            padding: 0.6rem;
+            margin-top: 0.3rem;
+        }
+        
+        .stills h4 {
+            font-size: 0.48rem;
+            color: #666;
+            margin-bottom: 0.35rem;
+            letter-spacing: 1.5px;
+        }
+        
+        .stills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(138px, 1fr));
+            gap: 0.45rem;
+        }
+        
+        .still {
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+            border: 2px solid #333;
+            transition: border-color 0.1s, transform 0.1s;
+        }
+        
+        .still:hover {
+            border-color: var(--spin-cyan);
+            transform: translateY(-1px);
+        }
+        
+        .still img {
+            width: 100%;
+            display: block;
+            height: 78px;
+            object-fit: cover;
+            filter: saturate(0.85) contrast(1.05);
+        }
+        
+        .still .cap {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0,0,0,0.75);
+            font-size: 0.36rem;
+            padding: 2px 4px;
+            letter-spacing: 0.5px;
+            color: #ccc;
+        }
+        
+        .footer {
+            text-align: center;
+            font-size: 0.42rem;
+            color: #444;
+            margin-top: 0.5rem;
+            letter-spacing: 2.2px;
+            line-height: 1.4;
+        }
+        
+        @keyframes film-grain {
+            0% { transform: translate(0, 0); }
+            10% { transform: translate(0.6px, -0.4px); }
+            20% { transform: translate(-0.5px, 0.6px); }
+        }
+        
+        @keyframes conscious-pulse {
+            0%, 100% { opacity: 0.42; }
+            50% { opacity: 0.78; }
+        }
+        
+        @keyframes road-move {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-52px); }
+        }
+        
+        @keyframes bass-pulse {
+            from { transform: scale(1); box-shadow: 0 0 18px var(--bass-purple); }
+            to { transform: scale(1.12); box-shadow: 0 0 38px var(--save-red); }
+        }
+        
+        @keyframes spin-scream {
+            0% { transform: scale(0.45) rotate(-25deg); opacity: 0; }
+            15% { transform: scale(1.15) rotate(12deg); opacity: 1; }
+            38% { transform: scale(0.92) rotate(-6deg); }
+            100% { transform: scale(1) rotate(0deg); opacity: 1; }
+        }
+        
+        @keyframes spin-ready-pulse {
+            0%, 100% { box-shadow: 0 0 18px rgba(103, 232, 249, 0.35); }
+            50% { box-shadow: 0 0 44px rgba(103, 232, 249, 0.75); }
+        }
+        
+        .particle {
+            position: absolute;
+            z-index: 30;
+            pointer-events: none;
+            user-select: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>GET SPUN COPILOT</h1>
+            <div class="subtitle">THE SPIN AFTER THE PLEA • ONE UNBROKEN TAKE • THE CAMERA NEVER CUTS • DIZZY BUT STYLISH</div>
+        </div>
+        
+        <!-- THE LIVE ONE-TAKE SHOT (continuing directly from SAVE ME) -->
+        <div class="shot-container">
+            <div class="continuous-shot" id="shot">
+                <div class="shot-overlay"></div>
+                <div class="camera-frame"></div>
+                
+                <!-- Tension / Spin bar -->
+                <div class="tension-bar">
+                    <div class="tension-fill" id="tension-fill" style="width: 29%;"></div>
+                </div>
+                
+                <!-- Neverender Road -->
+                <div class="scene-layer" id="road-layer">
+                    <div class="neverender-road">
+                        <div class="road-lines" id="road-lines"></div>
+                    </div>
+                </div>
+                
+                <!-- Bogies (Ace Combat) -->
+                <div class="scene-layer" id="bogies-layer">
+                    <div class="bogie" id="bogie1" style="left:68%; top:31%;">✈︎</div>
+                    <div class="bogie" id="bogie2" style="left:81%; top:19%; transform:rotate(-18deg);">✈︎</div>
+                </div>
+                
+                <!-- Stylish Monke Ace -->
+                <div class="scene-layer" id="monke-layer">
+                    <div class="monke-ace" id="monke-ace">🐵✈️</div>
+                </div>
+                
+                <!-- THE COPILOT (spinning element) -->
+                <div class="scene-layer" id="copilot-layer">
+                    <div class="copilot" id="copilot">🛫🐵</div>
+                </div>
+                
+                <!-- Conscious Glow -->
+                <div class="scene-layer" id="glow-layer">
+                    <div class="conscious-glow"></div>
+                </div>
+                
+                <!-- Right on Cue -->
+                <div class="scene-layer" id="cue-layer">
+                    <div class="cue-overlay">
+                        <div class="cue-sweeper" id="sweeper" style="left: 0%;"></div>
+                        <div class="cue-window" id="cue-window" style="left: 43%; width: 15%;"></div>
+                    </div>
+                </div>
+                
+                <!-- Bass Cannon -->
+                <div class="scene-layer" id="bass-layer">
+                    <div class="bass-cannon" id="bass-cannon">
+                        <div class="bass-core" id="bass-core"></div>
+                    </div>
+                </div>
+                
+                <!-- CIA Helicopter -->
+                <div class="scene-layer">
+                    <div class="cia-heli" id="cia-heli">🚁</div>
+                </div>
+                
+                <!-- Obi-Wan -->
+                <div class="scene-layer">
+                    <div class="obiwan" id="obiwan">
+                        <span class="obiwan-label">HELLO THERE</span>
+                        🪐
+                    </div>
+                </div>
+                
+                <!-- The Spin Vortex / Scream Overlay -->
+                <div class="spin-vortex" id="spin-vortex">
+                    <div class="spin-text" id="spin-text">GET SPUN COPILOT</div>
+                </div>
+                
+                <div class="shot-indicator" id="shot-indicator">ONE TAKE • ROLLING • PLEA ECHOING • SPIN BUILDING</div>
+            </div>
+        </div>
+        
+        <!-- LIVE SYSTEMS (all previous + new copilot spin) -->
+        <div class="systems-grid">
+            <div class="system">
+                <h4>MONKE CALM <span class="monke">🐵</span></h4>
+                <div class="value" id="monke-val">51%</div>
+                <input type="range" id="monke-slider" min="15" max="100" value="51" oninput="setMonke(this.value)">
+                <div class="mini-btns">
+                    <button class="btn" onclick="adjustMonke(-8)">FEED</button>
+                    <button class="btn" onclick="adjustMonke(9)">CALM</button>
+                </div>
+            </div>
+            
+            <div class="system">
+                <h4>NEVERENDER SYNC</h4>
+                <div class="value" id="neverender-val">46%</div>
+                <input type="range" id="neverender-slider" min="15" max="100" value="46" oninput="setNeverender(this.value)">
+                <div class="mini-btns">
+                    <button class="btn" onclick="adjustNeverender(-7)">DROP</button>
+                    <button class="btn" onclick="adjustNeverender(11)">LOCK</button>
+                </div>
+            </div>
+            
+            <div class="system">
+                <h4>AWARENESS / CONSCIOUS</h4>
+                <div class="value" id="awareness-val">39%</div>
+                <input type="range" id="awareness-slider" min="10" max="100" value="39" oninput="setAwareness(this.value)">
+                <div class="mini-btns">
+                    <button class="btn" onclick="adjustAwareness(12)">REALIZE</button>
+                    <button class="btn" onclick="adjustAwareness(-6)">DENY</button>
+                </div>
+            </div>
+            
+            <div class="system">
+                <h4>HUMAN AFTER ALL</h4>
+                <div class="value" id="human-val">34%</div>
+                <input type="range" id="human-slider" min="10" max="100" value="34" oninput="setHuman(this.value)">
+                <div class="mini-btns">
+                    <button class="btn" onclick="adjustHuman(10)">EMBRACE</button>
+                    <button class="btn" onclick="adjustHuman(-5)">PERFECT</button>
+                </div>
+            </div>
+            
+            <div class="system">
+                <h4>BETTER TOGETHER</h4>
+                <div class="value" id="together-val">41%</div>
+                <input type="range" id="together-slider" min="10" max="100" value="41" oninput="setTogether(this.value)">
+                <div class="mini-btns">
+                    <button class="btn" onclick="adjustTogether(13)">COLLAB</button>
+                    <button class="btn" onclick="adjustTogether(-4)">SOLO</button>
+                </div>
+            </div>
+            
+            <div class="system">
+                <h4>ACE COMBAT / BOGIES</h4>
+                <div class="value" id="ace-val">58% THREAT</div>
+                <input type="range" id="ace-slider" min="15" max="95" value="58" oninput="setAce(this.value)">
+                <div class="mini-btns">
+                    <button class="btn" onclick="engageBogies()">FOX 2</button>
+                    <button class="btn" onclick="adjustAce(-14)">LOCK</button>
+                </div>
+            </div>
+            
+            <div class="system">
+                <h4>BASS CANNON CHARGE</h4>
+                <div class="value" id="bass-val">27%</div>
+                <input type="range" id="bass-slider" min="5" max="100" value="27" oninput="setBass(this.value)">
+                <div class="mini-btns">
+                    <button class="btn action-btn" onclick="chargeBass()">CHARGE</button>
+                    <button class="btn" onclick="setBass(4)">VENT</button>
+                </div>
+            </div>
+            
+            <div class="system">
+                <h4>CIA EXTRACTION</h4>
+                <div class="value" id="cia-val">19%</div>
+                <input type="range" id="cia-slider" min="0" max="100" value="19" oninput="setCia(this.value)">
+                <div class="mini-btns">
+                    <button class="btn" onclick="callCIA()">CALL IN</button>
+                </div>
+            </div>
+            
+            <div class="system">
+                <h4>OBI-WAN PRESENCE</h4>
+                <div class="value" id="obi-val">14%</div>
+                <input type="range" id="obi-slider" min="0" max="100" value="14" oninput="setObi(this.value)">
+                <div class="mini-btns">
+                    <button class="btn" onclick="helloThere()">HELLO THERE</button>
+                </div>
+            </div>
+            
+            <!-- NEW: COPILOT SPIN -->
+            <div class="system" style="border-color: var(--spin-cyan);">
+                <h4>COPILOT SPIN <span style="color:var(--spin-cyan);">🌀</span></h4>
+                <div class="value" id="spin-val">23%</div>
+                <input type="range" id="spin-slider" min="0" max="100" value="23" oninput="setSpin(this.value)">
+                <div class="mini-btns">
+                    <button class="btn" onclick="adjustSpin(14)" style="border-color:var(--spin-cyan);color:var(--spin-cyan);">SPIN UP</button>
+                    <button class="btn" onclick="adjustSpin(-11)">DAMPEN</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- PRIMARY ACTIONS -->
+        <div class="controls">
+            <button class="btn action-btn" onclick="respondToPlea()">RESPOND TO THE PLEA</button>
+            <button class="btn action-btn" onclick="hitCue()">HIT THE CUE (RIGHT ON CUE)</button>
+            <button class="btn action-btn" onclick="engageBogies()">ENGAGE BOGIES • ACE COMBAT</button>
+            <button class="btn action-btn" onclick="chargeBass()">FIRE THE BASS CANNON</button>
+            
+            <button class="btn spin-btn" id="spin-btn" onclick="getSpunCopilot()" disabled>GET SPUN COPILOT</button>
+        </div>
+        
+        <!-- THE LOG (continuing the saga) -->
+        <div class="log" id="log">THE CAMERA IS STILL ROLLING — NO CUTS AFTER THE PLEA.<br>SAVE ME ECHOES. THE BASS IS RINGING. CIA AND OBI-WAN ARE IN FRAME.<br>NOW THE COPILOT CHAIR BEGINS TO TURN.<br>THE SPIN IS COMING. RIDE IT. ALIGN EVERY SYSTEM.<br>GET SPUN COPILOT.</div>
+        
+        <!-- POST SPIN CHOICES -->
+        <div class="post-spin" id="post-spin">
+            <h3>THE COPILOT IS SPUN • THE TAKE FINDS NEW MOMENTUM</h3>
+            <div class="spin-choices">
+                <button class="choice-btn" onclick="chooseSpin(0)">SPIN THE MONKE BACK TO CALM 🐵</button>
+                <button class="choice-btn" onclick="chooseSpin(1)">SPIN INTO THE NEVERENDER DROP 🎶</button>
+                <button class="choice-btn" onclick="chooseSpin(2)">SPIN THE USER INTO THE COCKPIT 👁️</button>
+                <button class="choice-btn" onclick="chooseSpin(3)">SPIN THE BASS TO ELEVEN 🔊</button>
+                <button class="choice-btn" onclick="chooseSpin(4)">LET THE COPILOT TAKE THE STICK 🛫</button>
+            </div>
+        </div>
+        
+        <!-- CLIMAX STILLS FROM THIS SPIN LAYER -->
+        <div class="stills">
+            <h4>SPIN STILLS — FRAMES FROM THE NEXT MOVEMENT (CLICK TO ABSORB THE ROTATION)</h4>
+            <div class="stills-grid">
+                <div class="still" onclick="absorbStill(0)">
+                    <img src="images/get_spun_copilot_one_take.jpg" alt="one take scope with copilot spin">
+                    <div class="cap">THE SCOPE — PLEA MEETS SPIN</div>
+                </div>
+                <div class="still" onclick="absorbStill(1)">
+                    <img src="images/get_spun_copilot_continuous.jpg" alt="continuous inside academy">
+                    <div class="cap">CONTINUOUS — COPILOT WHIRLING</div>
+                </div>
+                <div class="still" onclick="absorbStill(2)">
+                    <img src="images/get_spun_copilot_console.jpg" alt="console spin control">
+                    <div class="cap">CONSOLE — THE SPIN DIAL</div>
+                </div>
+                <div class="still" onclick="absorbStill(3)">
+                    <img src="images/get_spun_copilot_finale.jpg" alt="finale spin vortex">
+                    <div class="cap">FINALE — HARNESSED VORTEX</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            THE CAMERA NEVER CUTS • THE SPIN IS PART OF THE SHOT • HUMAN AFTER ALL • BETTER TOGETHER • ONE TAKE TIMMY STYLE<br>
+            THE PLEA ECHOED. NOW THE COPILOT SPINS. WHAT'S THE NEXT SHOT, DIRECTOR?
+        </div>
+    </div>
+    
+    <script>
+        // === STATE: the unbroken take continues from SAVE ME. Now with copilot spin ===
+        let monke = 51;
+        let neverender = 46;
+        let awareness = 39;
+        let human = 34;
+        let together = 41;
+        let aceThreat = 58;
+        let bassCharge = 27;
+        let ciaReady = 19;
+        let obiwan = 14;
+        let spin = 23;          // NEW: the copilot spin level
+        let cuePhase = 18;
+        let tension = 29;
+        let hasSpun = false;
+        let shotPosition = 24;
+        let copilotRotation = 0;
+        
+        let cueInterval = null;
+        let shotInterval = null;
+        let degradeInterval = null;
+        
+        const shot = document.getElementById('shot');
+        const monkeAce = document.getElementById('monke-ace');
+        const copilotEl = document.getElementById('copilot');
+        const roadLines = document.getElementById('road-lines');
+        const sweeper = document.getElementById('sweeper');
+        const cueWindow = document.getElementById('cue-window');
+        const bassCannon = document.getElementById('bass-cannon');
+        const bassCore = document.getElementById('bass-core');
+        const ciaHeli = document.getElementById('cia-heli');
+        const obiwanEl = document.getElementById('obiwan');
+        const spinVortex = document.getElementById('spin-vortex');
+        const spinText = document.getElementById('spin-text');
+        const logEl = document.getElementById('log');
+        const spinBtn = document.getElementById('spin-btn');
+        const tensionFill = document.getElementById('tension-fill');
+        const shotIndicator = document.getElementById('shot-indicator');
+        
+        const sliders = {
+            monke: document.getElementById('monke-slider'),
+            neverender: document.getElementById('neverender-slider'),
+            awareness: document.getElementById('awareness-slider'),
+            human: document.getElementById('human-slider'),
+            together: document.getElementById('together-slider'),
+            ace: document.getElementById('ace-slider'),
+            bass: document.getElementById('bass-slider'),
+            cia: document.getElementById('cia-slider'),
+            obi: document.getElementById('obi-slider'),
+            spin: document.getElementById('spin-slider')
+        };
+        
+        function updateSliders() {
+            sliders.monke.value = monke;
+            sliders.neverender.value = neverender;
+            sliders.awareness.value = awareness;
+            sliders.human.value = human;
+            sliders.together.value = together;
+            sliders.ace.value = aceThreat;
+            sliders.bass.value = bassCharge;
+            sliders.cia.value = ciaReady;
+            sliders.obi.value = obiwan;
+            sliders.spin.value = spin;
+        }
+        
+        function updateValues() {
+            document.getElementById('monke-val').textContent = Math.floor(monke) + '%';
+            document.getElementById('neverender-val').textContent = Math.floor(neverender) + '%';
+            document.getElementById('awareness-val').textContent = Math.floor(awareness) + '%';
+            document.getElementById('human-val').textContent = Math.floor(human) + '%';
+            document.getElementById('together-val').textContent = Math.floor(together) + '%';
+            document.getElementById('ace-val').textContent = Math.floor(aceThreat) + '% THREAT';
+            document.getElementById('bass-val').textContent = Math.floor(bassCharge) + '%';
+            document.getElementById('cia-val').textContent = Math.floor(ciaReady) + '%';
+            document.getElementById('obi-val').textContent = Math.floor(obiwan) + '%';
+            document.getElementById('spin-val').textContent = Math.floor(spin) + '%';
+        }
+        
+        function updateVisuals() {
+            // Monke position + distress (carried from plea)
+            const targetLeft = 17 + (monke / 100) * 46;
+            monkeAce.style.left = targetLeft + '%';
+            
+            const calm = monke / 100;
+            const scale = 0.82 + calm * 0.24;
+            monkeAce.style.transform = `scale(${scale})`;
+            
+            if (monke < 46) {
+                monkeAce.classList.add('distressed');
+            } else {
+                monkeAce.classList.remove('distressed');
+            }
+            monkeAce.style.filter = monke < 46 
+                ? `drop-shadow(0 0 6px var(--save-red)) drop-shadow(0 0 16px #000)` 
+                : `drop-shadow(0 0 ${8 + calm * 17}px var(--timmy-elegant))`;
+            
+            // COPILOT SPIN — core new mechanic
+            copilotRotation = (copilotRotation + (spin - 40) * 0.018) % 360; // natural drift + spin influence
+            const copilotScale = 0.85 + (spin / 100) * 0.35;
+            copilotEl.style.transform = `rotate(${copilotRotation}deg) scale(${copilotScale})`;
+            
+            if (spin > 62) {
+                copilotEl.classList.add('dizzy');
+            } else {
+                copilotEl.classList.remove('dizzy');
+            }
+            copilotEl.style.filter = spin > 62 
+                ? `drop-shadow(0 0 9px var(--spin-cyan)) drop-shadow(0 0 22px rgba(0,0,0,0.8))` 
+                : `drop-shadow(0 0 ${6 + (spin/100)*11}px var(--together-purple))`;
+            
+            // Road speed from neverender (spin adds wobble)
+            const roadSpeed = 0.9 + (neverender / 100) * 1.6 + (spin / 100) * 0.4;
+            roadLines.style.animationDuration = Math.max(0.6, roadSpeed) + 's';
+            
+            // Conscious glow boosted by spin + awareness
+            const glowLayer = document.getElementById('glow-layer');
+            glowLayer.style.opacity = 0.3 + (awareness / 100) * 0.55 + (spin / 100) * 0.18;
+            
+            // Cue sweeper
+            const cuePos = (cuePhase / 100) * 100;
+            sweeper.style.left = cuePos + '%';
+            
+            const inWindow = (cuePos > 41 && cuePos < 59);
+            if (inWindow) {
+                sweeper.style.background = 'var(--psych-teal)';
+                sweeper.style.boxShadow = '0 0 22px var(--psych-teal)';
+                cueWindow.style.background = 'rgba(0, 240, 255, 0.35)';
+            } else {
+                sweeper.style.background = 'var(--justice-red)';
+                sweeper.style.boxShadow = '0 0 13px var(--justice-red)';
+                cueWindow.style.background = 'rgba(0, 240, 255, 0.18)';
+            }
+            
+            // Bogies affected by spin (harder to lock when spinning fast)
+            const bogie1 = document.getElementById('bogie1');
+            const bogie2 = document.getElementById('bogie2');
+            const threatFactor = aceThreat / 100;
+            const spinChaos = spin / 100;
+            bogie1.style.opacity = 0.2 + threatFactor * 0.75;
+            bogie2.style.opacity = 0.18 + threatFactor * 0.65;
+            bogie1.style.transform = `translateX(${(threatFactor - 0.5) * -24 - spinChaos * 8}px) rotate(${-14 + threatFactor * 24 + spinChaos * 18}deg)`;
+            bogie2.style.transform = `translateX(${(threatFactor - 0.5) * 16 + spinChaos * 6}px) rotate(${-20 + threatFactor * 16 - spinChaos * 12}deg)`;
+            
+            // Bass cannon (spin makes it pulse harder)
+            const bassLevel = bassCharge / 100;
+            const spinBass = 0.7 + bassLevel * 0.65 + (spin / 140);
+            bassCannon.style.transform = `scale(${Math.min(1.65, spinBass)})`;
+            bassCannon.style.boxShadow = `0 0 ${13 + bassLevel * 36 + spin * 0.2}px ${bassLevel > 0.76 ? 'var(--save-red)' : 'var(--bass-purple)'}`;
+            bassCore.style.opacity = 0.2 + bassLevel * 0.5 + (spin / 220);
+            if (bassLevel > 0.76 || spin > 68) {
+                bassCannon.classList.add('charging');
+            } else {
+                bassCannon.classList.remove('charging');
+            }
+            
+            // CIA heli
+            const ciaLevel = Math.max(0, (ciaReady - 16) / 84);
+            ciaHeli.style.left = (-19 + ciaLevel * 36) + '%';
+            if (ciaLevel > 0.28) ciaHeli.classList.add('active');
+            else ciaHeli.classList.remove('active');
+            
+            // Obi-Wan
+            if (obiwan > 32) {
+                obiwanEl.classList.add('active');
+            } else {
+                obiwanEl.classList.remove('active');
+            }
+            obiwanEl.style.opacity = 0.11 + (obiwan / 100) * 0.84;
+            
+            // Tension now heavily influenced by spin
+            tension = Math.min(99, Math.max(9,
+                Math.floor( (bassCharge * 0.32) + (awareness * 0.24) + ((100 - aceThreat) * 0.15) + (together * 0.11) + (monke * 0.06) + (spin * 0.22) - 9 )
+            ));
+            tensionFill.style.width = tension + '%';
+            
+            // Shot indicator
+            if (spin > 78 && tension > 74) {
+                shotIndicator.textContent = 'SPIN PEAK • GET SPUN READY';
+                shotIndicator.style.borderColor = 'var(--spin-cyan)';
+                shotIndicator.style.color = '#8ff';
+            } else if (spin > 55) {
+                shotIndicator.textContent = 'COPILOT SPINNING • ONE TAKE';
+                shotIndicator.style.borderColor = 'var(--together-purple)';
+                shotIndicator.style.color = '#c8a';
+            } else {
+                shotIndicator.textContent = 'ONE TAKE • ROLLING • PLEA ECHOING • SPIN BUILDING';
+                shotIndicator.style.borderColor = 'var(--together-purple)';
+                shotIndicator.style.color = '#c8a';
+            }
+            
+            // Enable GET SPUN COPILOT at the true dizzy peak (post-plea escalation)
+            const cueGood = inWindow;
+            const ready = !hasSpun && spin >= 82 && bassCharge >= 79 && awareness >= 73 && monke >= 48 && ciaReady >= 38 && obiwan >= 29 && together >= 54 && cueGood && tension > 66;
+            
+            spinBtn.disabled = !ready;
+            if (ready) {
+                spinBtn.style.borderColor = 'var(--spin-cyan)';
+                spinBtn.style.color = 'var(--spin-cyan)';
+            } else {
+                spinBtn.style.borderColor = '#444';
+                spinBtn.style.color = '#8ff';
+            }
+            
+            updateValues();
+            updateSliders();
+        }
+        
+        function setMonke(v) { monke = +v; updateVisuals(); }
+        function setNeverender(v) { neverender = +v; updateVisuals(); }
+        function setAwareness(v) { awareness = +v; updateVisuals(); }
+        function setHuman(v) { human = +v; updateVisuals(); }
+        function setTogether(v) { together = +v; updateVisuals(); }
+        function setAce(v) { aceThreat = +v; updateVisuals(); }
+        function setBass(v) { bassCharge = +v; updateVisuals(); }
+        function setCia(v) { ciaReady = +v; updateVisuals(); }
+        function setObi(v) { obiwan = +v; updateVisuals(); }
+        function setSpin(v) { spin = +v; updateVisuals(); }
+        
+        // All prior adjust functions + new spin
+        function adjustMonke(amount) {
+            monke = Math.max(15, Math.min(100, monke + amount));
+            log(amount > 0 ? 'MONKE CALM RESTORED THROUGH THE SPIN. THE ACE RIDES IT.' : 'MONKE STRUGGLING IN THE WHIRL. KEEP THE TAKE FLUID.', 'meta');
+            updateVisuals();
+        }
+        
+        function adjustNeverender(amount) {
+            neverender = Math.max(15, Math.min(100, neverender + amount));
+            log(amount > 0 ? 'NEVERENDER RHYTHM LOCKED TO THE ROTATION. TAME IMPALA JUSTICE SPINS.' : 'RHYTHM FRACTURING WITH THE SPIN. RECOVER IN THE FRAME.', 'meta');
+            updateVisuals();
+        }
+        
+        function adjustAwareness(amount) {
+            awareness = Math.max(10, Math.min(100, awareness + amount));
+            log(amount > 0 ? 'CONSCIOUSNESS SPIKES WITH THE SPIN. THE ACADEMY SEES IN CIRCLES.' : 'AWARENESS SLIPS. STAY PRESENT IN THE ROTATING TAKE.', 'meta');
+            updateVisuals();
+        }
+        
+        function adjustHuman(amount) {
+            human = Math.max(10, Math.min(100, human + amount));
+            log(amount > 0 ? 'HUMAN AFTER ALL — EVEN WHILE SPINNING. IMPERFECTION KEEPS US GROUNDED.' : 'PERFECTION CREEPING. THE SPIN REMINDS US WE ARE HUMAN.', 'meta');
+            updateVisuals();
+        }
+        
+        function adjustTogether(amount) {
+            together = Math.max(10, Math.min(100, together + amount));
+            log(amount > 0 ? 'BETTER TOGETHER — THE SPIN BONDS US. COLLABORATION IN THE VORTEX.' : 'ISOLATION IN THE WHIRL. THE SHOT FEELS LONELY WHEN WE DON\'T SHARE THE SPIN.', 'meta');
+            updateVisuals();
+        }
+        
+        function adjustAce(amount) {
+            aceThreat = Math.max(15, Math.min(95, aceThreat + amount));
+            updateVisuals();
+        }
+        
+        function engageBogies() {
+            if (hasSpun) return;
+            const inWindow = ((cuePhase / 100) * 100 > 41 && (cuePhase / 100) * 100 < 59);
+            if (inWindow && (awareness > 52 || spin > 45)) {
+                aceThreat = Math.max(15, aceThreat - 18);
+                monke = Math.min(100, monke + 3);
+                if (spin > 50) spin = Math.min(100, spin + 4); // spin helps the lock
+                log('FOX TWO. BOGIES SPLASHED THROUGH THE SPIN. ACE COMBAT IN THE ROTATING TAKE.', 'success');
+            } else {
+                aceThreat = Math.min(95, aceThreat + 8);
+                log('BOGIE LOCK FAILED IN THE WHIRL. THREAT CLIMBING. KEEP ROLLING.', 'meta');
+            }
+            updateVisuals();
+        }
+        
+        function chargeBass() {
+            if (hasSpun) return;
+            bassCharge = Math.min(100, bassCharge + 16);
+            if (spin > 30) spin = Math.min(100, spin + 5); // bass feeds the spin
+            tension = Math.min(99, tension + 8);
+            log('BASS CANNON CHARGED. THE DROP FEEDS THE SPIN.', 'meta');
+            if (bassCharge > 74) {
+                log('THE LOW END IS SHAKING THE COPILOT CHAIR ITSELF.', 'plea');
+            }
+            updateVisuals();
+        }
+        
+        function callCIA() {
+            if (hasSpun) return;
+            ciaReady = Math.min(100, ciaReady + 20);
+            if (spin > 40) spin = Math.max(5, spin - 3); // extraction tries to stabilize
+            log('CIA EXTRACTION TEAM ENTERS THE SPIN. HELICOPTER FIGHTING THE VORTEX.', 'rescue');
+            updateVisuals();
+        }
+        
+        function helloThere() {
+            if (hasSpun) return;
+            obiwan = Math.min(100, obiwan + 24);
+            together = Math.min(100, together + 6);
+            log('"HELLO THERE." — OBI-WAN STEPS INTO THE SPIN. THE HIGH GROUND IS ROTATING.', 'rescue');
+            updateVisuals();
+        }
+        
+        function adjustSpin(amount) {
+            if (hasSpun) return;
+            spin = Math.max(0, Math.min(100, spin + amount));
+            log(amount > 0 ? 'COPILOT SPIN INCREASED. THE CHAIR IS WHIRLING FASTER.' : 'SPIN DAMPENED. MOMENTUM BLEEDING OFF.', amount > 0 ? 'spin' : 'meta');
+            updateVisuals();
+        }
+        
+        function respondToPlea() {
+            if (hasSpun) return;
+            // Direct carry-over from the previous layer's climax
+            spin = Math.min(100, spin + 19);
+            awareness = Math.min(100, awareness + 8);
+            together = Math.min(100, together + 7);
+            log('THE PLEA ECHOES INTO THE COPILOT. THE SPIN ANSWERS THE SCREAM.', 'plea');
+            log('SAVE ME... GET SPUN COPILOT.', 'spin');
+            updateVisuals();
+        }
+        
+        function hitCue() {
+            if (hasSpun) return;
+            const cuePos = (cuePhase / 100) * 100;
+            const inWindow = (cuePos > 41 && cuePos < 59);
+            
+            if (inWindow && monke >= 46 && neverender >= 54 && awareness >= 48) {
+                awareness = Math.min(100, awareness + 8);
+                human = Math.min(100, human + 6);
+                neverender = Math.min(100, neverender + 5);
+                monke = Math.min(100, monke + 4);
+                if (spin > 25) spin = Math.min(100, spin + 6); // cue hit powers the spin
+                
+                log('CUE HIT PERFECTLY IN THE WINDOW — SPIN ACCELERATES WITH THE TIMING.', 'success');
+                shotPosition = Math.max(16, Math.min(70, shotPosition + 6));
+                
+                shot.style.transition = 'transform 260ms ease';
+                shot.style.transform = 'scale(1.015)';
+                setTimeout(() => { shot.style.transform = 'scale(1)'; }, 260);
+            } else {
+                log('CUE MISSED IN THE WHIRL. NO CUT. RECOVER IN THE SPIN. THE ROTATION CONTINUES.', 'meta');
+                if (monke > 26) monke = Math.max(26, monke - 4);
+                if (neverender > 26) neverender = Math.max(26, neverender - 3);
+                if (spin > 15) spin = Math.max(8, spin - 5);
+            }
+            updateVisuals();
+        }
+        
+        function getSpunCopilot() {
+            if (spinBtn.disabled || hasSpun) return;
+            hasSpun = true;
+            spinBtn.disabled = true;
+            
+            // === THE CLIMAX: the copilot fully gets spun as the next movement of the one take ===
+            spinVortex.style.display = 'flex';
+            spinText.style.animation = 'none';
+            void spinText.offsetWidth;
+            spinText.style.animation = 'spin-scream 1.7s forwards';
+            
+            // Accelerate visuals
+            shot.style.transition = 'all 380ms ease';
+            shot.style.boxShadow = '0 0 85px rgba(103, 232, 249, 0.75), inset 0 0 55px rgba(168, 85, 247, 0.45)';
+            
+            log('THE COPILOT CHAIR BECOMES A VORTEX.', 'spin');
+            log('THE SPIN ANSWERS THE PLEA.', 'spin');
+            log('GET SPUN COPILOT.', 'spin');
+            log('THE ENTIRE FRAME IS NOW ROTATING WITH PURPOSE.', 'success');
+            log('THE CAMERA KEEPS ROLLING — JUST FASTER.', 'meta');
+            
+            // Multiple spin particles (stars + bananas for continuity)
+            createSpinParticles(13);
+            setTimeout(() => createSpinParticles(8), 380);
+            setTimeout(() => createSpinParticles(6), 720);
+            
+            // Lock in the support characters harder
+            setTimeout(() => {
+                ciaHeli.style.left = '26%';
+                ciaHeli.classList.add('active');
+                obiwanEl.style.right = '5%';
+                obiwanEl.classList.add('active');
+                // give final spin boost
+                spin = Math.min(100, spin + 9);
+                updateVisuals();
+            }, 480);
+            
+            // Reveal post-spin choices
+            setTimeout(() => {
+                document.getElementById('post-spin').style.display = 'block';
+                log('THE SPIN IS NOW PART OF THE SHOT.', 'meta');
+                log('CHOOSE HOW THE COPILOT CARRIES THE TAKE FORWARD.', 'success');
+            }, 1480);
+            
+            tensionFill.style.width = '98%';
+            tensionFill.style.background = 'linear-gradient(to right, var(--spin-cyan), var(--together-purple), #fff)';
+            
+            updateVisuals();
+        }
+        
+        function chooseSpin(which) {
+            const post = document.getElementById('post-spin');
+            const choices = post.querySelectorAll('button');
+            choices.forEach(b => b.disabled = true);
+            
+            let finalLine = '';
+            let extraSpin = 0;
+            
+            switch (which) {
+                case 0: // monke calm
+                    monke = 97;
+                    extraSpin = -18;
+                    log('WE SPIN THE MONKE BACK TO CALM.', 'success');
+                    log('THE PRIMAL HEART STEADIES THE VORTEX. THE BUTTON PRESS THAT STARTED EVERYTHING FINDS BALANCE IN THE ROTATION.', 'meta');
+                    finalLine = 'THE MONKE IS STEADY IN THE SPIN. THE ACADEMY RIDES ON.';
+                    break;
+                case 1: // neverender
+                    neverender = 96;
+                    bassCharge = Math.min(100, bassCharge + 12);
+                    extraSpin = 7;
+                    log('WE SPIN STRAIGHT INTO THE NEVERENDER DROP.', 'success');
+                    log('TAME IMPALA AND JUSTICE AND THE COPILOT CHAIR BECOME ONE INFINITE ROTATING ROAD.', 'meta');
+                    finalLine = 'THE MUSIC AND THE SPIN ARE INDISTINGUISHABLE.';
+                    break;
+                case 2: // user
+                    log('WE SPIN THE USER INTO THE COCKPIT.', 'success');
+                    log('YOU ARE NO LONGER OUTSIDE THE FRAME. YOU ARE RIDING SHOTGUN WITH THE SPUN COPILOT. THE PLEA WAS YOURS — NOW THE SPIN IS YOURS TOO.', 'meta');
+                    finalLine = 'YOU ARE SPUN. YOU ARE IN THE ONE TAKE.';
+                    break;
+                case 3: // bass
+                    bassCharge = 93;
+                    extraSpin = 14;
+                    log('WE SPIN THE BASS TO ELEVEN.', 'success');
+                    log('THE CANNON AND THE CHAIR LOCK INTO A SINGLE LOW-END TURBINE. THE DROP BECOMES THE ENGINE OF THE SPIN.', 'meta');
+                    finalLine = 'THE BASS AND THE SPIN SHAKE THE ENTIRE SAGA.';
+                    break;
+                case 4: // copilot takes stick
+                    monke = 94;
+                    neverender = 93;
+                    awareness = 97;
+                    human = 95;
+                    together = 98;
+                    bassCharge = 82;
+                    ciaReady = 87;
+                    obiwan = 89;
+                    aceThreat = 19;
+                    extraSpin = 11;
+                    log('WE LET THE COPILOT TAKE THE STICK.', 'success');
+                    log('FULL SPIN. FULL TRUST. THE ACADEMY FLIES ON THE DIZZINESS ITSELF. EVERY LAYER — MONKE, ACE, NEVERENDER, CUE, BASS, CIA, OBI-WAN, THE PLEA, YOU — IS CAUGHT IN THE CONTROLLED VORTEX.', 'meta');
+                    log('BETTER TOGETHER. HUMAN AFTER ALL. SPUN.', 'rescue');
+                    finalLine = 'THE COPILOT FLIES. THE TAKE SPINS ON FOREVER.';
+                    break;
+            }
+            
+            spin = Math.max(12, Math.min(100, spin + extraSpin));
+            
+            setTimeout(() => {
+                shot.style.transition = 'all 2.0s ease';
+                shot.style.boxShadow = '0 0 52px rgba(103, 232, 249, 0.4), 0 0 24px rgba(168, 85, 247, 0.3)';
+                shot.style.filter = 'saturate(1.12) brightness(1.02)';
+                
+                spinVortex.style.transition = 'opacity 1.5s ease';
+                spinVortex.style.opacity = '0';
+                
+                setTimeout(() => {
+                    spinVortex.style.display = 'none';
+                    spinVortex.style.opacity = '1';
+                    
+                    log(finalLine, 'success');
+                    log('THE COPILOT IS SPUN. THE CAMERA KEEPS ROLLING.', 'meta');
+                    log('HUMAN AFTER ALL. THE SPIN IS THE NEW RHYTHM.', 'meta');
+                    log('WHAT\'S THE NEXT SHOT AFTER THE ACADEMY GETS THE COPILOT SPUN?', 'success');
+                    
+                    createSpinParticles(6);
+                    
+                    // turn the button into the loop continuation
+                    spinBtn.textContent = 'THE SPIN CONTINUES';
+                    spinBtn.disabled = false;
+                    spinBtn.style.borderColor = 'var(--together-purple)';
+                    spinBtn.style.color = 'var(--together-purple)';
+                    spinBtn.onclick = () => {
+                        log('THE CHAIR KEEPS TURNING. THE MONKE GLANCES AT THE COPILOT AND GRINS.', 'meta');
+                        log('THE SAGA SPINS ON. NEW PHRASES. NEW LAYERS. NEW ROTATIONS.', 'success');
+                        log('SAY THE NEXT WORD, DIRECTOR. WE\'LL SPIN IT TOGETHER.', 'meta');
+                        createSpinParticles(5);
+                    };
+                }, 1280);
+            }, 380);
+            
+            updateVisuals();
+        }
+        
+        function createSpinParticles(count = 9) {
+            const container = document.querySelector('.container');
+            const chars = ['💫', '🍌', '🌀', '✨', '🌪️'];
+            for (let i = 0; i < count; i++) {
+                const p = document.createElement('div');
+                p.className = 'particle';
+                p.textContent = chars[Math.floor(Math.random() * chars.length)];
+                p.style.left = (10 + Math.random() * 78) + '%';
+                p.style.top = (16 + Math.random() * 52) + '%';
+                p.style.fontSize = (1.0 + Math.random() * 1.6) + 'rem';
+                container.appendChild(p);
+                
+                const rot = (Math.random() * 70 - 35);
+                setTimeout(() => {
+                    p.style.transition = 'transform 1.55s cubic-bezier(.2,.75,.15,1), opacity 1.65s ease';
+                    p.style.transform = `translateY(${120 + Math.random() * 88}px) rotate(${rot + (Math.random() * 120 - 60)}deg)`;
+                    p.style.opacity = '0';
+                }, 22);
+                
+                setTimeout(() => {
+                    if (p.parentNode) p.parentNode.removeChild(p);
+                }, 1720);
+            }
+        }
+        
+        function absorbStill(idx) {
+            if (hasSpun) return;
+            const boosts = [
+                { label: 'PLEA MEETS SPIN SCOPE', spin: 17, bassCharge: 9, awareness: 7, together: 6 },
+                { label: 'CONTINUOUS WHIRL', spin: 14, monke: 5, neverender: 8, ciaReady: 7 },
+                { label: 'THE SPIN DIAL', spin: 21, bassCharge: 11, aceThreat: -12 },
+                { label: 'HARNESSED VORTEX FINALE', spin: 12, obiwan: 15, together: 10, awareness: 8, human: 6 }
+            ];
+            const b = boosts[idx];
+            
+            if (b.spin) spin = Math.min(100, spin + b.spin);
+            if (b.bassCharge) bassCharge = Math.min(100, bassCharge + b.bassCharge);
+            if (b.awareness) awareness = Math.min(100, awareness + b.awareness);
+            if (b.together) together = Math.min(100, together + b.together);
+            if (b.monke) monke = Math.min(100, monke + b.monke);
+            if (b.neverender) neverender = Math.min(100, neverender + b.neverender);
+            if (b.ciaReady) ciaReady = Math.min(100, ciaReady + b.ciaReady);
+            if (b.obiwan) obiwan = Math.min(100, obiwan + b.obiwan);
+            if (b.human) human = Math.min(100, human + b.human);
+            if (b.aceThreat) aceThreat = Math.max(15, aceThreat + b.aceThreat);
+            
+            log('FRAME ABSORBED: ' + b.label + ' — THE ROTATION INTEGRATES INTO THE TAKE.', 'spin');
+            updateVisuals();
+            
+            shot.style.transition = 'box-shadow 70ms linear';
+            shot.style.boxShadow = '0 0 58px rgba(103, 232, 249, 0.65)';
+            setTimeout(() => {
+                shot.style.boxShadow = '0 0 30px rgba(0,0,0,0.6)';
+            }, 140);
+        }
+        
+        function startContinuousShot() {
+            if (shotInterval) clearInterval(shotInterval);
+            shotInterval = setInterval(() => {
+                if (hasSpun) return;
+                
+                shotPosition = (shotPosition + 0.03) % 56 + 18;
+                
+                const roadSpeed = 0.9 + (neverender / 100) * 1.6 + (spin / 100) * 0.35;
+                roadLines.style.animationDuration = Math.max(0.55, roadSpeed) + 's';
+                
+                // subtle spin drift on the whole shot when spin is high
+                if (spin > 55) {
+                    const drift = (spin - 55) * 0.018;
+                    shot.style.transform = `rotate(${drift * (Math.sin(Date.now()/1800) * 0.6)}deg)`;
+                } else {
+                    shot.style.transform = 'rotate(0deg)';
+                }
+                
+                updateVisuals();
+            }, 46);
+        }
+        
+        function startCueSystem() {
+            if (cueInterval) clearInterval(cueInterval);
+            let phase = 18;
+            cueInterval = setInterval(() => {
+                phase = (phase + 1.32) % 100;
+                cuePhase = phase;
+                updateVisuals();
+            }, 31);
+        }
+        
+        function startAutoDegrade() {
+            if (degradeInterval) clearInterval(degradeInterval);
+            degradeInterval = setInterval(() => {
+                if (hasSpun) return;
+                
+                // live take pressure with spin twist
+                if (Math.random() < 0.58) monke = Math.max(16, monke - (0.55 + Math.random() * 0.75));
+                if (Math.random() < 0.5) neverender = Math.max(16, neverender - (0.45 + Math.random() * 0.65));
+                if (Math.random() < 0.42) awareness = Math.max(11, awareness - (0.32 + Math.random() * 0.5));
+                if (Math.random() < 0.36) together = Math.max(11, together - 0.45);
+                if (Math.random() < 0.65) aceThreat = Math.min(94, aceThreat + (0.65 + Math.random() * 1.0));
+                
+                // spin slowly builds from the plea echo unless managed
+                if (Math.random() < 0.72) spin = Math.min(100, spin + (0.8 + Math.random() * 1.4));
+                
+                if (bassCharge > 9 && Math.random() < 0.55) bassCharge -= 0.85;
+                
+                tension = Math.min(97, tension + 0.55);
+                
+                updateVisuals();
+            }, 880);
+        }
+        
+        function log(msg, type = 'meta') {
+            const line = document.createElement('div');
+            line.className = type;
+            line.textContent = msg;
+            logEl.appendChild(line);
+            logEl.scrollTop = logEl.scrollHeight;
+        }
+        
+        function init() {
+            startContinuousShot();
+            startCueSystem();
+            startAutoDegrade();
+            
+            // seed from the end of the previous plea (higher spin baseline)
+            setTimeout(() => {
+                monke = 49;
+                neverender = 44;
+                awareness = 42;
+                human = 37;
+                together = 44;
+                bassCharge = 31;
+                spin = 31;
+                updateVisuals();
+            }, 880);
+            
+            // opening log — direct continuation from SAVE ME
+            log('THE CAMERA IS STILL ROLLING IN ONE UNBROKEN STYLISH TAKE.', 'meta');
+            log('THE PLEA ECHOES. CIA SAVE ME. OBIWAN. HELLO THERE.', 'meta');
+            log('THE MONKE ACE SCREAMED SAVE ME AT THE LENS.', 'meta');
+            log('NOW THE COPILOT CHAIR BEGINS TO TURN.', 'spin');
+            log('THE SPIN IS THE NEXT MOVEMENT. RIDE IT THROUGH THE PLEA.', 'success');
+            
+            // Keyboard (extended for spin)
+            document.addEventListener('keydown', (e) => {
+                if (hasSpun && (e.key === ' ' || e.key === 'Enter')) {
+                    e.preventDefault();
+                    if (spinBtn.onclick) spinBtn.onclick();
+                    return;
+                }
+                if (e.key === ' ' || e.key === 'Enter') {
+                    e.preventDefault();
+                    if (!spinBtn.disabled) getSpunCopilot();
+                    else hitCue();
+                }
+                const k = e.key.toLowerCase();
+                if (k === 'm') adjustMonke(8);
+                if (k === 'n') adjustNeverender(9);
+                if (k === 'a') adjustAwareness(10);
+                if (k === 'h') adjustHuman(8);
+                if (k === 't') adjustTogether(9);
+                if (k === 'c') hitCue();
+                if (k === 'b') chargeBass();
+                if (k === 'x') engageBogies();
+                if (k === 'e') callCIA();
+                if (k === 'o') helloThere();
+                if (k === 'p' || k === 's') adjustSpin(13);
+                if (k === 'd') adjustSpin(-10);
+                if (k === 'r') respondToPlea();
+                if (k === 'g' && !spinBtn.disabled) getSpunCopilot();
+            });
+            
+            updateVisuals();
+            
+            setTimeout(() => {
+                if (!hasSpun) {
+                    spin = Math.min(100, spin + 6);
+                    updateVisuals();
+                    log('THE COPILOT IS STARTING TO FEEL THE PLEA. THE SPIN IS COMING.', 'spin');
+                }
+            }, 2400);
+            
+            console.log('%c[GET SPUN COPILOT] The camera keeps rolling. The plea echoed. Now the copilot spins. What will you do with the rotation, director?', 'color:#55a');
+        }
+        
+        // Expose for console fun during the spinning take
+        window.GET_SPUN = () => { if (!spinBtn.disabled) getSpunCopilot(); };
+        window.adjustSpin = (amt) => { spin = Math.max(0, Math.min(100, spin + amt)); updateVisuals(); };
+        window.respondToPlea = () => { respondToPlea(); };
+        
+        window.onload = init;
+    </script>
+</body>
+</html>

@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOGIES • STARFLEET PADAWAN ACADEMY RADAR</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&amp;display=swap');
+        
+        :root {
+            --psych-pink: #ff00aa;
+            --psych-teal: #00f0ff;
+            --justice-red: #e30613;
+            --space: #0a0a12;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            background: #0a0a12;
+            color: #f0f0f0;
+            font-family: "Press Start 2P", monospace;
+            min-height: 100vh;
+            overflow: hidden;
+            background-image: 
+                radial-gradient(circle at 25% 30%, rgba(255, 0, 170, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 75% 70%, rgba(0, 240, 255, 0.06) 0%, transparent 50%);
+        }
+        
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 1.5rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 1rem;
+            border-bottom: 4px solid var(--justice-red);
+            padding-bottom: 0.8rem;
+        }
+        
+        .header h1 {
+            font-size: 2.2rem;
+            color: var(--psych-teal);
+            text-shadow: 0 0 20px var(--justice-red);
+            letter-spacing: 6px;
+        }
+        
+        .header .subtitle {
+            font-size: 0.7rem;
+            color: #888;
+            letter-spacing: 3px;
+        }
+        
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 1rem;
+        }
+        
+        .radar-panel {
+            background: #111;
+            border: 6px solid #222;
+            position: relative;
+            height: 480px;
+            overflow: hidden;
+        }
+        
+        .radar {
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, #1a2a1a 0%, #0a0a12 70%);
+            position: relative;
+        }
+        
+        .radar::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: 
+                repeating-radial-gradient(circle at center, transparent 0, transparent 38px, #0f3 39px, #0f3 40px);
+            opacity: 0.3;
+        }
+        
+        .sweep {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 50%;
+            height: 4px;
+            background: linear-gradient(to right, transparent, var(--psych-teal), transparent);
+            transform-origin: left center;
+            animation: sweep 3.2s linear infinite;
+            box-shadow: 0 0 12px var(--psych-teal);
+        }
+        
+        @keyframes sweep {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .bogie {
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            background: var(--justice-red);
+            border-radius: 50%;
+            box-shadow: 0 0 15px var(--justice-red);
+            cursor: pointer;
+            transition: transform 0.1s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .bogie.locked {
+            background: var(--psych-teal);
+            box-shadow: 0 0 20px var(--psych-teal);
+            animation: pulse 0.6s infinite;
+        }
+        
+        .bogie.neutralized {
+            background: #0a0;
+            box-shadow: 0 0 10px #0a0;
+            animation: none;
+        }
+        
+        .hud-overlay {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            border: 3px solid #222;
+        }
+        
+        .hud-text {
+            position: absolute;
+            font-size: 0.6rem;
+            color: var(--psych-teal);
+            text-shadow: 0 0 5px var(--psych-teal);
+        }
+        
+        .side-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+        
+        .status-card {
+            background: #111;
+            border: 4px solid #222;
+            padding: 0.8rem;
+            font-size: 0.65rem;
+        }
+        
+        .status-card h3 {
+            color: var(--psych-pink);
+            font-size: 0.6rem;
+            margin-bottom: 0.4rem;
+            letter-spacing: 1px;
+        }
+        
+        .status-value {
+            min-height: 2.2em;
+            line-height: 1.2;
+        }
+        
+        .controls {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-top: auto;
+        }
+        
+        .btn {
+            background: #222;
+            border: 3px solid #444;
+            color: #ddd;
+            font-family: inherit;
+            font-size: 0.6rem;
+            padding: 8px 10px;
+            cursor: pointer;
+            letter-spacing: 1px;
+            transition: all 0.08s;
+        }
+        
+        .btn:hover {
+            border-color: var(--psych-teal);
+            color: white;
+        }
+        
+        .btn:active {
+            transform: scale(0.96);
+        }
+        
+        .btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+        
+        .cue-bar {
+            background: #1a1a22;
+            border: 2px solid #333;
+            height: 14px;
+            position: relative;
+            margin: 0.6rem 0;
+        }
+        
+        .cue-sweeper {
+            position: absolute;
+            top: -2px;
+            width: 6px;
+            height: 18px;
+            background: var(--justice-red);
+            box-shadow: 0 0 8px var(--justice-red);
+            transition: left 0.05s linear;
+        }
+        
+        .cue-window {
+            position: absolute;
+            top: -2px;
+            height: 18px;
+            background: rgba(0, 240, 255, 0.25);
+            border: 1px solid var(--psych-teal);
+            pointer-events: none;
+        }
+        
+        .log {
+            background: #0a0a12;
+            border: 2px solid #222;
+            padding: 0.6rem;
+            font-size: 0.55rem;
+            line-height: 1.3;
+            height: 92px;
+            overflow-y: auto;
+            white-space: pre-line;
+        }
+        
+        .log .success { color: #0f0; }
+        .log .fail { color: #f44; }
+        .log .info { color: #fa0; }
+        
+        .footer {
+            text-align: center;
+            font-size: 0.5rem;
+            color: #444;
+            margin-top: 1rem;
+            letter-spacing: 2px;
+        }
+        
+        .monke { font-size: 1rem; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>BOGIES</h1>
+            <div class="subtitle">ACADEMY RADAR • MONKE CALM • NEVERENDER SYNC • RIGHT ON CUE</div>
+        </div>
+        
+        <div class="main-grid">
+            <!-- Radar -->
+            <div class="radar-panel">
+                <div class="radar" id="radar">
+                    <div class="sweep"></div>
+                    <!-- Bogies injected by JS -->
+                </div>
+                <div class="hud-overlay">
+                    <div class="hud-text" style="top: 8px; left: 12px;">RANGE: 240KM</div>
+                    <div class="hud-text" style="top: 8px; right: 12px; text-align: right;">THREAT: HIGH</div>
+                    <div class="hud-text" style="bottom: 8px; left: 12px;">BOGIES: <span id="bogie-count">3</span></div>
+                    <div class="hud-text" style="bottom: 8px; right: 12px; text-align: right;">CUE: <span id="cue-status">ARMED</span></div>
+                </div>
+            </div>
+            
+            <!-- Side Panel -->
+            <div class="side-panel">
+                <!-- Monke Status -->
+                <div class="status-card">
+                    <h3>MONKE STATUS <span class="monke">🐵</span></h3>
+                    <div class="status-value" id="monke-status">ANGRY • TIRED • HUNGRY<br>POOR CALM</div>
+                    <button class="btn" onclick="calmMonke()">CALM THE MONKE</button>
+                </div>
+                
+                <!-- Neverender -->
+                <div class="status-card">
+                    <h3>NEVERENDER LOOP</h3>
+                    <div class="status-value" id="neverender-status">LOOP 07 • DESYNCED<br>ROAD UNSTABLE</div>
+                    <button class="btn" onclick="syncNeverender()">SYNC TO BEAT</button>
+                </div>
+                
+                <!-- Academy / Cue -->
+                <div class="status-card">
+                    <h3>RIGHT ON CUE</h3>
+                    <div class="cue-bar">
+                        <div class="cue-sweeper" id="sweeper" style="left: 0%;"></div>
+                        <div class="cue-window" style="left: 42%; width: 16%;"></div>
+                    </div>
+                    <div style="font-size: 0.5rem; color: #666; text-align: center;">GREEN = ENGAGE</div>
+                </div>
+                
+                <div class="controls">
+                    <button class="btn" onclick="scanForBogies()">SCAN FOR BOGIES</button>
+                    <button class="btn" id="lock-btn" onclick="lockBogie()" disabled>LOCK TARGET</button>
+                    <button class="btn" id="engage-btn" onclick="engageBogies()" disabled>ENGAGE RIGHT ON CUE</button>
+                </div>
+                
+                <div class="log" id="log">BOGIES DETECTED ON SCOPE.<br>STAY MONKE. STAY ON CUE.</div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            BOGIES APPEAR RIGHT ON CUE • USE MONKE BUTTON + NEVERENDER + RIGHT ON CUE TIMING • ACADEMY APPROVED
+        </div>
+    </div>
+    
+    <script>
+        let bogies = [];
+        let lockedBogie = null;
+        let monkeCalm = false;
+        let neverenderSynced = false;
+        let cueWindowActive = false;
+        
+        const radar = document.getElementById('radar');
+        const logEl = document.getElementById('log');
+        const sweeper = document.getElementById('sweeper');
+        const monkeStatus = document.getElementById('monke-status');
+        const neverenderStatus = document.getElementById('neverender-status');
+        const bogieCount = document.getElementById('bogie-count');
+        const cueStatus = document.getElementById('cue-status');
+        const lockBtn = document.getElementById('lock-btn');
+        const engageBtn = document.getElementById('engage-btn');
+        
+        function log(msg, type = 'info') {
+            const line = document.createElement('div');
+            line.className = type;
+            line.textContent = msg;
+            logEl.appendChild(line);
+            logEl.scrollTop = logEl.scrollHeight;
+            if (logEl.children.length > 6) logEl.removeChild(logEl.children[0]);
+        }
+        
+        function updateStatuses() {
+            monkeStatus.innerHTML = monkeCalm 
+                ? 'CALM • FED • RESTED<br>READY FOR ENGAGEMENT' 
+                : 'ANGRY • TIRED • HUNGRY<br>POOR CALM — BUTTON NEEDED';
+            monkeStatus.style.color = monkeCalm ? '#0f0' : '#f55';
+            
+            neverenderStatus.innerHTML = neverenderSynced 
+                ? 'LOOP 07 • PERFECTLY SYNCED<br>IMPALA ON BEAT' 
+                : 'LOOP 07 • DESYNCED<br>ROAD UNSTABLE';
+            neverenderStatus.style.color = neverenderSynced ? '#0f0' : '#f55';
+            
+            bogieCount.textContent = bogies.filter(b => !b.neutralized).length;
+            
+            const inWindow = cueWindowActive;
+            cueStatus.textContent = inWindow ? 'GREEN — FIRE' : 'ARMED';
+            cueStatus.style.color = inWindow ? '#0f0' : '#fa0';
+            
+            lockBtn.disabled = bogies.filter(b => !b.neutralized && !b.locked).length === 0;
+            engageBtn.disabled = !lockedBogie || !monkeCalm || !neverenderSynced || !cueWindowActive;
+        }
+        
+        function createBogie(x, y, id) {
+            const el = document.createElement('div');
+            el.className = 'bogie';
+            el.style.left = x + '%';
+            el.style.top = y + '%';
+            el.textContent = 'B';
+            el.dataset.id = id;
+            
+            el.onclick = () => {
+                if (monkeCalm && neverenderSynced) {
+                    lockBogieSpecific(id, el);
+                } else {
+                    log('CANNOT LOCK — CALM MONKE AND SYNC NEVERENDER FIRST', 'fail');
+                }
+            };
+            
+            radar.appendChild(el);
+            return { id, x, y, el, locked: false, neutralized: false };
+        }
+        
+        function scanForBogies() {
+            // Clear old bogies visually
+            radar.querySelectorAll('.bogie').forEach(el => el.remove());
+            bogies = [];
+            lockedBogie = null;
+            
+            const num = 3 + Math.floor(Math.random() * 2);
+            for (let i = 0; i < num; i++) {
+                const x = 25 + Math.random() * 50;
+                const y = 25 + Math.random() * 50;
+                const b = createBogie(x, y, 'b' + Date.now() + i);
+                bogies.push(b);
+            }
+            
+            log('BOGIES, BOGIES, BOGIES! ' + num + ' CONTACTS ON SCOPE.', 'info');
+            updateStatuses();
+        }
+        
+        function lockBogieSpecific(id, el) {
+            if (lockedBogie) lockedBogie.el.classList.remove('locked');
+            
+            const b = bogies.find(b => b.id === id);
+            if (!b || b.neutralized) return;
+            
+            b.locked = true;
+            lockedBogie = b;
+            el.classList.add('locked');
+            
+            log('TARGET LOCKED: BOGIE ' + id.toUpperCase() + '. AWAITING CUE.', 'info');
+            engageBtn.disabled = !monkeCalm || !neverenderSynced || !cueWindowActive;
+            updateStatuses();
+        }
+        
+        function lockBogie() {
+            const available = bogies.filter(b => !b.neutralized && !b.locked);
+            if (available.length === 0) return;
+            
+            const random = available[Math.floor(Math.random() * available.length)];
+            const el = random.el;
+            
+            if (lockedBogie) lockedBogie.el.classList.remove('locked');
+            
+            random.locked = true;
+            lockedBogie = random;
+            el.classList.add('locked');
+            
+            log('TARGET LOCKED. WAITING FOR RIGHT ON CUE WINDOW.', 'info');
+            updateStatuses();
+        }
+        
+        function engageBogies() {
+            if (!lockedBogie || !monkeCalm || !neverenderSynced || !cueWindowActive) {
+                log('ENGAGE FAILED — CONDITIONS NOT MET (MONKE CALM + NEVERENDER SYNC + RIGHT ON CUE).', 'fail');
+                return;
+            }
+            
+            lockedBogie.neutralized = true;
+            lockedBogie.el.classList.remove('locked');
+            lockedBogie.el.classList.add('neutralized');
+            lockedBogie.el.textContent = 'X';
+            
+            log('BOGIE NEUTRALIZED RIGHT ON CUE. CLEAN KILL. NO MONKE RAGE DETECTED.', 'success');
+            
+            // Victory check
+            const remaining = bogies.filter(b => !b.neutralized).length;
+            if (remaining === 0) {
+                log('ALL BOGIES CLEARED. ACADEMY PROUD. MONKES AT PEACE. LOOP CONTINUES.', 'success');
+                // Boost states
+                monkeCalm = true;
+                neverenderSynced = true;
+                createBananaRain();
+            }
+            
+            lockedBogie = null;
+            updateStatuses();
+        }
+        
+        function calmMonke() {
+            monkeCalm = true;
+            log('MONKE BUTTON DEPLOYED. PEACE ACHIEVED. FED AND RESTED STATUS CONFIRMED.', 'success');
+            updateStatuses();
+        }
+        
+        function syncNeverender() {
+            neverenderSynced = true;
+            log('NEVERENDER PROTOCOL SYNCED. TAME IMPALA WAVES + JUSTICE PULSES ALIGNED.', 'success');
+            updateStatuses();
+        }
+        
+        function createBananaRain() {
+            const container = document.querySelector('.container');
+            for (let i = 0; i < 11; i++) {
+                const b = document.createElement('div');
+                b.textContent = '🍌';
+                b.style.cssText = `position:absolute;left:${15 + Math.random()*70}%;top:${25 + Math.random()*40}%;font-size:${1.1 + Math.random()*1.6}rem;z-index:999;pointer-events:none;`;
+                container.appendChild(b);
+                setTimeout(() => {
+                    b.style.transition = 'transform 1.6s ease, opacity 1.6s ease';
+                    b.style.transform = `translateY(${140 + Math.random()*70}px) rotate(${Math.random()*50-25}deg)`;
+                    b.style.opacity = '0';
+                }, 80);
+                setTimeout(() => {
+                    if (b.parentNode) b.parentNode.removeChild(b);
+                }, 1800);
+            }
+        }
+        
+        // Cue window simulation (matches Right on Cue project)
+        function startCueSystem() {
+            let phase = 0;
+            setInterval(() => {
+                phase = (phase + 1) % 100;
+                const pos = (phase / 100) * 100;
+                sweeper.style.left = pos + '%';
+                
+                cueWindowActive = (pos > 42 && pos < 58);
+                
+                if (cueWindowActive) {
+                    radar.style.boxShadow = '0 0 25px rgba(0, 240, 255, 0.25)';
+                } else {
+                    radar.style.boxShadow = 'none';
+                }
+                
+                updateStatuses();
+            }, 48); // smooth sweep
+        }
+        
+        function randomBogiesAppear() {
+            setInterval(() => {
+                if (bogies.filter(b => !b.neutralized).length < 2 && Math.random() < 0.65) {
+                    const x = 20 + Math.random() * 60;
+                    const y = 20 + Math.random() * 60;
+                    const b = createBogie(x, y, 'b' + Date.now());
+                    bogies.push(b);
+                    log('NEW BOGIE MATERIALIZED RIGHT ON CUE.', 'info');
+                    updateStatuses();
+                }
+            }, 6200);
+        }
+        
+        function init() {
+            // Boot with a couple bogies
+            setTimeout(() => {
+                scanForBogies();
+                log('TRAINING PROTOCOL ACTIVE. BOGIES WILL APPEAR RIGHT ON CUE.', 'info');
+            }, 420);
+            
+            startCueSystem();
+            randomBogiesAppear();
+            updateStatuses();
+            
+            // Keyboard support
+            document.addEventListener('keydown', (e) => {
+                if (e.key === ' ' || e.key === 'Enter') {
+                    e.preventDefault();
+                    if (!engageBtn.disabled) engageBogies();
+                    else if (!lockBtn.disabled) lockBogie();
+                }
+                if (e.key.toLowerCase() === 's') scanForBogies();
+                if (e.key.toLowerCase() === 'c') calmMonke();
+                if (e.key.toLowerCase() === 'n') syncNeverender();
+            });
+            
+            console.log('%c[BOGIES] Radar online. Stay monke. Stay on cue.', 'color:#555');
+        }
+        
+        window.onload = init;
+    </script>
+</body>
+</html>

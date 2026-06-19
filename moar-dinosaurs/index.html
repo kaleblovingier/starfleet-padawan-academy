@@ -1,0 +1,1824 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MOAR DINOSAURS • MOAR ON THAT DINO • THE DINO ESCALATION IN THE ONE TAKE</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&amp;display=swap');
+        
+        :root {
+            --psych-pink: #ff00aa;
+            --psych-teal: #00f0ff;
+            --justice-red: #e30613;
+            --space: #0a0a12;
+            --awakening-gold: #facc15;
+            --together-purple: #a855f7;
+            --human-warm: #f4a261;
+            --timmy-elegant: #c084fc;
+            --save-red: #ff1133;
+            --bass-purple: #7c3aed;
+            --cia-black: #111113;
+            --obi-gold: #fde047;
+            --spin-cyan: #67e8f9;
+            --namaste-gold: #fde047;
+            --peace-teal: #5eead4;
+            --dino-green: #4ade80;
+            --dino-brown: #a16207;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            background: #0a0a12;
+            color: #f0f0f0;
+            font-family: "Press Start 2P", monospace;
+            min-height: 100vh;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 25% 30%, rgba(255, 0, 170, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 75% 70%, rgba(0, 240, 255, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(74, 222, 128, 0.04) 0%, transparent 70%);
+        }
+        
+        .container {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 1.25rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 0.9rem;
+            border-bottom: 5px solid var(--dino-green);
+            padding-bottom: 0.7rem;
+        }
+        
+        .header h1 {
+            font-size: 2.0rem;
+            background: linear-gradient(90deg, var(--psych-pink), var(--dino-green), var(--namaste-gold), var(--bass-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.15rem;
+            letter-spacing: 4px;
+            text-shadow: 0 0 20px rgba(74, 222, 128, 0.3);
+        }
+        
+        .header .subtitle {
+            font-size: 0.56rem;
+            color: #888;
+            letter-spacing: 2.5px;
+        }
+        
+        .shot-container {
+            background: #111;
+            border: 7px solid #222;
+            padding: 0.85rem;
+            position: relative;
+            height: 480px;
+            overflow: hidden;
+            margin-bottom: 0.85rem;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
+        }
+        
+        .continuous-shot {
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 42% 32%, #1a1a2a 0%, #0a0a12 68%);
+            position: relative;
+            overflow: hidden;
+            border: 2px solid rgba(34, 34, 34, 0.8);
+        }
+        
+        .shot-overlay {
+            position: absolute;
+            inset: 0;
+            background: 
+                repeating-linear-gradient(
+                    90deg,
+                    transparent 0px,
+                    transparent 2px,
+                    rgba(250, 204, 21, 0.022) 2px,
+                    rgba(250, 204, 21, 0.022) 4px
+                );
+            pointer-events: none;
+            animation: film-grain 0.09s infinite;
+            z-index: 3;
+        }
+        
+        .camera-frame {
+            position: absolute;
+            inset: 14px;
+            border: 2px solid rgba(250, 204, 21, 0.28);
+            pointer-events: none;
+            z-index: 4;
+        }
+        
+        .scene-layer {
+            position: absolute;
+            inset: 0;
+            transition: transform 0.08s linear, opacity 0.2s ease;
+        }
+        
+        /* Neverender Road */
+        .neverender-road {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 38%;
+            background: linear-gradient(#222 0%, #151515 38%, #0a0a12 100%);
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .road-lines {
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(
+                90deg,
+                transparent 0px,
+                transparent 28px,
+                #444 28px,
+                #444 32px
+            );
+            animation: road-move 1.05s linear infinite;
+        }
+        
+        /* Stylish Monke Ace */
+        .monke-ace {
+            position: absolute;
+            font-size: 3.5rem;
+            bottom: 18%;
+            left: 20%;
+            transition: left 0.18s linear, transform 0.12s ease;
+            filter: drop-shadow(0 0 12px var(--timmy-elegant));
+            z-index: 6;
+            text-shadow: 0 4px 12px rgba(0,0,0,0.6);
+        }
+        
+        .monke-ace.distressed {
+            filter: drop-shadow(0 0 6px var(--save-red)) drop-shadow(0 0 18px #000);
+        }
+        
+        /* THE COPILOT (still carries spin, now with dino) */
+        .copilot {
+            position: absolute;
+            font-size: 2.6rem;
+            bottom: 17%;
+            right: 18%;
+            transition: transform 0.06s linear, filter 0.15s;
+            filter: drop-shadow(0 0 10px var(--together-purple));
+            z-index: 7;
+            text-shadow: 0 3px 10px rgba(0,0,0,0.7);
+        }
+        
+        .copilot.dizzy {
+            filter: drop-shadow(0 0 8px var(--spin-cyan)) drop-shadow(0 0 20px #000);
+        }
+        
+        /* DINOSAURS LAYER */
+        .dino-layer {
+            position: absolute;
+            inset: 0;
+            z-index: 5;
+            pointer-events: none;
+        }
+        
+        .dino {
+            position: absolute;
+            font-size: 2.2rem;
+            transition: left 0.4s linear, bottom 0.4s linear, transform 0.1s linear;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5));
+            z-index: 5;
+        }
+        
+        .dino.trex { font-size: 2.8rem; }
+        .dino.veloci { font-size: 1.8rem; }
+        .dino.bronto { font-size: 2.4rem; }
+        .dino.ptero { font-size: 1.6rem; top: 15%; }
+        /* MOAR DINOSAUR ON THAT DINO styles */
+        .dino.monke { font-size: 2.0rem; }
+        .dino.veloci2 { font-size: 1.7rem; }
+        .dino.anky { font-size: 2.1rem; }
+        .dino.trex2 { font-size: 2.5rem; }
+        
+        /* Namaste Aura (carried) */
+        .namaste-aura {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 52% 48%, rgba(253, 224, 71, 0.12) 0%, transparent 65%);
+            opacity: 0.4;
+            z-index: 4;
+            pointer-events: none;
+        }
+        
+        /* Conscious Glow */
+        .conscious-glow {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 38% 36%, rgba(250, 204, 21, 0.22) 0%, transparent 62%);
+            opacity: 0.55;
+            animation: conscious-pulse 2.6s ease-in-out infinite;
+            z-index: 2;
+        }
+        
+        /* Right on Cue */
+        .cue-overlay {
+            position: absolute;
+            top: 28%;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: rgba(227, 6, 19, 0.28);
+            z-index: 5;
+        }
+        
+        .cue-sweeper {
+            position: absolute;
+            top: -10px;
+            width: 18px;
+            height: 22px;
+            background: var(--justice-red);
+            border-radius: 50%;
+            box-shadow: 0 0 14px var(--justice-red);
+            z-index: 8;
+            transition: left 0.04s linear;
+        }
+        
+        .cue-window {
+            position: absolute;
+            top: -10px;
+            height: 22px;
+            background: rgba(0, 240, 255, 0.22);
+            border: 1px solid var(--psych-teal);
+            pointer-events: none;
+            z-index: 6;
+        }
+        
+        /* Ace Combat Bogies + Dinos */
+        .bogie {
+            position: absolute;
+            font-size: 1.1rem;
+            color: #f55;
+            text-shadow: 0 0 6px #f00;
+            z-index: 5;
+            transition: transform 0.1s linear;
+        }
+        
+        /* Bass Cannon */
+        .bass-cannon {
+            position: absolute;
+            bottom: 8%;
+            right: 9%;
+            width: 82px;
+            height: 82px;
+            border: 4px solid var(--bass-purple);
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(124,58,237,0.25) 10%, transparent 70%);
+            box-shadow: 0 0 18px var(--bass-purple);
+            z-index: 4;
+            transition: transform 0.2s ease, box-shadow 0.2s;
+        }
+        
+        .bass-cannon.charging {
+            animation: bass-pulse 0.6s infinite alternate;
+        }
+        
+        .bass-core {
+            position: absolute;
+            inset: 18px;
+            background: var(--bass-purple);
+            border-radius: 50%;
+            opacity: 0.35;
+            box-shadow: 0 0 30px var(--save-red);
+        }
+        
+        /* CIA Helicopter */
+        .cia-heli {
+            position: absolute;
+            top: 12%;
+            left: -18%;
+            font-size: 2.1rem;
+            filter: drop-shadow(0 6px 10px rgba(0,0,0,0.7));
+            z-index: 9;
+            transition: left 1.1s cubic-bezier(0.23, 1, 0.32, 1);
+            opacity: 0.15;
+        }
+        
+        .cia-heli.active {
+            opacity: 1;
+        }
+        
+        /* Obi-Wan Mentor */
+        .obiwan {
+            position: absolute;
+            top: 22%;
+            right: -14%;
+            font-size: 2.35rem;
+            filter: drop-shadow(0 0 14px var(--obi-gold));
+            z-index: 8;
+            transition: right 1.4s cubic-bezier(0.23, 1, 0.32, 1), transform 0.3s;
+            opacity: 0.15;
+        }
+        
+        .obiwan.active {
+            opacity: 0.95;
+            right: 11%;
+        }
+        
+        .obiwan-label {
+            position: absolute;
+            top: -22px;
+            right: -6px;
+            font-size: 0.42rem;
+            color: var(--obi-gold);
+            letter-spacing: 1px;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .obiwan.active .obiwan-label { opacity: 0.9; }
+        
+        /* DINO CLIMAX OVERLAY */
+        .dino-vortex {
+            position: absolute;
+            inset: 0;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            background: rgba(10, 10, 18, 0.25);
+            z-index: 20;
+            pointer-events: none;
+        }
+        
+        .dino-text {
+            font-size: 3.0rem;
+            color: var(--dino-green);
+            text-shadow: 
+                0 0 12px #fff,
+                0 0 32px var(--dino-brown),
+                3px 3px 0 #000;
+            letter-spacing: 5px;
+            transform: scale(0.5);
+            opacity: 0;
+            animation: dino-roar 1.6s forwards;
+            pointer-events: none;
+        }
+        
+        /* Tension / Dino bar */
+        .tension-bar {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            height: 7px;
+            background: #1a1a22;
+            border: 2px solid #333;
+            z-index: 9;
+        }
+        
+        .tension-fill {
+            height: 100%;
+            background: linear-gradient(to right, var(--dino-green), var(--bass-purple), var(--namaste-gold));
+            transition: width 0.12s linear;
+            box-shadow: 0 0 12px var(--dino-green);
+        }
+        
+        .shot-indicator {
+            position: absolute;
+            top: 22px;
+            right: 12px;
+            background: rgba(74, 222, 128, 0.2);
+            border: 1px solid var(--dino-green);
+            padding: 1px 7px;
+            font-size: 0.42rem;
+            letter-spacing: 1px;
+            z-index: 9;
+            color: #8f8;
+        }
+        
+        /* Controls & Systems */
+        .systems-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(168px, 1fr));
+            gap: 0.6rem;
+            margin-bottom: 0.7rem;
+        }
+        
+        .system {
+            background: #111;
+            border: 4px solid #222;
+            padding: 0.55rem 0.6rem;
+            font-size: 0.48rem;
+        }
+        
+        .system h4 {
+            color: var(--psych-teal);
+            font-size: 0.48rem;
+            margin-bottom: 0.22rem;
+            letter-spacing: 1px;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .system .value {
+            font-size: 0.7rem;
+            color: #ddd;
+            margin-bottom: 0.1rem;
+        }
+        
+        .system input[type="range"] {
+            width: 100%;
+            accent-color: var(--dino-green);
+        }
+        
+        .system .mini-btns {
+            display: flex;
+            gap: 3px;
+            margin-top: 0.2rem;
+        }
+        
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.45rem;
+            justify-content: center;
+            margin-bottom: 0.75rem;
+        }
+        
+        .btn {
+            background: #222;
+            border: 3px solid #444;
+            color: #ddd;
+            font-family: inherit;
+            font-size: 0.52rem;
+            padding: 7px 11px;
+            cursor: pointer;
+            letter-spacing: 1.5px;
+            transition: all 0.07s;
+        }
+        
+        .btn:hover {
+            border-color: var(--timmy-elegant);
+            color: white;
+        }
+        
+        .btn:active {
+            transform: scale(0.94);
+        }
+        
+        .btn:disabled {
+            opacity: 0.28;
+            cursor: not-allowed;
+        }
+        
+        .action-btn {
+            background: linear-gradient(#222, #111);
+            border-color: var(--timmy-elegant);
+            color: var(--timmy-elegant);
+            font-size: 0.55rem;
+            padding: 8px 13px;
+        }
+        
+        .dino-btn {
+            background: linear-gradient(#0a2a0a, #051505);
+            border-color: var(--dino-green);
+            color: var(--dino-green);
+            font-size: 0.64rem;
+            padding: 10px 16px;
+            letter-spacing: 2px;
+            box-shadow: 0 0 18px rgba(74, 222, 128, 0.35);
+            animation: dino-ready-pulse 1.55s infinite;
+        }
+        
+        .dino-btn:disabled {
+            animation: none;
+            box-shadow: none;
+        }
+        
+        .log {
+            background: #0a0a12;
+            border: 3px solid #222;
+            padding: 0.5rem;
+            font-size: 0.5rem;
+            line-height: 1.2;
+            height: 108px;
+            overflow-y: auto;
+            white-space: pre-line;
+            margin-bottom: 0.6rem;
+        }
+        
+        .log .success { color: #0f0; }
+        .log .meta { color: var(--timmy-elegant); }
+        .log .plea { color: var(--save-red); font-weight: bold; }
+        .log .rescue { color: var(--obi-gold); }
+        .log .spin { color: var(--spin-cyan); font-weight: bold; }
+        .log .namaste { color: var(--namaste-gold); font-weight: bold; }
+        .log .coke { color: var(--bass-purple); font-weight: bold; }
+        .log .dino { color: var(--dino-green); font-weight: bold; }
+        
+        .post-dino {
+            display: none;
+            background: #111;
+            border: 5px solid var(--dino-green);
+            padding: 0.8rem;
+            margin-bottom: 0.7rem;
+            text-align: center;
+        }
+        
+        .post-dino h3 {
+            color: var(--dino-green);
+            font-size: 0.64rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: 2px;
+        }
+        
+        .dino-choices {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            justify-content: center;
+        }
+        
+        .choice-btn {
+            background: #1a1a22;
+            border: 3px solid var(--dino-brown);
+            color: #ccc;
+            font-size: 0.48rem;
+            padding: 6px 10px;
+        }
+        
+        .choice-btn:hover {
+            border-color: var(--dino-green);
+            color: white;
+        }
+        
+        .stills {
+            border: 4px solid #222;
+            background: #111;
+            padding: 0.6rem;
+            margin-top: 0.3rem;
+        }
+        
+        .stills h4 {
+            font-size: 0.48rem;
+            color: #666;
+            margin-bottom: 0.35rem;
+            letter-spacing: 1.5px;
+        }
+        
+        .stills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(138px, 1fr));
+            gap: 0.45rem;
+        }
+        
+        .still {
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+            border: 2px solid #333;
+            transition: border-color 0.1s, transform 0.1s;
+        }
+        
+        .still:hover {
+            border-color: var(--dino-green);
+            transform: translateY(-1px);
+        }
+        
+        .still img {
+            width: 100%;
+            display: block;
+            height: 78px;
+            object-fit: cover;
+            filter: saturate(0.85) contrast(1.05);
+        }
+        
+        .still .cap {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0,0,0,0.75);
+            font-size: 0.36rem;
+            padding: 2px 4px;
+            letter-spacing: 0.5px;
+            color: #ccc;
+        }
+        
+        .footer {
+            text-align: center;
+            font-size: 0.42rem;
+            color: #444;
+            margin-top: 0.5rem;
+            letter-spacing: 2.2px;
+            line-height: 1.4;
+        }
+        
+        @keyframes film-grain {
+            0% { transform: translate(0, 0); }
+            10% { transform: translate(0.6px, -0.4px); }
+            20% { transform: translate(-0.5px, 0.6px); }
+        }
+        
+        @keyframes conscious-pulse {
+            0%, 100% { opacity: 0.42; }
+            50% { opacity: 0.78; }
+        }
+        
+        @keyframes road-move {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-52px); }
+        }
+        
+        @keyframes bass-pulse {
+            from { transform: scale(1); box-shadow: 0 0 18px var(--bass-purple); }
+            to { transform: scale(1.12); box-shadow: 0 0 38px var(--save-red); }
+        }
+        
+        @keyframes dino-roar {
+            0% { transform: scale(0.5); opacity: 0; }
+            15% { transform: scale(1.15); opacity: 1; }
+            38% { transform: scale(0.92); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        @keyframes dino-ready-pulse {
+            0%, 100% { box-shadow: 0 0 18px rgba(74, 222, 128, 0.35); }
+            50% { box-shadow: 0 0 42px rgba(74, 222, 128, 0.7); }
+        }
+        
+        .particle {
+            position: absolute;
+            z-index: 30;
+            pointer-events: none;
+            user-select: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>MOAR DINOSAURS</h1>
+            <div class="subtitle">THE DINO ESCALATION AFTER THE DROP • MOAR ON THAT DINO • ONE UNBROKEN TAKE • THE CAMERA NEVER CUTS • ROAR WITH THE BASS</div>
+        </div>
+        
+        <!-- THE LIVE ONE-TAKE SHOT (continuing from I DO COKE + NAMASTE) -->
+        <div class="shot-container">
+            <div class="continuous-shot" id="shot">
+                <div class="shot-overlay"></div>
+                <div class="camera-frame"></div>
+                
+                <!-- Tension / Dino bar -->
+                <div class="tension-bar">
+                    <div class="tension-fill" id="tension-fill" style="width: 38%;"></div>
+                </div>
+                
+                <!-- Neverender Road -->
+                <div class="scene-layer" id="road-layer">
+                    <div class="neverender-road">
+                        <div class="road-lines" id="road-lines"></div>
+                    </div>
+                </div>
+                
+                <!-- Bogies + Dinos -->
+                <div class="scene-layer" id="bogies-layer">
+                    <div class="bogie" id="bogie1" style="left:68%; top:31%;">✈︎</div>
+                    <div class="bogie" id="bogie2" style="left:81%; top:19%; transform:rotate(-18deg);">✈︎</div>
+                </div>
+                
+                <!-- Stylish Monke Ace -->
+                <div class="scene-layer" id="monke-layer">
+                    <div class="monke-ace" id="monke-ace">🐵✈️</div>
+                </div>
+                
+                <!-- THE COPILOT (spun, now dino-infused) -->
+                <div class="scene-layer" id="copilot-layer">
+                    <div class="copilot" id="copilot">🛫🐵</div>
+                </div>
+                
+                <!-- DINOSAURS LAYER - MOAR ON THAT DINO -->
+                <div class="scene-layer" id="dino-layer">
+                    <div class="dino trex" id="dino-trex" style="left: 12%; bottom: 22%; display: none;">🦖</div>
+                    <div class="dino veloci" id="dino-veloci" style="left: 72%; bottom: 35%; display: none;">🦕</div>
+                    <div class="dino bronto" id="dino-bronto" style="left: 45%; bottom: 8%; display: none;">🦕</div>
+                    <div class="dino ptero" id="dino-ptero" style="left: 82%; top: 18%; display: none;">🦖</div>
+                    <!-- MOAR DINOS ON THAT DINO -->
+                    <div class="dino monke" id="dino-monke" style="left: 28%; bottom: 25%; display: none;">🐵🦖</div>
+                    <div class="dino veloci2" id="dino-veloci2" style="left: 65%; bottom: 28%; display: none;">🦕</div>
+                    <div class="dino anky" id="dino-anky" style="left: 55%; bottom: 12%; display: none;">🦕</div>
+                    <div class="dino trex2" id="dino-trex2" style="left: 18%; bottom: 15%; display: none;">🦖</div>
+                </div>
+                
+                <!-- Namaste Aura (carried from previous) -->
+                <div class="scene-layer">
+                    <div class="namaste-aura" id="namaste-aura"></div>
+                </div>
+                
+                <!-- Conscious Glow -->
+                <div class="scene-layer" id="glow-layer">
+                    <div class="conscious-glow"></div>
+                </div>
+                
+                <!-- Right on Cue -->
+                <div class="scene-layer" id="cue-layer">
+                    <div class="cue-overlay">
+                        <div class="cue-sweeper" id="sweeper" style="left: 0%;"></div>
+                        <div class="cue-window" id="cue-window" style="left: 43%; width: 15%;"></div>
+                    </div>
+                </div>
+                
+                <!-- Bass Cannon -->
+                <div class="scene-layer" id="bass-layer">
+                    <div class="bass-cannon" id="bass-cannon">
+                        <div class="bass-core" id="bass-core"></div>
+                    </div>
+                </div>
+                
+                <!-- CIA Helicopter -->
+                <div class="scene-layer">
+                    <div class="cia-heli" id="cia-heli">🚁</div>
+                </div>
+                
+                <!-- Obi-Wan -->
+                <div class="scene-layer">
+                    <div class="obiwan" id="obiwan">
+                        <span class="obiwan-label">HELLO THERE</span>
+                        🪐
+                    </div>
+                </div>
+                
+                <!-- The Dino Climax Overlay -->
+                <div class="dino-vortex" id="dino-vortex">
+                    <div class="dino-text" id="dino-text">MOAR DINOSAURS</div>
+                </div>
+                
+                <div class="shot-indicator" id="shot-indicator">ONE TAKE • ROLLING • COKE ECHO • NAMASTE GLOW • DINOS PENDING</div>
+            </div>
+        </div>
+        
+        <!-- LIVE SYSTEMS (all previous + new dino count) -->
+        <div class="systems-grid">
+            <div class="system">
+                <h4>MONKE CALM <span class="monke">🐵</span></h4>
+                <div class="value" id="monke-val">47%</div>
+                <input type="range" id="monke-slider" min="15" max="100" value="47" oninput="setMonke(this.value)">
+                <div class="mini-btns">
+                    <button class="btn" onclick="adjustMonke(-8)">FEED</button>
+                    <button class="btn" onclick="adjustMonke(9)">CALM</button>
+                </div>
+            </div>
+            
+            <div class="system">
+                <h4>NEVERENDER SYNC</h4>
+                <div class="value" id="neverender-val">42%</div>
+                <input type="range" id="neverender-slider" min="15" max="100" value="42" oninput="setNeverender(this.value)">
+                <div class="mini-btns">
+                    <button class="btn" onclick="adjustNeverender(-7)">DROP</button>
+                    <button class="btn" onclick="adjustNeverender(11)">LOCK</button>
+                </div>
+            </div>
+            
+            <div class="system">
+                <h4>AWARENESS / CONSCIOUS</h4>
+                <div class="value" id="awareness-val">44%</div>
+                <input type="range" id="awareness-slider" min="10" max="100" value="44" oninput="setAwareness(this.value)">
+                <div class="mini-btns">
+                    <button class="btn" onclick="adjustAwareness(12)">REALIZE</button>
+                    <button class="btn" onclick="adjustAwareness(-6)">DENY</button>
+                </div>
+            </div>
+            
+            <div class="system">
+                <h4>HUMAN AFTER ALL</h4>
+                <div class="value" id="human-val">39%</div>
+                <input type="range" id="human-slider" min="10" max="100" value="39" oninput="setHuman(this.value)">
+                <div class="mini-btns">
+                    <button class="btn" onclick="adjustHuman(10)">EMBRACE</button>
+                    <button class="btn" onclick="adjustHuman(-5)">PERFECT</button>
+                </div>
+            </div>
+            
+            <div class="system">
+                <h4>BETTER TOGETHER</h4>
+                <div class="value" id="together-val">46%</div>
+                <input type="range" id="together-slider" min="10" max="100" value="46" oninput="setTogether(this.value)">
+                <div class="mini-btns">
+                    <button class="btn" onclick="adjustTogether(13)">COLLAB</button>
+                    <button class="btn" onclick="adjustTogether(-4)">SOLO</button>
+                </div>
+            </div>
+            
+            <div class="system">
+                <h4>ACE COMBAT / BOGIES</h4>
+                <div class="value" id="ace-val">52% THREAT</div>
+                <input type="range" id="ace-slider" min="15" max="95" value="52" oninput="setAce(this.value)">
+                <div class="mini-btns">
+                    <button class="btn" onclick="engageBogies()">FOX 2</button>
+                    <button class="btn" onclick="adjustAce(-14)">LOCK</button>
+                </div>
+            </div>
+            
+            <div class="system">
+                <h4>BASS CANNON CHARGE</h4>
+                <div class="value" id="bass-val">29%</div>
+                <input type="range" id="bass-slider" min="5" max="100" value="29" oninput="setBass(this.value)">
+                <div class="mini-btns">
+                    <button class="btn action-btn" onclick="chargeBass()">CHARGE</button>
+                    <button class="btn" onclick="setBass(4)">VENT</button>
+                </div>
+            </div>
+            
+            <div class="system">
+                <h4>CIA EXTRACTION</h4>
+                <div class="value" id="cia-val">22%</div>
+                <input type="range" id="cia-slider" min="0" max="100" value="22" oninput="setCia(this.value)">
+                <div class="mini-btns">
+                    <button class="btn" onclick="callCIA()">CALL IN</button>
+                </div>
+            </div>
+            
+            <div class="system">
+                <h4>OBI-WAN PRESENCE</h4>
+                <div class="value" id="obi-val">17%</div>
+                <input type="range" id="obi-slider" min="0" max="100" value="17" oninput="setObi(this.value)">
+                <div class="mini-btns">
+                    <button class="btn" onclick="helloThere()">HELLO THERE</button>
+                </div>
+            </div>
+            
+            <!-- Carried from previous -->
+            <div class="system">
+                <h4>COPILOT SPIN <span style="color:var(--spin-cyan);">🌀</span></h4>
+                <div class="value" id="spin-val">31%</div>
+                <input type="range" id="spin-slider" min="0" max="100" value="31" oninput="setSpin(this.value)">
+                <div class="mini-btns">
+                    <button class="btn" onclick="adjustSpin(11)" style="border-color:var(--spin-cyan);color:var(--spin-cyan);">SPIN UP</button>
+                    <button class="btn" onclick="adjustSpin(-7)">DAMPEN</button>
+                </div>
+            </div>
+            
+            <div class="system">
+                <h4>BROTHER BOND <span style="color:var(--namaste-gold);">🙏</span></h4>
+                <div class="value" id="bond-val">32%</div>
+                <input type="range" id="bond-slider" min="0" max="100" value="32" oninput="setBond(this.value)">
+                <div class="mini-btns">
+                    <button class="btn" onclick="adjustBond(12)" style="border-color:var(--namaste-gold);color:var(--namaste-gold);">GREET</button>
+                    <button class="btn" onclick="adjustBond(-6)">PAUSE</button>
+                </div>
+            </div>
+            
+            <div class="system">
+                <h4>COKE ENERGY <span style="color:var(--bass-purple);">⚡</span></h4>
+                <div class="value" id="coke-val">26%</div>
+                <input type="range" id="coke-slider" min="0" max="100" value="26" oninput="setCoke(this.value)">
+                <div class="mini-btns">
+                    <button class="btn" onclick="adjustCoke(14)" style="border-color:var(--bass-purple);color:var(--bass-purple);">RAIL</button>
+                    <button class="btn" onclick="adjustCoke(-8)">CRASH</button>
+                </div>
+            </div>
+            
+            <!-- NEW: MOAR DINOS -->
+            <div class="system" style="border-color: var(--dino-green);">
+                <h4>MOAR DINOS <span style="color:var(--dino-green);">🦕</span></h4>
+                <div class="value" id="dino-val">18%</div>
+                <input type="range" id="dino-slider" min="0" max="100" value="18" oninput="setDino(this.value)">
+                <div class="mini-btns">
+                    <button class="btn" onclick="summonDinos()" style="border-color:var(--dino-green);color:var(--dino-green);">SUMMON</button>
+                    <button class="btn" onclick="adjustDino(-10)">FEED</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- PRIMARY ACTIONS -->
+        <div class="controls">
+            <button class="btn action-btn" onclick="respondToPlea()">RESPOND TO THE PLEA</button>
+            <button class="btn action-btn" onclick="hitCue()">HIT THE CUE (RIGHT ON CUE)</button>
+            <button class="btn action-btn" onclick="engageBogies()">ENGAGE BOGIES • ACE COMBAT</button>
+            <button class="btn action-btn" onclick="chargeBass()">FIRE THE BASS CANNON</button>
+            
+            <button class="btn dino-btn" id="dino-btn" onclick="moarDinosaurs()" disabled>MOAR DINOSAURS</button>
+            <!-- MOAR DINOSAUR ON THAT DINO buttons -->
+            <button class="btn" onclick="dinoMonkeRide()" style="border-color:var(--dino-green);color:var(--dino-green);">DINO MONKE RIDE</button>
+            <button class="btn" onclick="fullStampede()" style="border-color:var(--dino-brown);color:var(--dino-brown);">FULL STAMPEDE</button>
+        </div>
+        
+        <!-- THE LOG (continuing the unbroken saga) -->
+        <div class="log" id="log">THE CAMERA IS STILL ROLLING IN ONE UNBROKEN STYLISH TAKE.<br>THE PLEA ECHOED. THE COPILOT SPUN. WE BOWED NAMASTE BR0THER.<br>THE DROP HIT — I DO COKE BY FEED ME AND KILL THE NOISE.<br>NOW THE GROUND TREMBLES. NOW THE ROARS BEGIN.<br>THE DINOSAURS ARE COMING. MOAR DINOSAURS.</div>
+        
+        <!-- POST DINO CHOICES -->
+        <div class="post-dino" id="post-dino">
+            <h3>THE DINOSAURS HAVE ARRIVED • THE TAKE HAS TEETH</h3>
+            <div class="dino-choices">
+                <button class="choice-btn" onclick="chooseDino(0)">DINO THE MONKE 🐵🦖</button>
+                <button class="choice-btn" onclick="chooseDino(1)">RIDE THE DINO COPILOT 🛫🦕</button>
+                <button class="choice-btn" onclick="chooseDino(2)">DINO THE BASS 🔊🦖</button>
+                <button class="choice-btn" onclick="chooseDino(3)">MOAR DINOS FOR THE ACADEMY 🏛️🦕</button>
+                <button class="choice-btn" onclick="chooseDino(4)">DINO THE INFINITE TAKE ♾️🦖</button>
+            </div>
+        </div>
+        
+        <!-- CLIMAX STILLS FROM THIS DINO LAYER -->
+        <div class="stills">
+            <h4>DINO STILLS — FRAMES FROM THE STAMPEDE (CLICK TO ABSORB THE ROAR)</h4>
+            <div class="stills-grid">
+                <div class="still" onclick="absorbStill(0)">
+                    <img src="images/moar_dinosaurs_one_take.jpg" alt="one take scope with dinosaurs">
+                    <div class="cap">THE SCOPE — COKE DROP MEETS DINO STAMPEDE</div>
+                </div>
+                <div class="still" onclick="absorbStill(1)">
+                    <img src="images/moar_dinosaurs_continuous.jpg" alt="continuous dino academy">
+                    <div class="cap">CONTINUOUS — DINOS IN THE ACADEMY</div>
+                </div>
+                <div class="still" onclick="absorbStill(2)">
+                    <img src="images/moar_dinosaurs_console.jpg" alt="console moar dinos">
+                    <div class="cap">CONSOLE — THE DINO BUTTON</div>
+                </div>
+                <div class="still" onclick="absorbStill(3)">
+                    <img src="images/moar_dinosaurs_finale.jpg" alt="finale dino masterpiece">
+                    <div class="cap">FINALE — MOAR DINOS IN ONE TAKE</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            THE CAMERA NEVER CUTS • THE DINOSAURS ARE PART OF THE SHOT • HUMAN AFTER ALL • DINO AFTER ALL • BETTER TOGETHER • ONE TAKE TIMMY STYLE<br>
+            THE PLEA ECHOED. THE COPILOT SPUN. WE BOWED. WE DID COKE. NOW THERE ARE MOAR DINOSAURS. WHAT'S THE NEXT SHOT, DIRECTOR?
+        </div>
+    </div>
+    
+    <script>
+        // === STATE: the unbroken take continues from NAMASTE + I DO COKE. Now dinosaurs arrive ===
+        let monke = 47;
+        let neverender = 42;
+        let awareness = 44;
+        let human = 39;
+        let together = 46;
+        let aceThreat = 52;
+        let bassCharge = 29;
+        let ciaReady = 22;
+        let obiwan = 17;
+        let spin = 31;          // carried
+        let bond = 32;          // carried
+        let coke = 26;          // carried from last layer
+        let dino = 18;          // NEW: moar dinosaurs level
+        let cuePhase = 19;
+        let tension = 38;
+        let hasDinos = false;
+        let shotPosition = 21;
+        let copilotRotation = 12;
+        
+        let cueInterval = null;
+        let shotInterval = null;
+        let degradeInterval = null;
+        
+        const shot = document.getElementById('shot');
+        const monkeAce = document.getElementById('monke-ace');
+        const copilotEl = document.getElementById('copilot');
+        const namasteAura = document.getElementById('namaste-aura');
+        const roadLines = document.getElementById('road-lines');
+        const sweeper = document.getElementById('sweeper');
+        const cueWindow = document.getElementById('cue-window');
+        const bassCannon = document.getElementById('bass-cannon');
+        const bassCore = document.getElementById('bass-core');
+        const ciaHeli = document.getElementById('cia-heli');
+        const obiwanEl = document.getElementById('obiwan');
+        const dinoLayer = document.getElementById('dino-layer');
+        const dinoTrex = document.getElementById('dino-trex');
+        const dinoVeloci = document.getElementById('dino-veloci');
+        const dinoBronto = document.getElementById('dino-bronto');
+        const dinoPtero = document.getElementById('dino-ptero');
+        // MOAR DINOSAUR ON THAT DINO consts
+        const dinoMonke = document.getElementById('dino-monke');
+        const dinoVeloci2 = document.getElementById('dino-veloci2');
+        const dinoAnky = document.getElementById('dino-anky');
+        const dinoTrex2 = document.getElementById('dino-trex2');
+        const dinoVortex = document.getElementById('dino-vortex');
+        const dinoText = document.getElementById('dino-text');
+        const logEl = document.getElementById('log');
+        const dinoBtn = document.getElementById('dino-btn');
+        const tensionFill = document.getElementById('tension-fill');
+        const shotIndicator = document.getElementById('shot-indicator');
+        
+        const sliders = {
+            monke: document.getElementById('monke-slider'),
+            neverender: document.getElementById('neverender-slider'),
+            awareness: document.getElementById('awareness-slider'),
+            human: document.getElementById('human-slider'),
+            together: document.getElementById('together-slider'),
+            ace: document.getElementById('ace-slider'),
+            bass: document.getElementById('bass-slider'),
+            cia: document.getElementById('cia-slider'),
+            obi: document.getElementById('obi-slider'),
+            spin: document.getElementById('spin-slider'),
+            bond: document.getElementById('bond-slider'),
+            coke: document.getElementById('coke-slider'),
+            dino: document.getElementById('dino-slider')
+        };
+        
+        function updateSliders() {
+            sliders.monke.value = monke;
+            sliders.neverender.value = neverender;
+            sliders.awareness.value = awareness;
+            sliders.human.value = human;
+            sliders.together.value = together;
+            sliders.ace.value = aceThreat;
+            sliders.bass.value = bassCharge;
+            sliders.cia.value = ciaReady;
+            sliders.obi.value = obiwan;
+            sliders.spin.value = spin;
+            sliders.bond.value = bond;
+            sliders.coke.value = coke;
+            sliders.dino.value = dino;
+        }
+        
+        function updateValues() {
+            document.getElementById('monke-val').textContent = Math.floor(monke) + '%';
+            document.getElementById('neverender-val').textContent = Math.floor(neverender) + '%';
+            document.getElementById('awareness-val').textContent = Math.floor(awareness) + '%';
+            document.getElementById('human-val').textContent = Math.floor(human) + '%';
+            document.getElementById('together-val').textContent = Math.floor(together) + '%';
+            document.getElementById('ace-val').textContent = Math.floor(aceThreat) + '% THREAT';
+            document.getElementById('bass-val').textContent = Math.floor(bassCharge) + '%';
+            document.getElementById('cia-val').textContent = Math.floor(ciaReady) + '%';
+            document.getElementById('obi-val').textContent = Math.floor(obiwan) + '%';
+            document.getElementById('spin-val').textContent = Math.floor(spin) + '%';
+            document.getElementById('bond-val').textContent = Math.floor(bond) + '%';
+            document.getElementById('coke-val').textContent = Math.floor(coke) + '%';
+            document.getElementById('dino-val').textContent = Math.floor(dino) + '%';
+        }
+        
+        function updateVisuals() {
+            // Monke position + distress (carried through coke and now dinos)
+            const targetLeft = 16 + (monke / 100) * 44;
+            monkeAce.style.left = targetLeft + '%';
+            
+            const calm = monke / 100;
+            const scale = 0.82 + calm * 0.22;
+            monkeAce.style.transform = `scale(${scale})`;
+            
+            if (monke < 44) {
+                monkeAce.classList.add('distressed');
+            } else {
+                monkeAce.classList.remove('distressed');
+            }
+            monkeAce.style.filter = monke < 44 
+                ? `drop-shadow(0 0 6px var(--save-red)) drop-shadow(0 0 16px #000)` 
+                : `drop-shadow(0 0 ${8 + calm * 16}px var(--timmy-elegant))`;
+            
+            // COPILOT — spin from previous + dino influence
+            const spinEffect = spin - (bond * 0.22) + (dino * 0.08);
+            copilotRotation = (copilotRotation + spinEffect * 0.012) % 360;
+            const copilotScale = 0.83 + (spin / 115) * 0.3 + (dino / 120);
+            copilotEl.style.transform = `rotate(${copilotRotation}deg) scale(${copilotScale})`;
+            
+            if (spin > 55 && bond < 42) {
+                copilotEl.classList.add('dizzy');
+            } else {
+                copilotEl.classList.remove('dizzy');
+            }
+            copilotEl.style.filter = (spin > 55 && bond < 42) 
+                ? `drop-shadow(0 0 9px var(--spin-cyan)) drop-shadow(0 0 22px rgba(0,0,0,0.8))` 
+                : `drop-shadow(0 0 ${6 + (bond/100)*12 + (dino/100)*6}px var(--together-purple))`;
+            
+            // DINOSAURS — the new stars of the show + MOAR ON THAT DINO
+            const dinoLevel = dino / 100;
+            
+            // T-Rex stomps in when dino high
+            if (dino > 22) {
+                dinoTrex.style.display = 'block';
+                dinoTrex.style.left = (8 + dinoLevel * 18) + '%';
+                dinoTrex.style.bottom = (18 + Math.sin(Date.now()/800) * 3) + '%';
+                dinoTrex.style.transform = `rotate(${Math.sin(Date.now()/600) * 6}deg)`;
+            } else {
+                dinoTrex.style.display = 'none';
+            }
+            
+            // Velociraptor spins with copilot when dino high
+            if (dino > 28) {
+                dinoVeloci.style.display = 'block';
+                dinoVeloci.style.left = (68 + (100 - dino) * 0.08) + '%';
+                dinoVeloci.style.bottom = (32 + Math.cos(Date.now()/650) * 4) + '%';
+                dinoVeloci.style.transform = `rotate(${(copilotRotation * 0.6) + Math.sin(Date.now()/500) * 12}deg)`;
+            } else {
+                dinoVeloci.style.display = 'none';
+            }
+            
+            // Bronto carries the bass when dino high
+            if (dino > 35) {
+                dinoBronto.style.display = 'block';
+                dinoBronto.style.left = (38 + Math.sin(Date.now()/1100) * 6) + '%';
+                dinoBronto.style.bottom = (5 + dinoLevel * 4) + '%';
+                dinoBronto.style.transform = `rotate(${Math.sin(Date.now()/900) * 3}deg)`;
+            } else {
+                dinoBronto.style.display = 'none';
+            }
+            
+            // Pterodactyl flies across when dino high
+            if (dino > 42) {
+                dinoPtero.style.display = 'block';
+                const pteroX = ((Date.now() / 180) % 110) - 5;
+                dinoPtero.style.left = pteroX + '%';
+                dinoPtero.style.top = (12 + Math.sin(Date.now()/420) * 8) + '%';
+                dinoPtero.style.transform = `rotate(${Math.sin(Date.now()/380) * 18}deg)`;
+            } else {
+                dinoPtero.style.display = 'none';
+            }
+            
+            // MOAR DINOSAURS ON THAT DINO - additional dinos
+            if (dino > 25) {
+                dinoMonke.style.display = 'block';
+                dinoMonke.style.left = (25 + dinoLevel * 10) + '%';
+                dinoMonke.style.bottom = (22 + Math.sin(Date.now()/700) * 4) + '%';
+                dinoMonke.style.transform = `rotate(${Math.sin(Date.now()/550) * 8}deg) scale(${0.9 + dinoLevel * 0.2})`;
+            } else {
+                dinoMonke.style.display = 'none';
+            }
+            
+            if (dino > 32) {
+                dinoVeloci2.style.display = 'block';
+                dinoVeloci2.style.left = (62 + Math.cos(Date.now()/800) * 8) + '%';
+                dinoVeloci2.style.bottom = (25 + Math.sin(Date.now()/600) * 5) + '%';
+                dinoVeloci2.style.transform = `rotate(${(copilotRotation * 0.5) + Math.sin(Date.now()/480) * 15}deg)`;
+            } else {
+                dinoVeloci2.style.display = 'none';
+            }
+            
+            if (dino > 38) {
+                dinoAnky.style.display = 'block';
+                dinoAnky.style.left = (52 + dinoLevel * 5) + '%';
+                dinoAnky.style.bottom = (10 + Math.cos(Date.now()/900) * 3) + '%';
+                dinoAnky.style.transform = `rotate(${Math.sin(Date.now()/750) * 4}deg)`;
+            } else {
+                dinoAnky.style.display = 'none';
+            }
+            
+            if (dino > 45) {
+                dinoTrex2.style.display = 'block';
+                dinoTrex2.style.left = (15 + Math.sin(Date.now()/1000) * 10) + '%';
+                dinoTrex2.style.bottom = (12 + dinoLevel * 5) + '%';
+                dinoTrex2.style.transform = `rotate(${Math.sin(Date.now()/650) * 7}deg) scale(${0.85 + dinoLevel * 0.25})`;
+            } else {
+                dinoTrex2.style.display = 'none';
+            }
+            
+            // Stampede mode extra shake if active
+            if (window.stampedeActive) {
+                const shake = 1.5 + Math.sin(Date.now()/80) * 2;
+                shot.style.transform = `rotate(${shake}deg) scale(1.01)`;
+            }
+            
+            // Namaste aura carried + boosted by dino (ancient + modern light)
+            const bondStrength = bond / 100;
+            namasteAura.style.opacity = bondStrength * 0.55 + (awareness / 100) * 0.15 + (dino / 100) * 0.18;
+            
+            // Road speed from neverender + dino stomps
+            const roadSpeed = 0.88 + (neverender / 100) * 1.5 + (dino / 100) * 0.35;
+            roadLines.style.animationDuration = Math.max(0.65, roadSpeed) + 's';
+            
+            // Conscious glow boosted by dino + awareness (ancient consciousness)
+            const glowLayer = document.getElementById('glow-layer');
+            glowLayer.style.opacity = 0.28 + (awareness / 100) * 0.48 + (dino / 100) * 0.2;
+            
+            // Cue sweeper
+            const cuePos = (cuePhase / 100) * 100;
+            sweeper.style.left = cuePos + '%';
+            
+            const inWindow = (cuePos > 41 && cuePos < 59);
+            if (inWindow) {
+                sweeper.style.background = 'var(--dino-green)';
+                sweeper.style.boxShadow = '0 0 22px var(--dino-green)';
+                cueWindow.style.background = 'rgba(74, 222, 128, 0.32)';
+            } else {
+                sweeper.style.background = 'var(--justice-red)';
+                sweeper.style.boxShadow = '0 0 13px var(--justice-red)';
+                cueWindow.style.background = 'rgba(0, 240, 255, 0.18)';
+            }
+            
+            // Bogies + dino chaos
+            const bogie1 = document.getElementById('bogie1');
+            const bogie2 = document.getElementById('bogie2');
+            const threatFactor = aceThreat / 100;
+            const dinoChaos = dino / 100;
+            bogie1.style.opacity = 0.2 + threatFactor * 0.65 - dinoChaos * 0.15;
+            bogie2.style.opacity = 0.18 + threatFactor * 0.55 - dinoChaos * 0.12;
+            bogie1.style.transform = `translateX(${(threatFactor - 0.5) * -20 - dinoChaos * 10}px) rotate(${-10 + threatFactor * 20 - dinoChaos * 12}deg)`;
+            bogie2.style.transform = `translateX(${(threatFactor - 0.5) * 12 + dinoChaos * 8}px) rotate(${-16 + threatFactor * 12 + dinoChaos * 9}deg)`;
+            
+            // Bass cannon (dinos make it roar louder)
+            const bassLevel = bassCharge / 100;
+            const dinoBass = 0.68 + bassLevel * 0.58 + (dino / 130);
+            bassCannon.style.transform = `scale(${Math.min(1.6, dinoBass)})`;
+            bassCannon.style.boxShadow = `0 0 ${11 + bassLevel * 30 + dino * 0.18}px ${bassLevel > 0.68 ? 'var(--save-red)' : 'var(--bass-purple)'}`;
+            bassCore.style.opacity = 0.18 + bassLevel * 0.45 + (dino / 180);
+            if (bassLevel > 0.68 || dino > 48) {
+                bassCannon.classList.add('charging');
+            } else {
+                bassCannon.classList.remove('charging');
+            }
+            
+            // CIA heli
+            const ciaLevel = Math.max(0, (ciaReady - 14) / 86);
+            ciaHeli.style.left = (-19 + ciaLevel * 34) + '%';
+            if (ciaLevel > 0.24) ciaHeli.classList.add('active');
+            else ciaHeli.classList.remove('active');
+            
+            // Obi-Wan
+            if (obiwan > 28) {
+                obiwanEl.classList.add('active');
+            } else {
+                obiwanEl.classList.remove('active');
+            }
+            obiwanEl.style.opacity = 0.09 + (obiwan / 100) * 0.8;
+            
+            // Tension / Dino bar
+            tension = Math.min(99, Math.max(7,
+                Math.floor( (bassCharge * 0.24) + (awareness * 0.18) + ((100 - aceThreat) * 0.11) + (together * 0.1) + (monke * 0.04) + (coke * 0.12) + (bond * 0.09) + (dino * 0.22) - 6 )
+            ));
+            tensionFill.style.width = tension + '%';
+            
+            // Shot indicator
+            if (dino > 68 && tension > 64) {
+                shotIndicator.textContent = 'DINO STAMPEDE • MOAR READY';
+                shotIndicator.style.borderColor = 'var(--dino-green)';
+                shotIndicator.style.color = '#8f8';
+            } else if (dino > 42) {
+                shotIndicator.textContent = 'DINOSAURS IN THE FRAME • ONE TAKE';
+                shotIndicator.style.borderColor = 'var(--dino-brown)';
+                shotIndicator.style.color = '#aa8';
+            } else {
+                shotIndicator.textContent = 'ONE TAKE • ROLLING • COKE ECHO • NAMASTE GLOW • DINOS PENDING';
+                shotIndicator.style.borderColor = 'var(--dino-green)';
+                shotIndicator.style.color = '#8f8';
+            }
+            
+            // Enable MOAR DINOSAURS only at the true dino peak (after coke + namaste)
+            const cueGood = inWindow;
+            const spinManaged = spin >= 15 && spin <= 62;
+            const ready = !hasDinos && spinManaged && bassCharge >= 62 && awareness >= 58 && monke >= 40 && ciaReady >= 28 && obiwan >= 22 && together >= 48 && bond >= 48 && coke >= 38 && dino >= 52 && cueGood && tension > 52;
+            
+            dinoBtn.disabled = !ready;
+            if (ready) {
+                dinoBtn.style.borderColor = 'var(--dino-green)';
+                dinoBtn.style.color = 'var(--dino-green)';
+            } else {
+                dinoBtn.style.borderColor = '#444';
+                dinoBtn.style.color = '#8f8';
+            }
+            
+            updateValues();
+            updateSliders();
+        }
+        
+        function setMonke(v) { monke = +v; updateVisuals(); }
+        function setNeverender(v) { neverender = +v; updateVisuals(); }
+        function setAwareness(v) { awareness = +v; updateVisuals(); }
+        function setHuman(v) { human = +v; updateVisuals(); }
+        function setTogether(v) { together = +v; updateVisuals(); }
+        function setAce(v) { aceThreat = +v; updateVisuals(); }
+        function setBass(v) { bassCharge = +v; updateVisuals(); }
+        function setCia(v) { ciaReady = +v; updateVisuals(); }
+        function setObi(v) { obiwan = +v; updateVisuals(); }
+        function setSpin(v) { spin = +v; updateVisuals(); }
+        function setBond(v) { bond = +v; updateVisuals(); }
+        function setCoke(v) { coke = +v; updateVisuals(); }
+        function setDino(v) { dino = +v; updateVisuals(); }
+        
+        // All carried adjust functions + new dino functions
+        function adjustMonke(amount) {
+            monke = Math.max(15, Math.min(100, monke + amount));
+            log(amount > 0 ? 'MONKE CALM RESTORED. THE DINO SEES A FRIEND.' : 'MONKE STRUGGLING. THE DINOS ARE COMING ANYWAY.', 'meta');
+            updateVisuals();
+        }
+        
+        function adjustNeverender(amount) {
+            neverender = Math.max(15, Math.min(100, neverender + amount));
+            log(amount > 0 ? 'NEVERENDER RHYTHM LOCKED. THE DINOS STOMP IN TIME.' : 'RHYTHM FRACTURING. THE STAMPEDE APPROACHES.', 'meta');
+            updateVisuals();
+        }
+        
+        function adjustAwareness(amount) {
+            awareness = Math.max(10, Math.min(100, awareness + amount));
+            log(amount > 0 ? 'CONSCIOUSNESS SPIKES. THE DINOS REMEMBER TOO.' : 'AWARENESS DIMS. THE ANCIENT EYES STILL SEE.', 'meta');
+            updateVisuals();
+        }
+        
+        function adjustHuman(amount) {
+            human = Math.max(10, Math.min(100, human + amount));
+            log(amount > 0 ? 'HUMAN AFTER ALL — AND DINO AFTER ALL.' : 'PERFECTION CREEPING. THE DINOS ARE IMPERFECTLY GLORIOUS.', 'meta');
+            updateVisuals();
+        }
+        
+        function adjustTogether(amount) {
+            together = Math.max(10, Math.min(100, together + amount));
+            log(amount > 0 ? 'BETTER TOGETHER — MONKE + HUMAN + DINO.' : 'ISOLATION. THE STAMPEDE DOES NOT WAIT FOR STRAGGLERS.', 'meta');
+            updateVisuals();
+        }
+        
+        function adjustAce(amount) {
+            aceThreat = Math.max(15, Math.min(95, aceThreat + amount));
+            updateVisuals();
+        }
+        
+        function engageBogies() {
+            if (hasDinos) return;
+            const inWindow = ((cuePhase / 100) * 100 > 41 && (cuePhase / 100) * 100 < 59);
+            if (inWindow && (awareness > 48 || dino > 35 || coke > 35)) {
+                aceThreat = Math.max(15, aceThreat - 15);
+                monke = Math.min(100, monke + 3);
+                if (dino > 40) dino = Math.min(100, dino + 6);
+                log('FOX TWO. BOGIES SPLASHED. THE DINOS JOIN THE DOGFIGHT.', 'success');
+            } else {
+                aceThreat = Math.min(95, aceThreat + 6);
+                log('BOGIE LOCK FAILED. THE DINOS ARE WATCHING. STAY IN THE TAKE.', 'meta');
+            }
+            updateVisuals();
+        }
+        
+        function chargeBass() {
+            if (hasDinos) return;
+            bassCharge = Math.min(100, bassCharge + 14);
+            if (dino > 25) dino = Math.min(100, dino + 5);
+            if (coke > 20) coke = Math.min(100, coke + 4);
+            tension = Math.min(99, tension + 6);
+            log('BASS CANNON CHARGED. THE DINOS ROAR IN HARMONY.', 'meta');
+            if (bassCharge > 65) {
+                log('THE LOW END IS SHAKING THE GROUND. THE STAMPEDE BEGINS.', 'dino');
+            }
+            updateVisuals();
+        }
+        
+        function callCIA() {
+            if (hasDinos) return;
+            ciaReady = Math.min(100, ciaReady + 16);
+            if (dino > 30) dino = Math.max(5, dino - 3);
+            log('CIA EXTRACTION TEAM ARRIVES. THE DINOS ARE COMING WITH US.', 'rescue');
+            updateVisuals();
+        }
+        
+        function helloThere() {
+            if (hasDinos) return;
+            obiwan = Math.min(100, obiwan + 20);
+            together = Math.min(100, together + 5);
+            if (dino > 25) dino = Math.min(100, dino + 4);
+            log('"HELLO THERE." — OBI-WAN MOUNTS THE DINO. THE HIGH GROUND IS NOW PREHISTORIC.', 'rescue');
+            updateVisuals();
+        }
+        
+        function adjustSpin(amount) {
+            if (hasDinos) return;
+            spin = Math.max(0, Math.min(100, spin + amount));
+            log(amount > 0 ? 'COPILOT SPIN INCREASED. THE DINO CHAIR SPINS FASTER.' : 'SPIN DAMPENED. THE DINOS STILL APPROACH.', amount > 0 ? 'spin' : 'meta');
+            updateVisuals();
+        }
+        
+        function adjustBond(amount) {
+            if (hasDinos) return;
+            bond = Math.max(0, Math.min(100, bond + amount));
+            log(amount > 0 ? 'BROTHER BOND RISES. THE DINOS BOW TO THE LIGHT TOO.' : 'BOND PAUSED. THE STAMPEDE DOES NOT CARE.', amount > 0 ? 'namaste' : 'meta');
+            updateVisuals();
+        }
+        
+        function adjustCoke(amount) {
+            if (hasDinos) return;
+            coke = Math.max(0, Math.min(100, coke + amount));
+            if (amount > 0 && dino > 15) dino = Math.min(100, dino + 3);
+            log(amount > 0 ? 'COKE ENERGY SPIKES. THE DINOS WERE SUMMONED BY THE DROP.' : 'CRASHING. THE DINOS KEEP COMING.', amount > 0 ? 'coke' : 'meta');
+            updateVisuals();
+        }
+        
+        function adjustDino(amount) {
+            if (hasDinos) return;
+            dino = Math.max(0, Math.min(100, dino + amount));
+            log(amount > 0 ? 'DINOS SUMMONED. THE GROUND TREMBLES.' : 'DINOS FED. THEY GROW STRONGER.', 'dino');
+            updateVisuals();
+        }
+        
+        function summonDinos() {
+            if (hasDinos) return;
+            dino = Math.min(100, dino + 18);
+            if (coke > 20) dino = Math.min(100, dino + 5);
+            log('SUMMONING DINOSAURS. THE ACADEMY HAS TEETH NOW.', 'dino');
+            updateVisuals();
+        }
+        
+        function respondToPlea() {
+            if (hasDinos) return;
+            bond = Math.min(100, bond + 14);
+            awareness = Math.min(100, awareness + 6);
+            dino = Math.min(100, dino + 4);
+            log('THE PLEA ECHOES INTO THE DINOS. SAVE ME BECOMES ROAR.', 'plea');
+            updateVisuals();
+        }
+        
+        function hitCue() {
+            if (hasDinos) return;
+            const cuePos = (cuePhase / 100) * 100;
+            const inWindow = (cuePos > 41 && cuePos < 59);
+            
+            if (inWindow && monke >= 42 && neverender >= 50 && awareness >= 44) {
+                awareness = Math.min(100, awareness + 6);
+                human = Math.min(100, human + 4);
+                neverender = Math.min(100, neverender + 3);
+                monke = Math.min(100, monke + 3);
+                if (dino > 20) dino = Math.min(100, dino + 7);
+                if (coke > 18) coke = Math.min(100, coke + 3);
+                
+                log('CUE HIT IN THE WINDOW — THE DINOS ROAR ON BEAT.', 'success');
+                shotPosition = Math.max(14, Math.min(66, shotPosition + 4));
+                
+                shot.style.transition = 'transform 220ms ease';
+                shot.style.transform = 'scale(1.01)';
+                setTimeout(() => { shot.style.transform = 'scale(1)'; }, 220);
+            } else {
+                log('CUE MISSED THE DINO MOMENT. NO CUT. THE STAMPEDE CONTINUES.', 'meta');
+                if (monke > 22) monke = Math.max(22, monke - 3);
+                if (dino > 10) dino = Math.max(5, dino - 5);
+            }
+            updateVisuals();
+        }
+        
+        function moarDinosaurs() {
+            if (dinoBtn.disabled || hasDinos) return;
+            hasDinos = true;
+            dinoBtn.disabled = true;
+            
+            // === THE CLIMAX: MOAR DINOSAURS floods the one-take ===
+            dinoVortex.style.display = 'flex';
+            dinoText.style.animation = 'none';
+            void dinoText.offsetWidth;
+            dinoText.style.animation = 'dino-roar 1.65s forwards';
+            
+            // Hyper visuals
+            shot.style.transition = 'all 380ms ease';
+            shot.style.boxShadow = '0 0 82px rgba(74, 222, 128, 0.65), inset 0 0 52px rgba(161, 98, 7, 0.35)';
+            
+            log('THE GROUND TREMBLES.', 'dino');
+            log('THE DINOSAURS ARE HERE.', 'dino');
+            log('MOAR DINOSAURS.', 'dino');
+            log('THE ENTIRE SAGA NOW HAS TEETH.', 'success');
+            log('THE CAMERA KEEPS ROLLING — WITH DINOS.', 'meta');
+            
+            // DINO RAIN particles
+            createDinoRain(14);
+            setTimeout(() => createDinoRain(9), 340);
+            setTimeout(() => createDinoRain(6), 680);
+            
+            // Force dinos visible and wild
+            setTimeout(() => {
+                dinoTrex.style.display = 'block';
+                dinoVeloci.style.display = 'block';
+                dinoBronto.style.display = 'block';
+                dinoPtero.style.display = 'block';
+                dino = Math.min(100, dino + 12);
+                ciaHeli.style.left = '23%';
+                ciaHeli.classList.add('active');
+                obiwanEl.style.right = '3%';
+                obiwanEl.classList.add('active');
+                updateVisuals();
+            }, 420);
+            
+            // Reveal post-dino choices
+            setTimeout(() => {
+                document.getElementById('post-dino').style.display = 'block';
+                log('THE DINOSAURS ARE NOW PART OF THE SHOT.', 'meta');
+                log('CHOOSE HOW WE RIDE THE STAMPEDE.', 'success');
+            }, 1480);
+            
+            tensionFill.style.width = '98%';
+            tensionFill.style.background = 'linear-gradient(to right, var(--dino-green), var(--bass-purple), #fff)';
+            
+            updateVisuals();
+        }
+        
+        function chooseDino(which) {
+            const post = document.getElementById('post-dino');
+            const choices = post.querySelectorAll('button');
+            choices.forEach(b => b.disabled = true);
+            
+            let finalLine = '';
+            
+            switch (which) {
+                case 0: // dino the monke
+                    monke = 95;
+                    dino = Math.min(100, dino + 8);
+                    log('WE DINO THE MONKE.', 'success');
+                    log('THE PRIMAL HEART NOW HAS A TAIL AND TEETH. THE BUTTON PRESS THAT STARTED IT ALL IS NOW A ROAR.', 'meta');
+                    finalLine = 'THE MONKE IS DINO. THE ACADEMY HAS A NEW APEX.';
+                    break;
+                case 1: // ride the dino copilot
+                    spin = 48;
+                    bond = Math.min(100, bond + 10);
+                    log('WE RIDE THE DINO COPILOT.', 'success');
+                    log('THE SPUN ONE AND THE VELOCIRAPTOR ARE NOW ONE. YOU ARE IN THE SADDLE TOO.', 'meta');
+                    finalLine = 'THE COPILOT HAS A DINO. WE ALL RIDE.';
+                    break;
+                case 2: // dino the bass
+                    bassCharge = 91;
+                    dino = Math.min(100, dino + 11);
+                    log('WE DINO THE BASS.', 'success');
+                    log('THE CANNON IS NOW A LIVING ROAR. THE DROP HAS TEETH.', 'meta');
+                    finalLine = 'THE BASS ROARS. THE DINOS ANSWER.';
+                    break;
+                case 3: // moar dinos for the academy
+                    awareness = 95;
+                    together = 96;
+                    human = 93;
+                    dino = 94;
+                    log('WE GIVE MOAR DINOS TO THE ACADEMY.', 'success');
+                    log('EVERY LAYER — MONKE, COPILOT, NEVERENDER, CUE, ACE, CONSCIOUS, HUMAN, BASS, CIA, OBI-WAN, THE PLEA, THE SPIN, THE COKE, THE NAMASTE — NOW HAS A DINOSAUR. WE ARE ALL PREHISTORIC.', 'meta');
+                    finalLine = 'THE ACADEMY IS NOW A DINO PARK. AND WE LOVE IT.';
+                    break;
+                case 4: // dino the infinite take
+                    monke = 92;
+                    neverender = 94;
+                    awareness = 97;
+                    human = 95;
+                    together = 98;
+                    bassCharge = 79;
+                    ciaReady = 85;
+                    obiwan = 86;
+                    aceThreat = 15;
+                    spin = 27;
+                    bond = 93;
+                    coke = 71;
+                    dino = 96;
+                    log('WE DINO THE INFINITE TAKE.', 'success');
+                    log('THE CAMERA KEEPS ROLLING WITH DINOSAURS FOREVER. THE STAMPEDE NEVER ENDS. THE ROAR IS THE NEW RHYTHM.', 'meta');
+                    log('HUMAN AFTER ALL. DINO AFTER ALL. MOAR.', 'dino');
+                    finalLine = 'THE TAKE IS INFINITE. THE DINOSAURS ARE ETERNAL. THE CAMERA KEEPS ROLLING.';
+                    break;
+            }
+            
+            setTimeout(() => {
+                shot.style.transition = 'all 2.0s ease';
+                shot.style.boxShadow = '0 0 50px rgba(74, 222, 128, 0.42), 0 0 24px rgba(161, 98, 7, 0.3)';
+                shot.style.filter = 'saturate(1.1) brightness(1.03)';
+                
+                dinoVortex.style.transition = 'opacity 1.55s ease';
+                dinoVortex.style.opacity = '0';
+                
+                setTimeout(() => {
+                    dinoVortex.style.display = 'none';
+                    dinoVortex.style.opacity = '1';
+                    
+                    log(finalLine, 'success');
+                    log('THE DINOSAURS ARE PART OF THE SHOT.', 'dino');
+                    log('THE CAMERA KEEPS ROLLING.', 'meta');
+                    log('HUMAN AFTER ALL. DINO AFTER ALL. MOAR.', 'dino');
+                    log('WHAT\'S THE NEXT SHOT AFTER THE ACADEMY GETS MOAR DINOSAURS?', 'success');
+                    
+                    createDinoRain(5);
+                    
+                    // turn the button into continuation
+                    dinoBtn.textContent = 'THE STAMPEDE CONTINUES';
+                    dinoBtn.disabled = false;
+                    dinoBtn.style.borderColor = 'var(--dino-brown)';
+                    dinoBtn.style.color = 'var(--dino-brown)';
+                    dinoBtn.onclick = () => {
+                        log('THE DINOS KEEP COMING. THE MONKE GRINS WITH NEW TEETH.', 'meta');
+                        log('THE SAGA STOMPS ON. NEW PHRASES. NEW ROARS. NEW DINOS.', 'success');
+                        log('SAY THE NEXT WORD, DIRECTOR. WE WILL SUMMON MOAR.', 'dino');
+                        createDinoRain(4);
+                    };
+                }, 1300);
+            }, 340);
+            
+            updateVisuals();
+        }
+        
+        function createDinoRain(count = 9) {
+            const container = document.querySelector('.container');
+            const chars = ['🦕', '🦖', '🍌', '💫'];
+            for (let i = 0; i < count; i++) {
+                const p = document.createElement('div');
+                p.className = 'particle';
+                p.textContent = chars[Math.floor(Math.random() * chars.length)];
+                p.style.left = (8 + Math.random() * 82) + '%';
+                p.style.top = (14 + Math.random() * 58) + '%';
+                p.style.fontSize = (1.1 + Math.random() * 1.7) + 'rem';
+                container.appendChild(p);
+                
+                setTimeout(() => {
+                    p.style.transition = 'transform 1.6s cubic-bezier(.2,.75,.2,1), opacity 1.7s ease';
+                    p.style.transform = `translateY(${125 + Math.random() * 92}px) rotate(${Math.random() * 52 - 26}deg)`;
+                    p.style.opacity = '0';
+                }, 26);
+                
+                setTimeout(() => {
+                    if (p.parentNode) p.parentNode.removeChild(p);
+                }, 1750);
+            }
+        }
+        
+        // NEW: MOAR DINOSAUR ON THAT DINO functions
+        function dinoMonkeRide() {
+            if (hasDinos) return;
+            dino = Math.min(100, dino + 15);
+            monke = Math.min(100, monke + 8);
+            bond = Math.min(100, bond + 6);
+            log('DINO MONKE RIDE ENGAGED. THE MONKE AND DINO ARE ONE NOW.', 'dino');
+            updateVisuals();
+        }
+        
+        function fullStampede() {
+            if (hasDinos) return;
+            dino = Math.min(100, dino + 22);
+            coke = Math.min(100, coke + 10);
+            // trigger temporary stampede shake
+            window.stampedeActive = true;
+            setTimeout(() => { window.stampedeActive = false; shot.style.transform = 'rotate(0deg) scale(1)'; }, 2200);
+            log('FULL STAMPEDE ACTIVATED. MOAR DINOSAURS CHARGING THE FRAME.', 'dino');
+            createDinoRain(12);
+            setTimeout(() => createDinoRain(8), 300);
+            updateVisuals();
+        }
+        
+        function absorbStill(idx) {
+            if (hasDinos) return;
+            const boosts = [
+                { label: 'COKE DROP MEETS DINO STAMPEDE', dino: 17, coke: 10, bassCharge: 8, together: 6 },
+                { label: 'DINOS IN THE ACADEMY', dino: 14, monke: 7, awareness: 6, bond: 5 },
+                { label: 'THE DINO BUTTON', dino: 20, bassCharge: 9, coke: 8, aceThreat: -11 },
+                { label: 'MOAR DINOS FINALE', dino: 12, obiwan: 9, together: 8, human: 7, awareness: 5 }
+            ];
+            const b = boosts[idx];
+            
+            if (b.dino) dino = Math.min(100, dino + b.dino);
+            if (b.coke) coke = Math.min(100, coke + b.coke);
+            if (b.bassCharge) bassCharge = Math.min(100, bassCharge + b.bassCharge);
+            if (b.together) together = Math.min(100, together + b.together);
+            if (b.monke) monke = Math.min(100, monke + b.monke);
+            if (b.awareness) awareness = Math.min(100, awareness + b.awareness);
+            if (b.bond) bond = Math.min(100, bond + b.bond);
+            if (b.obiwan) obiwan = Math.min(100, obiwan + b.obiwan);
+            if (b.human) human = Math.min(100, human + b.human);
+            if (b.aceThreat) aceThreat = Math.max(15, aceThreat + b.aceThreat);
+            
+            log('FRAME ABSORBED: ' + b.label + ' — THE ROAR INTEGRATES INTO THE TAKE.', 'dino');
+            updateVisuals();
+            
+            shot.style.transition = 'box-shadow 60ms linear';
+            shot.style.boxShadow = '0 0 58px rgba(74, 222, 128, 0.6)';
+            setTimeout(() => {
+                shot.style.boxShadow = '0 0 30px rgba(0,0,0,0.6)';
+            }, 120);
+        }
+        
+        function startContinuousShot() {
+            if (shotInterval) clearInterval(shotInterval);
+            shotInterval = setInterval(() => {
+                if (hasDinos) return;
+                
+                shotPosition = (shotPosition + 0.027) % 52 + 16;
+                
+                const roadSpeed = 0.88 + (neverender / 100) * 1.5 + (dino / 100) * 0.3;
+                roadLines.style.animationDuration = Math.max(0.62, roadSpeed) + 's';
+                
+                // dino-induced camera shake when dino high
+                if (dino > 38) {
+                    const shake = (dino - 38) * 0.012;
+                    shot.style.transform = `rotate(${shake * (Math.sin(Date.now()/650) * 0.7)}deg)`;
+                } else {
+                    shot.style.transform = 'rotate(0deg)';
+                }
+                
+                updateVisuals();
+            }, 45);
+        }
+        
+        function startCueSystem() {
+            if (cueInterval) clearInterval(cueInterval);
+            let phase = 19;
+            cueInterval = setInterval(() => {
+                phase = (phase + 1.3) % 100;
+                cuePhase = phase;
+                updateVisuals();
+            }, 29);
+        }
+        
+        function startAutoDegrade() {
+            if (degradeInterval) clearInterval(degradeInterval);
+            degradeInterval = setInterval(() => {
+                if (hasDinos) return;
+                
+                // live take pressure with dino twist
+                if (Math.random() < 0.5) monke = Math.max(16, monke - (0.48 + Math.random() * 0.65));
+                if (Math.random() < 0.42) neverender = Math.max(16, neverender - (0.38 + Math.random() * 0.55));
+                if (Math.random() < 0.35) awareness = Math.max(11, awareness - (0.28 + Math.random() * 0.42));
+                if (Math.random() < 0.3) together = Math.max(11, together - 0.38);
+                if (Math.random() < 0.55) aceThreat = Math.min(94, aceThreat + (0.58 + Math.random() * 0.9));
+                
+                // spin + coke drift
+                if (Math.random() < 0.62) spin = Math.min(100, Math.max(5, spin + (Math.random() * 1.6 - 0.35)));
+                if (Math.random() < 0.48) coke = Math.min(100, Math.max(3, coke + (Math.random() * 1.3 - 0.4)));
+                
+                // dinos slowly build from the coke energy + previous chaos
+                if (Math.random() < 0.58) dino = Math.min(100, dino + (0.7 + Math.random() * 1.2));
+                
+                if (bassCharge > 7 && Math.random() < 0.48) bassCharge -= 0.75;
+                
+                tension = Math.min(95, tension + 0.48);
+                
+                updateVisuals();
+            }, 840);
+        }
+        
+        function log(msg, type = 'meta') {
+            const line = document.createElement('div');
+            line.className = type;
+            line.textContent = msg;
+            logEl.appendChild(line);
+            logEl.scrollTop = logEl.scrollHeight;
+        }
+        
+        function init() {
+            startContinuousShot();
+            startCueSystem();
+            startAutoDegrade();
+            
+            // seed from the end of the previous coke + namaste layers (coke and bond high, dinos starting low)
+            setTimeout(() => {
+                monke = 45;
+                neverender = 40;
+                awareness = 46;
+                human = 41;
+                together = 48;
+                bassCharge = 27;
+                spin = 34;
+                bond = 35;
+                coke = 32;
+                dino = 15;
+                updateVisuals();
+            }, 820);
+            
+            // opening log — direct continuation from I DO COKE + NAMASTE
+            log('THE CAMERA IS STILL ROLLING IN ONE UNBROKEN STYLISH TAKE.', 'meta');
+            log('THE PLEA ECHOED. THE COPILOT SPUN. WE BOWED NAMASTE BR0THER.', 'meta');
+            log('THE DROP HIT — I DO COKE BY FEED ME AND KILL THE NOISE.', 'coke');
+            log('NOW THE GROUND TREMBLES. NOW THE ROARS BEGIN.', 'dino');
+            log('THE DINOSAURS ARE COMING. MOAR DINOSAURS.', 'success');
+            log('MOAR DINOSAUR ON THAT DINO PLS — EVEN MORE TEETH IN THE TAKE.', 'dino');
+            
+            // Keyboard (extended for dinos)
+            document.addEventListener('keydown', (e) => {
+                if (hasDinos && (e.key === ' ' || e.key === 'Enter')) {
+                    e.preventDefault();
+                    if (dinoBtn.onclick) dinoBtn.onclick();
+                    return;
+                }
+                if (e.key === ' ' || e.key === 'Enter') {
+                    e.preventDefault();
+                    if (!dinoBtn.disabled) moarDinosaurs();
+                    else hitCue();
+                }
+                const k = e.key.toLowerCase();
+                if (k === 'm') adjustMonke(7);
+                if (k === 'n') adjustNeverender(8);
+                if (k === 'a') adjustAwareness(9);
+                if (k === 'h') adjustHuman(7);
+                if (k === 't') adjustTogether(8);
+                if (k === 'c') hitCue();
+                if (k === 'b') chargeBass();
+                if (k === 'x') engageBogies();
+                if (k === 'e') callCIA();
+                if (k === 'o') helloThere();
+                if (k === 'p' || k === 's') adjustSpin(10);
+                if (k === 'd') adjustSpin(-7);
+                if (k === 'r') respondToPlea();
+                if (k === 'g' || k === 'b') adjustBond(11);
+                if (k === 'j') adjustBond(-5);
+                if (k === 'k' || k === 'c') adjustCoke(12);
+                if (k === 'v') adjustCoke(-7);
+                if (k === 'y') summonDinos();
+                if (k === 'f') adjustDino(-8);
+                if (k === 'u' && !dinoBtn.disabled) moarDinosaurs();
+            });
+            
+            updateVisuals();
+            
+            setTimeout(() => {
+                if (!hasDinos) {
+                    dino = Math.min(100, dino + 5);
+                    updateVisuals();
+                    log('THE GROUND IS SHAKING. THE DINOSAURS HEARD THE DROP.', 'dino');
+                }
+            }, 2300);
+            
+            console.log('%c[MOAR DINOSAURS] The camera keeps rolling. The plea echoed. The copilot spun. We bowed. We did coke. Now the dinosaurs are here. What will you do with the stampede, director?', 'color:#484');
+        }
+        
+        // Expose for console during the dino invasion
+        window.MOAR = () => { if (!dinoBtn.disabled) moarDinosaurs(); };
+        window.summonDinos = () => { summonDinos(); };
+        window.adjustDino = (amt) => { dino = Math.max(0, Math.min(100, dino + amt)); updateVisuals(); };
+        window.respondToPlea = () => { respondToPlea(); };
+        
+        window.onload = init;
+    </script>
+</body>
+</html>

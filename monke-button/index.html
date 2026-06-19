@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MONKE BUTTON™ • Make Monke Not Kill Monke</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&amp;display=swap');
+        
+        :root {
+            --monke-red: #dc2626;
+            --peace-green: #16a34a;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: linear-gradient(180deg, #111827 0%, #1f2937 100%);
+            color: #f1f5f9;
+            font-family: "Press Start 2P", system-ui, sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+            image-rendering: pixelated;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+            text-align: center;
+        }
+        
+        .header {
+            margin-bottom: 2rem;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            color: #facc15;
+            text-shadow: 4px 4px 0 #000;
+            margin-bottom: 0.5rem;
+            letter-spacing: 4px;
+        }
+        
+        .header .subtitle {
+            font-size: 1rem;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+        
+        .button-container {
+            margin: 3rem 0;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .monke-button {
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            background: linear-gradient(145deg, #b91c1c, #dc2626, #991b1b);
+            border: 12px solid #451a03;
+            box-shadow: 
+                0 0 0 20px #1f2937,
+                0 25px 50px -12px rgb(0 0 0 / 0.6),
+                inset 0 10px 20px rgba(255,255,255,0.2),
+                inset 0 -15px 30px rgba(0,0,0,0.6);
+            cursor: pointer;
+            transition: all 0.1s ease;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        .monke-button:active {
+            transform: translateY(12px) scale(0.96);
+            box-shadow: 
+                0 0 0 20px #1f2937,
+                0 10px 15px -3px rgb(0 0 0 / 0.4),
+                inset 0 15px 25px rgba(0,0,0,0.7);
+        }
+        
+        .monke-button.pressed {
+            background: linear-gradient(145deg, #15803d, #16a34a, #166534);
+            border-color: #052e16;
+            box-shadow: 
+                0 0 0 20px #1f2937,
+                0 10px 15px -3px rgb(0 0 0 / 0.4),
+                inset 0 15px 25px rgba(0,0,0,0.5);
+        }
+        
+        .button-label {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: white;
+            text-shadow: 
+                4px 4px 0 #000,
+                -2px -2px 0 #000;
+            letter-spacing: 6px;
+            z-index: 2;
+        }
+        
+        .button-sub {
+            font-size: 1rem;
+            color: #fefce8;
+            margin-top: -0.4rem;
+            text-shadow: 2px 2px 0 #000;
+            letter-spacing: 4px;
+        }
+        
+        .status {
+            margin: 2rem 0;
+            padding: 1rem 2rem;
+            background: #1f2937;
+            border: 6px solid #475569;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.4s ease;
+        }
+        
+        .status.peace {
+            background: #052e16;
+            border-color: #16a34a;
+            color: #86efac;
+        }
+        
+        .monke-scene {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2.5rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .monke {
+            width: 140px;
+            height: 140px;
+            background: #334155;
+            border: 8px solid #1e2937;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4.5rem;
+            position: relative;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0);
+            transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        
+        .monke.fighting {
+            animation: shake 0.4s infinite;
+            background: #450a0a;
+        }
+        
+        .monke.peaceful {
+            background: #14532d;
+            transform: scale(1.05);
+        }
+        
+        .monke::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: radial-gradient(circle at 35% 35%, rgba(255,255,255,0.3), transparent 60%);
+        }
+        
+        .label {
+            margin-top: 0.75rem;
+            font-size: 0.85rem;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .peaceful .label {
+            color: #4ade80;
+        }
+        
+        .message {
+            font-size: 1.35rem;
+            line-height: 1.4;
+            margin: 1.5rem 0;
+            min-height: 4.5rem;
+            color: #e2e8f0;
+        }
+        
+        .message.peace {
+            color: #86efac;
+        }
+        
+        .banana {
+            font-size: 2.5rem;
+            display: inline-block;
+            transition: transform 0.6s ease;
+        }
+        
+        .peace .banana {
+            animation: wiggle 1.5s infinite ease-in-out;
+        }
+        
+        .instructions {
+            margin-top: 3rem;
+            padding: 1.5rem;
+            background: rgba(15, 23, 42, 0.6);
+            border: 4px dashed #475569;
+            font-size: 0.8rem;
+            max-width: 520px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 2rem;
+            font-size: 0.75rem;
+            color: #64748b;
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 1.5rem;
+            color: #facc15;
+            display: block;
+            font-weight: 700;
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(4px, 3px) rotate(1deg); }
+            75% { transform: translate(-3px, -2px) rotate(-1deg); }
+        }
+        
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(-8deg); }
+            50% { transform: rotate(8deg); }
+        }
+        
+        .glow {
+            animation: glow-pulse 1.2s infinite ease-in-out;
+        }
+        
+        .footer {
+            margin-top: 4rem;
+            font-size: 0.65rem;
+            color: #475569;
+            letter-spacing: 1px;
+        }
+        
+        .big-text {
+            font-size: 1.8rem;
+            margin: 1rem 0;
+        }
+        
+        /* Tired / Hungry state styling */
+        .monke.tired {
+            filter: brightness(0.75) saturate(0.6);
+            background: #1e2937;
+            border-color: #475569;
+        }
+        
+        .monke.happy {
+            filter: brightness(1.1) saturate(1.2);
+            background: #166534;
+            border-color: #4ade80;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0), 0 0 20px rgba(74, 222, 128, 0.3);
+        }
+        
+        .monke.tired::after {
+            content: 'Zzz';
+            position: absolute;
+            top: -10px;
+            right: -5px;
+            font-size: 0.9rem;
+            color: #64748b;
+            animation: sleepy 1.5s infinite;
+        }
+        
+        @keyframes sleepy {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+        
+        #care-buttons button:active {
+            transform: translateY(4px);
+            box-shadow: 0 2px 0 #451a03;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>MONKE BUTTON™</h1>
+            <div class="subtitle">Make Monke Not Kill Monke</div>
+        </div>
+        
+        <div class="button-container">
+            <div id="button" class="monke-button" onclick="pressMonkeButton()">
+                <div class="button-label">MONKE</div>
+                <div class="button-sub">PEACE</div>
+            </div>
+        </div>
+        
+        <div id="status" class="status">
+            <span id="status-text">MONKES ARE ANGRY.<br>TOO MUCH KILLING.</span>
+        </div>
+        
+        <div class="monke-scene">
+            <!-- Monke 1 -->
+            <div>
+                <div id="monke1" class="monke fighting">🐵</div>
+                <div id="label1" class="label">MONKE 1</div>
+            </div>
+            
+            <!-- Monke 2 -->
+            <div>
+                <div id="monke2" class="monke fighting">🦍</div>
+                <div id="label2" class="label">MONKE 2</div>
+            </div>
+        </div>
+        
+        <!-- Care buttons appear in tired/hungry phase -->
+        <div id="care-buttons" style="display: none; margin: 1.5rem 0;">
+            <button onclick="feedMonke()" 
+                    style="background: linear-gradient(#f59e0b, #d97706); border: 6px solid #78350f; color: white; font-family: 'Press Start 2P', system-ui; font-size: 1rem; padding: 0.8rem 1.5rem; margin: 0 0.5rem; cursor: pointer; border-radius: 4px; box-shadow: 0 6px 0 #451a03; transition: all 0.1s;">
+                FEED MONKE 🍌
+            </button>
+            <button onclick="restMonke()" 
+                    style="background: linear-gradient(#3b82f6, #2563eb); border: 6px solid #1e3a8a; color: white; font-family: 'Press Start 2P', system-ui; font-size: 1rem; padding: 0.8rem 1.5rem; margin: 0 0.5rem; cursor: pointer; border-radius: 4px; box-shadow: 0 6px 0 #1e3a8a; transition: all 0.1s;">
+                LET MONKE REST 😴
+            </button>
+        </div>
+        
+        <div id="message" class="message big-text">
+            MONKE SEE MONKE.<br>
+            MONKE WANT KILL MONKE.
+        </div>
+        
+        <div class="stats">
+            <div class="stat">
+                <span class="stat-value" id="kill-count">87</span>
+                <div>INCIDENTS TODAY</div>
+            </div>
+            <div class="stat">
+                <span class="stat-value" id="banana-count">12</span>
+                <div>BANANAS SHARED</div>
+            </div>
+            <div class="stat">
+                <span class="stat-value" id="peace-level">11</span>
+                <div>% PEACE</div>
+            </div>
+        </div>
+        
+        <div class="instructions">
+            <strong>INSTRUCTIONS:</strong> When monkes are killing monkes, slam the big red button.<br>
+            One press = monkes stop killing monkes.<br>
+            <span style="color:#facc15">Try it. Monke will thank you.</span>
+        </div>
+        
+        <div class="footer">
+            MONKE BUTTON™ — FOR WHEN MONKE GETS TOO REAL<br>
+            NOW WITH ACADEMY INTEGRATION • STARFLEET PADAWAN APPROVED
+        </div>
+    </div>
+    
+    <script>
+        let phase = 0; // 0: angry/killing, 1: peace (no kill), 2: tired + hungry, 3: happy/content
+        let pressCount = 0;
+        let fed = false;
+        let rested = false;
+        
+        function updateStats(kills, bananas, peace) {
+            document.getElementById('kill-count').textContent = kills;
+            document.getElementById('banana-count').textContent = bananas;
+            document.getElementById('peace-level').textContent = peace;
+        }
+        
+        function updateMonkeVisuals(currentPhase) {
+            const monke1 = document.getElementById('monke1');
+            const monke2 = document.getElementById('monke2');
+            const label1 = document.getElementById('label1');
+            const label2 = document.getElementById('label2');
+            const careButtons = document.getElementById('care-buttons');
+            
+            monke1.classList.remove('fighting', 'peaceful', 'tired', 'happy');
+            monke2.classList.remove('fighting', 'peaceful', 'tired', 'happy');
+            
+            if (currentPhase === 0) {
+                // Angry
+                monke1.classList.add('fighting');
+                monke1.innerHTML = '🐵';
+                monke2.classList.add('fighting');
+                monke2.innerHTML = '🦍';
+                label1.textContent = 'MONKE 1';
+                label2.textContent = 'MONKE 2';
+                careButtons.style.display = 'none';
+            } else if (currentPhase === 1) {
+                // Peace
+                monke1.classList.add('peaceful');
+                monke1.innerHTML = '🐵';
+                monke2.classList.add('peaceful');
+                monke2.innerHTML = '🦍';
+                label1.textContent = 'FRIEND MONKE';
+                label2.textContent = 'FRIEND MONKE';
+                careButtons.style.display = 'none';
+            } else if (currentPhase === 2) {
+                // Tired + Hungry
+                monke1.classList.add('tired');
+                monke1.innerHTML = '😴';
+                monke2.classList.add('tired');
+                monke2.innerHTML = '😴';
+                label1.textContent = 'TIRED MONKE';
+                label2.textContent = 'HUNGRY MONKE';
+                careButtons.style.display = 'block';
+            } else if (currentPhase === 3) {
+                // Happy full
+                monke1.classList.add('happy');
+                monke1.innerHTML = '😊';
+                monke2.classList.add('happy');
+                monke2.innerHTML = '😊';
+                label1.textContent = 'HAPPY MONKE';
+                label2.textContent = 'FULL MONKE';
+                careButtons.style.display = 'none';
+            }
+        }
+        
+        function updateStatusAndMessage(currentPhase) {
+            const status = document.getElementById('status');
+            const statusText = document.getElementById('status-text');
+            const message = document.getElementById('message');
+            
+            status.classList.remove('peace');
+            message.classList.remove('peace');
+            
+            if (currentPhase === 0) {
+                statusText.innerHTML = 'MONKES ARE ANGRY.<br>TOO MUCH KILLING.';
+                message.innerHTML = 'MONKE SEE MONKE.<br>MONKE WANT KILL MONKE.';
+            } else if (currentPhase === 1) {
+                status.classList.add('peace');
+                statusText.innerHTML = 'PEACE ENGAGED.<br>MONKE NO KILL MONKE.';
+                message.innerHTML = 'MONKE NOW GROOM MONKE.<br>MONKE SHARE BANANA. 🍌';
+                message.classList.add('peace');
+                
+                // After peace, monke gets tired and hungry (natural consequence)
+                setTimeout(() => {
+                    if (phase === 1) {
+                        phase = 2;
+                        fed = false;
+                        rested = false;
+                        updateMonkeVisuals(2);
+                        updateStatusAndMessage(2);
+                        updateStats(2, 14, 68);
+                    }
+                }, 1600);
+            } else if (currentPhase === 2) {
+                statusText.innerHTML = 'MONKE TIRED.<br>MONKE HUNGRY. HELP.';
+                message.innerHTML = 'MONKE NEED BANANA.<br>MONKE NEED NAP. 😴🍌';
+            } else if (currentPhase === 3) {
+                status.classList.add('peace');
+                statusText.innerHTML = 'MONKE HAPPY.<br>MONKE FULL AND RESTED.';
+                message.innerHTML = 'MONKE TOGETHER STRONG.<br>AND WELL FED. 🍌😊';
+                message.classList.add('peace');
+            }
+        }
+        
+        function pressMonkeButton() {
+            const button = document.getElementById('button');
+            const status = document.getElementById('status');
+            
+            if (phase === 3) {
+                // Reset from happy back to angry
+                phase = 0;
+                fed = false;
+                rested = false;
+                button.classList.remove('pressed');
+                status.classList.remove('peace');
+                updateMonkeVisuals(0);
+                updateStatusAndMessage(0);
+                updateStats(87 + Math.floor(Math.random() * 15), 12, 11);
+                return;
+            }
+            
+            if (phase === 0) {
+                // First press: go to peace
+                phase = 1;
+                pressCount++;
+                button.classList.add('pressed');
+                updateMonkeVisuals(1);
+                updateStatusAndMessage(1);
+                updateStats(2, 19, 72);
+                createBananaRain();
+                
+            } else if (phase === 1 || phase === 2) {
+                // Already in peace or tired - pressing again does nothing special or resets if wanted
+                // In this flow we use the care buttons instead
+            }
+        }
+        
+        function feedMonke() {
+            if (phase !== 2) return;
+            
+            fed = true;
+            const monke1 = document.getElementById('monke1');
+            const monke2 = document.getElementById('monke2');
+            
+            // Visual feedback
+            monke1.style.transform = 'scale(1.15)';
+            monke2.style.transform = 'scale(1.15)';
+            
+            setTimeout(() => {
+                monke1.style.transform = '';
+                monke2.style.transform = '';
+            }, 300);
+            
+            // Create banana rain again
+            createBananaRain();
+            
+            checkCareComplete();
+        }
+        
+        function restMonke() {
+            if (phase !== 2) return;
+            
+            rested = true;
+            const monke1 = document.getElementById('monke1');
+            const monke2 = document.getElementById('monke2');
+            
+            // Visual sleepy to calm
+            monke1.style.transition = 'all 0.6s ease';
+            monke2.style.transition = 'all 0.6s ease';
+            
+            checkCareComplete();
+        }
+        
+        function checkCareComplete() {
+            if (fed && rested && phase === 2) {
+                phase = 3;
+                updateMonkeVisuals(3);
+                updateStatusAndMessage(3);
+                updateStats(0, 97, 100);
+                
+                // Bonus happy banana rain
+                setTimeout(() => {
+                    if (phase === 3) createBananaRain();
+                }, 800);
+                
+                setTimeout(() => {
+                    if (phase === 3) createBananaRain();
+                }, 1600);
+            } else if (phase === 2) {
+                // Partial care feedback
+                const message = document.getElementById('message');
+                if (fed && !rested) {
+                    message.innerHTML = 'MONKE FED.<br>MONKE STILL TIRED. 😴';
+                } else if (!fed && rested) {
+                    message.innerHTML = 'MONKE RESTED.<br>MONKE STILL HUNGRY. 🍌';
+                }
+                updateStats(1, fed ? 64 : 29, rested ? 71 : 44);
+            }
+        }
+        
+        function createBananaRain() {
+            const container = document.querySelector('.container');
+            
+            for (let i = 0; i < 9; i++) {
+                const banana = document.createElement('div');
+                banana.textContent = '🍌';
+                banana.style.position = 'absolute';
+                banana.style.left = Math.random() * 100 + 'vw';
+                banana.style.top = '-30px';
+                banana.style.fontSize = (1.2 + Math.random() * 1.8) + 'rem';
+                banana.style.zIndex = '9999';
+                banana.style.transition = 'transform 1.8s linear, opacity 1.8s linear';
+                banana.style.pointerEvents = 'none';
+                
+                container.appendChild(banana);
+                
+                const fallDuration = 1600 + Math.random() * 900;
+                
+                setTimeout(() => {
+                    banana.style.transform = `translateY(${window.innerHeight + 100}px) rotate(${Math.random() * 180 - 90}deg)`;
+                    banana.style.opacity = '0';
+                }, 30);
+                
+                setTimeout(() => {
+                    if (banana.parentNode) banana.parentNode.removeChild(banana);
+                }, fallDuration + 200);
+            }
+        }
+        
+        // Keyboard support
+        document.addEventListener('keydown', function(e) {
+            if (e.key === ' ' || e.key === 'Enter') {
+                e.preventDefault();
+                const care = document.getElementById('care-buttons');
+                if (care.style.display === 'block' && phase === 2) {
+                    // If care buttons visible, feed first then rest for convenience
+                    if (!fed) feedMonke();
+                    else if (!rested) restMonke();
+                } else {
+                    pressMonkeButton();
+                }
+            }
+            
+            if (e.key.toLowerCase() === 'f' && phase === 2) {
+                e.preventDefault();
+                feedMonke();
+            }
+            if (e.key.toLowerCase() === 'r' && phase === 2) {
+                e.preventDefault();
+                restMonke();
+            }
+            if (e.key.toLowerCase() === 'r' && phase === 3) {
+                pressMonkeButton(); // reset
+            }
+        });
+        
+        // Boot
+        window.onload = function() {
+            const statusText = document.getElementById('status-text');
+            
+            updateMonkeVisuals(0);
+            updateStatusAndMessage(0);
+            updateStats(87, 12, 11);
+            
+            // Random monke restlessness in angry phase
+            setInterval(() => {
+                const monke1 = document.getElementById('monke1');
+                const monke2 = document.getElementById('monke2');
+                
+                if (phase === 0 && monke1 && monke2 && Math.random() < 0.3) {
+                    monke1.style.transform = 'scale(1.08) rotate(3deg)';
+                    monke2.style.transform = 'scale(1.08) rotate(-3deg)';
+                    
+                    setTimeout(() => {
+                        if (phase === 0) {
+                            monke1.style.transform = '';
+                            monke2.style.transform = '';
+                        }
+                    }, 220);
+                }
+            }, 3800);
+            
+            console.log('%c[MONKE] Button ready. Press for peace. Then care for tired hungry monke.', 'color:#64748b');
+        };
+        
+        // Title easter egg
+        document.querySelector('.header h1').addEventListener('click', function() {
+            const header = this;
+            header.style.transition = 'transform 0.1s';
+            header.style.transform = 'scale(1.3) rotate(2deg)';
+            
+            setTimeout(() => {
+                header.style.transform = 'scale(1) rotate(0deg)';
+            }, 180);
+            
+            const container = document.querySelector('.container');
+            for (let i = 0; i < 6; i++) {
+                setTimeout(() => {
+                    const b = document.createElement('div');
+                    b.textContent = '🍌';
+                    b.style.cssText = `position:absolute;left:${Math.random()*80+10}%;top:40px;font-size:1.5rem;pointer-events:none;z-index:10`;
+                    container.appendChild(b);
+                    setTimeout(() => {
+                        b.style.transition = 'all 1s ease';
+                        b.style.transform = `translateY(240px)`;
+                        b.style.opacity = '0';
+                    }, 40);
+                    setTimeout(() => b.parentNode && b.parentNode.removeChild(b), 1200);
+                }, i * 55);
+            }
+        });
+    </script>
+</body>
+</html>

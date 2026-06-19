@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RIGHT ON CUE • Master Timing Device</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&amp;display=swap');
+        
+        :root {
+            --cue-pink: #ff00aa;
+            --cue-teal: #00f0ff;
+            --cue-red: #e30613;
+            --space: #0a0a12;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            background: #0a0a12;
+            color: #f0f0f0;
+            font-family: "Press Start 2P", monospace;
+            min-height: 100vh;
+            background-image: 
+                radial-gradient(circle at 30% 20%, rgba(255,0,170,0.06) 0%, transparent 50%),
+                radial-gradient(circle at 70% 80%, rgba(0,240,255,0.05) 0%, transparent 50%);
+        }
+        
+        .container {
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+        
+        .header h1 {
+            font-size: 2.4rem;
+            background: linear-gradient(90deg, var(--cue-pink), var(--cue-teal), var(--cue-red));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.4rem;
+            letter-spacing: 4px;
+        }
+        
+        .header .subtitle {
+            color: #888;
+            font-size: 0.85rem;
+            letter-spacing: 3px;
+        }
+        
+        .status-bar {
+            background: #111;
+            border: 4px solid #333;
+            padding: 1rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+        }
+        
+        .status-bar.perfect {
+            border-color: var(--cue-teal);
+            color: var(--cue-teal);
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
+        }
+        
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .card {
+            background: #111;
+            border: 4px solid #333;
+            padding: 1.2rem;
+            position: relative;
+        }
+        
+        .card h3 {
+            font-size: 0.8rem;
+            color: var(--cue-pink);
+            margin-bottom: 0.8rem;
+            letter-spacing: 2px;
+        }
+        
+        .card .state {
+            font-size: 1.1rem;
+            margin: 0.5rem 0;
+            min-height: 2.8em;
+        }
+        
+        .card button {
+            background: #222;
+            border: 3px solid #444;
+            color: #ddd;
+            font-family: inherit;
+            font-size: 0.65rem;
+            padding: 8px 14px;
+            cursor: pointer;
+            letter-spacing: 1px;
+            width: 100%;
+            margin-top: 0.6rem;
+            transition: all 0.1s;
+        }
+        
+        .card button:hover {
+            border-color: var(--cue-pink);
+            color: white;
+        }
+        
+        .card button:active {
+            transform: scale(0.96);
+        }
+        
+        .cue-track {
+            background: #0d0d15;
+            border: 4px solid #222;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cue-track h3 {
+            font-size: 0.75rem;
+            color: var(--cue-teal);
+            margin-bottom: 1rem;
+            text-align: center;
+            letter-spacing: 3px;
+        }
+        
+        .beat-bar {
+            height: 18px;
+            background: #1a1a22;
+            border: 2px solid #333;
+            position: relative;
+            margin: 1rem 0;
+        }
+        
+        .beat-bar .marker {
+            position: absolute;
+            top: -4px;
+            width: 8px;
+            height: 26px;
+            background: var(--cue-red);
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 0 12px var(--cue-red);
+            z-index: 2;
+        }
+        
+        .beat-bar .sweeper {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 6px;
+            height: 100%;
+            background: linear-gradient(to right, transparent, var(--cue-teal), transparent);
+            box-shadow: 0 0 15px var(--cue-teal);
+            animation: sweep 2.4s linear infinite;
+        }
+        
+        @keyframes sweep {
+            0% { left: -10%; }
+            100% { left: 104%; }
+        }
+        
+        .cue-zone {
+            position: absolute;
+            top: -2px;
+            height: 22px;
+            background: rgba(0, 240, 255, 0.2);
+            border: 1px solid var(--cue-teal);
+            left: 42%;
+            width: 16%;
+            z-index: 1;
+            pointer-events: none;
+        }
+        
+        .master-cue {
+            text-align: center;
+            margin: 2rem 0;
+        }
+        
+        .master-button {
+            width: 260px;
+            height: 260px;
+            margin: 0 auto;
+            border-radius: 50%;
+            background: radial-gradient(circle at 35% 30%, #ff2a2a, #9f0000, #3a0000);
+            border: 12px solid #1a0000;
+            box-shadow: 
+                0 0 60px var(--cue-red),
+                inset 0 25px 50px rgba(255,255,255,0.12),
+                inset 0 -35px 60px rgba(0,0,0,0.65);
+            cursor: pointer;
+            transition: transform 0.06s ease, box-shadow 0.06s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            position: relative;
+            user-select: none;
+        }
+        
+        .master-button:hover {
+            box-shadow: 0 0 90px var(--cue-red);
+        }
+        
+        .master-button:active {
+            transform: scale(0.92);
+            box-shadow: 0 0 30px var(--cue-red);
+        }
+        
+        .master-button .label {
+            font-size: 1.6rem;
+            color: white;
+            text-shadow: 0 0 15px #000, 3px 3px 0 #000;
+            letter-spacing: 4px;
+        }
+        
+        .master-button .hint {
+            font-size: 0.6rem;
+            color: #ffccaa;
+            letter-spacing: 2px;
+            margin-top: -4px;
+        }
+        
+        .results {
+            background: #111;
+            border: 4px solid #333;
+            padding: 1.5rem;
+            min-height: 120px;
+            font-size: 0.75rem;
+            line-height: 1.5;
+            white-space: pre-line;
+        }
+        
+        .results.perfect {
+            border-color: var(--cue-teal);
+            color: var(--cue-teal);
+        }
+        
+        .legend {
+            font-size: 0.6rem;
+            color: #555;
+            text-align: center;
+            margin-top: 2rem;
+            letter-spacing: 1px;
+        }
+        
+        .status-light {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            background: #333;
+            border-radius: 50%;
+            margin-right: 6px;
+            vertical-align: middle;
+        }
+        
+        .status-light.green {
+            background: var(--cue-teal);
+            box-shadow: 0 0 8px var(--cue-teal);
+        }
+        
+        .status-light.red {
+            background: var(--cue-red);
+            box-shadow: 0 0 8px var(--cue-red);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>RIGHT ON CUE</h1>
+            <div class="subtitle">MASTER TIMING DEVICE • ACADEMY / MONKE / NEVERENDER SYNC</div>
+        </div>
+        
+        <div class="status-bar" id="global-status">
+            SYSTEM ARMED • WAITING FOR THE BEAT
+        </div>
+        
+        <div class="dashboard">
+            <!-- Monke Card -->
+            <div class="card">
+                <h3>MONKE STATUS</h3>
+                <div class="state" id="monke-state">ANGRY • TIRED • HUNGRY<br>POOR TIMING DETECTED</div>
+                <button onclick="cueAction('monke-peace')">CUE MONKE PEACE</button>
+                <button onclick="cueAction('monke-feed')">CUE FEED MONKE</button>
+                <button onclick="cueAction('monke-rest')">CUE REST MONKE</button>
+            </div>
+            
+            <!-- Neverender Card -->
+            <div class="card">
+                <h3>NEVERENDER PROTOCOL</h3>
+                <div class="state" id="neverender-state">LOOP 03 • DESYNCED<br>ROAD NOT IN RHYTHM</div>
+                <button onclick="cueAction('neverender-commence')">CUE NEVERENDER COMMENCE</button>
+                <button onclick="cueAction('neverender-deeper')">CUE DEEPER INTO LOOP</button>
+            </div>
+            
+            <!-- Academy Card -->
+            <div class="card">
+                <h3>ACADEMY DRILL</h3>
+                <div class="state" id="academy-state">PUNCH THE GLASS SIM<br>OFF-CUE — FAILURE IMMINENT</div>
+                <button onclick="cueAction('academy-drill')">CUE PERFECT GLASS SHATTER</button>
+            </div>
+        </div>
+        
+        <!-- Cue Track -->
+        <div class="cue-track">
+            <h3>CUE TRACK — RIGHT ON CUE WINDOW</h3>
+            <div class="beat-bar" id="beat-bar">
+                <div class="sweeper"></div>
+                <div class="marker"></div>
+                <div class="cue-zone"></div>
+            </div>
+            <div style="text-align: center; font-size: 0.6rem; color: #666; margin-top: 0.4rem;">
+                SWEEPER IN GREEN ZONE = PERFECT TIMING
+            </div>
+        </div>
+        
+        <!-- Master Button -->
+        <div class="master-cue">
+            <div onclick="fireMasterCue()" class="master-button" id="master-btn">
+                <div class="label">RIGHT ON CUE</div>
+                <div class="hint">PRESS IN THE WINDOW</div>
+            </div>
+        </div>
+        
+        <div class="results" id="results">
+            PENDING CUES: MONKE STATES • NEVERENDER DESYNC • ACADEMY OFF-BEAT<br>
+            ARM THE MASTER AND HIT THE PERFECT MOMENT.
+        </div>
+        
+        <div class="legend">
+            THIS DEVICE RESOLVES EVERYTHING FROM THE ACADEMY, MONKE BUTTON, AND NEVERENDER PROTOCOL<br>
+            AT THE EXACT RIGHT INSTANT. NO EARLY. NO LATE. ONLY RIGHT ON CUE.
+        </div>
+    </div>
+    
+    <script>
+        let monkeState = 'angry-tired-hungry';
+        let neverenderState = 'desynced';
+        let academyState = 'off-cue';
+        
+        let isInCueWindow = false;
+        let cueSuccessCount = 0;
+        
+        function updateStates() {
+            // Monke
+            const monkeEl = document.getElementById('monke-state');
+            if (monkeState === 'angry-tired-hungry') {
+                monkeEl.innerHTML = 'ANGRY • TIRED • HUNGRY<br>POOR TIMING DETECTED';
+                monkeEl.style.color = '#f55';
+            } else if (monkeState === 'peace') {
+                monkeEl.innerHTML = 'PEACE ACHIEVED<br>STILL TIRED + HUNGRY';
+                monkeEl.style.color = '#fa0';
+            } else if (monkeState === 'fed') {
+                monkeEl.innerHTML = 'FED • STILL TIRED';
+                monkeEl.style.color = '#fa0';
+            } else if (monkeState === 'rested') {
+                monkeEl.innerHTML = 'RESTED • STILL HUNGRY';
+                monkeEl.style.color = '#fa0';
+            } else if (monkeState === 'happy') {
+                monkeEl.innerHTML = 'HAPPY • FULL • RESTED<br>MONKE NO LONGER KILLS MONKE';
+                monkeEl.style.color = '#0f0';
+            }
+            
+            // Neverender
+            const nevEl = document.getElementById('neverender-state');
+            if (neverenderState === 'desynced') {
+                nevEl.innerHTML = 'LOOP 03 • DESYNCED<br>ROAD NOT IN RHYTHM';
+                nevEl.style.color = '#f55';
+            } else if (neverenderState === 'commenced') {
+                nevEl.innerHTML = 'LOOP 03 • COMMENCED<br>STILL DESYNCED';
+                nevEl.style.color = '#fa0';
+            } else if (neverenderState === 'synced') {
+                nevEl.innerHTML = 'INFINITE LOOP • PERFECTLY SYNCED<br>IMPALA RUNNING ON BEAT';
+                nevEl.style.color = '#0f0';
+            }
+            
+            // Academy
+            const acEl = document.getElementById('academy-state');
+            if (academyState === 'off-cue') {
+                acEl.innerHTML = 'PUNCH THE GLASS SIM<br>OFF-CUE — FAILURE IMMINENT';
+                acEl.style.color = '#f55';
+            } else if (academyState === 'synced') {
+                acEl.innerHTML = 'GLASS SHATTERED RIGHT ON CUE<br>CADET ASCENDED';
+                acEl.style.color = '#0f0';
+            }
+        }
+        
+        function updateGlobalStatus() {
+            const status = document.getElementById('global-status');
+            const results = document.getElementById('results');
+            
+            const allPerfect = (monkeState === 'happy') && (neverenderState === 'synced') && (academyState === 'synced');
+            
+            if (allPerfect) {
+                status.innerHTML = 'ALL SYSTEMS RIGHT ON CUE • HARMONY ACHIEVED';
+                status.classList.add('perfect');
+                results.innerHTML = 'EVERYTHING RESOLVED AT THE PERFECT MOMENT.<br>BANANAS SHARED. LOOPS SYNCED. GLASS SHATTERED ON THE BEAT.<br><br>THE UNIVERSE THANKS YOU.';
+                results.classList.add('perfect');
+            } else {
+                status.innerHTML = 'SYSTEM ARMED • WAITING FOR THE BEAT';
+                status.classList.remove('perfect');
+                results.classList.remove('perfect');
+                
+                let pending = [];
+                if (monkeState !== 'happy') pending.push('MONKE NEEDS CUE');
+                if (neverenderState !== 'synced') pending.push('NEVERENDER NEEDS CUE');
+                if (academyState !== 'synced') pending.push('ACADEMY NEEDS CUE');
+                
+                results.innerHTML = 'PENDING: ' + pending.join(' • ') + '<br>HIT THE MASTER BUTTON WHEN THE SWEEPER IS IN THE GREEN ZONE.';
+            }
+        }
+        
+        // Simple beat / cue window simulation
+        function startCueTrack() {
+            const bar = document.getElementById('beat-bar');
+            
+            // We use the CSS animation for the sweeper
+            // We manually toggle the cue window class on a timer that matches the animation
+            
+            let cycle = 0;
+            
+            setInterval(() => {
+                const sweeper = bar.querySelector('.sweeper');
+                if (!sweeper) return;
+                
+                // Approximate cue window (middle 16% of the bar)
+                // The CSS animation is 2.4s, cue zone is roughly 42%-58%
+                // We'll sample the "position" by time
+                
+                const now = Date.now();
+                const phase = (now / 2400) % 1; // 0 to 1 over 2.4s
+                
+                isInCueWindow = (phase > 0.42 && phase < 0.58);
+                
+                // Visual feedback on the bar
+                if (isInCueWindow) {
+                    bar.style.borderColor = 'var(--cue-teal)';
+                    bar.style.boxShadow = '0 0 12px rgba(0, 240, 255, 0.4)';
+                } else {
+                    bar.style.borderColor = '#333';
+                    bar.style.boxShadow = 'none';
+                }
+            }, 80);
+        }
+        
+        function cueAction(action) {
+            const results = document.getElementById('results');
+            
+            if (!isInCueWindow) {
+                results.innerHTML = 'OFF CUE! ' + action.toUpperCase() + ' FIRED TOO EARLY OR LATE.<br>CHAOS INCREASED. TRY THE MASTER BUTTON IN THE GREEN ZONE.';
+                results.style.color = '#f55';
+                
+                // Minor penalty
+                if (action.includes('monke')) {
+                    monkeState = 'angry-tired-hungry';
+                }
+                updateStates();
+                updateGlobalStatus();
+                return;
+            }
+            
+            // Perfect timing!
+            results.style.color = '#0f0';
+            
+            if (action === 'monke-peace') {
+                monkeState = 'peace';
+                results.innerHTML = 'MONKE PEACE ACHIEVED RIGHT ON CUE.<br>NO MORE KILLING. BUT MONKE STILL TIRED + HUNGRY.';
+            } else if (action === 'monke-feed') {
+                if (monkeState === 'peace' || monkeState === 'rested') {
+                    monkeState = 'happy';
+                    results.innerHTML = 'FEED + PREVIOUS ACTIONS LANDED RIGHT ON CUE.<br>MONKE IS NOW HAPPY, FULL, AND AT PEACE.';
+                } else {
+                    monkeState = 'fed';
+                    results.innerHTML = 'MONKE FED RIGHT ON CUE.<br>STILL NEEDS REST FOR FULL RESOLUTION.';
+                }
+            } else if (action === 'monke-rest') {
+                if (monkeState === 'peace' || monkeState === 'fed') {
+                    monkeState = 'happy';
+                    results.innerHTML = 'REST + PREVIOUS ACTIONS LANDED RIGHT ON CUE.<br>MONKE IS NOW HAPPY, FULL, AND AT PEACE.';
+                } else {
+                    monkeState = 'rested';
+                    results.innerHTML = 'MONKE RESTED RIGHT ON CUE.<br>STILL NEEDS FEED FOR FULL RESOLUTION.';
+                }
+            } else if (action === 'neverender-commence') {
+                neverenderState = 'commenced';
+                results.innerHTML = 'NEVERENDER PROTOCOL COMMENCED RIGHT ON CUE.<br>STILL NEEDS ONE MORE SYNC FOR PERFECT INFINITE LOOP.';
+            } else if (action === 'neverender-deeper') {
+                if (neverenderState === 'commenced') {
+                    neverenderState = 'synced';
+                    results.innerHTML = 'NEVERENDER DEEPER SYNC RIGHT ON CUE.<br>THE IMPALA IS NOW RUNNING IN PERFECT RHYTHM FOREVER.';
+                } else {
+                    neverenderState = 'synced';
+                    results.innerHTML = 'NEVERENDER LOOP SYNCED RIGHT ON CUE.';
+                }
+            } else if (action === 'academy-drill') {
+                academyState = 'synced';
+                results.innerHTML = 'PUNCH THE GLASS EXECUTED RIGHT ON CUE.<br>CADET ASCENDED. SIMULATION SAVED AT THE PERFECT INSTANT.';
+            }
+            
+            updateStates();
+            updateGlobalStatus();
+            cueSuccessCount++;
+            
+            // Small celebration
+            if (cueSuccessCount % 2 === 0) {
+                createBananaFlash();
+            }
+        }
+        
+        function fireMasterCue() {
+            const results = document.getElementById('results');
+            const master = document.getElementById('master-btn');
+            
+            if (!isInCueWindow) {
+                results.innerHTML = 'MASTER CUE OFF BEAT!<br>EVERYTHING SLIGHTLY DESYNCED. THE MONKES ARE JUDGING YOU.';
+                results.style.color = '#f55';
+                master.style.boxShadow = '0 0 20px #f55';
+                setTimeout(() => {
+                    if (master) master.style.boxShadow = '0 0 60px var(--cue-red), inset 0 25px 50px rgba(255,255,255,0.12), inset 0 -35px 60px rgba(0,0,0,0.65)';
+                }, 600);
+                return;
+            }
+            
+            // PERFECT — resolve as many as possible in one glorious right-on-cue moment
+            results.style.color = '#0f0';
+            
+            let resolved = [];
+            
+            if (monkeState !== 'happy') {
+                monkeState = 'happy';
+                resolved.push('MONKE (PEACE + FEED + REST)');
+            }
+            if (neverenderState !== 'synced') {
+                neverenderState = 'synced';
+                resolved.push('NEVERENDER (COMMENCE + SYNC)');
+            }
+            if (academyState !== 'synced') {
+                academyState = 'synced';
+                resolved.push('ACADEMY (PUNCH THE GLASS)');
+            }
+            
+            if (resolved.length === 0) {
+                results.innerHTML = 'EVERYTHING WAS ALREADY RIGHT ON CUE.<br>THE UNIVERSE IS IN PERFECT HARMONY. YOU ARE A TIMING GOD.';
+            } else {
+                results.innerHTML = 'MASTER CUE LANDED RIGHT ON CUE.<br>RESOLVED: ' + resolved.join(' + ') + '<br><br>THE LOOP IS PERFECT. THE MONKES ARE AT PEACE. THE PROTOCOL NEVER ENDS.';
+            }
+            
+            updateStates();
+            updateGlobalStatus();
+            
+            // Big celebration
+            createBananaFlash();
+            setTimeout(createBananaFlash, 180);
+            setTimeout(createBananaFlash, 380);
+            
+            // Make the master button look extra pleased
+            master.style.boxShadow = '0 0 120px var(--cue-teal), 0 0 40px #fff';
+            setTimeout(() => {
+                if (master) master.style.boxShadow = '0 0 60px var(--cue-red), inset 0 25px 50px rgba(255,255,255,0.12), inset 0 -35px 60px rgba(0,0,0,0.65)';
+            }, 1200);
+        }
+        
+        function createBananaFlash() {
+            const container = document.querySelector('.container');
+            for (let i = 0; i < 7; i++) {
+                const b = document.createElement('div');
+                b.textContent = '🍌';
+                b.style.cssText = `position:absolute; left:${20 + Math.random()*60}%; top:${30 + Math.random()*40}%; font-size:${1.2 + Math.random()*1.4}rem; pointer-events:none; z-index:999; transition: all 1.4s ease-out;`;
+                container.appendChild(b);
+                
+                setTimeout(() => {
+                    b.style.transform = `translateY(${120 + Math.random()*80}px) rotate(${Math.random()*60-30}deg)`;
+                    b.style.opacity = '0';
+                }, 60);
+                
+                setTimeout(() => {
+                    if (b.parentNode) b.parentNode.removeChild(b);
+                }, 1600);
+            }
+        }
+        
+        // Keyboard: space or enter fires the master cue
+        document.addEventListener('keydown', function(e) {
+            if (e.key === ' ' || e.key === 'Enter') {
+                e.preventDefault();
+                fireMasterCue();
+            }
+            
+            // Quick individual cues for power users
+            if (e.key.toLowerCase() === 'm') cueAction('monke-peace');
+            if (e.key.toLowerCase() === 'f') cueAction('monke-feed');
+            if (e.key.toLowerCase() === 'r') cueAction('monke-rest');
+            if (e.key.toLowerCase() === 'n') cueAction('neverender-commence');
+            if (e.key.toLowerCase() === 'd') cueAction('neverender-deeper');
+            if (e.key.toLowerCase() === 'a') cueAction('academy-drill');
+        });
+        
+        // Boot
+        function init() {
+            updateStates();
+            updateGlobalStatus();
+            startCueTrack();
+            
+            // Subtle idle pulse on the master button
+            const master = document.getElementById('master-btn');
+            setInterval(() => {
+                if (master && !master.style.boxShadow.includes('120px')) {
+                    master.style.boxShadow = '0 0 70px var(--cue-red), inset 0 25px 50px rgba(255,255,255,0.12), inset 0 -35px 60px rgba(0,0,0,0.65)';
+                    setTimeout(() => {
+                        if (master) master.style.boxShadow = '0 0 60px var(--cue-red), inset 0 25px 50px rgba(255,255,255,0.12), inset 0 -35px 60px rgba(0,0,0,0.65)';
+                    }, 650);
+                }
+            }, 5200);
+            
+            console.log('%c[RIGHT ON CUE] Device online. Hit the master button in the green zone for perfect sync across the entire saga.', 'color:#555');
+        }
+        
+        window.onload = init;
+    </script>
+</body>
+</html>

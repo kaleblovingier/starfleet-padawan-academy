@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LAUNCH THE ENTS • THE FOREST AWAKENS IN THE ONE TAKE</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&amp;display=swap');
+
+        :root {
+            --psych-pink: #ff00aa;
+            --psych-teal: #00f0ff;
+            --justice-red: #e30613;
+            --space: #0a0a12;
+            --awakening-gold: #facc15;
+            --together-purple: #a855f7;
+            --human-warm: #f4a261;
+            --timmy-elegant: #c084fc;
+            --save-red: #ff1133;
+            --bass-purple: #7c3aed;
+            --cia-black: #111113;
+            --obi-gold: #fde047;
+            --spin-cyan: #67e8f9;
+            --namaste-gold: #fde047;
+            --dino-green: #4ade80;
+            --dino-brown: #a16207;
+            --ent-green: #22c55e;
+            --ent-bark: #854d0e;
+            --forest-moss: #65a30d;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: #0a0a12;
+            color: #f0f0f0;
+            font-family: "Press Start 2P", monospace;
+            min-height: 100vh;
+            overflow-x: hidden;
+            background-image:
+                radial-gradient(circle at 25% 30%, rgba(255, 0, 170, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 75% 70%, rgba(0, 240, 255, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(34, 197, 94, 0.05) 0%, transparent 70%);
+        }
+
+        .container { max-width: 1120px; margin: 0 auto; padding: 1.25rem; position: relative; z-index: 2; }
+
+        .header {
+            text-align: center;
+            margin-bottom: 0.9rem;
+            border-bottom: 5px solid var(--ent-green);
+            padding-bottom: 0.7rem;
+        }
+
+        .header h1 {
+            font-size: 1.85rem;
+            background: linear-gradient(90deg, var(--psych-pink), var(--ent-green), var(--dino-green), var(--namaste-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.15rem;
+            letter-spacing: 3px;
+        }
+
+        .header .subtitle { font-size: 0.52rem; color: #888; letter-spacing: 2px; }
+
+        .shot-container {
+            background: #111;
+            border: 7px solid #222;
+            padding: 0.85rem;
+            position: relative;
+            height: 480px;
+            overflow: hidden;
+            margin-bottom: 0.85rem;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
+        }
+
+        .continuous-shot {
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 42% 32%, #1a1a2a 0%, #0a0a12 68%);
+            position: relative;
+            overflow: hidden;
+            border: 2px solid rgba(34, 34, 34, 0.8);
+        }
+
+        .shot-overlay {
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(90deg, transparent 0px, transparent 2px, rgba(250, 204, 21, 0.022) 2px, rgba(250, 204, 21, 0.022) 4px);
+            pointer-events: none;
+            animation: film-grain 0.09s infinite;
+            z-index: 3;
+        }
+
+        .camera-frame {
+            position: absolute;
+            inset: 14px;
+            border: 2px solid rgba(250, 204, 21, 0.28);
+            pointer-events: none;
+            z-index: 4;
+        }
+
+        .scene-layer { position: absolute; inset: 0; transition: transform 0.08s linear, opacity 0.2s ease; }
+
+        .neverender-road {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 38%;
+            background: linear-gradient(#222 0%, #151515 38%, #0a0a12 100%);
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .road-lines {
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(90deg, transparent 0px, transparent 28px, #444 28px, #444 32px);
+            animation: road-move 1.05s linear infinite;
+        }
+
+        .root-lines {
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(45deg, transparent 0px, transparent 40px, rgba(34, 197, 94, 0.08) 40px, rgba(34, 197, 94, 0.08) 44px);
+            animation: root-pulse 2.4s ease-in-out infinite;
+            z-index: 2;
+        }
+
+        .monke-ace {
+            position: absolute;
+            font-size: 3.5rem;
+            bottom: 18%;
+            left: 20%;
+            transition: left 0.18s linear, transform 0.12s ease;
+            filter: drop-shadow(0 0 12px var(--timmy-elegant));
+            z-index: 6;
+        }
+
+        .monke-ace.distressed { filter: drop-shadow(0 0 6px var(--save-red)) drop-shadow(0 0 18px #000); }
+
+        .copilot {
+            position: absolute;
+            font-size: 2.6rem;
+            bottom: 17%;
+            right: 18%;
+            transition: transform 0.06s linear, filter 0.15s;
+            filter: drop-shadow(0 0 10px var(--together-purple));
+            z-index: 7;
+        }
+
+        .copilot.dizzy { filter: drop-shadow(0 0 8px var(--spin-cyan)) drop-shadow(0 0 20px #000); }
+
+        .dino { position: absolute; font-size: 2rem; transition: left 0.4s linear, bottom 0.4s linear, transform 0.1s linear; z-index: 5; }
+        .dino.trex { font-size: 2.6rem; }
+        .dino.veloci { font-size: 1.7rem; }
+
+        .ent { position: absolute; font-size: 2.4rem; transition: left 0.5s linear, bottom 0.5s linear, transform 0.15s linear; z-index: 6; filter: drop-shadow(0 4px 10px rgba(34, 197, 94, 0.4)); }
+        .ent.elder { font-size: 3rem; }
+        .ent.huorn { font-size: 1.9rem; }
+
+        .namaste-aura {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 52% 48%, rgba(253, 224, 71, 0.12) 0%, transparent 65%);
+            opacity: 0.4;
+            z-index: 4;
+            pointer-events: none;
+        }
+
+        .conscious-glow {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 38% 36%, rgba(250, 204, 21, 0.22) 0%, transparent 62%);
+            opacity: 0.55;
+            animation: conscious-pulse 2.6s ease-in-out infinite;
+            z-index: 2;
+        }
+
+        .forest-glow {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 60% 55%, rgba(34, 197, 94, 0.14) 0%, transparent 68%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: 3;
+            pointer-events: none;
+        }
+
+        .cue-overlay { position: absolute; top: 28%; left: 0; right: 0; height: 5px; background: rgba(227, 6, 19, 0.28); z-index: 5; }
+        .cue-sweeper { position: absolute; top: -10px; width: 18px; height: 22px; background: var(--justice-red); border-radius: 50%; box-shadow: 0 0 14px var(--justice-red); z-index: 8; transition: left 0.04s linear; }
+        .cue-window { position: absolute; top: -10px; height: 22px; background: rgba(0, 240, 255, 0.22); border: 1px solid var(--psych-teal); pointer-events: none; z-index: 6; }
+
+        .bass-cannon {
+            position: absolute;
+            bottom: 8%;
+            right: 9%;
+            width: 82px;
+            height: 82px;
+            border: 4px solid var(--bass-purple);
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(124,58,237,0.25) 10%, transparent 70%);
+            box-shadow: 0 0 18px var(--bass-purple);
+            z-index: 4;
+            transition: transform 0.2s ease, box-shadow 0.2s;
+        }
+
+        .bass-cannon.charging { animation: bass-pulse 0.6s infinite alternate; }
+        .bass-core { position: absolute; inset: 18px; background: var(--bass-purple); border-radius: 50%; opacity: 0.35; }
+
+        .cia-heli { position: absolute; top: 12%; left: -18%; font-size: 2.1rem; z-index: 9; transition: left 1.1s cubic-bezier(0.23, 1, 0.32, 1); opacity: 0.15; }
+        .cia-heli.active { opacity: 1; }
+
+        .obiwan { position: absolute; top: 22%; right: -14%; font-size: 2.3rem; z-index: 9; transition: right 1.0s ease; opacity: 0.2; }
+        .obiwan.active { opacity: 1; right: 6%; }
+        .obiwan-label { display: block; font-size: 0.38rem; color: var(--obi-gold); text-align: center; margin-bottom: 4px; }
+
+        .ent-vortex {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle, rgba(34, 197, 94, 0.35) 0%, rgba(10, 10, 18, 0.92) 72%);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 20;
+            animation: vortex-pulse 0.8s ease-in-out infinite alternate;
+        }
+
+        .ent-text {
+            font-size: 1.1rem;
+            color: var(--ent-green);
+            text-shadow: 0 0 20px var(--forest-moss), 0 0 40px var(--ent-bark);
+            letter-spacing: 5px;
+            animation: ent-text-shake 0.12s infinite;
+        }
+
+        .shot-indicator {
+            position: absolute;
+            bottom: 8px;
+            left: 12px;
+            font-size: 0.42rem;
+            color: #666;
+            z-index: 10;
+            letter-spacing: 1px;
+        }
+
+        .tension-bar {
+            position: absolute;
+            top: 8px;
+            right: 12px;
+            width: 120px;
+            height: 8px;
+            background: #222;
+            border: 1px solid #444;
+            z-index: 10;
+        }
+
+        .tension-fill { height: 100%; background: linear-gradient(90deg, var(--ent-green), var(--psych-pink)); width: 38%; transition: width 0.3s ease; }
+
+        .systems-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 0.55rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .system {
+            background: #151520;
+            border: 2px solid #2a2a3a;
+            padding: 0.55rem;
+            font-size: 0.42rem;
+        }
+
+        .system h4 { margin-bottom: 0.35rem; color: #aaa; letter-spacing: 1px; }
+        .system .value { font-size: 0.72rem; margin-bottom: 0.35rem; color: var(--psych-teal); }
+        .system input[type="range"] { width: 100%; margin-bottom: 0.35rem; accent-color: var(--psych-pink); }
+        .mini-btns { display: flex; gap: 0.3rem; flex-wrap: wrap; }
+
+        .controls { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-bottom: 0.75rem; }
+
+        .btn {
+            background: #1a1a28;
+            border: 2px solid #444;
+            color: #ccc;
+            font-family: inherit;
+            font-size: 0.44rem;
+            padding: 0.55rem 0.7rem;
+            cursor: pointer;
+            letter-spacing: 1px;
+            transition: all 0.15s ease;
+        }
+
+        .btn:hover:not(:disabled) { border-color: var(--psych-teal); color: var(--psych-teal); transform: translateY(-1px); }
+        .btn:disabled { opacity: 0.35; cursor: not-allowed; }
+        .btn.action-btn { border-color: var(--justice-red); color: var(--justice-red); }
+        .btn.ent-btn { border-color: var(--ent-green); color: var(--ent-green); font-size: 0.52rem; padding: 0.7rem 1rem; }
+
+        .log {
+            background: #0d0d16;
+            border: 3px solid #222;
+            padding: 0.7rem;
+            height: 140px;
+            overflow-y: auto;
+            font-size: 0.4rem;
+            line-height: 1.7;
+            margin-bottom: 0.75rem;
+        }
+
+        .log .meta { color: #666; }
+        .log .success { color: var(--ent-green); }
+        .log .ent { color: var(--forest-moss); }
+        .log .dino { color: var(--dino-green); }
+        .log .coke { color: var(--bass-purple); }
+
+        .post-ent {
+            display: none;
+            background: #12121c;
+            border: 3px solid var(--ent-green);
+            padding: 0.8rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .post-ent h3 { font-size: 0.55rem; color: var(--ent-green); margin-bottom: 0.6rem; text-align: center; }
+        .ent-choices { display: flex; flex-wrap: wrap; gap: 0.4rem; justify-content: center; }
+        .choice-btn { border-color: var(--ent-bark) !important; color: var(--ent-bark) !important; }
+
+        .stills { margin-bottom: 0.75rem; }
+        .stills h4 { font-size: 0.48rem; color: #777; margin-bottom: 0.5rem; }
+        .stills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 0.5rem; }
+        .still { border: 2px solid #333; cursor: pointer; transition: border-color 0.2s; overflow: hidden; }
+        .still:hover { border-color: var(--ent-green); }
+        .still img { width: 100%; height: 130px; object-fit: cover; display: block; }
+        .still .cap { font-size: 0.36rem; padding: 0.35rem; color: #888; background: #111; }
+
+        .footer { font-size: 0.38rem; color: #555; text-align: center; line-height: 1.8; padding: 0.5rem 0; }
+
+        .particle { position: absolute; pointer-events: none; z-index: 50; }
+
+        @keyframes film-grain { 0%, 100% { opacity: 0.95; } 50% { opacity: 1; } }
+        @keyframes road-move { from { transform: translateX(0); } to { transform: translateX(-32px); } }
+        @keyframes root-pulse { 0%, 100% { opacity: 0.4; } 50% { opacity: 0.8; } }
+        @keyframes conscious-pulse { 0%, 100% { opacity: 0.45; } 50% { opacity: 0.7; } }
+        @keyframes bass-pulse { from { box-shadow: 0 0 18px var(--bass-purple); } to { box-shadow: 0 0 38px var(--save-red), 0 0 60px var(--ent-green); } }
+        @keyframes vortex-pulse { from { background: radial-gradient(circle, rgba(34, 197, 94, 0.3) 0%, rgba(10, 10, 18, 0.9) 72%); } to { background: radial-gradient(circle, rgba(34, 197, 94, 0.5) 0%, rgba(10, 10, 18, 0.85) 72%); } }
+        @keyframes ent-text-shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-2px); } 75% { transform: translateX(2px); } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>LAUNCH THE ENTS</h1>
+            <div class="subtitle">THE FOREST AWAKENS • MOAR DINOS STILL STOMPING • ONE TAKE TIMMY STYLE • THE CAMERA NEVER CUTS</div>
+        </div>
+
+        <div class="shot-container">
+            <div class="continuous-shot" id="shot">
+                <div class="shot-overlay"></div>
+                <div class="camera-frame"></div>
+                <div class="tension-bar"><div class="tension-fill" id="tension-fill"></div></div>
+
+                <div class="scene-layer">
+                    <div class="neverender-road">
+                        <div class="road-lines" id="road-lines"></div>
+                        <div class="root-lines" id="root-lines"></div>
+                    </div>
+                </div>
+
+                <div class="scene-layer" id="monke-layer">
+                    <div class="monke-ace" id="monke-ace">🐵✈️</div>
+                </div>
+
+                <div class="scene-layer" id="copilot-layer">
+                    <div class="copilot" id="copilot">🛫🐵</div>
+                </div>
+
+                <div class="scene-layer" id="dino-layer">
+                    <div class="dino trex" id="dino-trex" style="left: 10%; bottom: 22%; display: none;">🦖</div>
+                    <div class="dino veloci" id="dino-veloci" style="left: 68%; bottom: 30%; display: none;">🦕</div>
+                </div>
+
+                <div class="scene-layer" id="ent-layer">
+                    <div class="ent elder" id="ent-elder" style="left: 5%; bottom: 10%; display: none;">🌳</div>
+                    <div class="ent" id="ent-march1" style="left: 35%; bottom: 14%; display: none;">🌲</div>
+                    <div class="ent huorn" id="ent-huorn" style="left: 78%; bottom: 20%; display: none;">🪵</div>
+                    <div class="ent" id="ent-march2" style="left: 55%; bottom: 8%; display: none;">🌳</div>
+                </div>
+
+                <div class="scene-layer"><div class="namaste-aura" id="namaste-aura"></div></div>
+                <div class="scene-layer"><div class="conscious-glow"></div></div>
+                <div class="scene-layer"><div class="forest-glow" id="forest-glow"></div></div>
+
+                <div class="scene-layer" id="cue-layer">
+                    <div class="cue-overlay">
+                        <div class="cue-sweeper" id="sweeper" style="left: 0%;"></div>
+                        <div class="cue-window" id="cue-window" style="left: 43%; width: 15%;"></div>
+                    </div>
+                </div>
+
+                <div class="scene-layer">
+                    <div class="bass-cannon" id="bass-cannon"><div class="bass-core" id="bass-core"></div></div>
+                </div>
+
+                <div class="scene-layer"><div class="cia-heli" id="cia-heli">🚁</div></div>
+                <div class="scene-layer">
+                    <div class="obiwan" id="obiwan"><span class="obiwan-label">HELLO THERE</span>🪐</div>
+                </div>
+
+                <div class="ent-vortex" id="ent-vortex">
+                    <div class="ent-text" id="ent-text">LAUNCH THE ENTS</div>
+                </div>
+
+                <div class="shot-indicator" id="shot-indicator">ONE TAKE • ROLLING • DINO STOMP • FOREST STIRRING</div>
+            </div>
+        </div>
+
+        <div class="systems-grid">
+            <div class="system"><h4>MONKE CALM 🐵</h4><div class="value" id="monke-val">52%</div><input type="range" id="monke-slider" min="15" max="100" value="52" oninput="setMonke(this.value)"><div class="mini-btns"><button class="btn" onclick="adjustMonke(-8)">FEED</button><button class="btn" onclick="adjustMonke(9)">CALM</button></div></div>
+            <div class="system"><h4>NEVERENDER SYNC</h4><div class="value" id="neverender-val">48%</div><input type="range" id="neverender-slider" min="15" max="100" value="48" oninput="setNeverender(this.value)"><div class="mini-btns"><button class="btn" onclick="adjustNeverender(-7)">DROP</button><button class="btn" onclick="adjustNeverender(11)">LOCK</button></div></div>
+            <div class="system"><h4>AWARENESS</h4><div class="value" id="awareness-val">50%</div><input type="range" id="awareness-slider" min="10" max="100" value="50" oninput="setAwareness(this.value)"><div class="mini-btns"><button class="btn" onclick="adjustAwareness(12)">REALIZE</button><button class="btn" onclick="adjustAwareness(-6)">DENY</button></div></div>
+            <div class="system"><h4>HUMAN AFTER ALL</h4><div class="value" id="human-val">45%</div><input type="range" id="human-slider" min="10" max="100" value="45" oninput="setHuman(this.value)"><div class="mini-btns"><button class="btn" onclick="adjustHuman(10)">EMBRACE</button><button class="btn" onclick="adjustHuman(-5)">PERFECT</button></div></div>
+            <div class="system"><h4>BETTER TOGETHER</h4><div class="value" id="together-val">52%</div><input type="range" id="together-slider" min="10" max="100" value="52" oninput="setTogether(this.value)"><div class="mini-btns"><button class="btn" onclick="adjustTogether(13)">COLLAB</button><button class="btn" onclick="adjustTogether(-4)">SOLO</button></div></div>
+            <div class="system"><h4>ACE COMBAT</h4><div class="value" id="ace-val">48% THREAT</div><input type="range" id="ace-slider" min="15" max="95" value="48" oninput="setAce(this.value)"><div class="mini-btns"><button class="btn" onclick="engageBogies()">FOX 2</button><button class="btn" onclick="adjustAce(-14)">LOCK</button></div></div>
+            <div class="system"><h4>BASS CANNON</h4><div class="value" id="bass-val">35%</div><input type="range" id="bass-slider" min="5" max="100" value="35" oninput="setBass(this.value)"><div class="mini-btns"><button class="btn action-btn" onclick="chargeBass()">CHARGE</button><button class="btn" onclick="setBass(4)">VENT</button></div></div>
+            <div class="system"><h4>CIA EXTRACTION</h4><div class="value" id="cia-val">28%</div><input type="range" id="cia-slider" min="0" max="100" value="28" oninput="setCia(this.value)"><div class="mini-btns"><button class="btn" onclick="callCIA()">CALL IN</button></div></div>
+            <div class="system"><h4>OBI-WAN</h4><div class="value" id="obi-val">22%</div><input type="range" id="obi-slider" min="0" max="100" value="22" oninput="setObi(this.value)"><div class="mini-btns"><button class="btn" onclick="helloThere()">HELLO THERE</button></div></div>
+            <div class="system"><h4>COPILOT SPIN 🌀</h4><div class="value" id="spin-val">28%</div><input type="range" id="spin-slider" min="0" max="100" value="28" oninput="setSpin(this.value)"><div class="mini-btns"><button class="btn" onclick="adjustSpin(11)">SPIN UP</button><button class="btn" onclick="adjustSpin(-7)">DAMPEN</button></div></div>
+            <div class="system"><h4>BROTHER BOND 🙏</h4><div class="value" id="bond-val">40%</div><input type="range" id="bond-slider" min="0" max="100" value="40" oninput="setBond(this.value)"><div class="mini-btns"><button class="btn" onclick="adjustBond(12)">GREET</button><button class="btn" onclick="adjustBond(-6)">PAUSE</button></div></div>
+            <div class="system"><h4>COKE ENERGY ⚡</h4><div class="value" id="coke-val">38%</div><input type="range" id="coke-slider" min="0" max="100" value="38" oninput="setCoke(this.value)"><div class="mini-btns"><button class="btn" onclick="adjustCoke(14)">RAIL</button><button class="btn" onclick="adjustCoke(-8)">CRASH</button></div></div>
+            <div class="system" style="border-color: var(--dino-green);"><h4>MOAR DINOS 🦕</h4><div class="value" id="dino-val">55%</div><input type="range" id="dino-slider" min="0" max="100" value="55" oninput="setDino(this.value)"><div class="mini-btns"><button class="btn" onclick="adjustDino(10)">STOMP</button><button class="btn" onclick="adjustDino(-8)">FEED</button></div></div>
+            <div class="system" style="border-color: var(--ent-green);"><h4>ENT RAGE 🌳</h4><div class="value" id="ent-val">12%</div><input type="range" id="ent-slider" min="0" max="100" value="12" oninput="setEnt(this.value)"><div class="mini-btns"><button class="btn" onclick="wakeForest()" style="border-color:var(--ent-green);color:var(--ent-green);">WAKE</button><button class="btn" onclick="adjustEnt(-10)">CALM</button></div></div>
+        </div>
+
+        <div class="controls">
+            <button class="btn action-btn" onclick="respondToPlea()">RESPOND TO THE PLEA</button>
+            <button class="btn action-btn" onclick="hitCue()">HIT THE CUE</button>
+            <button class="btn action-btn" onclick="engageBogies()">ACE COMBAT</button>
+            <button class="btn action-btn" onclick="chargeBass()">FIRE THE BASS</button>
+            <button class="btn" onclick="marchEnts()" style="border-color:var(--ent-bark);color:var(--ent-bark);">MARCH THE ENTS</button>
+            <button class="btn" onclick="rootTheBass()" style="border-color:var(--forest-moss);color:var(--forest-moss);">ROOT THE BASS</button>
+            <button class="btn ent-btn" id="ent-btn" onclick="launchTheEnts()" disabled>LAUNCH THE ENTS</button>
+        </div>
+
+        <div class="log" id="log"></div>
+
+        <div class="post-ent" id="post-ent">
+            <h3>THE ENTS HAVE LAUNCHED • THE TAKE HAS ROOTS</h3>
+            <div class="ent-choices">
+                <button class="btn choice-btn" onclick="chooseEnt(0)">ENT THE MONKE 🐵🌳</button>
+                <button class="btn choice-btn" onclick="chooseEnt(1)">RIDE THE ENT COPILOT 🛫🌲</button>
+                <button class="btn choice-btn" onclick="chooseEnt(2)">ENT THE BASS 🔊🌳</button>
+                <button class="btn choice-btn" onclick="chooseEnt(3)">ENTS FOR THE ACADEMY 🏛️🌲</button>
+                <button class="btn choice-btn" onclick="chooseEnt(4)">ENT THE INFINITE TAKE ♾️🌳</button>
+            </div>
+        </div>
+
+        <div class="stills">
+            <h4>ENT STILLS — FRAMES FROM THE FOREST LAUNCH (CLICK TO ABSORB)</h4>
+            <div class="stills-grid">
+                <div class="still" onclick="absorbStill(0)"><img src="images/launch_the_ents_one_take.jpg" alt="one take ents"><div class="cap">THE SCOPE — DINO STOMP MEETS FOREST AWAKENING</div></div>
+                <div class="still" onclick="absorbStill(1)"><img src="images/launch_the_ents_continuous.jpg" alt="continuous ents"><div class="cap">CONTINUOUS — ENTS IN THE ACADEMY</div></div>
+                <div class="still" onclick="absorbStill(2)"><img src="images/launch_the_ents_console.jpg" alt="console ents"><div class="cap">CONSOLE — THE ENT BUTTON</div></div>
+                <div class="still" onclick="absorbStill(3)"><img src="images/launch_the_ents_finale.jpg" alt="finale ents"><div class="cap">FINALE — LAUNCH THE ENTS IN ONE TAKE</div></div>
+            </div>
+        </div>
+
+        <div class="footer">
+            THE CAMERA NEVER CUTS • THE FOREST IS PART OF THE SHOT • HUMAN AFTER ALL • ENT AFTER ALL • DINO AFTER ALL • BETTER TOGETHER • ONE TAKE TIMMY STYLE<br>
+            MOAR DINOSAURS STOMPED. NOW WE LAUNCH THE ENTS. WHAT'S THE NEXT SHOT, DIRECTOR?
+        </div>
+    </div>
+
+    <script>
+        let monke = 52, neverender = 48, awareness = 50, human = 45, together = 52;
+        let aceThreat = 48, bassCharge = 35, ciaReady = 28, obiwan = 22;
+        let spin = 28, bond = 40, coke = 38, dino = 55, ent = 12;
+        let cuePhase = 19, tension = 42, hasLaunched = false;
+        let copilotRotation = 8, shotInterval, cueInterval, degradeInterval;
+
+        const shot = document.getElementById('shot');
+        const monkeAce = document.getElementById('monke-ace');
+        const copilotEl = document.getElementById('copilot');
+        const roadLines = document.getElementById('road-lines');
+        const rootLines = document.getElementById('root-lines');
+        const sweeper = document.getElementById('sweeper');
+        const cueWindow = document.getElementById('cue-window');
+        const bassCannon = document.getElementById('bass-cannon');
+        const ciaHeli = document.getElementById('cia-heli');
+        const obiwanEl = document.getElementById('obiwan');
+        const forestGlow = document.getElementById('forest-glow');
+        const dinoTrex = document.getElementById('dino-trex');
+        const dinoVeloci = document.getElementById('dino-veloci');
+        const entElder = document.getElementById('ent-elder');
+        const entMarch1 = document.getElementById('ent-march1');
+        const entHuorn = document.getElementById('ent-huorn');
+        const entMarch2 = document.getElementById('ent-march2');
+        const entVortex = document.getElementById('ent-vortex');
+        const logEl = document.getElementById('log');
+        const entBtn = document.getElementById('ent-btn');
+        const tensionFill = document.getElementById('tension-fill');
+        const shotIndicator = document.getElementById('shot-indicator');
+        const postEnt = document.getElementById('post-ent');
+
+        const sliders = {
+            monke: document.getElementById('monke-slider'),
+            neverender: document.getElementById('neverender-slider'),
+            awareness: document.getElementById('awareness-slider'),
+            human: document.getElementById('human-slider'),
+            together: document.getElementById('together-slider'),
+            ace: document.getElementById('ace-slider'),
+            bass: document.getElementById('bass-slider'),
+            cia: document.getElementById('cia-slider'),
+            obi: document.getElementById('obi-slider'),
+            spin: document.getElementById('spin-slider'),
+            bond: document.getElementById('bond-slider'),
+            coke: document.getElementById('coke-slider'),
+            dino: document.getElementById('dino-slider'),
+            ent: document.getElementById('ent-slider')
+        };
+
+        function setMonke(v) { monke = +v; updateVisuals(); }
+        function setNeverender(v) { neverender = +v; updateVisuals(); }
+        function setAwareness(v) { awareness = +v; updateVisuals(); }
+        function setHuman(v) { human = +v; updateVisuals(); }
+        function setTogether(v) { together = +v; updateVisuals(); }
+        function setAce(v) { aceThreat = +v; updateVisuals(); }
+        function setBass(v) { bassCharge = +v; updateVisuals(); }
+        function setCia(v) { ciaReady = +v; updateVisuals(); }
+        function setObi(v) { obiwan = +v; updateVisuals(); }
+        function setSpin(v) { spin = +v; updateVisuals(); }
+        function setBond(v) { bond = +v; updateVisuals(); }
+        function setCoke(v) { coke = +v; updateVisuals(); }
+        function setDino(v) { dino = +v; updateVisuals(); }
+        function setEnt(v) { ent = +v; updateVisuals(); }
+
+        function adjustMonke(a) { monke = Math.max(15, Math.min(100, monke + a)); updateVisuals(); }
+        function adjustNeverender(a) { neverender = Math.max(15, Math.min(100, neverender + a)); updateVisuals(); }
+        function adjustAwareness(a) { awareness = Math.max(10, Math.min(100, awareness + a)); updateVisuals(); }
+        function adjustHuman(a) { human = Math.max(10, Math.min(100, human + a)); updateVisuals(); }
+        function adjustTogether(a) { together = Math.max(10, Math.min(100, together + a)); updateVisuals(); }
+        function adjustAce(a) { aceThreat = Math.max(15, Math.min(95, aceThreat + a)); updateVisuals(); }
+        function adjustSpin(a) { spin = Math.max(0, Math.min(100, spin + a)); updateVisuals(); }
+        function adjustBond(a) { bond = Math.max(0, Math.min(100, bond + a)); updateVisuals(); }
+        function adjustCoke(a) { coke = Math.max(0, Math.min(100, coke + a)); updateVisuals(); }
+        function adjustDino(a) { dino = Math.max(0, Math.min(100, dino + a)); updateVisuals(); }
+        function adjustEnt(a) { ent = Math.max(0, Math.min(100, ent + a)); updateVisuals(); }
+
+        function updateSliders() {
+            Object.keys(sliders).forEach(k => {
+                const map = { monke, neverender, awareness, human, together, ace: aceThreat, bass: bassCharge, cia: ciaReady, obi: obiwan, spin, bond, coke, dino, ent };
+                sliders[k].value = map[k];
+            });
+        }
+
+        function updateValues() {
+            document.getElementById('monke-val').textContent = Math.floor(monke) + '%';
+            document.getElementById('neverender-val').textContent = Math.floor(neverender) + '%';
+            document.getElementById('awareness-val').textContent = Math.floor(awareness) + '%';
+            document.getElementById('human-val').textContent = Math.floor(human) + '%';
+            document.getElementById('together-val').textContent = Math.floor(together) + '%';
+            document.getElementById('ace-val').textContent = Math.floor(aceThreat) + '% THREAT';
+            document.getElementById('bass-val').textContent = Math.floor(bassCharge) + '%';
+            document.getElementById('cia-val').textContent = Math.floor(ciaReady) + '%';
+            document.getElementById('obi-val').textContent = Math.floor(obiwan) + '%';
+            document.getElementById('spin-val').textContent = Math.floor(spin) + '%';
+            document.getElementById('bond-val').textContent = Math.floor(bond) + '%';
+            document.getElementById('coke-val').textContent = Math.floor(coke) + '%';
+            document.getElementById('dino-val').textContent = Math.floor(dino) + '%';
+            document.getElementById('ent-val').textContent = Math.floor(ent) + '%';
+        }
+
+        function updateVisuals() {
+            monkeAce.style.left = (16 + (monke / 100) * 44) + '%';
+            monkeAce.style.transform = `scale(${0.82 + (monke / 100) * 0.22})`;
+            monkeAce.classList.toggle('distressed', monke < 44);
+
+            const spinEffect = spin - (bond * 0.22) + (ent * 0.06);
+            copilotRotation = (copilotRotation + spinEffect * 0.012) % 360;
+            copilotEl.style.transform = `rotate(${copilotRotation}deg) scale(${0.83 + (spin / 115) * 0.3})`;
+            copilotEl.classList.toggle('dizzy', spin > 55 && bond < 42);
+
+            const dinoLevel = dino / 100;
+            dinoTrex.style.display = dino > 20 ? 'block' : 'none';
+            dinoVeloci.style.display = dino > 35 ? 'block' : 'none';
+            if (dino > 20) {
+                dinoTrex.style.left = (8 + dinoLevel * 16) + '%';
+                dinoTrex.style.transform = `rotate(${Math.sin(Date.now() / 600) * 5}deg)`;
+            }
+
+            const entLevel = ent / 100;
+            forestGlow.style.opacity = entLevel * 0.9;
+            rootLines.style.opacity = 0.3 + entLevel * 0.7;
+
+            entElder.style.display = ent > 18 ? 'block' : 'none';
+            entMarch1.style.display = ent > 30 ? 'block' : 'none';
+            entHuorn.style.display = ent > 42 ? 'block' : 'none';
+            entMarch2.style.display = ent > 55 ? 'block' : 'none';
+
+            if (ent > 18) {
+                const march = Math.sin(Date.now() / 900) * 4;
+                entElder.style.left = (4 + entLevel * 12 + march) + '%';
+                entElder.style.transform = `rotate(${Math.sin(Date.now() / 1200) * 3}deg)`;
+            }
+            if (ent > 30) entMarch1.style.left = (30 + entLevel * 20 + Math.sin(Date.now() / 700) * 3) + '%';
+            if (ent > 42) entHuorn.style.transform = `rotate(${Math.sin(Date.now() / 500) * 8}deg)`;
+            if (ent > 55) entMarch2.style.bottom = (6 + Math.sin(Date.now() / 800) * 2) + '%';
+
+            sweeper.style.left = cuePhase + '%';
+            bassCannon.classList.toggle('charging', bassCharge > 65);
+            ciaHeli.classList.toggle('active', ciaReady > 55);
+            if (ciaReady > 55) ciaHeli.style.left = (-18 + (ciaReady / 100) * 28) + '%';
+            obiwanEl.classList.toggle('active', obiwan > 50);
+
+            tensionFill.style.width = tension + '%';
+            tension = Math.min(95, Math.max(20, (100 - monke) * 0.2 + aceThreat * 0.3 + spin * 0.15 + (100 - ent) * 0.1));
+
+            const ready = !hasLaunched && dino >= 40 && ent >= 55 && bond >= 35 && spin <= 60 && monke >= 40 && neverender >= 38 && together >= 40;
+            entBtn.disabled = !ready;
+            entBtn.style.opacity = ready ? '1' : '0.35';
+
+            shotIndicator.textContent = hasLaunched
+                ? 'ONE TAKE • ENTS LAUNCHED • FOREST MARCHING • DINO STOMP CONTINUES'
+                : `ONE TAKE • ROLLING • DINO ${Math.floor(dino)}% • ENT RAGE ${Math.floor(ent)}% • FOREST STIRRING`;
+
+            updateSliders();
+            updateValues();
+        }
+
+        function hitCue() {
+            const winStart = 43, winEnd = 58;
+            if (cuePhase >= winStart && cuePhase <= winEnd) {
+                neverender = Math.min(100, neverender + 12);
+                together = Math.min(100, together + 8);
+                ent = Math.min(100, ent + 6);
+                log('RIGHT ON CUE. THE FOREST HEARD IT.', 'success');
+            } else {
+                neverender = Math.max(15, neverender - 5);
+                log('CUE MISSED. THE ENTS GRUMBLE.', 'meta');
+            }
+            updateVisuals();
+        }
+
+        function engageBogies() { aceThreat = Math.max(15, aceThreat - 18); awareness = Math.min(100, awareness + 8); log('FOX 2. BOGIES ENGAGED. HUORNS IN FORMATION.', 'success'); updateVisuals(); }
+        function chargeBass() { bassCharge = Math.min(100, bassCharge + 22); ent = Math.min(100, ent + 4); log('BASS CANNON CHARGING. THE ROOTS VIBRATE.', 'ent'); updateVisuals(); }
+        function callCIA() { ciaReady = Math.min(100, ciaReady + 30); log('CIA INBOUND. THEY WANT THE ENTS TOO.', 'meta'); updateVisuals(); }
+        function helloThere() { obiwan = Math.min(100, obiwan + 35); bond = Math.min(100, bond + 8); log('HELLO THERE. THE ELDER BOWS.', 'success'); updateVisuals(); }
+        function respondToPlea() { monke = Math.min(100, monke + 15); bond = Math.min(100, bond + 10); log('WE HEARD THE PLEA. THE FOREST LISTENS.', 'success'); updateVisuals(); }
+
+        function wakeForest() {
+            if (hasLaunched) return;
+            ent = Math.min(100, ent + 14);
+            awareness = Math.min(100, awareness + 5);
+            log('THE FOREST STIRS. BRANCHES CREAK.', 'ent');
+            createLeafRain(4);
+            updateVisuals();
+        }
+
+        function marchEnts() {
+            if (hasLaunched) return;
+            ent = Math.min(100, ent + 10);
+            dino = Math.min(100, dino + 4);
+            neverender = Math.min(100, neverender + 6);
+            log('THE ENTS MARCH. SLOW. UNSTOPPABLE.', 'ent');
+            updateVisuals();
+        }
+
+        function rootTheBass() {
+            if (hasLaunched) return;
+            bassCharge = Math.min(100, bassCharge + 15);
+            ent = Math.min(100, ent + 8);
+            log('ROOT THE BASS. THE CANNON GROWS BARK.', 'ent');
+            updateVisuals();
+        }
+
+        function launchTheEnts() {
+            if (hasLaunched || entBtn.disabled) return;
+            hasLaunched = true;
+            entBtn.disabled = true;
+
+            entVortex.style.display = 'flex';
+            log('LAUNCH THE ENTS.', 'success');
+            log('THE FOREST RISES. THE LAUNCH PAD CRACKS WITH ROOTS.', 'ent');
+            log('THE DINOSAURS MAKE WAY. THE ENTS DO NOT ASK.', 'dino');
+            createLeafRain(14);
+
+            setTimeout(() => {
+                ent = 88;
+                dino = Math.min(100, dino + 8);
+                bassCharge = Math.min(100, bassCharge + 20);
+                together = Math.min(100, together + 12);
+                updateVisuals();
+                postEnt.style.display = 'block';
+                log('THE ENTS HAVE LAUNCHED. CHOOSE THE NEXT MOVEMENT.', 'success');
+            }, 1800);
+
+            setTimeout(() => {
+                entVortex.style.display = 'none';
+                entBtn.textContent = 'THE MARCH CONTINUES';
+                entBtn.disabled = false;
+                entBtn.onclick = () => {
+                    log('THE ENTS KEEP MARCHING. THE SAGA GROWS DEEPER ROOTS.', 'ent');
+                    createLeafRain(5);
+                };
+            }, 3200);
+        }
+
+        function chooseEnt(which) {
+            const choices = postEnt.querySelectorAll('button');
+            choices.forEach(b => b.disabled = true);
+            const outcomes = [
+                ['ENT THE MONKE.', 'THE PRIMAL HEART NOW HAS BARK AND BRANCHES.', 'THE MONKE IS ENT. THE ACADEMY HAS A NEW ANCHOR.'],
+                ['RIDE THE ENT COPILOT.', 'THE SPUN ONE AND THE ELDER ARE NOW ONE.', 'THE COPILOT HAS AN ENT. WE ALL RIDE.'],
+                ['ENT THE BASS.', 'THE CANNON IS NOW A LIVING FOREST ROAR.', 'THE BASS CREAKS. THE ENTS ANSWER.'],
+                ['ENTS FOR THE ACADEMY.', 'EVERY LAYER NOW HAS A TREE-BEING.', 'THE ACADEMY IS NOW A FOREST. AND WE LOVE IT.'],
+                ['ENT THE INFINITE TAKE.', 'THE CAMERA KEEPS ROLLING WITH ENTS FOREVER.', 'HUMAN AFTER ALL. ENT AFTER ALL. DINO AFTER ALL.']
+            ];
+            const boosts = [
+                { monke: 12, ent: 8 }, { spin: -15, bond: 10 }, { bassCharge: 18, ent: 10 },
+                { awareness: 12, together: 14, ent: 8, human: 10 }, { monke: 10, ent: 12, together: 10, awareness: 10 }
+            ];
+            const b = boosts[which];
+            Object.keys(b).forEach(k => { window[k] = Math.max(k === 'spin' ? 0 : 10, Math.min(100, window[k] + b[k])); });
+            log(outcomes[which][0], 'success');
+            log(outcomes[which][1], 'ent');
+            log(outcomes[which][2], 'success');
+            log('THE CAMERA KEEPS ROLLING.', 'meta');
+            createLeafRain(6);
+            updateVisuals();
+        }
+
+        function absorbStill(idx) {
+            if (hasLaunched) return;
+            const boosts = [
+                { ent: 16, dino: 8, coke: 6 }, { ent: 12, monke: 6, together: 6 },
+                { ent: 18, bassCharge: 10, bond: 5 }, { ent: 14, obiwan: 10, human: 8, awareness: 6 }
+            ];
+            const b = boosts[idx];
+            Object.keys(b).forEach(k => { window[k] = Math.min(100, window[k] + b[k]); });
+            log('FRAME ABSORBED — THE FOREST INTEGRATES INTO THE TAKE.', 'ent');
+            updateVisuals();
+        }
+
+        function createLeafRain(count = 8) {
+            const chars = ['🌳', '🌲', '🍃', '🦕', '🍂'];
+            for (let i = 0; i < count; i++) {
+                const p = document.createElement('div');
+                p.className = 'particle';
+                p.textContent = chars[Math.floor(Math.random() * chars.length)];
+                p.style.left = (8 + Math.random() * 82) + '%';
+                p.style.top = (14 + Math.random() * 58) + '%';
+                p.style.fontSize = (1.1 + Math.random() * 1.5) + 'rem';
+                document.querySelector('.container').appendChild(p);
+                setTimeout(() => {
+                    p.style.transition = 'transform 1.6s ease, opacity 1.7s ease';
+                    p.style.transform = `translateY(${100 + Math.random() * 80}px) rotate(${Math.random() * 40 - 20}deg)`;
+                    p.style.opacity = '0';
+                }, 30);
+                setTimeout(() => p.remove(), 1800);
+            }
+        }
+
+        function log(msg, type = 'meta') {
+            const line = document.createElement('div');
+            line.className = type;
+            line.textContent = msg;
+            logEl.appendChild(line);
+            logEl.scrollTop = logEl.scrollHeight;
+        }
+
+        function startLoops() {
+            shotInterval = setInterval(() => {
+                if (!hasLaunched) {
+                    roadLines.style.animationDuration = Math.max(0.6, 1.1 - (neverender / 100) * 0.5) + 's';
+                    if (ent > 30) shot.style.transform = `rotate(${Math.sin(Date.now() / 800) * (ent - 30) * 0.008}deg)`;
+                }
+                updateVisuals();
+            }, 50);
+
+            cueInterval = setInterval(() => { cuePhase = (cuePhase + 1.3) % 100; updateVisuals(); }, 29);
+
+            degradeInterval = setInterval(() => {
+                if (hasLaunched) return;
+                if (Math.random() < 0.45) monke = Math.max(16, monke - 0.5);
+                if (Math.random() < 0.4) neverender = Math.max(16, neverender - 0.4);
+                if (Math.random() < 0.55) spin = Math.min(100, spin + 0.8);
+                if (Math.random() < 0.5) ent = Math.min(100, ent + 0.9);
+                if (Math.random() < 0.35) dino = Math.min(100, dino + 0.5);
+                updateVisuals();
+            }, 900);
+        }
+
+        function init() {
+            startLoops();
+            log('THE CAMERA IS STILL ROLLING IN ONE UNBROKEN STYLISH TAKE.', 'meta');
+            log('MOAR DINOSAURS STOMPED. THE ROARS STILL ECHO.', 'dino');
+            log('NOW THE SOIL CRACKS. NOW THE BRANCHES RISE.', 'ent');
+            log('THE FOREST HAS BEEN PATIENT. LAUNCH THE ENTS.', 'success');
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === ' ' || e.key === 'Enter') {
+                    e.preventDefault();
+                    if (!entBtn.disabled && !hasLaunched) launchTheEnts();
+                    else if (!hasLaunched) hitCue();
+                }
+                const k = e.key.toLowerCase();
+                if (k === 'e' && !hasLaunched) wakeForest();
+                if (k === 'm') marchEnts();
+                if (k === 'l' && !entBtn.disabled) launchTheEnts();
+                if (k === 'c') hitCue();
+                if (k === 'b') chargeBass();
+            });
+
+            updateVisuals();
+            window.LAUNCH = () => { if (!entBtn.disabled) launchTheEnts(); };
+        }
+
+        window.onload = init;
+    </script>
+</body>
+</html>

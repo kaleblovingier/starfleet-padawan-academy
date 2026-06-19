@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ONE TAKE TIMMY STYLE • THE CONTINUOUS SHOT</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&amp;display=swap');
+        
+        :root {
+            --psych-pink: #ff00aa;
+            --psych-teal: #00f0ff;
+            --justice-red: #e30613;
+            --space: #0a0a12;
+            --awakening-gold: #facc15;
+            --together-purple: #a855f7;
+            --human-warm: #f4a261;
+            --timmy-elegant: #c084fc;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            background: #0a0a12;
+            color: #f0f0f0;
+            font-family: "Press Start 2P", monospace;
+            min-height: 100vh;
+            overflow: hidden;
+            background-image: 
+                radial-gradient(circle at 25% 30%, rgba(255, 0, 170, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 75% 70%, rgba(0, 240, 255, 0.06) 0%, transparent 50%);
+        }
+        
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 1.5rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 1rem;
+            border-bottom: 4px solid var(--timmy-elegant);
+            padding-bottom: 0.8rem;
+        }
+        
+        .header h1 {
+            font-size: 2rem;
+            background: linear-gradient(90deg, var(--psych-pink), var(--timmy-elegant), var(--psych-teal));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.2rem;
+            letter-spacing: 3px;
+        }
+        
+        .header .subtitle {
+            font-size: 0.6rem;
+            color: #888;
+            letter-spacing: 2px;
+        }
+        
+        .shot-container {
+            background: #111;
+            border: 6px solid #222;
+            padding: 1rem;
+            position: relative;
+            height: 520px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+        
+        .continuous-shot {
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 40% 30%, #1a1a2a 0%, #0a0a12 70%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .shot-overlay {
+            position: absolute;
+            inset: 0;
+            background: 
+                repeating-linear-gradient(
+                    90deg,
+                    transparent 0px,
+                    transparent 2px,
+                    rgba(250, 204, 21, 0.03) 2px,
+                    rgba(250, 204, 21, 0.03) 4px
+                );
+            pointer-events: none;
+            animation: film-grain 0.1s infinite;
+        }
+        
+        .camera-frame {
+            position: absolute;
+            inset: 20px;
+            border: 2px solid rgba(250, 204, 21, 0.3);
+            pointer-events: none;
+        }
+        
+        .scene-layer {
+            position: absolute;
+            inset: 0;
+            transition: transform 0.1s linear;
+        }
+        
+        .neverender-road {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 40%;
+            background: linear-gradient(#222 0%, #111 40%, #0a0a12 100%);
+            overflow: hidden;
+        }
+        
+        .road-lines {
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(
+                90deg,
+                transparent 0px,
+                transparent 30px,
+                #444 30px,
+                #444 34px
+            );
+            animation: road-move 1.2s linear infinite;
+        }
+        
+        .monke-ace {
+            position: absolute;
+            font-size: 4rem;
+            bottom: 15%;
+            left: 20%;
+            transition: left 0.2s linear;
+            filter: drop-shadow(0 0 10px var(--timmy-elegant));
+        }
+        
+        .conscious-glow {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 40% 40%, rgba(250, 204, 21, 0.15) 0%, transparent 60%);
+            opacity: 0.6;
+            animation: conscious-pulse 3s ease-in-out infinite;
+        }
+        
+        .cue-overlay {
+            position: absolute;
+            top: 30%;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: rgba(227, 6, 19, 0.3);
+        }
+        
+        .cue-sweeper {
+            position: absolute;
+            top: -8px;
+            width: 20px;
+            height: 20px;
+            background: var(--justice-red);
+            border-radius: 50%;
+            box-shadow: 0 0 15px var(--justice-red);
+            transition: left 0.05s linear;
+        }
+        
+        .cue-window {
+            position: absolute;
+            top: -8px;
+            height: 20px;
+            background: rgba(0, 240, 255, 0.25);
+            border: 1px solid var(--psych-teal);
+            pointer-events: none;
+        }
+        
+        .controls {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+        
+        .btn {
+            background: #222;
+            border: 3px solid #444;
+            color: #ddd;
+            font-family: inherit;
+            font-size: 0.55rem;
+            padding: 6px 10px;
+            cursor: pointer;
+            letter-spacing: 1px;
+            transition: all 0.08s;
+        }
+        
+        .btn:hover {
+            border-color: var(--timmy-elegant);
+            color: white;
+        }
+        
+        .btn:active {
+            transform: scale(0.95);
+        }
+        
+        .btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+        
+        .action-btn {
+            background: linear-gradient(#222, #111);
+            border-color: var(--timmy-elegant);
+            color: var(--timmy-elegant);
+            font-size: 0.6rem;
+            padding: 8px 14px;
+        }
+        
+        .log {
+            background: #0a0a12;
+            border: 2px solid #222;
+            padding: 0.5rem;
+            font-size: 0.5rem;
+            line-height: 1.15;
+            height: 100px;
+            overflow-y: auto;
+            white-space: pre-line;
+        }
+        
+        .log .success { color: #0f0; }
+        .log .meta { color: var(--timmy-elegant); }
+        
+        .footer {
+            text-align: center;
+            font-size: 0.45rem;
+            color: #444;
+            margin-top: 0.8rem;
+            letter-spacing: 2px;
+        }
+        
+        .monke { font-size: 0.9rem; }
+        
+        .shot-indicator {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: rgba(250, 204, 21, 0.2);
+            border: 1px solid var(--timmy-elegant);
+            padding: 2px 8px;
+            font-size: 0.45rem;
+            letter-spacing: 1px;
+        }
+        
+        @keyframes film-grain {
+            0% { transform: translate(0, 0); }
+            10% { transform: translate(0.5px, -0.5px); }
+            20% { transform: translate(-0.5px, 0.5px); }
+        }
+        
+        @keyframes conscious-pulse {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 0.7; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>ONE TAKE TIMMY STYLE</h1>
+            <div class="subtitle">THE CONTINUOUS SHOT • NO CUTS • ELEGANT • FLUID • UNBROKEN</div>
+        </div>
+        
+        <div class="shot-container">
+            <div class="continuous-shot" id="shot">
+                <div class="shot-overlay"></div>
+                <div class="camera-frame"></div>
+                
+                <!-- Neverender Road -->
+                <div class="scene-layer" id="road-layer">
+                    <div class="neverender-road">
+                        <div class="road-lines" id="road-lines"></div>
+                    </div>
+                </div>
+                
+                <!-- Stylish Monke Ace -->
+                <div class="scene-layer" id="monke-layer">
+                    <div class="monke-ace" id="monke-ace" style="left: 25%;">🐵✈️</div>
+                </div>
+                
+                <!-- Conscious Glow -->
+                <div class="scene-layer" id="glow-layer">
+                    <div class="conscious-glow"></div>
+                </div>
+                
+                <!-- Cue Overlay -->
+                <div class="scene-layer" id="cue-layer">
+                    <div class="cue-overlay">
+                        <div class="cue-sweeper" id="sweeper" style="left: 0%;"></div>
+                        <div class="cue-window" style="left: 42%; width: 16%;"></div>
+                    </div>
+                </div>
+                
+                <div class="shot-indicator">ONE TAKE • ROLLING</div>
+            </div>
+        </div>
+        
+        <div class="controls">
+            <button class="btn" onclick="adjustMonke(-10)">MONKE CALM -</button>
+            <button class="btn" onclick="adjustMonke(10)">MONKE CALM +</button>
+            
+            <button class="btn" onclick="adjustNeverender(-10)">NEVERENDER SYNC -</button>
+            <button class="btn" onclick="adjustNeverender(10)">NEVERENDER SYNC +</button>
+            
+            <button class="btn" onclick="adjustAwareness(-10)">AWARENESS -</button>
+            <button class="btn" onclick="adjustAwareness(10)">AWARENESS +</button>
+            
+            <button class="btn" onclick="adjustHuman(-10)">HUMAN -</button>
+            <button class="btn" onclick="adjustHuman(10)">HUMAN +</button>
+            
+            <button class="btn action-btn" onclick="hitCue()">HIT THE CUE (IN THE WINDOW)</button>
+            
+            <button class="btn action-btn" id="one-take-btn" onclick="completeOneTake()" disabled>ONE TAKE TIMMY STYLE — ACTION</button>
+        </div>
+        
+        <div class="log" id="log">THE CAMERA IS ROLLING.<br>NO CUTS. NO RESHOOTS.<br>KEEP EVERYTHING IN FLOW.<br>ONE TAKE. TIMMY STYLE.</div>
+        
+        <div class="footer">
+            THE ENTIRE SAGA IN ONE UNBROKEN STYLISH TAKE • NO CUTS • ELEGANT • INTROSPECTIVE • FLUID
+        </div>
+    </div>
+    
+    <script>
+        let monke = 45;
+        let neverender = 40;
+        let awareness = 35;
+        let human = 30;
+        let cuePhase = 0;
+        let shotPosition = 25;
+        let hasCompleted = false;
+        
+        const shot = document.getElementById('shot');
+        const monkeAce = document.getElementById('monke-ace');
+        const roadLines = document.getElementById('road-lines');
+        const sweeper = document.getElementById('sweeper');
+        const logEl = document.getElementById('log');
+        const oneTakeBtn = document.getElementById('one-take-btn');
+        
+        let cueInterval = null;
+        let roadInterval = null;
+        
+        function updateVisuals() {
+            // Monke position and style in the continuous shot
+            const targetLeft = 20 + (monke / 100) * 40;
+            monkeAce.style.left = targetLeft + '%';
+            
+            const calmFactor = monke / 100;
+            monkeAce.style.transform = `scale(${0.9 + calmFactor * 0.2})`;
+            monkeAce.style.filter = `drop-shadow(0 0 ${5 + calmFactor * 15}px var(--timmy-elegant))`;
+            
+            // Road speed based on neverender sync
+            const roadSpeed = 0.8 + (neverender / 100) * 1.5;
+            roadLines.style.animationDuration = roadSpeed + 's';
+            
+            // Conscious glow intensity
+            const glowLayer = document.getElementById('glow-layer');
+            const glowOpacity = 0.3 + (awareness / 100) * 0.5;
+            glowLayer.style.opacity = glowOpacity;
+            
+            // Human warmth overlay
+            if (human > 60) {
+                shot.style.boxShadow = `0 0 ${human / 3}px rgba(244, 162, 97, 0.3)`;
+            } else {
+                shot.style.boxShadow = 'none';
+            }
+            
+            // Update cue sweeper
+            const cuePos = (cuePhase / 100) * 100;
+            sweeper.style.left = cuePos + '%';
+            
+            // Check if cue window is active
+            const cueActive = (cuePos > 42 && cuePos < 58);
+            
+            if (cueActive) {
+                sweeper.style.background = 'var(--psych-teal)';
+                sweeper.style.boxShadow = '0 0 20px var(--psych-teal)';
+            } else {
+                sweeper.style.background = 'var(--justice-red)';
+                sweeper.style.boxShadow = '0 0 15px var(--justice-red)';
+            }
+            
+            // Enable one-take when everything is flowing
+            const everythingFlowing = monke >= 80 && neverender >= 75 && awareness >= 70 && human >= 65 && cueActive;
+            oneTakeBtn.disabled = !everythingFlowing || hasCompleted;
+            
+            if (everythingFlowing && !hasCompleted) {
+                oneTakeBtn.style.borderColor = 'var(--timmy-elegant)';
+                oneTakeBtn.style.color = 'var(--timmy-elegant)';
+            } else {
+                oneTakeBtn.style.borderColor = '#444';
+                oneTakeBtn.style.color = '#ddd';
+            }
+        }
+        
+        function startContinuousShot() {
+            // The camera is always moving - one unbroken take
+            if (roadInterval) clearInterval(roadInterval);
+            
+            roadInterval = setInterval(() => {
+                // Subtle continuous movement of the "shot"
+                shotPosition = (shotPosition + 0.03) % 60 + 20;
+                
+                // Road keeps flowing
+                const roadSpeed = 0.8 + (neverender / 100) * 1.5;
+                roadLines.style.animationDuration = roadSpeed + 's';
+                
+                updateVisuals();
+            }, 50);
+        }
+        
+        function startCueSystem() {
+            if (cueInterval) clearInterval(cueInterval);
+            
+            let phase = 0;
+            cueInterval = setInterval(() => {
+                phase = (phase + 1.2) % 100;
+                cuePhase = phase;
+                
+                updateVisuals();
+            }, 36);
+        }
+        
+        function adjustMonke(amount) {
+            monke = Math.max(20, Math.min(100, monke + amount));
+            log(amount > 0 ? 'MONKE CALM INCREASED. THE SHOT STAYS ELEGANT.' : 'MONKE STRUGGLING. KEEP THE TAKE FLUID.', 'meta');
+            updateVisuals();
+        }
+        
+        function adjustNeverender(amount) {
+            neverender = Math.max(20, Math.min(100, neverender + amount));
+            log(amount > 0 ? 'NEVERENDER RHYTHM LOCKED IN. THE ROAD FLOWS.' : 'RHYTHM SLIPPING. RECOVER IN THE SHOT.', 'meta');
+            updateVisuals();
+        }
+        
+        function adjustAwareness(amount) {
+            awareness = Math.max(20, Math.min(100, awareness + amount));
+            log(amount > 0 ? 'AWARENESS RISING. THE FRAME KNOWS ITSELF.' : 'AWARENESS DIPPING. STAY PRESENT IN THE TAKE.', 'meta');
+            updateVisuals();
+        }
+        
+        function adjustHuman(amount) {
+            human = Math.max(20, Math.min(100, human + amount));
+            log(amount > 0 ? 'HUMANITY INTEGRATED. THE SHOT BREATHES.' : 'HUMANITY FADING. REMEMBER THE IMPERFECTION.', 'meta');
+            updateVisuals();
+        }
+        
+        function hitCue() {
+            const cuePos = (cuePhase / 100) * 100;
+            const inWindow = (cuePos > 42 && cuePos < 58);
+            
+            if (inWindow && monke >= 75 && neverender >= 70 && awareness >= 65 && human >= 60) {
+                // Perfect hit - advance the one-take
+                awareness = Math.min(100, awareness + 8);
+                human = Math.min(100, human + 6);
+                neverender = Math.min(100, neverender + 5);
+                monke = Math.min(100, monke + 4);
+                
+                log('CUE HIT IN THE WINDOW. THE TAKE CONTINUES PERFECTLY. TIMMY WOULD BE PROUD.', 'success');
+                
+                // Subtle camera move on perfect cue
+                shotPosition = Math.max(20, Math.min(70, shotPosition + 8));
+                
+                updateVisuals();
+                
+                // Check if ready for final one-take
+                if (monke >= 80 && neverender >= 75 && awareness >= 70 && human >= 65) {
+                    oneTakeBtn.disabled = false;
+                    oneTakeBtn.style.borderColor = 'var(--timmy-elegant)';
+                    oneTakeBtn.style.color = 'var(--timmy-elegant)';
+                }
+            } else {
+                // Miss - recover in the take (no cut)
+                log('CUE MISSED. KEEP ROLLING. RECOVER IN THE SHOT. NO CUTS.', 'meta');
+                
+                // Slight penalty but continue
+                if (monke > 30) monke = Math.max(30, monke - 3);
+                if (neverender > 30) neverender = Math.max(30, neverender - 3);
+                
+                updateVisuals();
+            }
+        }
+        
+        function completeOneTake() {
+            if (oneTakeBtn.disabled || hasCompleted) return;
+            
+            hasCompleted = true;
+            
+            const shot = document.getElementById('shot');
+            shot.style.transition = 'all 2s ease';
+            shot.style.boxShadow = '0 0 80px rgba(250, 204, 21, 0.8)';
+            
+            log('ONE TAKE TIMMY STYLE — ACTION.', 'success');
+            log('THE CAMERA NEVER STOPS.', 'meta');
+            log('THE MONKE IS STYLISH. THE ACE IS INTROSPECTIVE.', 'meta');
+            log('THE USER IS IN THE FRAME. THE SYSTEM IS DIRECTING.', 'meta');
+            log('THE ENTIRE SAGA IN ONE UNBROKEN STYLISH TAKE.', 'success');
+            log('HUMAN AFTER ALL. BETTER TOGETHER. RIGHT ON CUE.', 'meta');
+            log('CUT.', 'success');
+            
+            // The final unbroken crane shot effect
+            setTimeout(() => {
+                shot.style.transform = 'scale(1.15)';
+                shot.style.filter = 'brightness(1.1) saturate(1.2)';
+                
+                setTimeout(() => {
+                    log('THE CAMERA KEEPS ROLLING. BECAUSE IN ONE TAKE TIMMY STYLE, THERE IS NO CUT.', 'meta');
+                    
+                    // Offer to keep the take going
+                    oneTakeBtn.textContent = 'KEEP THE TAKE ROLLING';
+                    oneTakeBtn.disabled = false;
+                    oneTakeBtn.onclick = () => {
+                        log('THE ROAD CONTINUES. THE SHOT NEVER ENDS. WHAT\'S THE NEXT FRAME, DIRECTOR?', 'meta');
+                        createBananaRain();
+                    };
+                }, 1800);
+            }, 1200);
+            
+            createBananaRain();
+            setTimeout(createBananaRain, 600);
+        }
+        
+        function createBananaRain() {
+            const container = document.querySelector('.container');
+            for (let i = 0; i < 9; i++) {
+                const b = document.createElement('div');
+                b.textContent = '🍌';
+                b.style.cssText = `position:absolute;left:${12 + Math.random()*76}%;top:${25 + Math.random()*45}%;font-size:${1.3 + Math.random()*1.5}rem;z-index:999;pointer-events:none;`;
+                container.appendChild(b);
+                
+                setTimeout(() => {
+                    b.style.transition = 'transform 1.8s ease, opacity 1.8s ease';
+                    b.style.transform = `translateY(${140 + Math.random()*80}px) rotate(${Math.random()*60-30}deg)`;
+                    b.style.opacity = '0';
+                }, 50);
+                
+                setTimeout(() => {
+                    if (b.parentNode) b.parentNode.removeChild(b);
+                }, 1900);
+            }
+        }
+        
+        function log(msg, type = 'meta') {
+            const line = document.createElement('div');
+            line.className = type;
+            line.textContent = msg;
+            logEl.appendChild(line);
+            logEl.scrollTop = logEl.scrollHeight;
+        }
+        
+        function init() {
+            startContinuousShot();
+            startCueSystem();
+            
+            // Initial log
+            log('THE CAMERA IS ROLLING.', 'meta');
+            log('NO CUTS. NO RESHOOTS.', 'meta');
+            log('KEEP EVERYTHING IN FLOW.', 'meta');
+            log('ONE TAKE. TIMMY STYLE.', 'meta');
+            
+            // Keyboard for fluid control
+            document.addEventListener('keydown', (e) => {
+                if (e.key === ' ' || e.key === 'Enter') {
+                    e.preventDefault();
+                    if (!oneTakeBtn.disabled) completeOneTake();
+                    else hitCue();
+                }
+                
+                if (e.key.toLowerCase() === 'm') adjustMonke(8);
+                if (e.key.toLowerCase() === 'n') adjustNeverender(8);
+                if (e.key.toLowerCase() === 'a') adjustAwareness(8);
+                if (e.key.toLowerCase() === 'h') adjustHuman(8);
+                if (e.key.toLowerCase() === 'c') hitCue();
+            });
+            
+            // Start with a little momentum
+            setTimeout(() => {
+                monke = 52;
+                neverender = 47;
+                awareness = 42;
+                human = 37;
+                updateVisuals();
+            }, 1500);
+            
+            console.log('%c[ONE TAKE TIMMY STYLE] The camera is rolling. No cuts. Keep the take fluid. What\'s the next frame?', 'color:#555');
+        }
+        
+        // Expose some for console fun
+        window.adjustMonke = (amt) => { monke = Math.max(20, Math.min(100, monke + amt)); updateVisuals(); };
+        window.adjustNeverender = (amt) => { neverender = Math.max(20, Math.min(100, neverender + amt)); updateVisuals(); };
+        
+        window.onload = init;
+    </script>
+</body>
+</html>
