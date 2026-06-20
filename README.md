@@ -113,3 +113,11 @@ May the Force be with the boosters â€” and the people who fly them.
 - Gas station neon, beer cans, dino buddy, Mac Miller swim energy in the desert.
 
 The camera is still rolling. The night is young.
+
+
+### Latest Layer: more-air-support
+- The unbroken take continues. After securing the alcohol on the gas station run, threats appear on the horizon.
+- The monke ace and dino buddy call for MORE AIR SUPPORT. Jets inbound, airstrikes clearing the path.
+- Open more-air-support/index.html — align the strike, protect the cargo, keep the one-take rolling.
+
+The camera never cuts. The sky is loud now.

@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MORE AIR SUPPORT • THE ONE-TAKE AIRSTRIKE</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&amp;display=swap');
+        
+        :root {
+            --psych-pink: #ff00aa;
+            --psych-teal: #00f0ff;
+            --justice-red: #e30613;
+            --space: #0a0a12;
+            --awakening-gold: #facc15;
+            --together-purple: #a855f7;
+            --human-warm: #f4a261;
+            --timmy-elegant: #c084fc;
+            --save-red: #ff1133;
+            --bass-purple: #7c3aed;
+            --dino-green: #4ade80;
+            --mac-blue: #3b82f6;
+            --gas-neon: #f472b6;
+            --air-orange: #fb923c;
+            --jet-blue: #1e40af;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            background: #0a0a12;
+            color: #f0f0f0;
+            font-family: "Press Start 2P", monospace;
+            min-height: 100vh;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 25% 30%, rgba(255, 0, 170, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 75% 70%, rgba(0, 240, 255, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(251, 146, 60, 0.04) 0%, transparent 70%);
+        }
+        
+        .container {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 1.25rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 0.9rem;
+            border-bottom: 5px solid var(--air-orange);
+            padding-bottom: 0.7rem;
+        }
+        
+        .header h1 {
+            font-size: 1.9rem;
+            background: linear-gradient(90deg, var(--psych-pink), var(--air-orange), var(--jet-blue), var(--dino-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.15rem;
+            letter-spacing: 3px;
+        }
+        
+        .header .subtitle {
+            font-size: 0.55rem;
+            color: #888;
+            letter-spacing: 2px;
+        }
+        
+        .shot-container {
+            background: #111;
+            border: 6px solid #222;
+            padding: 0.9rem;
+            position: relative;
+            height: 470px;
+            overflow: hidden;
+            margin-bottom: 0.9rem;
+        }
+        
+        .continuous-shot {
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 42% 32%, #1a1a2a 0%, #0a0a12 68%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .shot-overlay {
+            position: absolute;
+            inset: 0;
+            background: 
+                repeating-linear-gradient(
+                    90deg,
+                    transparent 0px,
+                    transparent 2px,
+                    rgba(250, 204, 21, 0.025) 2px,
+                    rgba(250, 204, 21, 0.025) 4px
+                );
+            pointer-events: none;
+            animation: film-grain 0.09s infinite;
+        }
+        
+        .camera-frame {
+            position: absolute;
+            inset: 12px;
+            border: 2px solid rgba(250, 204, 21, 0.28);
+            pointer-events: none;
+        }
+        
+        .scene-layer {
+            position: absolute;
+            inset: 0;
+            transition: transform 0.08s linear;
+        }
+        
+        .night-runway {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 42%;
+            background: linear-gradient(#222 0%, #151515 40%, #0a0a12 100%);
+            overflow: hidden;
+        }
+        
+        .runway-lines {
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(
+                90deg,
+                transparent 0px,
+                transparent 28px,
+                #555 28px,
+                #555 32px
+            );
+            animation: road-move 1.4s linear infinite;
+        }
+        
+        .gas-station-bg {
+            position: absolute;
+            bottom: 5%;
+            left: 5%;
+            width: 120px;
+            height: 80px;
+            background: #1a1a22;
+            border: 2px solid var(--gas-neon);
+            box-shadow: 0 0 12px var(--gas-neon);
+            opacity: 0.7;
+        }
+        
+        .monke-ace {
+            position: absolute;
+            font-size: 2.8rem;
+            bottom: 20%;
+            left: 22%;
+            transition: left 0.12s linear;
+            filter: drop-shadow(0 0 10px var(--timmy-elegant));
+            z-index: 7;
+        }
+        
+        .dino-buddy {
+            position: absolute;
+            font-size: 2.1rem;
+            bottom: 16%;
+            left: 14%;
+            transition: left 0.15s linear;
+            filter: drop-shadow(0 0 8px var(--dino-green));
+            z-index: 6;
+        }
+        
+        .alcohol-crates {
+            position: absolute;
+            bottom: 18%;
+            left: 30%;
+            font-size: 1.1rem;
+            filter: drop-shadow(0 0 4px #facc15);
+            z-index: 5;
+        }
+        
+        .jet-layer {
+            position: absolute;
+            inset: 0;
+            z-index: 4;
+            pointer-events: none;
+        }
+        
+        .jet {
+            position: absolute;
+            font-size: 1.6rem;
+            color: #e0f2fe;
+            text-shadow: 0 0 8px #1e40af;
+            transition: left 0.08s linear, top 0.08s linear;
+            z-index: 4;
+        }
+        
+        .strike {
+            position: absolute;
+            font-size: 1.8rem;
+            color: #f97316;
+            text-shadow: 0 0 12px #ef4444;
+            animation: strike-flash 0.6s forwards;
+            z-index: 8;
+        }
+        
+        .controls {
+            display: flex;
+            gap: 0.45rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 0.8rem;
+        }
+        
+        .btn {
+            background: #222;
+            border: 3px solid #444;
+            color: #ddd;
+            font-family: inherit;
+            font-size: 0.5rem;
+            padding: 6px 9px;
+            cursor: pointer;
+            letter-spacing: 1px;
+            transition: all 0.07s;
+        }
+        
+        .btn:hover {
+            border-color: var(--air-orange);
+            color: white;
+        }
+        
+        .btn:active {
+            transform: scale(0.94);
+        }
+        
+        .btn:disabled {
+            opacity: 0.25;
+            cursor: not-allowed;
+        }
+        
+        .action-btn {
+            background: linear-gradient(#222, #111);
+            border-color: var(--air-orange);
+            color: var(--air-orange);
+            font-size: 0.55rem;
+            padding: 7px 11px;
+        }
+        
+        .air-btn {
+            background: linear-gradient(#1e3a5f, #0f172a);
+            border-color: var(--jet-blue);
+            color: #bae6fd;
+            font-size: 0.56rem;
+            padding: 8px 12px;
+        }
+        
+        .log {
+            background: #0a0a12;
+            border: 2px solid #222;
+            padding: 0.45rem;
+            font-size: 0.46rem;
+            line-height: 1.15;
+            height: 92px;
+            overflow-y: auto;
+            white-space: pre-line;
+        }
+        
+        .log .success { color: #0f0; }
+        .log .meta { color: var(--timmy-elegant); }
+        .log .air { color: var(--air-orange); font-weight: bold; }
+        
+        .systems-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(148px, 1fr));
+            gap: 0.45rem;
+            margin-bottom: 0.8rem;
+        }
+        
+        .system {
+            background: #111;
+            border: 3px solid #222;
+            padding: 0.4rem 0.45rem;
+            font-size: 0.42rem;
+        }
+        
+        .system h4 {
+            color: var(--psych-teal);
+            font-size: 0.42rem;
+            margin-bottom: 0.12rem;
+            letter-spacing: 1px;
+        }
+        
+        .system .value {
+            font-size: 0.62rem;
+            color: #ddd;
+            margin-bottom: 0.06rem;
+        }
+        
+        .system input[type="range"] {
+            width: 100%;
+            accent-color: var(--air-orange);
+        }
+        
+        .stills {
+            border: 3px solid #222;
+            background: #111;
+            padding: 0.45rem;
+            margin-top: 0.4rem;
+        }
+        
+        .stills h4 {
+            font-size: 0.42rem;
+            color: #666;
+            margin-bottom: 0.25rem;
+            letter-spacing: 1px;
+        }
+        
+        .stills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(115px, 1fr));
+            gap: 0.3rem;
+        }
+        
+        .still {
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+            border: 2px solid #333;
+            transition: border-color 0.1s;
+        }
+        
+        .still:hover {
+            border-color: var(--air-orange);
+        }
+        
+        .still img {
+            width: 100%;
+            display: block;
+            height: 62px;
+            object-fit: cover;
+            filter: saturate(0.82) contrast(1.04);
+        }
+        
+        .still .cap {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0,0,0,0.72);
+            font-size: 0.3rem;
+            padding: 1px 3px;
+            letter-spacing: 0.5px;
+        }
+        
+        .footer {
+            text-align: center;
+            font-size: 0.38rem;
+            color: #444;
+            margin-top: 0.5rem;
+            letter-spacing: 2px;
+        }
+        
+        .shot-indicator {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: rgba(251, 146, 60, 0.18);
+            border: 1px solid var(--air-orange);
+            padding: 1px 5px;
+            font-size: 0.36rem;
+            letter-spacing: 1px;
+            z-index: 9;
+        }
+        
+        @keyframes film-grain {
+            0% { transform: translate(0, 0); }
+            10% { transform: translate(0.5px, -0.4px); }
+            20% { transform: translate(-0.4px, 0.5px); }
+        }
+        
+        @keyframes road-move {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-48px); }
+        }
+        
+        @keyframes strike-flash {
+            0% { transform: scale(0.6); opacity: 1; }
+            40% { transform: scale(1.3); opacity: 1; }
+            100% { transform: scale(0.8); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>MORE AIR SUPPORT</h1>
+            <div class="subtitle">THE ONE-TAKE AIRSTRIKE REQUEST • THE CAMERA NEVER CUTS</div>
+        </div>
+        
+        <div class="shot-container">
+            <div class="continuous-shot" id="shot">
+                <div class="shot-overlay"></div>
+                <div class="camera-frame"></div>
+                
+                <!-- Night Runway / Return Path -->
+                <div class="scene-layer" id="road-layer">
+                    <div class="night-runway">
+                        <div class="runway-lines" id="runway-lines"></div>
+                    </div>
+                </div>
+                
+                <!-- Gas Station (receding) -->
+                <div class="scene-layer">
+                    <div class="gas-station-bg" id="gas-station-bg"></div>
+                </div>
+                
+                <!-- Stylish Monke Ace + crates -->
+                <div class="scene-layer">
+                    <div class="monke-ace" id="monke-ace">🐵</div>
+                    <div class="alcohol-crates" id="alcohol-crates">🍺🍺</div>
+                </div>
+                
+                <!-- Dino Buddy -->
+                <div class="scene-layer">
+                    <div class="dino-buddy" id="dino-buddy">🦖</div>
+                </div>
+                
+                <!-- Jets / Air Support Layer -->
+                <div class="scene-layer" id="jet-layer"></div>
+                
+                <div class="shot-indicator">ONE TAKE • AIR COVER: <span id="air-val">18</span>% • THREATS: <span id="threat-val">62</span>%</div>
+            </div>
+        </div>
+        
+        <div class="systems-grid">
+            <div class="system">
+                <h4>MONKE CALM</h4>
+                <div class="value" id="monke-val">71%</div>
+                <input type="range" id="monke-slider" min="20" max="100" value="71" oninput="updateVisuals()">
+            </div>
+            <div class="system">
+                <h4>NEVERENDER SYNC</h4>
+                <div class="value" id="neverender-val">66%</div>
+                <input type="range" id="neverender-slider" min="20" max="100" value="66" oninput="updateVisuals()">
+            </div>
+            <div class="system">
+                <h4>RIGHT ON CUE</h4>
+                <div class="value" id="cue-val">63%</div>
+                <input type="range" id="cue-slider" min="20" max="100" value="63" oninput="updateVisuals()">
+            </div>
+            <div class="system">
+                <h4>MAC MILLER SWIM</h4>
+                <div class="value" id="mac-val">52%</div>
+                <input type="range" id="mac-slider" min="20" max="100" value="52" oninput="updateVisuals()">
+            </div>
+            <div class="system">
+                <h4>FINAL RESOURCES</h4>
+                <div class="value" id="resources-val">34%</div>
+                <input type="range" id="resources-slider" min="10" max="100" value="34" oninput="updateVisuals()">
+            </div>
+            <div class="system">
+                <h4>ALCOHOL CARGO</h4>
+                <div class="value" id="alcohol-val">78%</div>
+                <input type="range" id="alcohol-slider" min="0" max="100" value="78" oninput="updateVisuals()">
+            </div>
+            <div class="system" style="border-color: var(--air-orange);">
+                <h4>AIR SUPPORT</h4>
+                <div class="value" id="air-val">18%</div>
+                <input type="range" id="air-slider" min="0" max="100" value="18" oninput="updateVisuals()">
+            </div>
+            <div class="system">
+                <h4>DINO BUDDY</h4>
+                <div class="value" id="dino-val">81%</div>
+                <input type="range" id="dino-slider" min="20" max="100" value="81" oninput="updateVisuals()">
+            </div>
+        </div>
+        
+        <div class="controls">
+            <button class="btn" onclick="walkFaster()">WALK FASTER</button>
+            <button class="btn" onclick="keepVibe()">KEEP THE VIBE</button>
+            <button class="btn action-btn" onclick="callAirSupport()">CALL AIR SUPPORT</button>
+            <button class="btn action-btn" onclick="alignStrike()">ALIGN STRIKE</button>
+            <button class="btn action-btn" onclick="bombRun()">BOMB RUN</button>
+            <button class="btn air-btn" id="more-air-btn" onclick="moreAirSupport()" disabled>MORE AIR SUPPORT</button>
+        </div>
+        
+        <div class="log" id="log">THE CAMERA IS STILL ROLLING IN ONE UNBROKEN STYLISH TAKE.<br>THE GAS STATION RUN IS COMPLETE. THE ALCOHOL IS SECURED.<br>THREATS ON THE HORIZON. INBOUND SIGNATURES.<br>THE MONKE ACE LOOKS UP.<br>"I NEED MORE AIR SUPPORT."<br>THE ONE-TAKE FOLLOWS. JETS ARE INBOUND.</div>
+        
+        <div class="stills">
+            <h4>STILLS FROM THE AIRSTRIKE</h4>
+            <div class="stills-grid">
+                <div class="still"><img src="images/more_air_support_one_take.jpg" alt="one take"><div class="cap">THE SCOPE</div></div>
+                <div class="still"><img src="images/more_air_support_continuous.jpg" alt="continuous"><div class="cap">THE RUN UNDER FIRE</div></div>
+                <div class="still"><img src="images/more_air_support_console.jpg" alt="console"><div class="cap">THE CALL</div></div>
+                <div class="still"><img src="images/more_air_support_finale.jpg" alt="finale"><div class="cap">THE COVER</div></div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            THE UNBROKEN TAKE CONTINUES • AIR SUPPORT INBOUND • THE PARTY (AND THE SAGA) IS PROTECTED
+        </div>
+    </div>
+    
+    <script>
+        let monke = 71;
+        let neverender = 66;
+        let cue = 63;
+        let mac = 52;
+        let resources = 34;
+        let alcohol = 78;
+        let air = 18;
+        let dino = 81;
+        let position = 22;
+        let hasAirSupport = false;
+        let threats = 62;
+        
+        const jetLayer = document.getElementById('jet-layer');
+        
+        function updateVisuals() {
+            document.getElementById('monke-val').textContent = monke + '%';
+            document.getElementById('neverender-val').textContent = neverender + '%';
+            document.getElementById('cue-val').textContent = cue + '%';
+            document.getElementById('mac-val').textContent = mac + '%';
+            document.getElementById('resources-val').textContent = resources + '%';
+            document.getElementById('alcohol-val').textContent = alcohol + '%';
+            document.getElementById('air-val').textContent = air + '%';
+            document.getElementById('dino-val').textContent = dino + '%';
+            
+            const walker = document.getElementById('monke-ace');
+            const dinoEl = document.getElementById('dino-buddy');
+            const crates = document.getElementById('alcohol-crates');
+            const gas = document.getElementById('gas-station-bg');
+            
+            position = 22 + ((100 - threats) / 100) * 32;
+            walker.style.left = position + '%';
+            dinoEl.style.left = (position - 8) + '%';
+            crates.style.left = (position + 6) + '%';
+            
+            const gasOpacity = 0.5 + (alcohol / 100) * 0.35;
+            gas.style.opacity = gasOpacity;
+            
+            document.getElementById('threat-val').textContent = Math.floor(threats);
+            
+            const strikeReady = air > 55 && cue > 58 && monke > 62 && dino > 70 && alcohol > 60;
+            const btn = document.getElementById('more-air-btn');
+            btn.disabled = !strikeReady || hasAirSupport;
+            
+            if (strikeReady && !hasAirSupport) {
+                btn.style.borderColor = 'var(--air-orange)';
+                btn.style.color = 'var(--air-orange)';
+            }
+        }
+        
+        function spawnJet(x, y, speed = 1.2) {
+            const jet = document.createElement('div');
+            jet.className = 'jet';
+            jet.textContent = '✈';
+            jet.style.left = x + '%';
+            jet.style.top = y + '%';
+            jetLayer.appendChild(jet);
+            
+            const interval = setInterval(() => {
+                let left = parseFloat(jet.style.left);
+                left += speed;
+                jet.style.left = left + '%';
+                
+                if (left > 105) {
+                    clearInterval(interval);
+                    if (jet.parentNode) jet.parentNode.removeChild(jet);
+                }
+            }, 28);
+            
+            return jet;
+        }
+        
+        function doStrike(x, y) {
+            const strike = document.createElement('div');
+            strike.className = 'strike';
+            strike.textContent = '💥';
+            strike.style.left = (x + (Math.random() * 6 - 3)) + '%';
+            strike.style.top = (y + (Math.random() * 6 - 3)) + '%';
+            jetLayer.appendChild(strike);
+            
+            setTimeout(() => {
+                if (strike.parentNode) strike.parentNode.removeChild(strike);
+            }, 620);
+            
+            threats = Math.max(8, threats - 11);
+            document.getElementById('log').innerHTML += '<br>AIRSTRIKE LANDED. THREATS REDUCING.';
+            updateVisuals();
+        }
+        
+        function walkFaster() {
+            if (hasAirSupport) return;
+            position = Math.min(58, position + 3.5);
+            threats = Math.min(95, threats + 1.5);
+            resources = Math.max(8, resources - 2);
+            document.getElementById('log').innerHTML += '<br>PUSHING FORWARD. THE RUNWAY AHEAD IS HOT.';
+            updateVisuals();
+        }
+        
+        function keepVibe() {
+            if (hasAirSupport) return;
+            mac = Math.min(100, mac + 7);
+            neverender = Math.min(100, neverender + 4);
+            document.getElementById('log').innerHTML += '<br>STAYING COOL UNDER FIRE. MAC MILLER SWIM IN THE COCKPIT.';
+            updateVisuals();
+        }
+        
+        function callAirSupport() {
+            if (hasAirSupport) return;
+            air = Math.min(100, air + 22);
+            threats = Math.min(92, threats + 3);
+            document.getElementById('log').innerHTML += '<br>CALLING BIRDS. "MORE AIR SUPPORT — WE HAVE THE CARGO."';
+            spawnJet(8, 22, 1.6);
+            spawnJet(5, 35, 1.4);
+            updateVisuals();
+        }
+        
+        function alignStrike() {
+            if (hasAirSupport) return;
+            cue = Math.min(100, cue + 9);
+            air = Math.min(100, air + 6);
+            document.getElementById('log').innerHTML += '<br>STRIKE WINDOW ALIGNED. CUE IS GREEN. JETS ARE HOT.';
+            updateVisuals();
+        }
+        
+        function bombRun() {
+            if (hasAirSupport || air < 35) {
+                document.getElementById('log').innerHTML += '<br>NO BIRDS ON STATION OR NOT ALIGNED.';
+                return;
+            }
+            
+            const strikeX = 62 + Math.random() * 18;
+            const strikeY = 28 + Math.random() * 22;
+            
+            doStrike(strikeX, strikeY);
+            doStrike(strikeX + 8, strikeY + 4);
+            
+            air = Math.max(12, air - 14);
+            threats = Math.max(5, threats - 9);
+            document.getElementById('log').innerHTML += '<br>BOMB RUN EXECUTED. DIRT IS FLYING.';
+            updateVisuals();
+        }
+        
+        function moreAirSupport() {
+            if (document.getElementById('more-air-btn').disabled || hasAirSupport) return;
+            hasAirSupport = true;
+            
+            const log = document.getElementById('log');
+            log.innerHTML += '<br>THE MONKE ACE KEYS THE MIC.<br>"MORE AIR SUPPORT — NOW."<br>JETS RIP THE SKY.<br>THE GROUND SHAKES.<br>THE ALCOHOL IS COVERED.';
+            
+            // Spawn multiple jets
+            spawnJet(2, 18, 1.8);
+            spawnJet(6, 29, 1.5);
+            spawnJet(3, 42, 1.7);
+            
+            setTimeout(() => {
+                doStrike(68, 31);
+                doStrike(74, 27);
+                doStrike(59, 38);
+            }, 420);
+            
+            setTimeout(() => {
+                doStrike(71, 34);
+                threats = Math.max(4, threats - 18);
+                document.getElementById('log').innerHTML += '<br>THREATS SUPPRESSED. THE RUNWAY IS CLEAR.<br>THE ONE-TAKE CONTINUES.';
+                updateVisuals();
+            }, 980);
+            
+            document.getElementById('more-air-btn').textContent = 'AIR COVER COMPLETE';
+            document.getElementById('more-air-btn').disabled = true;
+            document.getElementById('more-air-btn').style.borderColor = '#0f0';
+            document.getElementById('more-air-btn').style.color = '#0f0';
+            
+            setTimeout(() => {
+                log.innerHTML += '<br>POST-STRIKE OPTIONS:<br>1. SECURE THE BOOZE WITH THE STRIKE PACKAGE<br>2. USE AIR COVER FOR THE NEXT LAUNCH WINDOW<br>3. LET THE DINOS RIDE SHOTGUN ON THE NEXT SORTIE<br>4. BLEND THE JETS INTO THE MAC MILLER PLAYLIST<br>5. THIS IS THE FUEL — KEEP THE TAKE ROLLING';
+                
+                const controls = document.querySelector('.controls');
+                const choiceDiv = document.createElement('div');
+                choiceDiv.style.marginTop = '6px';
+                choiceDiv.innerHTML = `
+                    <button class="btn" onclick="choosePost(1)">SECURE WITH STRIKE</button>
+                    <button class="btn" onclick="choosePost(2)">COVER NEXT LAUNCH</button>
+                    <button class="btn" onclick="choosePost(3)">DINOS ON SORTIE</button>
+                    <button class="btn" onclick="choosePost(4)">JETS IN THE MIX</button>
+                    <button class="btn" onclick="choosePost(5)">FUEL THE AFTERPARTY</button>
+                `;
+                controls.appendChild(choiceDiv);
+            }, 1350);
+            
+            updateVisuals();
+        }
+        
+        function choosePost(choice) {
+            const log = document.getElementById('log');
+            let msg = '';
+            switch(choice) {
+                case 1: msg = 'THE ALCOHOL IS HOME SAFE. THE STRIKE PACKAGE STANDS GUARD.'; break;
+                case 2: msg = 'AIR COVER CLEARS THE PATH FOR THE NEXT ONE-TAKE IGNITION.'; break;
+                case 3: msg = 'THE DINOS ARE STRAPPED IN. WHEELS UP.'; break;
+                case 4: msg = 'THE SWIM CONTINUES WITH AFTERBURNERS IN THE BACKGROUND.'; break;
+                case 5: msg = 'THE CAMERA KEEPS ROLLING. THE NIGHT (AND THE SAGA) IS JUST GETTING STARTED.'; break;
+            }
+            log.innerHTML += '<br>' + msg + '<br>THE UNBROKEN TAKE CONTINUES. WHAT\'S THE NEXT SHOT?';
+        }
+        
+        function updateSliders() {
+            document.getElementById('monke-slider').value = monke;
+            document.getElementById('neverender-slider').value = neverender;
+            document.getElementById('cue-slider').value = cue;
+            document.getElementById('mac-slider').value = mac;
+            document.getElementById('resources-slider').value = resources;
+            document.getElementById('alcohol-slider').value = alcohol;
+            document.getElementById('air-slider').value = air;
+            document.getElementById('dino-slider').value = dino;
+        }
+        
+        function init() {
+            const log = document.getElementById('log');
+            
+            setTimeout(() => {
+                monke = 74;
+                neverender = 69;
+                cue = 67;
+                mac = 58;
+                resources = 39;
+                alcohol = 82;
+                air = 21;
+                dino = 84;
+                threats = 59;
+                updateVisuals();
+                updateSliders();
+                log.innerHTML += '<br>THE MONKE ACE AND DINO BUDDY ARE MOVING.<br>JETS ARE ON STATION BUT NEED ALIGNMENT.<br>THE TAKE DOES NOT STOP.';
+            }, 1250);
+            
+            // Subtle ongoing movement
+            setInterval(() => {
+                if (!hasAirSupport && threats < 88) {
+                    const r = Math.random();
+                    if (r < 0.28) {
+                        position = Math.min(56, position + 0.7);
+                        document.getElementById('monke-ace').style.left = position + '%';
+                        document.getElementById('dino-buddy').style.left = (position - 8) + '%';
+                        document.getElementById('alcohol-crates').style.left = (position + 5) + '%';
+                    }
+                    if (r < 0.12 && air > 22) {
+                        spawnJet(4 + Math.random() * 12, 20 + Math.random() * 18, 1.3);
+                    }
+                }
+            }, 380);
+            
+            // Keyboard
+            document.addEventListener('keydown', (e) => {
+                if (hasAirSupport && (e.key === ' ' || e.key === 'Enter')) {
+                    e.preventDefault();
+                    // no more action needed
+                    return;
+                }
+                if (e.key === ' ' || e.key === 'Enter') {
+                    e.preventDefault();
+                    if (!document.getElementById('more-air-btn').disabled) moreAirSupport();
+                    else if (air > 28) bombRun();
+                }
+                const k = e.key.toLowerCase();
+                if (k === 'w') walkFaster();
+                if (k === 'v') keepVibe();
+                if (k === 'a') callAirSupport();
+                if (k === 's') alignStrike();
+                if (k === 'b') bombRun();
+            });
+            
+            updateVisuals();
+            updateSliders();
+            log.innerHTML += '<br>THE CAMERA IS FOLLOWING THE RETURN.<br>THE SKY IS ABOUT TO GET LOUD.';
+        }
+        
+        window.onload = init;
+    </script>
+</body>
+</html>
