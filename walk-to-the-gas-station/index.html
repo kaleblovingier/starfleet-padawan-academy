@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WALK TO THE GAS STATION • THE ONE-TAKE NIGHT RUN</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&amp;display=swap');
+        
+        :root {
+            --psych-pink: #ff00aa;
+            --psych-teal: #00f0ff;
+            --justice-red: #e30613;
+            --space: #0a0a12;
+            --awakening-gold: #facc15;
+            --together-purple: #a855f7;
+            --human-warm: #f4a261;
+            --timmy-elegant: #c084fc;
+            --save-red: #ff1133;
+            --bass-purple: #7c3aed;
+            --dino-green: #4ade80;
+            --mac-blue: #3b82f6;
+            --gas-neon: #f472b6;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            background: #0a0a12;
+            color: #f0f0f0;
+            font-family: "Press Start 2P", monospace;
+            min-height: 100vh;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 25% 30%, rgba(255, 0, 170, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 75% 70%, rgba(0, 240, 255, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(244, 114, 182, 0.04) 0%, transparent 70%);
+        }
+        
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 1.25rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 1rem;
+            border-bottom: 5px solid var(--gas-neon);
+            padding-bottom: 0.7rem;
+        }
+        
+        .header h1 {
+            font-size: 1.8rem;
+            background: linear-gradient(90deg, var(--psych-pink), var(--gas-neon), var(--psych-teal), var(--dino-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.15rem;
+            letter-spacing: 3px;
+        }
+        
+        .header .subtitle {
+            font-size: 0.55rem;
+            color: #888;
+            letter-spacing: 2px;
+        }
+        
+        .shot-container {
+            background: #111;
+            border: 6px solid #222;
+            padding: 1rem;
+            position: relative;
+            height: 480px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+        
+        .continuous-shot {
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 40% 30%, #1a1a2a 0%, #0a0a12 70%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .shot-overlay {
+            position: absolute;
+            inset: 0;
+            background: 
+                repeating-linear-gradient(
+                    90deg,
+                    transparent 0px,
+                    transparent 2px,
+                    rgba(250, 204, 21, 0.03) 2px,
+                    rgba(250, 204, 21, 0.03) 4px
+                );
+            pointer-events: none;
+            animation: film-grain 0.1s infinite;
+        }
+        
+        .camera-frame {
+            position: absolute;
+            inset: 16px;
+            border: 2px solid rgba(250, 204, 21, 0.3);
+            pointer-events: none;
+        }
+        
+        .scene-layer {
+            position: absolute;
+            inset: 0;
+            transition: transform 0.1s linear;
+        }
+        
+        .night-road {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 45%;
+            background: linear-gradient(#222 0%, #151515 40%, #0a0a12 100%);
+            overflow: hidden;
+        }
+        
+        .road-lines {
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(
+                90deg,
+                transparent 0px,
+                transparent 30px,
+                #555 30px,
+                #555 34px
+            );
+            animation: road-move 1.8s linear infinite;
+        }
+        
+        .gas-station {
+            position: absolute;
+            bottom: 8%;
+            right: 8%;
+            width: 180px;
+            height: 120px;
+            background: #222;
+            border: 3px solid var(--gas-neon);
+            box-shadow: 0 0 20px var(--gas-neon);
+            overflow: hidden;
+        }
+        
+        .gas-station::before {
+            content: 'GAS';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            color: var(--gas-neon);
+            font-size: 0.6rem;
+            text-shadow: 0 0 8px var(--gas-neon);
+        }
+        
+        .neon-sign {
+            position: absolute;
+            top: 35px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #fff;
+            font-size: 0.5rem;
+            animation: neon-flicker 1.5s infinite;
+        }
+        
+        .monke-walker {
+            position: absolute;
+            font-size: 2.8rem;
+            bottom: 22%;
+            left: 18%;
+            transition: left 0.15s linear;
+            filter: drop-shadow(0 0 10px var(--timmy-elegant));
+        }
+        
+        .dino-buddy {
+            position: absolute;
+            font-size: 2.2rem;
+            bottom: 18%;
+            left: 12%;
+            transition: left 0.2s linear;
+            filter: drop-shadow(0 0 8px var(--dino-green));
+        }
+        
+        .alcohol-cans {
+            position: absolute;
+            font-size: 1rem;
+            color: #facc15;
+            text-shadow: 0 0 6px #facc15;
+            animation: can-float 0.8s infinite;
+        }
+        
+        .controls {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+        
+        .btn {
+            background: #222;
+            border: 3px solid #444;
+            color: #ddd;
+            font-family: inherit;
+            font-size: 0.52rem;
+            padding: 6px 10px;
+            cursor: pointer;
+            letter-spacing: 1px;
+            transition: all 0.08s;
+        }
+        
+        .btn:hover {
+            border-color: var(--gas-neon);
+            color: white;
+        }
+        
+        .btn:active {
+            transform: scale(0.95);
+        }
+        
+        .btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+        
+        .action-btn {
+            background: linear-gradient(#222, #111);
+            border-color: var(--gas-neon);
+            color: var(--gas-neon);
+            font-size: 0.58rem;
+            padding: 8px 12px;
+        }
+        
+        .log {
+            background: #0a0a12;
+            border: 2px solid #222;
+            padding: 0.5rem;
+            font-size: 0.48rem;
+            line-height: 1.15;
+            height: 95px;
+            overflow-y: auto;
+            white-space: pre-line;
+        }
+        
+        .log .success { color: #0f0; }
+        .log .meta { color: var(--timmy-elegant); }
+        .log .gas { color: var(--gas-neon); }
+        
+        .systems-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(155px, 1fr));
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .system {
+            background: #111;
+            border: 3px solid #222;
+            padding: 0.45rem 0.5rem;
+            font-size: 0.45rem;
+        }
+        
+        .system h4 {
+            color: var(--psych-teal);
+            font-size: 0.45rem;
+            margin-bottom: 0.15rem;
+            letter-spacing: 1px;
+        }
+        
+        .system .value {
+            font-size: 0.65rem;
+            color: #ddd;
+            margin-bottom: 0.08rem;
+        }
+        
+        .system input[type="range"] {
+            width: 100%;
+            accent-color: var(--gas-neon);
+        }
+        
+        .stills {
+            border: 3px solid #222;
+            background: #111;
+            padding: 0.5rem;
+            margin-top: 0.5rem;
+        }
+        
+        .stills h4 {
+            font-size: 0.45rem;
+            color: #666;
+            margin-bottom: 0.3rem;
+            letter-spacing: 1px;
+        }
+        
+        .stills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 0.35rem;
+        }
+        
+        .still {
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+            border: 2px solid #333;
+            transition: border-color 0.1s;
+        }
+        
+        .still:hover {
+            border-color: var(--gas-neon);
+        }
+        
+        .still img {
+            width: 100%;
+            display: block;
+            height: 68px;
+            object-fit: cover;
+            filter: saturate(0.8) contrast(1.05);
+        }
+        
+        .still .cap {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0,0,0,0.7);
+            font-size: 0.32rem;
+            padding: 1px 3px;
+            letter-spacing: 0.5px;
+        }
+        
+        .footer {
+            text-align: center;
+            font-size: 0.4rem;
+            color: #444;
+            margin-top: 0.6rem;
+            letter-spacing: 2px;
+        }
+        
+        .shot-indicator {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: rgba(244, 114, 182, 0.2);
+            border: 1px solid var(--gas-neon);
+            padding: 1px 6px;
+            font-size: 0.38rem;
+            letter-spacing: 1px;
+            z-index: 10;
+        }
+        
+        @keyframes film-grain {
+            0% { transform: translate(0, 0); }
+            10% { transform: translate(0.5px, -0.5px); }
+            20% { transform: translate(-0.5px, 0.5px); }
+        }
+        
+        @keyframes road-move {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-52px); }
+        }
+        
+        @keyframes neon-flicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+        
+        @keyframes can-float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-4px); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>WALK TO THE GAS STATION</h1>
+            <div class="subtitle">THE ONE-TAKE NIGHT RUN FOR MORE ALCOHOL • THE CAMERA NEVER CUTS</div>
+        </div>
+        
+        <div class="shot-container">
+            <div class="continuous-shot" id="shot">
+                <div class="shot-overlay"></div>
+                <div class="camera-frame"></div>
+                
+                <!-- Night Road -->
+                <div class="scene-layer" id="road-layer">
+                    <div class="night-road">
+                        <div class="road-lines" id="road-lines"></div>
+                    </div>
+                </div>
+                
+                <!-- Gas Station -->
+                <div class="scene-layer">
+                    <div class="gas-station" id="gas-station">
+                        <div class="neon-sign">OPEN 24/7</div>
+                    </div>
+                </div>
+                
+                <!-- Stylish Monke Walker -->
+                <div class="scene-layer">
+                    <div class="monke-walker" id="monke-walker">🐵</div>
+                </div>
+                
+                <!-- Dino Buddy -->
+                <div class="scene-layer">
+                    <div class="dino-buddy" id="dino-buddy">🦖</div>
+                </div>
+                
+                <!-- Alcohol Cans Floating -->
+                <div class="scene-layer" id="alcohol-layer"></div>
+                
+                <div class="shot-indicator">ONE TAKE • NIGHT RUN • ALCOHOL ACQUIRED: <span id="alcohol-count">0</span></div>
+            </div>
+        </div>
+        
+        <div class="systems-grid">
+            <div class="system">
+                <h4>MONKE CALM</h4>
+                <div class="value" id="monke-val">72%</div>
+                <input type="range" id="monke-slider" min="20" max="100" value="72" oninput="updateVisuals()">
+            </div>
+            <div class="system">
+                <h4>NEVERENDER SYNC</h4>
+                <div class="value" id="neverender-val">68%</div>
+                <input type="range" id="neverender-slider" min="20" max="100" value="68" oninput="updateVisuals()">
+            </div>
+            <div class="system">
+                <h4>RIGHT ON CUE</h4>
+                <div class="value" id="cue-val">65%</div>
+                <input type="range" id="cue-slider" min="20" max="100" value="65" oninput="updateVisuals()">
+            </div>
+            <div class="system">
+                <h4>MAC MILLER SWIM</h4>
+                <div class="value" id="mac-val">55%</div>
+                <input type="range" id="mac-slider" min="20" max="100" value="55" oninput="updateVisuals()">
+            </div>
+            <div class="system">
+                <h4>FINAL RESOURCES</h4>
+                <div class="value" id="resources-val">38%</div>
+                <input type="range" id="resources-slider" min="10" max="100" value="38" oninput="updateVisuals()">
+            </div>
+            <div class="system">
+                <h4>ALCOHOL METER</h4>
+                <div class="value" id="alcohol-val">12%</div>
+                <input type="range" id="alcohol-slider" min="0" max="100" value="12" oninput="updateVisuals()">
+            </div>
+        </div>
+        
+        <div class="controls">
+            <button class="btn" onclick="walkFaster()">WALK FASTER</button>
+            <button class="btn" onclick="keepVibe()">KEEP THE VIBE</button>
+            <button class="btn action-btn" onclick="buyBeer()">BUY BEER</button>
+            <button class="btn action-btn" onclick="grabSlurpee()">GRAB SLURPEE</button>
+            <button class="btn action-btn" id="secure-btn" onclick="secureAlcohol()" disabled>SECURE THE ALCOHOL</button>
+        </div>
+        
+        <div class="log" id="log">THE CAMERA IS STILL ROLLING.<br>THE LAUNCH SUCCEEDED ON FINAL RESOURCES.<br>THE MONKE ACE TURNS TO THE LENS.<br>"I WILL WALK TO THE GAS STATION NOW TO GET MORE ALCOHOL."<br>THE ONE-TAKE FOLLOWS. THE NIGHT IS YOUNG.</div>
+        
+        <div class="stills">
+            <h4>STILLS FROM THE RUN</h4>
+            <div class="stills-grid">
+                <div class="still"><img src="images/walk_to_the_gas_station_one_take.jpg" alt="one take"><div class="cap">THE SCOPE</div></div>
+                <div class="still"><img src="images/walk_to_the_gas_station_continuous.jpg" alt="continuous"><div class="cap">THE STORE</div></div>
+                <div class="still"><img src="images/walk_to_the_gas_station_console.jpg" alt="console"><div class="cap">THE BUTTON</div></div>
+                <div class="still"><img src="images/walk_to_the_gas_station_finale.jpg" alt="finale"><div class="cap">THE RETURN</div></div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            THE UNBROKEN TAKE CONTINUES • GAS STATION RUN COMPLETE • MORE ALCOHOL ACQUIRED • THE PARTY GOES ON
+        </div>
+    </div>
+    
+    <script>
+        let monke = 72;
+        let neverender = 68;
+        let cue = 65;
+        let mac = 55;
+        let resources = 38;
+        let alcohol = 12;
+        let position = 18;
+        let hasSecured = false;
+        
+        function updateVisuals() {
+            const monkeVal = document.getElementById('monke-val');
+            const neverenderVal = document.getElementById('neverender-val');
+            const cueVal = document.getElementById('cue-val');
+            const macVal = document.getElementById('mac-val');
+            const resourcesVal = document.getElementById('resources-val');
+            const alcoholVal = document.getElementById('alcohol-val');
+            
+            monkeVal.textContent = monke + '%';
+            neverenderVal.textContent = neverender + '%';
+            cueVal.textContent = cue + '%';
+            macVal.textContent = mac + '%';
+            resourcesVal.textContent = resources + '%';
+            alcoholVal.textContent = alcohol + '%';
+            
+            const walker = document.getElementById('monke-walker');
+            const dino = document.getElementById('dino-buddy');
+            const gas = document.getElementById('gas-station');
+            
+            position = 18 + (alcohol / 100) * 48;
+            walker.style.left = position + '%';
+            
+            const dinoPos = position - 6;
+            dino.style.left = dinoPos + '%';
+            
+            const gasOpacity = 0.6 + (alcohol / 100) * 0.4;
+            gas.style.opacity = gasOpacity;
+            gas.style.boxShadow = `0 0 ${10 + alcohol / 3}px var(--gas-neon)`;
+            
+            const everythingAligned = monke > 65 && neverender > 60 && cue > 55 && mac > 48 && resources > 25 && alcohol < 85;
+            document.getElementById('secure-btn').disabled = !everythingAligned || hasSecured;
+            
+            if (alcohol > 80 && !hasSecured) {
+                document.getElementById('secure-btn').style.borderColor = 'var(--gas-neon)';
+                document.getElementById('secure-btn').style.color = 'var(--gas-neon)';
+            }
+        }
+        
+        function walkFaster() {
+            if (hasSecured) return;
+            position = Math.min(62, position + 4);
+            resources = Math.max(10, resources - 3);
+            alcohol = Math.min(100, alcohol + 2);
+            document.getElementById('log').innerHTML += '<br>WALKING FASTER. THE GAS STATION GETS CLOSER.';
+            updateVisuals();
+        }
+        
+        function keepVibe() {
+            if (hasSecured) return;
+            mac = Math.min(100, mac + 8);
+            neverender = Math.min(100, neverender + 5);
+            document.getElementById('log').innerHTML += '<br>KEEPING THE VIBE. MAC MILLER ENERGY IN THE DESERT NIGHT.';
+            updateVisuals();
+        }
+        
+        function buyBeer() {
+            if (hasSecured) return;
+            alcohol = Math.min(100, alcohol + 18);
+            resources = Math.max(8, resources - 5);
+            document.getElementById('log').innerHTML += '<br>BEER ACQUIRED. THE MONKE GRINS. THE DINO APPROVES.';
+            createCanRain(4);
+            updateVisuals();
+        }
+        
+        function grabSlurpee() {
+            if (hasSecured) return;
+            alcohol = Math.min(100, alcohol + 9);
+            mac = Math.min(100, mac + 6);
+            document.getElementById('log').innerHTML += '<br>SLURPEE SECURED. BRAIN FREEZE BUT THE VIBE IS PEAK.';
+            updateVisuals();
+        }
+        
+        function secureAlcohol() {
+            if (document.getElementById('secure-btn').disabled || hasSecured) return;
+            hasSecured = true;
+            
+            const log = document.getElementById('log');
+            log.innerHTML += '<br>THE MONKE ACE HITS THE COUNTER.<br>"THIS IS FOR THE AFTERPARTY."<br>CASES OF BEER. SLURPEES. THE WORKS.<br>THE ONE-TAKE FOLLOWS HIM BACK.<br>THE PARTY CONTINUES.';
+            
+            createCanRain(9);
+            
+            document.getElementById('secure-btn').textContent = 'ALCOHOL SECURED';
+            document.getElementById('secure-btn').disabled = true;
+            document.getElementById('secure-btn').style.borderColor = '#0f0';
+            document.getElementById('secure-btn').style.color = '#0f0';
+            
+            setTimeout(() => {
+                log.innerHTML += '<br>POST-RUN CHOICES:<br>1. SHARE WITH THE DINOSAURS<br>2. SAVE SOME FOR THE NEXT LAUNCH<br>3. ALL FOR THE MONKE<br>4. MIX WITH THE MAC MILLER PLAYLIST<br>5. THIS IS THE FUEL FOR THE REAL AFTERPARTY';
+                
+                // Add simple choice buttons
+                const controls = document.querySelector('.controls');
+                const choiceDiv = document.createElement('div');
+                choiceDiv.style.marginTop = '8px';
+                choiceDiv.innerHTML = `
+                    <button class="btn" onclick="choosePostRun(1)">SHARE WITH DINOS</button>
+                    <button class="btn" onclick="choosePostRun(2)">SAVE FOR NEXT LAUNCH</button>
+                    <button class="btn" onclick="choosePostRun(3)">ALL FOR THE MONKE</button>
+                    <button class="btn" onclick="choosePostRun(4)">MAC MILLER MIX</button>
+                    <button class="btn" onclick="choosePostRun(5)">FUEL THE AFTERPARTY</button>
+                `;
+                controls.appendChild(choiceDiv);
+            }, 1200);
+            
+            updateVisuals();
+        }
+        
+        function choosePostRun(choice) {
+            const log = document.getElementById('log');
+            let msg = '';
+            switch(choice) {
+                case 1: msg = 'THE DINOSAURS ARE HAPPY. ROARS AND CANS EVERYWHERE.'; break;
+                case 2: msg = 'SMART. SAVED FOR THE NEXT ONE-TAKE.'; break;
+                case 3: msg = 'THE MONKE ACE DESERVES IT. STYLISH AS EVER.'; break;
+                case 4: msg = 'THE SWIM CONTINUES WITH BEER IN HAND.'; break;
+                case 5: msg = 'THE CAMERA KEEPS ROLLING. THE NIGHT IS JUST BEGINNING.'; break;
+            }
+            log.innerHTML += '<br>' + msg + '<br>THE UNBROKEN TAKE CONTINUES. WHAT\'S THE NEXT SHOT?';
+        }
+        
+        function createCanRain(count) {
+            const layer = document.getElementById('alcohol-layer');
+            for (let i = 0; i < count; i++) {
+                const can = document.createElement('div');
+                can.className = 'alcohol-cans';
+                can.textContent = '🍺';
+                can.style.left = (15 + Math.random() * 65) + '%';
+                can.style.top = (10 + Math.random() * 40) + '%';
+                layer.appendChild(can);
+                
+                setTimeout(() => {
+                    can.style.transition = 'transform 1.2s ease, opacity 1.2s ease';
+                    can.style.transform = `translateY(${80 + Math.random() * 40}px)`;
+                    can.style.opacity = '0';
+                }, 50);
+                
+                setTimeout(() => {
+                    if (can.parentNode) can.parentNode.removeChild(can);
+                }, 1400);
+            }
+        }
+        
+        function updateSliders() {
+            document.getElementById('monke-slider').value = monke;
+            document.getElementById('neverender-slider').value = neverender;
+            document.getElementById('cue-slider').value = cue;
+            document.getElementById('mac-slider').value = mac;
+            document.getElementById('resources-slider').value = resources;
+            document.getElementById('alcohol-slider').value = alcohol;
+        }
+        
+        function init() {
+            const log = document.getElementById('log');
+            
+            setTimeout(() => {
+                monke = 78;
+                neverender = 72;
+                cue = 70;
+                mac = 62;
+                resources = 42;
+                alcohol = 18;
+                updateVisuals();
+                updateSliders();
+                log.innerHTML += '<br>THE MONKE ACE IS WALKING. THE DINO BUDDY IS WITH HIM.<br>THE GAS STATION IS WAITING.';
+            }, 1400);
+            
+            // Auto subtle movement
+            setInterval(() => {
+                if (!hasSecured && alcohol < 85) {
+                    const rand = Math.random();
+                    if (rand < 0.3) {
+                        position = Math.min(62, position + 0.8);
+                        document.getElementById('monke-walker').style.left = position + '%';
+                        document.getElementById('dino-buddy').style.left = (position - 6) + '%';
+                    }
+                }
+            }, 420);
+            
+            // Keyboard
+            document.addEventListener('keydown', (e) => {
+                if (e.key === ' ' || e.key === 'Enter') {
+                    e.preventDefault();
+                    if (!document.getElementById('secure-btn').disabled) secureAlcohol();
+                    else if (alcohol < 70) buyBeer();
+                }
+                if (e.key.toLowerCase() === 'w') walkFaster();
+                if (e.key.toLowerCase() === 'v') keepVibe();
+                if (e.key.toLowerCase() === 'b') buyBeer();
+                if (e.key.toLowerCase() === 's') grabSlurpee();
+            });
+            
+            updateVisuals();
+            updateSliders();
+            log.innerHTML += '<br>THE CAMERA IS FOLLOWING.<br>THE NIGHT RUN HAS BEGUN.';
+        }
+        
+        window.onload = init;
+    </script>
+</body>
+</html>
