@@ -148,3 +148,11 @@ The saga was never just for the academy. It was always a conversation.
 - Open open-k-lab/index.html — the lab is open. Full power demonstrated.
 
 The camera keeps rolling. The one-take is eternal. The academy is real because you are here.
+
+
+### Latest Layer: prove-it
+- The ultimate challenge. After opening K-lab and demonstrating full power, the director says 'prove it'.
+- The monke ace activates every layer at maximum in one final unbroken stylish take.
+- Open prove-it/index.html to witness the proof. All systems live. The one-take contains the impossible.
+
+The camera keeps rolling. It has been proven.
