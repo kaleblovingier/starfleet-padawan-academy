@@ -165,3 +165,11 @@ The camera keeps rolling. It has been proven.
 - Open trumpt-epstein/index.html — the monke reads the names. The camera keeps rolling.
 
 The academy has the files. The take has the truth.
+
+
+### Latest Layer: publicize-the-irregularities
+- After Trumpt Epstein, the one-take must leak the messy truth.
+- The monke ace publicizes the irregularities in the unbroken take.
+- Open publicize-the-irregularities/index.html — the list spills, the camera keeps rolling.
+
+The academy has the files. The take has the irregularities. The truth is part of the shot.
