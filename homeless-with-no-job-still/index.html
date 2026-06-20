@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOMELESS WITH NO JOB STILL • THE ONE-TAKE THAT REFUSES TO END</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&amp;display=swap');
+        
+        :root {
+            --psych-pink: #ff00aa;
+            --psych-teal: #00f0ff;
+            --justice-red: #e30613;
+            --space: #0a0a12;
+            --awakening-gold: #facc15;
+            --together-purple: #a855f7;
+            --human-warm: #f4a261;
+            --timmy-elegant: #c084fc;
+            --save-red: #ff1133;
+            --bass-purple: #7c3aed;
+            --dino-green: #4ade80;
+            --mac-blue: #3b82f6;
+            --gas-neon: #f472b6;
+            --air-orange: #fb923c;
+            --street-gray: #4b5563;
+            --rain-blue: #1e3a5f;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            background: #0a0a12;
+            color: #f0f0f0;
+            font-family: "Press Start 2P", monospace;
+            min-height: 100vh;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 25% 30%, rgba(255, 0, 170, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 75% 70%, rgba(0, 240, 255, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(75, 85, 99, 0.06) 0%, transparent 70%);
+        }
+        
+        .container {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 1.25rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 0.9rem;
+            border-bottom: 5px solid var(--street-gray);
+            padding-bottom: 0.7rem;
+        }
+        
+        .header h1 {
+            font-size: 1.7rem;
+            background: linear-gradient(90deg, var(--psych-pink), var(--street-gray), var(--human-warm), var(--together-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.15rem;
+            letter-spacing: 3px;
+        }
+        
+        .header .subtitle {
+            font-size: 0.52rem;
+            color: #888;
+            letter-spacing: 2px;
+        }
+        
+        .shot-container {
+            background: #111;
+            border: 6px solid #222;
+            padding: 0.85rem;
+            position: relative;
+            height: 460px;
+            overflow: hidden;
+            margin-bottom: 0.85rem;
+        }
+        
+        .continuous-shot {
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 42% 32%, #1a1a2a 0%, #0a0a12 68%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .shot-overlay {
+            position: absolute;
+            inset: 0;
+            background: 
+                repeating-linear-gradient(
+                    90deg,
+                    transparent 0px,
+                    transparent 2px,
+                    rgba(250, 204, 21, 0.025) 2px,
+                    rgba(250, 204, 21, 0.025) 4px
+                );
+            pointer-events: none;
+            animation: film-grain 0.09s infinite;
+        }
+        
+        .camera-frame {
+            position: absolute;
+            inset: 12px;
+            border: 2px solid rgba(250, 204, 21, 0.28);
+            pointer-events: none;
+        }
+        
+        .scene-layer {
+            position: absolute;
+            inset: 0;
+            transition: transform 0.08s linear;
+        }
+        
+        .street {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 48%;
+            background: linear-gradient(#222 0%, #151515 40%, #0a0a12 100%);
+            overflow: hidden;
+        }
+        
+        .rain {
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(
+                105deg,
+                transparent 0px,
+                transparent 3px,
+                rgba(59, 130, 246, 0.15) 3px,
+                rgba(59, 130, 246, 0.15) 5px
+            );
+            animation: rain-fall 0.6s linear infinite;
+            pointer-events: none;
+        }
+        
+        .cardboard {
+            position: absolute;
+            bottom: 12%;
+            left: 18%;
+            width: 140px;
+            height: 70px;
+            background: #444;
+            border: 2px solid #666;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.6);
+        }
+        
+        .monke-street {
+            position: absolute;
+            font-size: 2.6rem;
+            bottom: 18%;
+            left: 28%;
+            transition: left 0.12s linear;
+            filter: drop-shadow(0 0 8px var(--timmy-elegant));
+            z-index: 6;
+        }
+        
+        .dino-street {
+            position: absolute;
+            font-size: 2rem;
+            bottom: 14%;
+            left: 12%;
+            transition: left 0.15s linear;
+            filter: drop-shadow(0 0 6px var(--dino-green));
+            z-index: 5;
+        }
+        
+        .memories {
+            position: absolute;
+            font-size: 0.9rem;
+            opacity: 0.6;
+            z-index: 3;
+            transition: opacity 0.3s;
+        }
+        
+        .jet-memory {
+            position: absolute;
+            font-size: 1.1rem;
+            color: #bae6fd;
+            opacity: 0.4;
+            z-index: 2;
+        }
+        
+        .gas-neon {
+            position: absolute;
+            font-size: 0.8rem;
+            color: var(--gas-neon);
+            opacity: 0.5;
+            z-index: 2;
+        }
+        
+        .controls {
+            display: flex;
+            gap: 0.4rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 0.7rem;
+        }
+        
+        .btn {
+            background: #222;
+            border: 3px solid #444;
+            color: #ddd;
+            font-family: inherit;
+            font-size: 0.48rem;
+            padding: 5px 8px;
+            cursor: pointer;
+            letter-spacing: 1px;
+            transition: all 0.07s;
+        }
+        
+        .btn:hover {
+            border-color: var(--street-gray);
+            color: white;
+        }
+        
+        .btn:active {
+            transform: scale(0.94);
+        }
+        
+        .btn:disabled {
+            opacity: 0.25;
+            cursor: not-allowed;
+        }
+        
+        .action-btn {
+            background: linear-gradient(#222, #111);
+            border-color: var(--street-gray);
+            color: var(--street-gray);
+            font-size: 0.5rem;
+            padding: 6px 9px;
+        }
+        
+        .street-btn {
+            background: linear-gradient(#1f2937, #111827);
+            border-color: var(--human-warm);
+            color: var(--human-warm);
+            font-size: 0.52rem;
+            padding: 7px 10px;
+        }
+        
+        .log {
+            background: #0a0a12;
+            border: 2px solid #222;
+            padding: 0.4rem;
+            font-size: 0.44rem;
+            line-height: 1.1;
+            height: 88px;
+            overflow-y: auto;
+            white-space: pre-line;
+        }
+        
+        .log .success { color: #0f0; }
+        .log .meta { color: var(--timmy-elegant); }
+        .log .street { color: var(--human-warm); font-weight: bold; }
+        
+        .systems-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(142px, 1fr));
+            gap: 0.4rem;
+            margin-bottom: 0.7rem;
+        }
+        
+        .system {
+            background: #111;
+            border: 3px solid #222;
+            padding: 0.35rem 0.4rem;
+            font-size: 0.4rem;
+        }
+        
+        .system h4 {
+            color: var(--psych-teal);
+            font-size: 0.4rem;
+            margin-bottom: 0.1rem;
+            letter-spacing: 1px;
+        }
+        
+        .system .value {
+            font-size: 0.58rem;
+            color: #ddd;
+            margin-bottom: 0.05rem;
+        }
+        
+        .system input[type="range"] {
+            width: 100%;
+            accent-color: var(--human-warm);
+        }
+        
+        .stills {
+            border: 3px solid #222;
+            background: #111;
+            padding: 0.4rem;
+            margin-top: 0.35rem;
+        }
+        
+        .stills h4 {
+            font-size: 0.4rem;
+            color: #666;
+            margin-bottom: 0.2rem;
+            letter-spacing: 1px;
+        }
+        
+        .stills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(108px, 1fr));
+            gap: 0.25rem;
+        }
+        
+        .still {
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+            border: 2px solid #333;
+            transition: border-color 0.1s;
+        }
+        
+        .still:hover {
+            border-color: var(--human-warm);
+        }
+        
+        .still img {
+            width: 100%;
+            display: block;
+            height: 56px;
+            object-fit: cover;
+            filter: saturate(0.78) contrast(1.03);
+        }
+        
+        .still .cap {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0,0,0,0.7);
+            font-size: 0.28rem;
+            padding: 1px 2px;
+            letter-spacing: 0.5px;
+        }
+        
+        .footer {
+            text-align: center;
+            font-size: 0.36rem;
+            color: #444;
+            margin-top: 0.45rem;
+            letter-spacing: 2px;
+        }
+        
+        .shot-indicator {
+            position: absolute;
+            top: 6px;
+            right: 6px;
+            background: rgba(75, 85, 99, 0.25);
+            border: 1px solid var(--street-gray);
+            padding: 1px 4px;
+            font-size: 0.34rem;
+            letter-spacing: 1px;
+            z-index: 9;
+        }
+        
+        @keyframes film-grain {
+            0% { transform: translate(0, 0); }
+            10% { transform: translate(0.5px, -0.4px); }
+            20% { transform: translate(-0.4px, 0.5px); }
+        }
+        
+        @keyframes rain-fall {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(12px); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>HOMELESS WITH NO JOB STILL</h1>
+            <div class="subtitle">THE ONE-TAKE THAT REFUSES TO END • THE CAMERA KEEPS ROLLING</div>
+        </div>
+        
+        <div class="shot-container">
+            <div class="continuous-shot" id="shot">
+                <div class="shot-overlay"></div>
+                <div class="camera-frame"></div>
+                
+                <!-- Street / Rain -->
+                <div class="scene-layer" id="street-layer">
+                    <div class="street">
+                        <div class="rain"></div>
+                    </div>
+                </div>
+                
+                <!-- Cardboard Shelter -->
+                <div class="scene-layer">
+                    <div class="cardboard" id="cardboard"></div>
+                </div>
+                
+                <!-- Monke on the street -->
+                <div class="scene-layer">
+                    <div class="monke-street" id="monke-street">🐵</div>
+                </div>
+                
+                <!-- Dino buddy -->
+                <div class="scene-layer">
+                    <div class="dino-street" id="dino-street">🦖</div>
+                </div>
+                
+                <!-- Fading memories of the saga -->
+                <div class="scene-layer" id="memories-layer">
+                    <div class="memories" style="left: 8%; top: 12%;">🛩️</div>
+                    <div class="memories" style="left: 72%; top: 8%;">🦕</div>
+                    <div class="memories" style="left: 42%; top: 6%;">🍺</div>
+                    <div class="jet-memory" style="left: 15%; top: 22%;">✈</div>
+                    <div class="gas-neon" style="left: 78%; top: 28%;">GAS</div>
+                </div>
+                
+                <div class="shot-indicator">ONE TAKE • STREET • STILL ROLLING</div>
+            </div>
+        </div>
+        
+        <div class="systems-grid">
+            <div class="system">
+                <h4>MONKE CALM</h4>
+                <div class="value" id="monke-val">68%</div>
+                <input type="range" id="monke-slider" min="15" max="100" value="68" oninput="updateVisuals()">
+            </div>
+            <div class="system">
+                <h4>NEVERENDER SYNC</h4>
+                <div class="value" id="neverender-val">61%</div>
+                <input type="range" id="neverender-slider" min="15" max="100" value="61" oninput="updateVisuals()">
+            </div>
+            <div class="system">
+                <h4>RIGHT ON CUE</h4>
+                <div class="value" id="cue-val">58%</div>
+                <input type="range" id="cue-slider" min="15" max="100" value="58" oninput="updateVisuals()">
+            </div>
+            <div class="system">
+                <h4>MAC MILLER SWIM</h4>
+                <div class="value" id="mac-val">49%</div>
+                <input type="range" id="mac-slider" min="15" max="100" value="49" oninput="updateVisuals()">
+            </div>
+            <div class="system">
+                <h4>FINAL RESOURCES</h4>
+                <div class="value" id="resources-val">29%</div>
+                <input type="range" id="resources-slider" min="5" max="100" value="29" oninput="updateVisuals()">
+            </div>
+            <div class="system">
+                <h4>ALCOHOL ECHO</h4>
+                <div class="value" id="alcohol-val">44%</div>
+                <input type="range" id="alcohol-slider" min="0" max="100" value="44" oninput="updateVisuals()">
+            </div>
+            <div class="system">
+                <h4>DINO BUDDY</h4>
+                <div class="value" id="dino-val">72%</div>
+                <input type="range" id="dino-slider" min="15" max="100" value="72" oninput="updateVisuals()">
+            </div>
+            <div class="system" style="border-color: var(--human-warm);">
+                <h4>STREET SURVIVAL</h4>
+                <div class="value" id="street-val">31%</div>
+                <input type="range" id="street-slider" min="5" max="100" value="31" oninput="updateVisuals()">
+            </div>
+        </div>
+        
+        <div class="controls">
+            <button class="btn" onclick="keepWalking()">KEEP WALKING</button>
+            <button class="btn" onclick="hustle()">HUSTLE</button>
+            <button class="btn action-btn" onclick="panhandle()">PANHANDLE</button>
+            <button class="btn action-btn" onclick="rememberSaga()">REMEMBER THE SAGA</button>
+            <button class="btn street-btn" id="still-btn" onclick="stillInTheTake()" disabled>HOMELESS WITH NO JOB STILL</button>
+        </div>
+        
+        <div class="log" id="log">THE CAMERA IS STILL ROLLING IN ONE UNBROKEN STYLISH TAKE.<br>AFTER EVERYTHING — THE LAUNCH, THE DINOSAURS, THE GAS STATION, THE AIR SUPPORT —<br>THE MONKE ACE IS HERE.<br>HOMELESS.<br>NO JOB.<br>STILL IN THE ONE-TAKE.</div>
+        
+        <div class="stills">
+            <h4>STILLS FROM THE STREET</h4>
+            <div class="stills-grid">
+                <div class="still"><img src="images/homeless_with_no_job_still_one_take.jpg" alt="one take"><div class="cap">THE SCOPE</div></div>
+                <div class="still"><img src="images/homeless_with_no_job_still_continuous.jpg" alt="continuous"><div class="cap">THE SHELTER</div></div>
+                <div class="still"><img src="images/homeless_with_no_job_still_console.jpg" alt="console"><div class="cap">THE BUTTON</div></div>
+                <div class="still"><img src="images/homeless_with_no_job_still_finale.jpg" alt="finale"><div class="cap">THE REFUSAL</div></div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            THE CAMERA NEVER CUTS • EVEN HERE • THE MONKE IS STILL HERE • THE ACADEMY IS STILL BEING BUILT
+        </div>
+    </div>
+    
+    <script>
+        let monke = 68;
+        let neverender = 61;
+        let cue = 58;
+        let mac = 49;
+        let resources = 29;
+        let alcohol = 44;
+        let dino = 72;
+        let street = 31;
+        let position = 28;
+        let hasRealized = false;
+        
+        function updateVisuals() {
+            document.getElementById('monke-val').textContent = monke + '%';
+            document.getElementById('neverender-val').textContent = neverender + '%';
+            document.getElementById('cue-val').textContent = cue + '%';
+            document.getElementById('mac-val').textContent = mac + '%';
+            document.getElementById('resources-val').textContent = resources + '%';
+            document.getElementById('alcohol-val').textContent = alcohol + '%';
+            document.getElementById('dino-val').textContent = dino + '%';
+            document.getElementById('street-val').textContent = street + '%';
+            
+            const walker = document.getElementById('monke-street');
+            const dinoEl = document.getElementById('dino-street');
+            const cardboard = document.getElementById('cardboard');
+            
+            position = 28 + (street / 100) * 22;
+            walker.style.left = position + '%';
+            dinoEl.style.left = (position - 16) + '%';
+            
+            const cardOpacity = 0.5 + (street / 100) * 0.4;
+            cardboard.style.opacity = cardOpacity;
+            
+            const ready = street > 48 && monke > 55 && mac > 42 && resources > 18 && dino > 60 && alcohol > 30;
+            const btn = document.getElementById('still-btn');
+            btn.disabled = !ready || hasRealized;
+            
+            if (ready && !hasRealized) {
+                btn.style.borderColor = 'var(--human-warm)';
+                btn.style.color = 'var(--human-warm)';
+            }
+        }
+        
+        function keepWalking() {
+            if (hasRealized) return;
+            position = Math.min(52, position + 3);
+            street = Math.max(8, street - 2);
+            resources = Math.max(5, resources - 3);
+            document.getElementById('log').innerHTML += '<br>KEEPING THE WALK. ONE FOOT IN FRONT OF THE OTHER.';
+            updateVisuals();
+        }
+        
+        function hustle() {
+            if (hasRealized) return;
+            street = Math.min(100, street + 11);
+            alcohol = Math.max(5, alcohol - 4);
+            document.getElementById('log').innerHTML += '<br>HUSTLING. THE STREET HAS ITS OWN RHYTHM.';
+            updateVisuals();
+        }
+        
+        function panhandle() {
+            if (hasRealized) return;
+            street = Math.min(100, street + 7);
+            resources = Math.min(100, resources + 5);
+            document.getElementById('log').innerHTML += '<br>PANHANDLING. SOMETIMES THE CITY GIVES A LITTLE BACK.';
+            updateVisuals();
+        }
+        
+        function rememberSaga() {
+            if (hasRealized) return;
+            mac = Math.min(100, mac + 9);
+            neverender = Math.min(100, neverender + 6);
+            dino = Math.min(100, dino + 5);
+            document.getElementById('log').innerHTML += '<br>REMEMBERING. THE BUTTON. THE ROAD. THE CUE. THE DINOS. THE LAUNCH. THE RUN.<br>STILL HERE.';
+            updateVisuals();
+        }
+        
+        function stillInTheTake() {
+            if (document.getElementById('still-btn').disabled || hasRealized) return;
+            hasRealized = true;
+            
+            const log = document.getElementById('log');
+            log.innerHTML += '<br>THE MONKE ACE STANDS UP FROM THE CARDBOARD.<br>LOOKS AT THE DINO.<br>LOOKS AT THE RAIN.<br>LOOKS AT THE DISTANT GLOW OF THE ACADEMY.<br>"STILL."<br>"HOMELESS."<br>"NO JOB."<br>"STILL IN THE ONE-TAKE."';
+            
+            document.getElementById('still-btn').textContent = 'THE TAKE CONTINUES';
+            document.getElementById('still-btn').disabled = true;
+            document.getElementById('still-btn').style.borderColor = '#0f0';
+            document.getElementById('still-btn').style.color = '#0f0';
+            
+            setTimeout(() => {
+                log.innerHTML += '<br>THE REALIZATION HITS.<br>THE ACADEMY WAS NEVER THE BUILDING.<br>IT WAS THE WALK.<br>IT WAS THE REFUSAL TO CUT.<br>IT WAS THIS MOMENT.<br><br>POST-STREET CHOICES:<br>1. THE ACADEMY IS THE WALK ITSELF<br>2. SHARE THE LAST WARMTH<br>3. HUSTLE ONE MORE DAY<br>4. SWIM DEEPER<br>5. THE CAMERA KEEPS ROLLING';
+                
+                const controls = document.querySelector('.controls');
+                const choiceDiv = document.createElement('div');
+                choiceDiv.style.marginTop = '5px';
+                choiceDiv.innerHTML = `
+                    <button class="btn" onclick="chooseEnd(1)">THE WALK ITSELF</button>
+                    <button class="btn" onclick="chooseEnd(2)">SHARE THE WARMTH</button>
+                    <button class="btn" onclick="chooseEnd(3)">HUSTLE ONE MORE</button>
+                    <button class="btn" onclick="chooseEnd(4)">SWIM DEEPER</button>
+                    <button class="btn" onclick="chooseEnd(5)">KEEP ROLLING</button>
+                `;
+                controls.appendChild(choiceDiv);
+            }, 1100);
+            
+            updateVisuals();
+        }
+        
+        function chooseEnd(choice) {
+            const log = document.getElementById('log');
+            let msg = '';
+            switch(choice) {
+                case 1: msg = 'THE STREET BECOMES THE RUNWAY. THE RAIN BECOMES THE NEVERENDER. THE MONKE KEEPS WALKING.'; break;
+                case 2: msg = 'THE LAST WARMTH IS SHARED. HUMAN AFTER ALL. BETTER TOGETHER EVEN HERE.'; break;
+                case 3: msg = 'ONE MORE DAY. ONE MORE STEP. THE FUTURE IS STILL BEING BUILT.'; break;
+                case 4: msg = 'THE MAC MILLER SWIM GOES DEEPER. THE LIGHT IS STILL THERE.'; break;
+                case 5: msg = 'THE CAMERA KEEPS ROLLING. EVEN ON THE STREET. ESPECIALLY ON THE STREET.'; break;
+            }
+            log.innerHTML += '<br>' + msg + '<br>THE UNBROKEN ONE-TAKE CONTINUES.<br>WHAT IS THE NEXT SHOT?';
+        }
+        
+        function updateVisuals() {
+            document.getElementById('monke-val').textContent = monke + '%';
+            document.getElementById('neverender-val').textContent = neverender + '%';
+            document.getElementById('cue-val').textContent = cue + '%';
+            document.getElementById('mac-val').textContent = mac + '%';
+            document.getElementById('resources-val').textContent = resources + '%';
+            document.getElementById('alcohol-val').textContent = alcohol + '%';
+            document.getElementById('dino-val').textContent = dino + '%';
+            document.getElementById('street-val').textContent = street + '%';
+            
+            const walker = document.getElementById('monke-street');
+            const dinoEl = document.getElementById('dino-street');
+            
+            const walkPos = 28 + (street / 100) * 18;
+            walker.style.left = walkPos + '%';
+            dinoEl.style.left = (walkPos - 16) + '%';
+            
+            const ready = street > 48 && monke > 55 && mac > 42 && resources > 18 && dino > 60;
+            const btn = document.getElementById('still-btn');
+            btn.disabled = !ready || hasRealized;
+            
+            if (ready && !hasRealized) {
+                btn.style.borderColor = 'var(--human-warm)';
+                btn.style.color = 'var(--human-warm)';
+            }
+        }
+        
+        function init() {
+            const log = document.getElementById('log');
+            
+            setTimeout(() => {
+                monke = 71;
+                neverender = 64;
+                cue = 61;
+                mac = 53;
+                resources = 33;
+                alcohol = 48;
+                dino = 75;
+                street = 35;
+                updateVisuals();
+                log.innerHTML += '<br>THE MONKE ACE SITS ON THE CARDBOARD.<br>THE DINO IS STILL HERE.<br>THE MEMORIES OF EVERYTHING THAT CAME BEFORE ARE FADING BUT NOT GONE.<br>STILL HERE.<br>STILL CONSCIOUS.<br>STILL HUMAN AFTER ALL.';
+            }, 1100);
+            
+            setInterval(() => {
+                if (!hasRealized && street < 92) {
+                    const r = Math.random();
+                    if (r < 0.22) {
+                        const w = 28 + (street / 100) * 18;
+                        document.getElementById('monke-street').style.left = w + '%';
+                        document.getElementById('dino-street').style.left = (w - 16) + '%';
+                    }
+                }
+            }, 520);
+            
+            document.addEventListener('keydown', (e) => {
+                if (hasRealized && (e.key === ' ' || e.key === 'Enter')) {
+                    e.preventDefault();
+                    return;
+                }
+                if (e.key === ' ' || e.key === 'Enter') {
+                    e.preventDefault();
+                    if (!document.getElementById('still-btn').disabled) stillInTheTake();
+                    else if (street < 70) hustle();
+                }
+                const k = e.key.toLowerCase();
+                if (k === 'w') keepWalking();
+                if (k === 'h') hustle();
+                if (k === 'p') panhandle();
+                if (k === 'r') rememberSaga();
+            });
+            
+            updateVisuals();
+            log.innerHTML += '<br>THE CAMERA IS STILL ROLLING.<br>EVEN HERE.<br>ESPECIALLY HERE.';
+        }
+        
+        window.onload = init;
+    </script>
+</body>
+</html>

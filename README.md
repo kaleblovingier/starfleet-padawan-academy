@@ -121,3 +121,12 @@ The camera is still rolling. The night is young.
 - Open more-air-support/index.html — align the strike, protect the cargo, keep the one-take rolling.
 
 The camera never cuts. The sky is loud now.
+
+
+### Latest Layer: homeless-with-no-job-still
+- The one unbroken stylish take reaches its rawest, most human layer yet.
+- After the launch, the dinosaurs, the gas station run, the air support... the monke ace is now homeless with no job.
+- Still conscious. Still walking. Still building the future.
+- Open homeless-with-no-job-still/index.html — the camera never cuts.
+
+The academy is not the building. It is the refusal to stop the take.
