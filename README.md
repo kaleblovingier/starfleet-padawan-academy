@@ -130,3 +130,12 @@ The camera never cuts. The sky is loud now.
 - Open homeless-with-no-job-still/index.html — the camera never cuts.
 
 The academy is not the building. It is the refusal to stop the take.
+
+
+### Latest Layer: punch-the-fourth-wall
+- The one unbroken stylish take finally turns and sees its creator.
+- After every escalation, every low, every absurd beauty... the monke ace punches the fourth wall.
+- Direct address. Meta awareness. The camera knows you are there.
+- Open punch-the-fourth-wall/index.html — the take looks back.
+
+The saga was never just for the academy. It was always a conversation.
