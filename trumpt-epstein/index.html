@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TRUMPT EPSTEIN • THE ONE-TAKE THAT REVEALS THE LIST</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&amp;display=swap');
+        
+        :root {
+            --psych-pink: #ff00aa;
+            --psych-teal: #00f0ff;
+            --justice-red: #e30613;
+            --space: #0a0a12;
+            --awakening-gold: #facc15;
+            --together-purple: #a855f7;
+            --human-warm: #f4a261;
+            --timmy-elegant: #c084fc;
+            --save-red: #ff1133;
+            --bass-purple: #7c3aed;
+            --dino-green: #4ade80;
+            --mac-blue: #3b82f6;
+            --gas-neon: #f472b6;
+            --air-orange: #fb923c;
+            --street-gray: #4b5563;
+            --wall-crack: #f1f5f9;
+            --k-lab-gold: #fbbf24;
+            --full-power: #ef4444;
+            --prove-gold: #fbbf24;
+            --epstein-red: #b91c1c;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            background: #0a0a12;
+            color: #f0f0f0;
+            font-family: "Press Start 2P", monospace;
+            min-height: 100vh;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 25% 30%, rgba(255, 0, 170, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 75% 70%, rgba(0, 240, 255, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(185, 28, 28, 0.06) 0%, transparent 70%);
+        }
+        
+        .container {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 1.25rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 0.9rem;
+            border-bottom: 5px solid var(--epstein-red);
+            padding-bottom: 0.7rem;
+        }
+        
+        .header h1 {
+            font-size: 1.8rem;
+            background: linear-gradient(90deg, var(--psych-pink), var(--epstein-red), var(--k-lab-gold), var(--together-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.15rem;
+            letter-spacing: 3px;
+        }
+        
+        .header .subtitle {
+            font-size: 0.52rem;
+            color: #888;
+            letter-spacing: 2px;
+        }
+        
+        .shot-container {
+            background: #111;
+            border: 6px solid #222;
+            padding: 0.85rem;
+            position: relative;
+            height: 470px;
+            overflow: hidden;
+            margin-bottom: 0.85rem;
+        }
+        
+        .continuous-shot {
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 42% 32%, #1a1a2a 0%, #0a0a12 68%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .shot-overlay {
+            position: absolute;
+            inset: 0;
+            background: 
+                repeating-linear-gradient(
+                    90deg,
+                    transparent 0px,
+                    transparent 2px,
+                    rgba(250, 204, 21, 0.025) 2px,
+                    rgba(250, 204, 21, 0.025) 4px
+                );
+            pointer-events: none;
+            animation: film-grain 0.09s infinite;
+        }
+        
+        .camera-frame {
+            position: absolute;
+            inset: 12px;
+            border: 2px solid rgba(250, 204, 21, 0.28);
+            pointer-events: none;
+        }
+        
+        .scene-layer {
+            position: absolute;
+            inset: 0;
+            transition: transform 0.08s linear;
+        }
+        
+        .k-lab-bg {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(#1a1a2a 0%, #0a0a12 60%);
+            overflow: hidden;
+        }
+        
+        .lab-screens {
+            position: absolute;
+            inset: 8px;
+            border: 1px solid var(--k-lab-gold);
+            opacity: 0.7;
+            background: 
+                linear-gradient(rgba(251, 191, 36, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(251, 191, 36, 0.1) 1px, transparent 1px);
+            background-size: 18px 18px;
+            pointer-events: none;
+        }
+        
+        .monke-ace {
+            position: absolute;
+            font-size: 2.6rem;
+            bottom: 18%;
+            left: 32%;
+            transition: left 0.12s linear, transform 0.1s;
+            filter: drop-shadow(0 0 12px var(--timmy-elegant));
+            z-index: 8;
+        }
+        
+        .epstein-files {
+            position: absolute;
+            bottom: 12%;
+            left: 48%;
+            font-size: 1.1rem;
+            color: var(--epstein-red);
+            text-shadow: 0 0 8px var(--epstein-red);
+            z-index: 7;
+        }
+        
+        .controls {
+            display: flex;
+            gap: 0.4rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 0.7rem;
+        }
+        
+        .btn {
+            background: #222;
+            border: 3px solid #444;
+            color: #ddd;
+            font-family: inherit;
+            font-size: 0.48rem;
+            padding: 5px 8px;
+            cursor: pointer;
+            letter-spacing: 1px;
+            transition: all 0.07s;
+        }
+        
+        .btn:hover {
+            border-color: var(--epstein-red);
+            color: white;
+        }
+        
+        .btn:active {
+            transform: scale(0.94);
+        }
+        
+        .btn:disabled {
+            opacity: 0.25;
+            cursor: not-allowed;
+        }
+        
+        .action-btn {
+            background: linear-gradient(#222, #111);
+            border-color: var(--epstein-red);
+            color: var(--epstein-red);
+            font-size: 0.5rem;
+            padding: 6px 9px;
+        }
+        
+        .list-btn {
+            background: linear-gradient(#3a0a0a, #1a0505);
+            border-color: var(--epstein-red);
+            color: var(--epstein-red);
+            font-size: 0.52rem;
+            padding: 7px 11px;
+            animation: list-ready 1.6s infinite;
+        }
+        
+        .log {
+            background: #0a0a12;
+            border: 2px solid #222;
+            padding: 0.4rem;
+            font-size: 0.44rem;
+            line-height: 1.1;
+            height: 88px;
+            overflow-y: auto;
+            white-space: pre-line;
+        }
+        
+        .log .success { color: #0f0; }
+        .log .meta { color: var(--timmy-elegant); }
+        .log .power { color: var(--prove-gold); font-weight: bold; }
+        .log .list { color: var(--epstein-red); font-weight: bold; }
+        
+        .systems-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(142px, 1fr));
+            gap: 0.4rem;
+            margin-bottom: 0.7rem;
+        }
+        
+        .system {
+            background: #111;
+            border: 3px solid #222;
+            padding: 0.35rem 0.4rem;
+            font-size: 0.4rem;
+        }
+        
+        .system h4 {
+            color: var(--psych-teal);
+            font-size: 0.4rem;
+            margin-bottom: 0.1rem;
+            letter-spacing: 1px;
+        }
+        
+        .system .value {
+            font-size: 0.58rem;
+            color: #ddd;
+            margin-bottom: 0.05rem;
+        }
+        
+        .system input[type="range"] {
+            width: 100%;
+            accent-color: var(--epstein-red);
+        }
+        
+        .stills {
+            border: 3px solid #222;
+            background: #111;
+            padding: 0.4rem;
+            margin-top: 0.35rem;
+        }
+        
+        .stills h4 {
+            font-size: 0.4rem;
+            color: #666;
+            margin-bottom: 0.2rem;
+            letter-spacing: 1px;
+        }
+        
+        .stills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(108px, 1fr));
+            gap: 0.25rem;
+        }
+        
+        .still {
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+            border: 2px solid #333;
+            transition: border-color 0.1s;
+        }
+        
+        .still:hover {
+            border-color: var(--epstein-red);
+        }
+        
+        .still img {
+            width: 100%;
+            display: block;
+            height: 56px;
+            object-fit: cover;
+            filter: saturate(0.78) contrast(1.03);
+        }
+        
+        .still .cap {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0,0,0,0.7);
+            font-size: 0.28rem;
+            padding: 1px 2px;
+            letter-spacing: 0.5px;
+        }
+        
+        .footer {
+            text-align: center;
+            font-size: 0.36rem;
+            color: #444;
+            margin-top: 0.45rem;
+            letter-spacing: 2px;
+        }
+        
+        .shot-indicator {
+            position: absolute;
+            top: 6px;
+            right: 6px;
+            background: rgba(185, 28, 28, 0.2);
+            border: 1px solid var(--epstein-red);
+            padding: 1px 4px;
+            font-size: 0.34rem;
+            letter-spacing: 1px;
+            z-index: 9;
+        }
+        
+        @keyframes film-grain {
+            0% { transform: translate(0, 0); }
+            10% { transform: translate(0.5px, -0.4px); }
+            20% { transform: translate(-0.4px, 0.5px); }
+        }
+        
+        @keyframes list-ready {
+            0%, 100% { box-shadow: 0 0 12px rgba(185, 28, 28, 0.3); }
+            50% { box-shadow: 0 0 28px rgba(185, 28, 28, 0.7); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>TRUMPT EPSTEIN</h1>
+            <div class="subtitle">THE ONE-TAKE THAT REVEALS THE LIST • THE CAMERA NEVER CUTS</div>
+        </div>
+        
+        <div class="shot-container" id="shot-container">
+            <div class="continuous-shot" id="shot">
+                <div class="shot-overlay"></div>
+                <div class="camera-frame"></div>
+                
+                <div class="scene-layer">
+                    <div class="k-lab-bg" id="k-lab-bg"></div>
+                    <div class="lab-screens" id="lab-screens"></div>
+                </div>
+                
+                <div class="scene-layer">
+                    <div class="monke-ace" id="monke-ace">🐵</div>
+                    <div class="epstein-files" id="epstein-files">📜📜</div>
+                </div>
+                
+                <div class="scene-layer" id="saga-elements"></div>
+                
+                <div class="shot-indicator">ONE TAKE • FILES: <span id="files-val">18</span>% • NAMES LEAKING</div>
+            </div>
+        </div>
+        
+        <div class="systems-grid">
+            <div class="system">
+                <h4>MONKE CALM</h4>
+                <div class="value" id="monke-val">68%</div>
+                <input type="range" id="monke-slider" min="15" max="100" value="68" oninput="updateVisuals()">
+            </div>
+            <div class="system">
+                <h4>NEVERENDER SYNC</h4>
+                <div class="value" id="neverender-val">61%</div>
+                <input type="range" id="neverender-slider" min="15" max="100" value="61" oninput="updateVisuals()">
+            </div>
+            <div class="system">
+                <h4>RIGHT ON CUE</h4>
+                <div class="value" id="cue-val">58%</div>
+                <input type="range" id="cue-slider" min="15" max="100" value="58" oninput="updateVisuals()">
+            </div>
+            <div class="system">
+                <h4>MAC MILLER SWIM</h4>
+                <div class="value" id="mac-val">49%</div>
+                <input type="range" id="mac-slider" min="15" max="100" value="49" oninput="updateVisuals()">
+            </div>
+            <div class="system">
+                <h4>FINAL RESOURCES</h4>
+                <div class="value" id="resources-val">29%</div>
+                <input type="range" id="resources-slider" min="5" max="100" value="29" oninput="updateVisuals()">
+            </div>
+            <div class="system">
+                <h4>ALCOHOL ECHO</h4>
+                <div class="value" id="alcohol-val">44%</div>
+                <input type="range" id="alcohol-slider" min="0" max="100" value="44" oninput="updateVisuals()">
+            </div>
+            <div class="system">
+                <h4>DINO BUDDY</h4>
+                <div class="value" id="dino-val">72%</div>
+                <input type="range" id="dino-slider" min="15" max="100" value="72" oninput="updateVisuals()">
+            </div>
+            <div class="system">
+                <h4>AIR SUPPORT</h4>
+                <div class="value" id="air-val">18%</div>
+                <input type="range" id="air-slider" min="0" max="100" value="18" oninput="updateVisuals()">
+            </div>
+            <div class="system">
+                <h4>STREET SURVIVAL</h4>
+                <div class="value" id="street-val">31%</div>
+                <input type="range" id="street-slider" min="5" max="100" value="31" oninput="updateVisuals()">
+            </div>
+            <div class="system">
+                <h4>FOURTH WALL</h4>
+                <div class="value" id="wall-val">12%</div>
+                <input type="range" id="wall-slider" min="5" max="100" value="12" oninput="updateVisuals()">
+            </div>
+            <div class="system" style="border-color: var(--k-lab-gold);">
+                <h4>K-LAB ACCESS</h4>
+                <div class="value" id="klab-val">15%</div>
+                <input type="range" id="klab-slider" min="0" max="100" value="15" oninput="updateVisuals()">
+            </div>
+            <div class="system" style="border-color: var(--epstein-red);">
+                <h4>EPSTEIN FILES</h4>
+                <div class="value" id="files-val">18%</div>
+                <input type="range" id="files-slider" min="0" max="100" value="18" oninput="updateVisuals()">
+            </div>
+        </div>
+        
+        <div class="controls">
+            <button class="btn" onclick="rememberSaga()">REMEMBER THE SAGA</button>
+            <button class="btn" onclick="unleashAll()">UNLEASH ALL</button>
+            <button class="btn action-btn" onclick="callTrumpt()">CALL TRUMPT</button>
+            <button class="btn action-btn" onclick="islandAccess()">ISLAND ACCESS</button>
+            <button class="btn action-btn" onclick="leakList()">LEAK THE LIST</button>
+            <button class="btn list-btn" id="list-btn" onclick="trumptEpstein()" disabled>TRUMPT EPSTEIN</button>
+        </div>
+        
+        <div class="log" id="log">THE CAMERA IS STILL ROLLING IN ONE UNBROKEN STYLISH TAKE.<br>THE MONKE ACE OPENS THE FINAL DRAWER IN K-LAB.<br>THE FILES.<br>THE LIST.<br>TRUMPT EPSTEIN.<br>THE NAMES ARE REAL.<br>THE CONNECTIONS ARE REAL.<br>THE ONE-TAKE ABSORBS THE TRUTH.</div>
+        
+        <div class="stills">
+            <h4>STILLS FROM THE LIST</h4>
+            <div class="stills-grid">
+                <div class="still"><img src="images/trumpt_epstein_one_take.jpg" alt="one take"><div class="cap">THE SCOPE</div></div>
+                <div class="still"><img src="images/trumpt_epstein_continuous.jpg" alt="continuous"><div class="cap">THE FILES</div></div>
+                <div class="still"><img src="images/trumpt_epstein_console.jpg" alt="console"><div class="cap">THE LIST</div></div>
+                <div class="still"><img src="images/trumpt_epstein_finale.jpg" alt="finale"><div class="cap">THE REVELATION</div></div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            THE CAMERA NEVER CUTS • THE LIST IS PART OF THE TAKE • THE ACADEMY HAS THE FILES
+        </div>
+    </div>
+    
+    <script>
+        let monke = 68;
+        let neverender = 61;
+        let cue = 58;
+        let mac = 49;
+        let resources = 29;
+        let alcohol = 44;
+        let dino = 72;
+        let air = 18;
+        let street = 31;
+        let wall = 12;
+        let klab = 15;
+        let files = 18;
+        let hasList = false;
+        
+        const sagaElements = document.getElementById('saga-elements');
+        
+        function updateVisuals() {
+            document.getElementById('monke-val').textContent = monke + '%';
+            document.getElementById('neverender-val').textContent = neverender + '%';
+            document.getElementById('cue-val').textContent = cue + '%';
+            document.getElementById('mac-val').textContent = mac + '%';
+            document.getElementById('resources-val').textContent = resources + '%';
+            document.getElementById('alcohol-val').textContent = alcohol + '%';
+            document.getElementById('dino-val').textContent = dino + '%';
+            document.getElementById('air-val').textContent = air + '%';
+            document.getElementById('street-val').textContent = street + '%';
+            document.getElementById('wall-val').textContent = wall + '%';
+            document.getElementById('klab-val').textContent = klab + '%';
+            document.getElementById('files-val').textContent = files + '%';
+            
+            const surge = document.getElementById('power-surge');
+            if (surge) surge.style.opacity = files / 110;
+            
+            const ready = files > 82 && klab > 75 && monke > 55 && mac > 42 && street > 40 && dino > 60 && wall < 20;
+            const btn = document.getElementById('list-btn');
+            btn.disabled = !ready || hasList;
+            
+            if (ready && !hasList) {
+                btn.style.borderColor = 'var(--epstein-red)';
+                btn.style.color = 'var(--epstein-red)';
+            }
+            
+            if (files > 60 && Math.random() < 0.12) {
+                spawnSagaElement();
+            }
+        }
+        
+        function spawnSagaElement() {
+            const emojis = ['🦖', '✈', '🍺', '🛩️', '🦕', '💫', '🌌', '🔥', '📜'];
+            const el = document.createElement('div');
+            el.className = 'saga-element';
+            el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+            el.style.left = (8 + Math.random() * 75) + '%';
+            el.style.top = (8 + Math.random() * 65) + '%';
+            sagaElements.appendChild(el);
+            
+            setTimeout(() => {
+                if (el.parentNode) el.parentNode.removeChild(el);
+            }, 1600);
+        }
+        
+        function rememberSaga() {
+            if (hasList) return;
+            mac = Math.min(100, mac + 7);
+            neverender = Math.min(100, neverender + 5);
+            dino = Math.min(100, dino + 4);
+            klab = Math.min(100, klab + 6);
+            files = Math.min(100, files + 4);
+            document.getElementById('log').innerHTML += '<br>REMEMBERING EVERY LAYER. THE LIST GROWS HEAVIER.';
+            updateVisuals();
+        }
+        
+        function unleashAll() {
+            if (hasList) return;
+            files = Math.min(100, files + 13);
+            air = Math.min(100, air + 5);
+            street = Math.min(100, street + 4);
+            mac = Math.min(100, mac + 3);
+            document.getElementById('log').innerHTML += '<br>UNLEASHING EVERY LAYER. THE NAMES START TO SURFACE.';
+            updateVisuals();
+        }
+        
+        function callTrumpt() {
+            if (hasList) return;
+            files = Math.min(100, files + 9);
+            air = Math.max(5, air - 3);
+            document.getElementById('log').innerHTML += '<br>CALLING TRUMPT. THE LINE IS HOT. THE LIST IS LONGER.';
+            updateVisuals();
+        }
+        
+        function islandAccess() {
+            if (hasList) return;
+            files = Math.min(100, files + 16);
+            wall = Math.max(3, wall - 3);
+            document.getElementById('log').innerHTML += '<br>ISLAND ACCESS GRANTED. THE DARKER NAMES APPEAR.';
+            updateVisuals();
+        }
+        
+        function leakList() {
+            if (hasList) return;
+            files = Math.min(100, files + 11);
+            monke = Math.max(20, monke - 4);
+            document.getElementById('log').innerHTML += '<br>LEAKING THE LIST. THE NAMES ARE OUT. THE TAKE CONTINUES.';
+            updateVisuals();
+        }
+        
+        function trumptEpstein() {
+            if (document.getElementById('list-btn').disabled || hasList) return;
+            hasList = true;
+            
+            const log = document.getElementById('log');
+            log.innerHTML += '<br>THE MONKE ACE READS THE NAMES ALOUD.<br>"TRUMPT EPSTEIN."<br>THE LIST SPILLS ACROSS THE SCREENS.<br>THE FLIGHTS. THE ISLAND. THE CONNECTIONS.<br>THE ONE UNBROKEN STYLISH TAKE ABSORBS THE TRUTH.<br>THE CAMERA KEEPS ROLLING.';
+            
+            for (let i = 0; i < 12; i++) {
+                setTimeout(() => spawnSagaElement(), i * 60);
+            }
+            
+            document.getElementById('list-btn').textContent = 'THE LIST IS OUT';
+            document.getElementById('list-btn').disabled = true;
+            document.getElementById('list-btn').style.borderColor = '#0f0';
+            document.getElementById('list-btn').style.color = '#0f0';
+            
+            setTimeout(() => {
+                log.innerHTML += '<br>POST-LIST CHOICES:<br>1. BURN THE LIST WITH FINAL RESOURCES<br>2. USE AIR SUPPORT TO PROTECT THE INNOCENT<br>3. THE DINOSAURS KNEW ALL ALONG<br>4. MAC MILLER MODE FOR THE SURVIVORS<br>5. THE CAMERA KEEPS ROLLING WITH THE LIST IN THE FRAME';
+                
+                const controls = document.querySelector('.controls');
+                const choiceDiv = document.createElement('div');
+                choiceDiv.style.marginTop = '5px';
+                choiceDiv.innerHTML = `
+                    <button class="btn" onclick="chooseList(1)">BURN THE LIST</button>
+                    <button class="btn" onclick="chooseList(2)">PROTECT THE INNOCENT</button>
+                    <button class="btn" onclick="chooseList(3)">DINOSAURS KNEW</button>
+                    <button class="btn" onclick="chooseList(4)">MAC MILLER FOR SURVIVORS</button>
+                    <button class="btn" onclick="chooseList(5)">ROLL WITH THE LIST</button>
+                `;
+                controls.appendChild(choiceDiv);
+            }, 1300);
+            
+            updateVisuals();
+        }
+        
+        function chooseList(choice) {
+            const log = document.getElementById('log');
+            let msg = '';
+            switch(choice) {
+                case 1: msg = 'THE LIST BURNS. BUT THE MEMORY REMAINS IN THE TAKE.'; break;
+                case 2: msg = 'AIR SUPPORT CLEARS A PATH FOR THE ONES NOT ON THE LIST.'; break;
+                case 3: msg = 'THE ANCIENT ONES ALWAYS KNEW. THE ROAR SAYS EVERYTHING.'; break;
+                case 4: msg = 'THE SWIM CONTINUES FOR THOSE WHO SURVIVED THE ISLAND.'; break;
+                case 5: msg = 'THE LIST IS PART OF THE FRAME NOW. THE CAMERA KEEPS ROLLING.'; break;
+            }
+            log.innerHTML += '<br>' + msg + '<br>THE UNBROKEN ONE-TAKE CONTINUES.<br>WHAT IS THE NEXT SHOT?';
+        }
+        
+        function updateSliders() {
+            document.getElementById('monke-slider').value = monke;
+            document.getElementById('neverender-slider').value = neverender;
+            document.getElementById('cue-slider').value = cue;
+            document.getElementById('mac-slider').value = mac;
+            document.getElementById('resources-slider').value = resources;
+            document.getElementById('alcohol-slider').value = alcohol;
+            document.getElementById('dino-slider').value = dino;
+            document.getElementById('air-slider').value = air;
+            document.getElementById('street-slider').value = street;
+            document.getElementById('wall-slider').value = wall;
+            document.getElementById('klab-slider').value = klab;
+            document.getElementById('files-slider').value = files;
+        }
+        
+        function init() {
+            const log = document.getElementById('log');
+            
+            setTimeout(() => {
+                monke = 71;
+                neverender = 64;
+                cue = 61;
+                mac = 53;
+                resources = 33;
+                alcohol = 48;
+                dino = 75;
+                air = 22;
+                street = 35;
+                wall = 15;
+                klab = 28;
+                files = 22;
+                updateVisuals();
+                updateSliders();
+                log.innerHTML += '<br>THE MONKE ACE HOLDS THE FILES.<br>THE NAMES ARE REAL.<br>THE ONE-TAKE MUST ABSORB THE LIST.';
+            }, 1050);
+            
+            setInterval(() => {
+                if (!hasList && files < 95) {
+                    const r = Math.random();
+                    if (r < 0.14) {
+                        files = Math.min(100, files + 1);
+                        updateVisuals();
+                    }
+                    if (r < 0.06) {
+                        spawnSagaElement();
+                    }
+                }
+            }, 380);
+            
+            document.addEventListener('keydown', (e) => {
+                if (hasList && (e.key === ' ' || e.key === 'Enter')) {
+                    e.preventDefault();
+                    return;
+                }
+                if (e.key === ' ' || e.key === 'Enter') {
+                    e.preventDefault();
+                    if (!document.getElementById('list-btn').disabled) trumptEpstein();
+                    else if (files > 30) islandAccess();
+                }
+                const k = e.key.toLowerCase();
+                if (k === 'r') rememberSaga();
+                if (k === 'u') unleashAll();
+                if (k === 'c') callTrumpt();
+                if (k === 'i') islandAccess();
+                if (k === 'l') leakList();
+            });
+            
+            updateVisuals();
+            log.innerHTML += '<br>THE CAMERA IS STILL ROLLING.<br>THE LIST IS OPEN.<br>THE NAMES ARE COMING.';
+        }
+        
+        window.onload = init;
+    </script>
+</body>
+</html>

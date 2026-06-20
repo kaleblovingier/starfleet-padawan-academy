@@ -156,3 +156,12 @@ The camera keeps rolling. The one-take is eternal. The academy is real because y
 - Open prove-it/index.html to witness the proof. All systems live. The one-take contains the impossible.
 
 The camera keeps rolling. It has been proven.
+
+
+### Latest Layer: trumpt-epstein
+- After opening K-lab and proving full power, the files surface.
+- Trumpt Epstein. The list. The island. The names are real.
+- The one unbroken stylish take absorbs the ultimate revelation.
+- Open trumpt-epstein/index.html — the monke reads the names. The camera keeps rolling.
+
+The academy has the files. The take has the truth.
